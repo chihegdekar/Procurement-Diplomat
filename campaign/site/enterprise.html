@@ -254,45 +254,29 @@
   .window .st { display: block; margin-top: 0.4rem; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
 
   /* ================= FOUR GAMES (3D sticky stage) ================= */
-  .games-stage { height: 420vh; position: relative; }
+  .games-stage { height: 460vh; position: relative; }
   .games-sticky {
     position: sticky; top: 0; height: 100svh; overflow: hidden;
-    display: grid; align-items: center;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 6vh 0 5vh;
     background:
       radial-gradient(90% 70% at 50% 110%, rgba(22,38,61,0.85), transparent 70%),
       var(--navy-0);
   }
-  .games-head { text-align: center; position: absolute; top: 10vh; left: 0; right: 0; z-index: 5; padding-inline: var(--pad); }
-  .games-head .eyebrow { justify-content: center; }
+  .games-head { text-align: center; padding-inline: var(--pad); z-index: 5; }
+  .games-head .eyebrow { justify-content: center; max-width: none; margin-inline: auto; }
   .games-head .eyebrow::before { display: none; }
-  .board-scene {
-    perspective: 1400px;
-    width: min(72vw, 640px);
-    margin: 0 auto;
-    margin-top: 8vh;
-  }
-  .board-stack { transform-style: preserve-3d; position: relative; height: min(60vw, 420px); }
+  .games-head h2 { font-size: clamp(1.5rem, 3.4vw, 2.5rem); margin: 0; }
+
+  /* the stack is diagram only: no reading matter lives on a tilted surface */
+  .board-scene { perspective: 1500px; width: min(64vw, 560px); margin: 0 auto; }
+  .board-stack { transform-style: preserve-3d; position: relative; height: min(46vw, 340px, 32svh); }
   .plane {
     position: absolute; inset: 0;
-    border: 1px solid;
+    border: 1px solid currentColor;
     border-radius: 4px;
     transform-style: preserve-3d;
-    display: grid; place-items: center;
-    backdrop-filter: blur(1px);
-    transition: box-shadow 0.4s;
-  }
-  .plane .plane-label {
-    font-family: var(--mono); font-size: clamp(0.62rem, 1.4vw, 0.78rem);
-    letter-spacing: 0.3em; text-transform: uppercase;
-    background: var(--navy-0);
-    padding: 0.5rem 1.1rem; border-radius: 3px; border: 1px solid;
-    white-space: nowrap;
-  }
-  .plane .q {
-    position: absolute; bottom: -0.4rem; left: 50%; transform: translateX(-50%) translateY(100%);
-    font-family: var(--serif); font-style: italic; font-size: clamp(0.95rem, 2vw, 1.15rem);
-    color: var(--ivory); white-space: nowrap; opacity: 0;
-    transition: opacity 0.4s;
+    transition: box-shadow 0.45s var(--ease-out), opacity 0.45s var(--ease-out), background 0.45s;
   }
   .plane::before {
     content: ""; position: absolute; inset: 0;
@@ -303,19 +287,54 @@
     opacity: 0.12;
     border-radius: inherit;
   }
-  .games-caption {
-    position: absolute; bottom: 7vh; left: 0; right: 0; text-align: center;
-    padding-inline: var(--pad); z-index: 5;
+  /* counter-rotated so the tag faces the reader while its plane stays tilted */
+  .plane .plane-tag {
+    position: absolute; left: 0; top: 50%;
+    transform: translate(-135%, -50%);
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.16em; line-height: 1; white-space: nowrap;
+    color: currentColor; background: var(--navy-0);
+    border: 1px solid currentColor; border-radius: 3px;
+    padding: 0.36rem 0.5rem;
   }
-  .games-caption p {
-    margin: 0 auto; max-width: 52ch;
-    font-family: var(--serif); font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+
+  .games-readout {
+    text-align: center; padding-inline: var(--pad); z-index: 5;
+    min-height: 12.5rem;
+    transition: opacity 0.25s var(--ease-out);
+  }
+  .games-readout.fading { opacity: 0; }
+  .game-name {
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ivory);
+    margin: 0 auto 0.9rem; max-width: none;
+  }
+  .game-q {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.35rem, 2.9vw, 2rem); line-height: 1.25;
+    color: var(--ivory);
+    margin: 0 auto 1rem; max-width: 22ch;
+  }
+  .games-readout .gloss {
+    margin: 0 auto; max-width: 56ch;
+    font-size: clamp(0.92rem, 1.5vw, 1.02rem); line-height: 1.6;
     color: var(--ivory-dim);
   }
-  .games-caption p b { color: var(--gold); font-weight: 500; }
-  .games-progress { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
+  .games-readout .gloss b { color: var(--gold); font-weight: 500; }
+  .games-progress { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
   .games-progress i {
-    width: 2.4rem; height: 2px; background: rgba(242,235,220,0.15); border-radius: 2px; overflow: hidden;
+    width: 2.4rem; height: 2px; background: rgba(242,235,220,0.15); border-radius: 2px;
+    transition: background 0.35s;
+  }
+  @media (max-width: 760px) {
+    .board-scene { width: min(84vw, 420px); }
+    .board-stack { height: min(62vw, 260px); }
+    .games-readout { min-height: 14rem; }
+    .game-q { max-width: 18ch; }
+    /* narrow screens have no room beside the board, so the tag sits on it */
+    .plane .plane-tag { transform: translate(6%, -50%); font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.3rem 0.4rem; }
   }
 
   /* ================= THE CARTOGRAPHER'S RECORD ================= */
@@ -433,31 +452,21 @@
 <section class="games-stage" data-stage id="four-games" style="padding:0">
   <div class="games-sticky">
     <div class="games-head">
-      <p class="eyebrow">The doctrine · what your team was never trained to see</p>
+      <p class="eyebrow">The doctrine &middot; what your team was never trained to see</p>
       <h2>Every negotiation is four games,<br>played at once.</h2>
     </div>
     <div class="board-scene" aria-hidden="true">
       <div class="board-stack" id="boardStack">
-        <div class="plane" data-i="0" style="color:#C9A96A">
-          <span class="plane-label" style="color:#C9A96A; border-color:currentColor">01 · The Commercial Game</span>
-          <span class="q">What&rsquo;s actually on the table?</span>
-        </div>
-        <div class="plane" data-i="1" style="color:#D8CBAE">
-          <span class="plane-label" style="color:#D8CBAE; border-color:currentColor">02 · The Human Game</span>
-          <span class="q">Whose identity, fear, or ego is in play?</span>
-        </div>
-        <div class="plane" data-i="2" style="color:#9FB2CE">
-          <span class="plane-label" style="color:#9FB2CE; border-color:currentColor">03 · The Political Game</span>
-          <span class="q">Whose career is riding on this outcome?</span>
-        </div>
-        <div class="plane" data-i="3" style="color:#7E93B8">
-          <span class="plane-label" style="color:#7E93B8; border-color:currentColor">04 · The Systems Game</span>
-          <span class="q">What does this precedent make normal tomorrow?</span>
-        </div>
+        <div class="plane" data-i="0" style="color:#C9A96A"><span class="plane-tag">01</span></div>
+        <div class="plane" data-i="1" style="color:#D8CBAE"><span class="plane-tag">02</span></div>
+        <div class="plane" data-i="2" style="color:#9FB2CE"><span class="plane-tag">03</span></div>
+        <div class="plane" data-i="3" style="color:#7E93B8"><span class="plane-tag">04</span></div>
       </div>
     </div>
-    <div class="games-caption">
-      <p id="gamesCaption"><b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see.</p>
+    <div class="games-readout" id="gamesReadout" aria-live="polite">
+      <p class="game-name" id="gameName"><span class="gn" style="color:#C9A96A">01</span> The Commercial Game</p>
+      <p class="game-q" id="gameQ">What&rsquo;s actually on the table?</p>
+      <p class="gloss" id="gamesCaption"><b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see.</p>
       <div class="games-progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
   </div>
@@ -829,40 +838,64 @@
   /* Four Games stage: fan the planes as --sp goes 0→1 */
   const stage = document.querySelector(".games-stage");
   if (!stage) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const planes = Array.from(document.querySelectorAll(".plane"));
+  const readout = document.getElementById("gamesReadout");
+  const gameName = document.getElementById("gameName");
+  const gameQ = document.getElementById("gameQ");
   const caption = document.getElementById("gamesCaption");
   const progress = Array.from(document.querySelectorAll(".games-progress i"));
-  const captions = [
-    "<b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see.",
-    "<b>Identity, fear, ego, recognition.</b> The counterpart who goes quiet isn&rsquo;t agreeing. They&rsquo;re protecting something.",
-    "<b>Status, power, career incentive.</b> Half of every stuck negotiation is an unmapped politics problem, often on your own side of the table.",
-    "<b>Precedent.</b> Whatever your function makes normal today, it will negotiate against tomorrow. The systems game is the longest one."
+  const games = [
+    { n: "01", name: "The Commercial Game", c: "#C9A96A", q: "What&rsquo;s actually on the table?", gloss: "<b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see." },
+    { n: "02", name: "The Human Game", c: "#D8CBAE", q: "Whose identity, fear, or ego is in play?", gloss: "<b>Identity, fear, ego, recognition.</b> The counterpart who goes quiet isn&rsquo;t agreeing. They&rsquo;re protecting something." },
+    { n: "03", name: "The Political Game", c: "#9FB2CE", q: "Whose career is riding on this outcome?", gloss: "<b>Status, power, career incentive.</b> Half of every stuck negotiation is an unmapped politics problem, often on your own side of the table." },
+    { n: "04", name: "The Systems Game", c: "#7E93B8", q: "What does this precedent make normal tomorrow?", gloss: "<b>Precedent.</b> Whatever your function makes normal today, it will negotiate against tomorrow. The systems game is the longest one." }
   ];
-  let lastIdx = -1;
+  let lastIdx = -1, swapTimer = null;
+
+  function paintReadout(g) {
+    gameName.innerHTML = '<span class="gn" style="color:' + g.c + '">' + g.n + "</span> " + g.name;
+    gameQ.innerHTML = g.q;
+    caption.innerHTML = g.gloss;
+  }
+  function showGame(idx) {
+    const g = games[idx];
+    progress.forEach((bar, i) => {
+      bar.style.background = i <= idx ? "rgba(201,169,106,0.8)" : "rgba(242,235,220,0.15)";
+    });
+    if (reduced) { paintReadout(g); return; }
+    clearTimeout(swapTimer);
+    readout.classList.add("fading");
+    swapTimer = setTimeout(function () {
+      paintReadout(g);
+      readout.classList.remove("fading");
+    }, 200);
+  }
+
   function gamesFrame() {
     const sp = parseFloat(getComputedStyle(stage).getPropertyValue("--sp")) || 0;
+    const settle = Math.min(sp / 0.18, 1);
+    const focusIdx = Math.min(Math.floor(sp / 0.25), 3);
+    const rotX = 60 - 8 * settle;
+    const tagX = window.innerWidth <= 760 ? "6%" : "-135%";
     planes.forEach((pl, i) => {
-      const settle = Math.min(sp / 0.18, 1);
-      const baseY = (i - 1.5) * 34 * settle;
-      const focusIdx = Math.min(Math.floor(sp / 0.25), 3);
       const isFocus = i === focusIdx;
-      const lift = isFocus ? -26 : 0;
-      const rotX = 58 - 6 * settle;
-      pl.style.transform =
-        "rotateX(" + rotX + "deg) translateZ(" + (baseY + lift) + "px)";
-      pl.style.borderColor = "currentColor";
-      pl.style.opacity = isFocus ? 1 : 0.38 + 0.12 * settle;
-      pl.querySelector(".q").style.opacity = isFocus ? 1 : 0;
-      pl.style.boxShadow = isFocus ? "0 40px 80px -40px rgba(0,0,0,0.9)" : "none";
+      // neighbours retreat from the focused board rather than the board lunging
+      // forward, which would collide with the plane beneath it
+      const spread = i > focusIdx ? 24 : i < focusIdx ? -24 : 0;
+      const depth = ((i - 1.5) * 48 + spread) * settle;
+      pl.style.transform = "rotateX(" + rotX + "deg) translateZ(" + depth + "px)";
+      pl.style.opacity = isFocus ? 1 : 0.22 + 0.1 * settle;
+      pl.style.background = isFocus ? "rgba(242,235,220,0.03)" : "transparent";
+      pl.style.borderWidth = isFocus ? "1.5px" : "1px";
+      pl.style.boxShadow = isFocus
+        ? "0 40px 80px -40px rgba(0,0,0,0.9), inset 0 0 60px -22px currentColor"
+        : "none";
+      // keep the number tag square to the reader, whatever the board is doing
+      pl.querySelector(".plane-tag").style.transform =
+        "translate(" + tagX + ", -50%) rotateX(" + -rotX + "deg)";
     });
-    const idx = Math.min(Math.floor(sp / 0.25), 3);
-    if (idx !== lastIdx) {
-      lastIdx = idx;
-      caption.innerHTML = captions[idx];
-      progress.forEach((bar, i) => {
-        bar.style.background = i <= idx ? "rgba(201,169,106,0.8)" : "rgba(242,235,220,0.15)";
-      });
-    }
+    if (focusIdx !== lastIdx) { lastIdx = focusIdx; showGame(focusIdx); }
     requestAnimationFrame(gamesFrame);
   }
   requestAnimationFrame(gamesFrame);
