@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add("js");</script>
 <title>The Diplomat Cohort | Become a Procurement Diplomat | Castle Negotiations</title>
-<meta name="description" content="Six missions across three days. A Passport of logged missions, not a certificate. Cohort 001 runs September 8–10, 2026, a three-day intensive, 24 seats, $1,000 per person.">
+<meta name="description" content="Six missions across three days, virtual live. The Passport is earned, not handed out: printed with your logged missions and mailed after you attend all three days. Cohort 001 runs September 8–10, 2026, 24 seats, $1,000 per person.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -386,6 +386,51 @@
   .final-cta { text-align: center; background: radial-gradient(70% 60% at 50% 30%, rgba(22,38,61,0.8), transparent 70%), var(--navy-0); }
   .final-cta .eyebrow { justify-content: center; }
   .final-cta .eyebrow::before { display: none; }
+
+  /* ============ THE NO REGRET GUARANTEE ============ */
+  .g-note {
+    margin-top: 1.2rem;
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .g-note a {
+    color: var(--ivory-dim); text-decoration: none;
+    border-bottom: 1px dotted rgba(201,169,106,0.55); padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .g-note a:hover { color: var(--gold); border-color: var(--gold); }
+  .g-note .kn { color: var(--gold); margin-right: 0.45rem; }
+  .guarantee { text-align: center; }
+  .guarantee .g-copy { max-width: 54ch; margin-inline: auto; }
+  .g-stamp-scene { position: relative; display: grid; place-items: center; margin-bottom: 2.4rem; }
+  .g-stamp {
+    width: min(62vw, 250px); height: auto;
+    color: var(--gold);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 0 34px rgba(201,169,106,0.16));
+  }
+  .g-thud {
+    position: absolute; width: min(58vw, 234px); aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,106,0.6);
+    opacity: 0; pointer-events: none;
+  }
+  .js .g-stamp { opacity: 0; }
+  .js .u-reveal-host.is-visible .g-stamp { animation: g-press 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards; }
+  .js .u-reveal-host.is-visible .g-thud { animation: g-ring 0.9s var(--ease-out) 0.68s; }
+  @keyframes g-press {
+    0%   { opacity: 0; transform: scale(2.4) rotate(6deg); }
+    55%  { opacity: 1; transform: scale(0.95) rotate(-6.9deg); }
+    74%  { transform: scale(1.04) rotate(-5.4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+  }
+  @keyframes g-ring {
+    0%   { opacity: 0.8; transform: scale(0.94); }
+    100% { opacity: 0; transform: scale(1.4); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .g-stamp { opacity: 1; animation: none !important; }
+    .js .u-reveal-host.is-visible .g-thud { animation: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -411,17 +456,17 @@
     <div>
       <p class="eyebrow">Cohort 001 · Sept 8–10, 2026 · 24 seats</p>
       <h1>Walk in with a live deal.<span class="out">Walk out a Procurement Diplomat.</span></h1>
-      <p class="lede" style="margin-top:1.4rem; max-width:42ch">A three-day negotiation intensive built on the Diplomat doctrine. You bring one real negotiation from your own desk and work it through six missions, alongside 23 professionals carrying deals of their own.</p>
+      <p class="lede" style="margin-top:1.4rem; max-width:42ch">A three-day virtual live negotiation intensive built on the Diplomat doctrine. You bring one real negotiation from your own desk and work it through six missions, alongside 23 professionals carrying deals of their own.</p>
       <div class="meta-row">
         <span>Runs<b>Sept 8–10 · Tue–Thu</b></span>
-        <span>Format<b>3-day intensive · live</b></span>
+        <span>Format<b>3-day intensive · virtual live</b></span>
         <span>Seats<b>24 total</b></span>
-        <span>Investment<b>$1,000</b></span>
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.6rem">
         <a class="btn" href="#enroll">Reserve your seat <span class="arrow">→</span></a>
         <a class="btn btn--ghost" href="#missions">Read the six missions</a>
       </div>
+      <p class="g-note"><a href="#guarantee"><span class="kn" aria-hidden="true">♞</span>Backed by the No Regret Guarantee™</a></p>
     </div>
     <div>
       <div class="passport-scene">
@@ -447,7 +492,7 @@
             <div class="face face--back">Prevent regret</div>
           </div>
         </div>
-        <p class="passport-hint">Your record of missions · hover or tap to open</p>
+        <p class="passport-hint">Earned after all three days, then mailed to your desk · hover or tap to open</p>
       </div>
     </div>
   </div>
@@ -499,7 +544,7 @@
       Courses produce <s>students</s>. Programs produce <s>graduates</s>. Certificates produce <s>attendance</s>.<br>
       <span class="re">This produces Procurement Diplomats. You will not graduate; you will be commissioned.</span>
     </p>
-    <p class="reveal" data-delay="2" style="margin-top:2rem; max-width:56ch; color:var(--ivory-dim)">The evidence is a logged mission, not a PDF. By the last afternoon your Passport holds <span class="u-gold">a filed HIPPO Brief&trade;</span> on your live deal, a completed Driver Map&trade;, a decoded Shadow Shark, one executed Knight&rsquo;s Move&trade;, and your first Prevented Regret&trade; story &mdash; told in your own numbers.</p>
+    <p class="reveal" data-delay="2" style="margin-top:2rem; max-width:56ch; color:var(--ivory-dim)">The evidence is a logged mission, not a PDF. By the last afternoon you have <span class="u-gold">a filed HIPPO Brief&trade;</span> on your live deal, a completed Driver Map&trade;, a decoded Shadow Shark, one executed Knight&rsquo;s Move&trade;, and your first Prevented Regret&trade; story &mdash; told in your own numbers. Those six entries are what the Passport is printed with, once you have earned them.</p>
   </div>
 </section>
 
@@ -508,7 +553,7 @@
   <div class="wrap">
     <p class="eyebrow reveal">Three days · six missions</p>
     <h2 class="reveal">What you&rsquo;ll log, day by day.</h2>
-    <p class="reveal" data-delay="1" style="margin-top:1.4rem; max-width:56ch; color:var(--ivory-dim)">One live session per day, roughly 2.5 hours. Fast-paced and highly interactive &mdash; movie clips, negotiation cases, real teardowns. Two instruments stamped into your Passport each day.</p>
+    <p class="reveal" data-delay="1" style="margin-top:1.4rem; max-width:56ch; color:var(--ivory-dim)">One virtual live session per day, roughly 2.5 hours. Fast-paced and highly interactive &mdash; movie clips, negotiation cases, real teardowns. Two instruments logged each day, and every entry you log is a stamp in the Passport that follows.</p>
 
     <div class="mission-list" data-scrub>
       <div class="rail" aria-hidden="true">
@@ -563,6 +608,11 @@
         <p>The debrief that makes your value visible: what future problem did you stop, what would the old-way version have cost, and which Law of Life did it prove. Told to the cohort. Logged in the Passport. Yours forever. This is the commissioning.</p>
         <span class="log">Passport entry: Regret prevented · Diplomat commissioned</span></div>
       </div>
+    </div>
+
+    <div class="manager-strip reveal" data-delay="1">
+      <span class="k">What the Passport is for</span>
+      <p>Nobody is given one for enrolling. Show up for all three days, log all six missions, and the Passport is printed with your name and your entries and mailed to you &mdash; <strong>a navy booklet built to sit on your desk, not a PDF built to sit in a drawer.</strong> It is the quiet evidence, visible to everyone who walks past you, that you now negotiate at a different calibre.</p>
     </div>
   </div>
 </section>
@@ -707,7 +757,7 @@
           <li><span class="m">♞</span><span><strong>You run real negotiations</strong> (renewals, sourcing, capacity, rates) and have at least one live deal to work across the three days.</span></li>
           <li><span class="m">♞</span><span>Some version of the Great Lie (&ldquo;powerless, firefighting, ignored&rdquo;) has come out of your own mouth this year.</span></li>
           <li><span class="m">♞</span><span>You want <strong>a documented outcome</strong> (a filed brief, a logged story), not another certificate for a drawer.</span></li>
-          <li><span class="m">♞</span><span>You can <strong>clear three consecutive days</strong> (Tue&ndash;Thu, Sept 8&ndash;10) for a live intensive.</span></li>
+          <li><span class="m">♞</span><span>You can <strong>clear three consecutive days</strong> (Tue&ndash;Thu, Sept 8&ndash;10) for a virtual live intensive &mdash; camera on, deal in hand.</span></li>
         </ul>
       </div>
       <div class="fit-col no reveal" data-delay="1">
@@ -733,7 +783,7 @@
       <div class="unit-row you reveal" data-squares="1" data-kind="gold">
         <div>
           <span class="amt">$1,000</span>
-          <p class="d">The seat. Passport, three live sessions, all six instruments, and your first commissioned story.</p>
+          <p class="d">The seat. Three virtual live sessions, all six instruments, your first commissioned story &mdash; and the engraved Passport, mailed once you have attended all three days.</p>
           <span class="src">Cohort 001 · all-in price</span>
         </div>
         <div class="sq-field" aria-hidden="true"></div>
@@ -771,7 +821,8 @@
     <h2 class="reveal">24 seats. A real deadline.<br>Here&rsquo;s exactly why.</h2>
     <div class="deadline-block reveal" data-delay="1">
       <div>
-        <p style="color:var(--ivory)">We teach people to see through manufactured urgency, so we owe you the real mechanics: cohorts are capped at 24 because live deal teardowns stop working past that size. Physical Passports go to print on <strong style="color:var(--gold)">August 12</strong> so they arrive before Mission 1. Enrollment therefore closes <strong style="color:var(--gold)">Tuesday, August 11 at 11:59 PM ET</strong> &mdash; not because a countdown timer says so, but <strong>because a printer does.</strong></p>
+        <p style="color:var(--ivory)">We teach people to see through manufactured urgency, so we owe you the real mechanics: cohorts are capped at 24 because live deal teardowns stop working past that size. Enrollment closes <strong style="color:var(--gold)">Tuesday, August 11 at 11:59 PM ET</strong> because Ruth reads every deal in the room and builds the teardown schedule around them &mdash; four weeks of preparation before Mission 1. Not because a countdown timer says so, but <strong>because the preparation does.</strong></p>
+        <p style="color:var(--ivory-dim); margin-top:1.2rem">Nothing is printed in advance. Your Passport goes to press <em>after</em> Day 3, engraved with your name and the six missions you actually logged, and is mailed to your desk.</p>
         <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.8rem">
           <a class="btn" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20reserve%20my%20seat&body=Ruth%2C%0A%0AName%3A%0ARole%20%2F%20company%3A%0AThe%20live%20deal%20I%27ll%20work%20during%20the%20cohort%20(one%20line)%3A%0A%0Asent%20from%20the%20Cohort%20001%20page">Reserve your seat, $1,000 <span class="arrow">→</span></a>
           <a class="btn btn--ghost" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20two%20seats&body=Ruth%2C%0A%0AWe%27d%20like%20two%20seats%3A%20recruiting%20a%20fellow%20Diplomat.%0A%0ANames%20%2F%20roles%3A">Recruit a fellow Diplomat, 2 seats</a>
@@ -797,7 +848,7 @@
       </details>
       <details class="obj">
         <summary>&ldquo;I can&rsquo;t take three days out of the office.&rdquo;</summary>
-        <div class="a"><p>The sessions run about 2.5 hours per day, and the deal you bring is a negotiation already sitting on your desk. Across the three days you prepare it, pressure-test it, and move it &mdash; in a room built to do exactly that. <strong>Three focused mornings now, against weeks of rounds, standoffs, and cleanup later.</strong></p></div>
+        <div class="a"><p>You never leave the office. The sessions are virtual live, about 2.5 hours per day, and the deal you bring is a negotiation already sitting on your desk. Across the three days you prepare it, pressure-test it, and move it &mdash; in a room built to do exactly that. <strong>Three focused mornings now, against weeks of rounds, standoffs, and cleanup later.</strong></p></div>
       </details>
       <details class="obj">
         <summary>&ldquo;Will my company pay for it?&rdquo;</summary>
@@ -805,7 +856,7 @@
       </details>
       <details class="obj">
         <summary>&ldquo;What if I can&rsquo;t make all three days?&rdquo;</summary>
-        <div class="a"><p>Every session is recorded, and any mission you miss can be logged afterward. But the live teardowns are where the doctrine gets into your hands; the whole design is three consecutive days in one room. Clear the block if you can; it&rsquo;s the point.</p></div>
+        <div class="a"><p>Every session is recorded, and any mission you miss can be logged afterward. But the live teardowns are where the doctrine gets into your hands, and <strong>the Passport is issued for attendance across all three days</strong> &mdash; that is what it certifies, and it is the one part a recording cannot give you back. Clear the block if you can; it&rsquo;s the point.</p></div>
       </details>
     </div>
   </div>
@@ -831,11 +882,47 @@
   <div class="wrap">
     <p class="eyebrow reveal">Cohort 001 · Sept 8–10 · closes Aug 11</p>
     <h2 class="reveal" style="max-width:22ch; margin-inline:auto">The negotiation begins long before anyone enters the room.</h2>
-    <p class="lede reveal" data-delay="1" style="max-width:46ch; margin-inline:auto">So does the Diplomat. Reserve your seat, name the live deal you&rsquo;ll work, and arrive at Mission 1 with your Passport already in hand.</p>
+    <p class="lede reveal" data-delay="1" style="max-width:46ch; margin-inline:auto">So does the Diplomat. Reserve your seat, name the live deal you&rsquo;ll work, and earn the Passport that lands on your desk after Day 3.</p>
     <div class="reveal" data-delay="2" style="margin-top:2.4rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
       <a class="btn" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20reserve%20my%20seat">Reserve your seat, $1,000 <span class="arrow">→</span></a>
       <a class="btn btn--ghost" href="REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK">Not yet? Take the free Pre-Brief</a>
     </div>
+  </div>
+</section>
+
+<!-- ============ THE NO REGRET GUARANTEE ============ -->
+<section class="guarantee" id="guarantee">
+  <div class="wrap" style="max-width:52rem">
+    <div class="g-stamp-scene u-reveal-host">
+      <span class="g-thud" aria-hidden="true"></span>
+      <svg class="g-stamp" viewBox="0 0 260 260" role="img" aria-label="A circular ink passport stamp reading No Regret Guarantee, with a knight emblem at its center">
+        <defs>
+          <filter id="gInk">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+          </filter>
+          <path id="gArcTop" d="M 48 130 A 82 82 0 0 1 212 130" fill="none"/>
+          <path id="gArcBot" d="M 35 130 A 95 95 0 0 0 225 130" fill="none"/>
+        </defs>
+        <g filter="url(#gInk)">
+          <g fill="none" stroke="currentColor">
+            <circle cx="130" cy="130" r="122" stroke-width="5"/>
+            <circle cx="130" cy="130" r="112" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="62" stroke-width="1.5"/>
+          </g>
+          <g fill="currentColor">
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcTop" startOffset="50%" text-anchor="middle">NO REGRET</textPath></text>
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcBot" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
+            <text x="130" y="158" text-anchor="middle" font-size="80">&#9822;</text>
+            <path d="M42 124.5 L47.5 130 L42 135.5 L36.5 130 Z"/>
+            <path d="M218 124.5 L223.5 130 L218 135.5 L212.5 130 Z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <h2 class="reveal">The No Regret Guarantee&trade;</h2>
+    <p class="lede reveal g-copy" data-delay="1" style="margin-top:1.6rem">We believe the Diplomat Cohort will fundamentally change the way you prepare, negotiate and influence commercial outcomes. If you fully participate and you genuinely don&rsquo;t believe the three days have delivered that transformation, we&rsquo;ll refund your investment.</p>
+    <p class="reveal g-copy" data-delay="2" style="margin-top:1.4rem; color:var(--ivory-dim)">We teach procurement professionals to prevent commercial regret. <strong style="color:var(--ivory)">The last thing we want is for you to experience it by choosing us.</strong></p>
   </div>
 </section>
 

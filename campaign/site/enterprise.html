@@ -349,6 +349,51 @@
   .final-cta h2 { max-width: 22ch; margin-inline: auto; }
   .final-cta .eyebrow { justify-content: center; }
   .final-cta .eyebrow::before { display: none; }
+
+  /* ============ THE NO REGRET GUARANTEE ============ */
+  .g-note {
+    margin-top: 1.2rem;
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .g-note a {
+    color: var(--ivory-dim); text-decoration: none;
+    border-bottom: 1px dotted rgba(201,169,106,0.55); padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .g-note a:hover { color: var(--gold); border-color: var(--gold); }
+  .g-note .kn { color: var(--gold); margin-right: 0.45rem; }
+  .guarantee { text-align: center; }
+  .guarantee .g-copy { max-width: 54ch; margin-inline: auto; }
+  .g-stamp-scene { position: relative; display: grid; place-items: center; margin-bottom: 2.4rem; }
+  .g-stamp {
+    width: min(62vw, 250px); height: auto;
+    color: var(--gold);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 0 34px rgba(201,169,106,0.16));
+  }
+  .g-thud {
+    position: absolute; width: min(58vw, 234px); aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,106,0.6);
+    opacity: 0; pointer-events: none;
+  }
+  .js .g-stamp { opacity: 0; }
+  .js .u-reveal-host.is-visible .g-stamp { animation: g-press 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards; }
+  .js .u-reveal-host.is-visible .g-thud { animation: g-ring 0.9s var(--ease-out) 0.68s; }
+  @keyframes g-press {
+    0%   { opacity: 0; transform: scale(2.4) rotate(6deg); }
+    55%  { opacity: 1; transform: scale(0.95) rotate(-6.9deg); }
+    74%  { transform: scale(1.04) rotate(-5.4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+  }
+  @keyframes g-ring {
+    0%   { opacity: 0.8; transform: scale(0.94); }
+    100% { opacity: 0; transform: scale(1.4); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .g-stamp { opacity: 1; animation: none !important; }
+    .js .u-reveal-host.is-visible .g-thud { animation: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -380,7 +425,8 @@
         <a class="btn" href="#scoping">Request a scoping call <span class="arrow">→</span></a>
         <a class="btn btn--ghost" href="#evidence">See the fee, drawn to scale</a>
       </div>
-      <p class="scope-line">Scoped in discovery · <b>$10,000 – $50,000+</b> · in-person or virtual · teams of 8–40</p>
+      <p class="g-note"><a href="#guarantee"><span class="kn" aria-hidden="true">♞</span>Backed by the No Regret Guarantee™</a></p>
+      <p class="scope-line">Scoped in discovery · in-person or virtual · teams of 8–40</p>
     </div>
 
     <!-- the engagement, plotted: fee vs. one prevented regret -->
@@ -787,6 +833,42 @@
       <a class="btn btn--ghost" href="REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK">Or take the free Pre-Brief first</a>
     </div>
     <p class="reveal" data-delay="3" style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ivory-dim); margin-top:2rem">202-249-7614 · Contact@CastleNegotiate.com</p>
+  </div>
+</section>
+
+<!-- ============ THE NO REGRET GUARANTEE ============ -->
+<section class="guarantee" id="guarantee">
+  <div class="wrap" style="max-width:52rem">
+    <div class="g-stamp-scene u-reveal-host">
+      <span class="g-thud" aria-hidden="true"></span>
+      <svg class="g-stamp" viewBox="0 0 260 260" role="img" aria-label="A circular ink passport stamp reading No Regret Guarantee, with a knight emblem at its center">
+        <defs>
+          <filter id="gInk">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+          </filter>
+          <path id="gArcTop" d="M 48 130 A 82 82 0 0 1 212 130" fill="none"/>
+          <path id="gArcBot" d="M 35 130 A 95 95 0 0 0 225 130" fill="none"/>
+        </defs>
+        <g filter="url(#gInk)">
+          <g fill="none" stroke="currentColor">
+            <circle cx="130" cy="130" r="122" stroke-width="5"/>
+            <circle cx="130" cy="130" r="112" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="62" stroke-width="1.5"/>
+          </g>
+          <g fill="currentColor">
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcTop" startOffset="50%" text-anchor="middle">NO REGRET</textPath></text>
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcBot" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
+            <text x="130" y="158" text-anchor="middle" font-size="80">&#9822;</text>
+            <path d="M42 124.5 L47.5 130 L42 135.5 L36.5 130 Z"/>
+            <path d="M218 124.5 L223.5 130 L218 135.5 L212.5 130 Z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <h2 class="reveal">The No Regret Guarantee&trade;</h2>
+    <p class="lede reveal g-copy" data-delay="1" style="margin-top:1.6rem">We believe this engagement will fundamentally change the way your team prepares, negotiates and influences commercial outcomes. If your team fully participates and you genuinely don&rsquo;t believe the engagement has delivered that transformation, we&rsquo;ll refund your investment.</p>
+    <p class="reveal g-copy" data-delay="2" style="margin-top:1.4rem; color:var(--ivory-dim)">We teach procurement teams to prevent commercial regret. <strong style="color:var(--ivory)">The last thing we want is for you to experience it by choosing us.</strong></p>
   </div>
 </section>
 
