@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>LinkedIn Visual Cards | Screenshot-Ready Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .flow-header { padding: 9rem var(--pad) 3rem; background: radial-gradient(90% 70% at 50% 0%, rgba(22,38,61,0.9), transparent 65%), var(--navy-0); }
+  .flow-header h1 em { color: var(--gold); }
+  .cards-grid {
+    max-width: 80rem; margin: 0 auto; padding: 3rem var(--pad) 6rem;
+    display: grid; gap: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+    align-items: start;
+  }
+  .card-slot .slot-label {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem; display: flex; justify-content: space-between;
+  }
+  .card-slot .slot-label span:last-child { color: var(--ivory-dim); }
+
+  /* ---- the card canvas: 4:5 ratio (1080×1350 when screenshot at 2x) ---- */
+  .card {
+    aspect-ratio: 4 / 5;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 2.2rem;
+    background: radial-gradient(120% 100% at 20% 0%, #16263D, var(--navy-0) 70%);
+    border: 1px solid rgba(201,169,106,0.3);
+  }
+  .card .brandline {
+    position: absolute; bottom: 1.2rem; left: 2.2rem; right: 2.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(207,198,178,0.55);
+  }
+  .card .brandline .k { color: var(--gold); font-size: 0.9rem; }
+  .card .tag {
+    position: absolute; top: 1.4rem; left: 2.2rem;
+    font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .card .tag.ox { color: #C98476; }
+  .card h2 { font-size: 1.9rem; line-height: 1.15; margin: 0; }
+  .card .serif-xl { font-family: var(--serif); font-size: 2.2rem; line-height: 1.15; color: var(--ivory); }
+  .card .gold { color: var(--gold); }
+  .card .sub { font-size: 0.86rem; color: var(--ivory-dim); margin-top: 1rem; max-width: 30ch; line-height: 1.5; }
+
+  /* card variants */
+  .card.paper-card { background: linear-gradient(178deg, var(--ivory), var(--ivory-2)); border: none; }
+  .card.paper-card h2, .card.paper-card .serif-xl { color: var(--ink); }
+  .card.paper-card .sub { color: var(--ink-soft); }
+  .card.paper-card .brandline { color: rgba(74,82,98,0.6); }
+  .card.paper-card .tag { color: var(--gold-deep); }
+
+  .lie-lines { display: grid; gap: 0.9rem; margin-top: 1.4rem; }
+  .lie-lines .l {
+    font-family: var(--serif); font-size: 1.08rem; color: var(--ivory-dim);
+    position: relative; display: inline-block; width: fit-content;
+  }
+  .lie-lines .l::after { content: ""; position: absolute; inset: 42% -2% auto; height: 3px; background: var(--oxblood); transform: rotate(-0.6deg); }
+  .truth-line { margin-top: 1.6rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--gold); line-height: 1.3; }
+
+  .big-q { font-family: var(--serif); font-style: italic; font-size: 2rem; line-height: 1.25; color: var(--ivory); }
+  .big-q .hl { color: var(--gold); }
+
+  .knight-diag { width: 100%; max-width: 280px; margin: 1rem auto 0; }
+
+  table.mini-ledger { width: 100%; border-collapse: collapse; margin-top: 1.2rem; font-size: 0.78rem; }
+  table.mini-ledger th { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; text-align: left; padding: 0.5rem 0.4rem; border-bottom: 1px solid rgba(201,169,106,0.5); }
+  table.mini-ledger th:first-child { color: rgba(207,198,178,0.7); }
+  table.mini-ledger th:last-child { color: var(--gold); }
+  table.mini-ledger td { padding: 0.55rem 0.4rem; border-bottom: 1px solid rgba(242,235,220,0.1); color: var(--ivory-dim); vertical-align: top; }
+  table.mini-ledger td:last-child { color: var(--ivory); font-family: var(--serif); font-size: 0.9rem; }
+
+  .fin { position: absolute; right: -14px; bottom: 40px; width: 120px; height: 90px; background: rgba(166,85,70,0.14); clip-path: polygon(0 100%, 55% 8%, 74% 42%, 100% 100%); }
+
+  .stat-trio { display: grid; gap: 1.1rem; margin-top: 1.4rem; }
+  .stat-trio .row { display: flex; align-items: baseline; gap: 0.9rem; }
+  .stat-trio .n { font-family: var(--serif); font-size: 2.4rem; color: var(--gold); min-width: 5.5ch; }
+  .stat-trio .d { font-size: 0.8rem; color: var(--ivory-dim); line-height: 1.4; }
+
+  .steps4 { display: grid; gap: 0.9rem; margin-top: 1.3rem; }
+  .steps4 .s { display: flex; gap: 0.9rem; align-items: baseline; }
+  .steps4 .num { font-family: var(--mono); font-size: 0.62rem; color: var(--gold); border: 1px solid rgba(201,169,106,0.5); border-radius: 50%; width: 1.7rem; height: 1.7rem; display: grid; place-items: center; flex-shrink: 0; }
+  .steps4 .t { font-size: 0.85rem; color: var(--ivory); line-height: 1.45; }
+  .steps4 .t b { color: var(--gold); font-weight: 500; }
+
+  .prebrief-fields { margin-top: 1.2rem; display: grid; gap: 0.7rem; }
+  .prebrief-fields .f .fl { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .prebrief-fields .f .fv { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--ink); border-bottom: 1px dotted rgba(28,34,44,0.35); padding-bottom: 0.15rem; }
+
+  .and-sentence { font-family: var(--serif); font-size: 1.5rem; line-height: 1.45; color: var(--ivory); }
+  .and-sentence b { color: var(--gold); font-weight: 500; font-style: italic; }
+
+  .node-diag { margin-top: 1.4rem; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; }
+  .node-diag .row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+  .node-diag .node { border: 1px solid rgba(242,235,220,0.4); border-radius: 3px; padding: 0.5rem 0.7rem; color: var(--ivory); }
+  .node-diag .node.dead { border-color: rgba(166,85,70,0.7); color: #C98476; text-decoration: line-through; }
+  .node-diag .node.gold { border-color: var(--gold); color: var(--gold); }
+  .node-diag .arr { color: var(--ivory-dim); }
+
+  .anatomy { margin-top: 1.4rem; }
+  .anatomy .bar { display: flex; height: 2.6rem; border-radius: 2px; overflow: hidden; gap: 2px; }
+  .anatomy .seg { display: grid; place-items: center; font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.08em; color: var(--navy-0); }
+  .anatomy .lab { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.56rem; color: var(--ivory-dim); margin-top: 0.6rem; letter-spacing: 0.1em; }
+
+  .ba-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(201,169,106,0.4); margin-top: 1.3rem; border-radius: 2px; overflow: hidden; }
+  .ba-split .col { padding: 1.1rem 0.9rem; font-size: 0.78rem; line-height: 1.55; }
+  .ba-split .col.before { background: var(--charcoal); color: var(--ivory-dim); }
+  .ba-split .col.after { background: var(--ivory); color: var(--ink); }
+  .ba-split .col b { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+  .ba-split .col.before b { color: #C98476; }
+  .ba-split .col.after b { color: var(--gold-deep); }
+
+  .oath-lines-card { display: grid; gap: 0.85rem; margin-top: 1.3rem; }
+  .oath-lines-card .ol { font-family: var(--serif); font-style: italic; font-size: 0.98rem; line-height: 1.4; color: var(--ink); }
+  .oath-lines-card .ol:last-child { color: var(--gold-deep); }
+
+  .howto {
+    max-width: 80rem; margin: 0 auto; padding: 0 var(--pad);
+    color: var(--ivory-dim); font-size: 0.95rem;
+  }
+  .howto code { font-family: var(--mono); font-size: 0.8rem; color: var(--gold); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <a class="mark" href="../site/doctrine.html"><span class="knight" aria-hidden="true">♞</span> Procurement&nbsp;Diplomat</a>
+  <ul>
+    <li><a href="../index.html">⌂ Hub</a></li>
+    <li><a href="../linkedin/feed.html">LinkedIn</a></li>
+    <li><a href="cards.html" aria-current="page">Visual cards</a></li>
+  </ul>
+</nav>
+
+<header class="flow-header">
+  <div class="wrap">
+    <p class="eyebrow">Asset library · 17 screenshot-ready cards · 4:5 (LinkedIn-optimal)</p>
+    <h1>The <em>visual cards.</em></h1>
+    <p class="lede" style="max-width:56ch">Every card the LinkedIn posts reference, rendered live in the brand system, 17 cards. To export: zoom the browser to 200%, screenshot one card, crop to its edges. That yields ~1080×1350. Same palette, type, and knight watermark on every card builds the &ldquo;I recognize her posts before I see the name&rdquo; effect.</p>
+  </div>
+</header>
+
+<main id="main" class="cards-grid">
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 01 · The Great Lie</span><span>Day 1</span></p>
+    <div class="card">
+      <span class="tag">Exhibit A · The Great Lie</span>
+      <div>
+        <div class="lie-lines">
+          <span class="l">You are powerless.</span>
+          <span class="l">You are there to fight fires.</span>
+          <span class="l">You are destined to be ignored.</span>
+          <span class="l">You exist to cut costs.</span>
+          <span class="l">You clean up everyone&rsquo;s mess.</span>
+        </div>
+        <p class="truth-line">A learned identity.<br>And learned identities<br>can be replaced.</p>
+      </div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 02 · The Friday Deadline</span><span>Day 2</span></p>
+    <div class="card">
+      <span class="tag ox">Shadow Shark Field Guide · No. 1</span>
+      <p class="big-q">&ldquo;What specifically changes for you, <span class="hl">internally</span>, after Friday?&rdquo;</p>
+      <p class="sub">Real deadlines have real internal causes. Manufactured ones dissolve on contact.</p>
+      <div class="fin" aria-hidden="true"></div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 03 · $2.1M / zero voices</span><span>Day 3 (optional)</span></p>
+    <div class="card">
+      <span class="tag">Prevented Regret · on record</span>
+      <div>
+        <p class="serif-xl"><span class="gold">$2.1M</span><br>five-year savings.</p>
+        <p class="serif-xl" style="font-size:1.5rem; margin-top:1rem">Voices raised: <span class="gold">zero.</span></p>
+        <p class="sub">One question changed the deal: what does Friday mean to them?</p>
+      </div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 04 · The Knight&rsquo;s Move</span><span>Day 4</span></p>
+    <div class="card">
+      <span class="tag">Knight&rsquo;s Move™ · defined</span>
+      <div>
+        <svg class="knight-diag" viewBox="0 0 280 220" aria-label="Diagram: the expected straight move versus the knight's L-shaped move">
+          <g stroke="rgba(126,147,184,0.25)" stroke-width="1">
+            <path d="M20 20 H260 M20 70 H260 M20 120 H260 M20 170 H260" fill="none"/>
+            <path d="M20 20 V170 M80 20 V170 M140 20 V170 M200 20 V170 M260 20 V170" fill="none"/>
+          </g>
+          <line x1="50" y1="145" x2="230" y2="145" stroke="rgba(242,235,220,0.3)" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <text x="140" y="163" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" fill="rgba(242,235,220,0.45)" letter-spacing="1.5">THE EXPECTED MOVE</text>
+          <path d="M50 145 L50 45 L170 45" fill="none" stroke="#C9A96A" stroke-width="2.5"/>
+          <circle cx="170" cy="45" r="5" fill="#C9A96A"/>
+          <circle cx="50" cy="145" r="5" fill="none" stroke="#C9A96A" stroke-width="1.5"/>
+          <text x="150" y="28" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" fill="#C9A96A" letter-spacing="1.5">THE KNIGHT&#8217;S MOVE</text>
+        </svg>
+        <p class="sub" style="margin-top:1.4rem">Change the geometry of the board; don&rsquo;t push harder on the same square.</p>
+      </div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 05 · Old Way / Diplomat Way</span><span>Day 5</span></p>
+    <div class="card">
+      <span class="tag">Comparative doctrine</span>
+      <table class="mini-ledger">
+        <thead><tr><th>The old way</th><th>The Diplomat way</th></tr></thead>
+        <tbody>
+          <tr><td>&ldquo;What do they want?&rdquo;</td><td>&ldquo;What are they protecting?&rdquo;</td></tr>
+          <tr><td>Negotiate the price</td><td>Negotiate the terrain</td></tr>
+          <tr><td>React to urgency</td><td>Diagnose urgency</td></tr>
+          <tr><td>Split the pie</td><td>Expand the pie</td></tr>
+          <tr><td>Win the meeting</td><td>Prevent the crisis</td></tr>
+          <tr><td>Cost center</td><td>Stewardship</td></tr>
+        </tbody>
+      </table>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 06 · Artificial Scarcity</span><span>Day 9</span></p>
+    <div class="card">
+      <span class="tag ox">Shadow Shark Field Guide · No. 2</span>
+      <div>
+        <p class="serif-xl" style="font-size:1.6rem">&ldquo;We only have capacity for two more clients this quarter.&rdquo;</p>
+        <p class="big-q" style="font-size:1.4rem; margin-top:1.4rem">Sometimes true.<br><span class="hl">Often theater.</span></p>
+        <p class="sub">Real constraints have boring, specific answers. Theater gets vague when probed.</p>
+      </div>
+      <div class="fin" aria-hidden="true"></div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 08 · Anatomy of the trade</span><span>Day 11</span></p>
+    <div class="card">
+      <span class="tag">Knight&rsquo;s Move™ · the volume-for-rate trade</span>
+      <div class="steps4">
+        <div class="s"><span class="num">1</span><span class="t"><b>Diagnose the deadline.</b> &ldquo;What changes after Friday?&rdquo; → quarter-end. The pressure is time, not price.</span></div>
+        <div class="s"><span class="num">2</span><span class="t"><b>Find the real driver.</b> Someone has a committed number. Theirs was volume.</span></div>
+        <div class="s"><span class="num">3</span><span class="t"><b>Build the trade.</b> Cheap for us, valuable for them: volume ↔ rate lock + service tier.</span></div>
+        <div class="s"><span class="num">4</span><span class="t"><b>Let them win their game.</b> Two true win-stories, one bigger pie. $2.1M protected.</span></div>
+      </div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 09 · The 19-point swing</span><span>Day 14</span></p>
+    <div class="card">
+      <span class="tag">Preparation · measured</span>
+      <div class="stat-trio">
+        <div class="row"><span class="n" style="color:#C98476">25%</span><span class="d">rollback demanded by the buyer, armed with a year of falling market data</span></div>
+        <div class="row"><span class="n">6%</span><span class="d">where the prepared side closed it</span></div>
+        <div class="row"><span class="n">19 pts</span><span class="d">of annual revenue, decided by who prepared harder</span></div>
+      </div>
+      <p class="sub" style="margin-top:1.4rem">Sales teams train every year. Then both sides sit at one table.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 10 · The Pre-Brief</span><span>Day 15 · the gift</span></p>
+    <div class="card paper-card">
+      <span class="tag">HIPPO Diplomatic Pre-Brief™ · free</span>
+      <div class="prebrief-fields">
+        <div class="f"><div class="fl">1 · The interest we&rsquo;re protecting</div><div class="fv">not &ldquo;best price&rdquo;, the real one</div></div>
+        <div class="f"><div class="fl">2 · Stakeholders (incl. internal)</div><div class="fv">who else decides this deal?</div></div>
+        <div class="f"><div class="fl">3 · The Four Games</div><div class="fv">commercial · human · political · systems</div></div>
+        <div class="f"><div class="fl">5 · Shadow Shark watch</div><div class="fv">name the tactics before the meeting</div></div>
+        <div class="f"><div class="fl">8 · Walk-away position</div><div class="fv">in writing, before round one</div></div>
+        <div class="f"><div class="fl">9 · Prevented Regret target</div><div class="fv">the future problem this prevents</div></div>
+      </div>
+      <p class="sub" style="margin-top:1.3rem">45 minutes with this page changes what you notice in the room.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 11 · The Guilt Play</span><span>Day 16</span></p>
+    <div class="card">
+      <span class="tag ox">Shadow Shark Field Guide · No. 3</span>
+      <div>
+        <p class="and-sentence">&ldquo;We genuinely value what your team did this year, <b>and</b> I still need to understand this line item.&rdquo;</p>
+        <p class="sub">No apology between the clauses. No &ldquo;but.&rdquo; Just &ldquo;and.&rdquo;</p>
+      </div>
+      <div class="fin" aria-hidden="true"></div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 13 · The middleman</span><span>Day 18</span></p>
+    <div class="card">
+      <span class="tag">Knight&rsquo;s Move™ · go direct</span>
+      <div class="node-diag">
+        <div class="row"><span class="node">BUYER</span><span class="arr">→</span><span class="node dead">TRADING CO.</span><span class="arr">→</span><span class="node">SUPPLIER</span></div>
+        <div class="row"><span class="node gold">BUYER</span><span class="arr" style="color:var(--gold)">⟶ direct ⟶</span><span class="node gold">SUPPLIER</span></div>
+      </div>
+      <div class="stat-trio" style="margin-top:1.6rem">
+        <div class="row"><span class="n">€200K</span><span class="d">saved per year, zero new investment</span></div>
+      </div>
+      <p class="sub">The &ldquo;20% increase&rdquo; was never the real thing. The hidden driver was.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 14 · Three words</span><span>Day 20</span></p>
+    <div class="card">
+      <span class="tag">The Diplomat&rsquo;s question</span>
+      <p class="big-q" style="font-size:2.6rem">&ldquo;Protecting <span class="hl">what,</span><br><span class="hl">exactly?</span>&rdquo;</p>
+      <p class="sub">Positions are granite. The thing behind them is almost always tradeable.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 15 · Seven rounds</span><span>Day 22</span></p>
+    <div class="card">
+      <span class="tag">Law 3 · Preparation is profit</span>
+      <div class="stat-trio">
+        <div class="row"><span class="n">7</span><span class="d">rounds, including the one where they drafted the give-up email</span></div>
+        <div class="row"><span class="n">+1.5%</span><span class="d">above the target written before round one</span></div>
+        <div class="row"><span class="n">$3.7M</span><span class="d">in piece price vs. the best first-round quote</span></div>
+      </div>
+      <p class="sub" style="margin-top:1.4rem">Preparation is a favor your Tuesday self does for your Friday self.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 16 · The Status Play</span><span>Day 23</span></p>
+    <div class="card">
+      <span class="tag ox">Shadow Shark Field Guide · No. 4</span>
+      <div>
+        <p class="serif-xl" style="font-size:1.5rem">&ldquo;I usually deal with your CPO directly.&rdquo;</p>
+        <p class="big-q" style="font-size:1.35rem; margin-top:1.4rem">Status games need <span class="hl">two players.</span><br>Decline the sport.</p>
+        <p class="sub">They&rsquo;re protecting a self-image. You&rsquo;re protecting an enterprise. Those games are not the same size.</p>
+      </div>
+      <div class="fin" aria-hidden="true"></div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 17 · Anatomy of a 20%</span><span>Day 25</span></p>
+    <div class="card">
+      <span class="tag">Dissect the number</span>
+      <div class="anatomy">
+        <p class="serif-xl" style="font-size:1.5rem">&ldquo;The increase is 20%.<br>It&rsquo;s non-negotiable.&rdquo;</p>
+        <div class="bar" style="margin-top:1.3rem">
+          <div class="seg" style="flex:3; background:#8A98AD">ENERGY</div>
+          <div class="seg" style="flex:2.4; background:#7E93B8">ALLOY</div>
+          <div class="seg" style="flex:2; background:#C9A96A">LABOR*</div>
+          <div class="seg" style="flex:1.6; background:#A8874B">FREIGHT*</div>
+          <div class="seg" style="flex:1; background:#5B6B84">MARGIN</div>
+        </div>
+        <div class="lab"><span>*hedgeable with a longer term</span><span>20% → <b style="color:var(--gold)">7%</b></span></div>
+      </div>
+      <p class="sub" style="margin-top:1.3rem">&ldquo;Non-negotiable&rdquo; usually means &ldquo;I&rsquo;d rather not itemize this.&rdquo;</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 19 · Before / After</span><span>Day 28</span></p>
+    <div class="card">
+      <span class="tag">The identity shift</span>
+      <div class="ba-split">
+        <div class="col before"><b>Before</b>Braced for a fight. Success = lowest price. &ldquo;Urgent&rdquo; sets the calendar. &ldquo;We&rsquo;re always the last to know.&rdquo;</div>
+        <div class="col after"><b>After</b>Driver Map in hand. Success = regret prevented. Urgency gets diagnosed. Political deals make me curious, not quiet.</div>
+      </div>
+      <p class="sub" style="margin-top:1.3rem">The deals didn&rsquo;t get easier. I got better at seeing them.</p>
+      <div class="brandline"><span>Procurement Diplomat Doctrine</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+  <div class="card-slot">
+    <p class="slot-label"><span>Card 20 · The Oath</span><span>Day 30 · finale</span></p>
+    <div class="card paper-card">
+      <span class="tag">The Procurement Diplomat&rsquo;s Oath</span>
+      <div class="oath-lines-card">
+        <p class="ol">I exist to prevent regret.</p>
+        <p class="ol">I prepare before I posture.</p>
+        <p class="ol">I ask what people are protecting before I ask what they want.</p>
+        <p class="ol">I see all four games, and I never mistake one for all of them.</p>
+        <p class="ol">I do not divide the pie. I make it bigger.</p>
+        <p class="ol">I am the calmest person in the room, because I have seen the room more clearly than anyone else in it.</p>
+      </div>
+      <div class="brandline"><span>Procurement Diplomat Doctrine · Castle Negotiations</span><span class="k">♞</span></div>
+    </div>
+  </div>
+
+</main>
+
+<div class="howto" style="padding-bottom:5rem">
+  <p><strong style="color:var(--ivory)">Export workflow:</strong> zoom to 200% (<code>⌘ +</code>), screenshot a card (<code>⌘⇧4</code>, drag its edges), post as image. For carousels, Card 08&rsquo;s four steps each work as a slide. Cards 07, 12, and 18 in the post plan are marked text-only or site-screenshots (the Four Games 3D exhibit and the surcharge chart live on the <a href="../site/doctrine.html" style="color:var(--gold)">doctrine page</a>).</p>
+</div>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">Consistency is the recognition engine, same palette, same knight, every post.</p>
+      <p><a href="../linkedin/feed.html">← Back to the LinkedIn feed</a></p>
+    </div>
+    <div style="font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="../index.html">Campaign hub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/motion.js"></script>
+</body>
+</html>

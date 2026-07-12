@@ -1,0 +1,120 @@
+/* ============================================================
+   Email flow previewer: renders campaign emails as inbox-style
+   dossier cards with metadata, body, and field notes.
+   ============================================================ */
+
+.flow-header {
+  padding: 9rem var(--pad) 3.5rem;
+  background: radial-gradient(90% 70% at 50% 0%, rgba(22,38,61,0.9), transparent 65%), var(--navy-0);
+}
+.flow-header .wrap { max-width: 62rem; }
+.flow-header h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); }
+.flow-header h1 em { color: var(--gold); }
+.flow-meta {
+  display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 2rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ivory-dim);
+}
+.flow-meta b { color: var(--gold); font-weight: 500; }
+
+.email-stack { max-width: 54rem; margin: 0 auto; padding: 3rem var(--pad) 6rem; display: grid; gap: 3.5rem; }
+
+.email-card {
+  border: 1px solid rgba(201,169,106,0.25);
+  border-radius: 4px;
+  background: var(--navy-2);
+  overflow: hidden;
+  scroll-margin-top: 6rem;
+}
+.email-card .head {
+  padding: 1.5rem clamp(1.2rem, 3vw, 2rem);
+  border-bottom: 1px solid rgba(201,169,106,0.2);
+  background: linear-gradient(180deg, rgba(22,38,61,0.6), transparent);
+}
+.email-card .day-chip {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.email-card .day-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.email-card .subject { font-family: var(--serif); font-size: clamp(1.25rem, 2.6vw, 1.7rem); color: var(--ivory); line-height: 1.25; margin: 0 0 0.5rem; }
+.email-card .alt-subject { font-size: 0.85rem; color: var(--ivory-dim); margin: 0 0 0.9rem; }
+.email-card .alt-subject b { color: rgba(201,169,106,0.9); font-weight: 500; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.email-card .preview-text { font-size: 0.9rem; color: var(--ivory-dim); font-style: italic; margin: 0; }
+.email-card .send-row {
+  display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.1rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(207,198,178,0.65);
+}
+
+.email-card .body {
+  background: linear-gradient(178deg, var(--ivory), var(--ivory-2));
+  color: var(--ink);
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.email-card .body p { color: var(--ink); max-width: 58ch; }
+.email-card .body .sig { font-family: var(--serif); font-style: italic; font-size: 1.1rem; margin-top: 1.8rem; }
+.email-card .body .sig b { font-style: normal; font-weight: 600; display: block; font-family: var(--sans); font-size: 0.9rem; margin-top: 0.2rem; }
+.email-card .body h4 {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-deep); margin: 2rem 0 0.6rem;
+}
+.email-card .body .cta-btn {
+  display: inline-block; margin: 1.4rem 0 0.4rem;
+  background: var(--ink); color: var(--ivory);
+  font-family: var(--mono); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.95rem 1.7rem; border-radius: 3px; text-decoration: none;
+  transition: background 0.3s;
+}
+.email-card .body .cta-btn:hover { background: var(--gold-deep); }
+.email-card .body .ps { font-size: 0.94rem; color: var(--ink-soft); border-top: 1px dotted rgba(28,34,44,0.3); padding-top: 1.1rem; margin-top: 1.8rem; }
+.email-card .body blockquote {
+  margin: 1.4rem 0; padding: 0.4rem 0 0.4rem 1.2rem;
+  border-left: 3px solid var(--gold-deep);
+  font-family: var(--serif); font-style: italic; font-size: 1.08rem; color: var(--ink);
+}
+.email-card .body blockquote cite { display: block; font-family: var(--sans); font-style: normal; font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.5rem; }
+.email-card .body ul { max-width: 58ch; padding-left: 1.2rem; }
+.email-card .body li { margin-bottom: 0.5rem; }
+.email-card .body .diag { list-style: none; padding: 0; }
+.email-card .body .diag li { padding-left: 1.8rem; position: relative; margin-bottom: 0.7rem; }
+.email-card .body .diag li::before { content: "☐"; position: absolute; left: 0; color: var(--gold-deep); }
+
+.email-card .foot {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; justify-content: space-between;
+  padding: 1.4rem clamp(1.2rem, 3vw, 2rem);
+  border-top: 1px solid rgba(201,169,106,0.2);
+}
+.email-card .notes { font-size: 0.85rem; color: var(--ivory-dim); max-width: 46rem; }
+.email-card .notes b { color: var(--gold); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+.email-card .notes ul { margin: 0; padding-left: 1.1rem; }
+.email-card .notes li { margin-bottom: 0.35rem; }
+.copy-btn {
+  flex-shrink: 0;
+  background: transparent; border: 1px solid rgba(201,169,106,0.5); border-radius: 3px;
+  color: var(--gold); font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.7rem 1.1rem; cursor: pointer; transition: background 0.3s, color 0.3s;
+}
+.copy-btn:hover, .copy-btn.copied { background: var(--gold); color: var(--navy-0); }
+
+/* flow timeline nav (jump to day) */
+.day-jump {
+  position: sticky; top: 3.6rem; z-index: 50;
+  background: color-mix(in srgb, var(--navy-0) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201,169,106,0.16);
+  padding: 0.7rem var(--pad);
+  overflow-x: auto; white-space: nowrap;
+  scrollbar-width: none;
+}
+.day-jump::-webkit-scrollbar { display: none; }
+.day-jump a {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  color: var(--ivory-dim); text-decoration: none;
+  padding: 0.35rem 0.65rem; border: 1px solid transparent; border-radius: 3px;
+  margin-right: 0.25rem;
+}
+.day-jump a:hover { color: var(--gold); border-color: rgba(201,169,106,0.4); }
+.day-jump a.gift { color: var(--gold); border-color: rgba(201,169,106,0.5); }

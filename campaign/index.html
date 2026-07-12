@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>Campaign Operations Room | Procurement Diplomat · 30 Days</title>
+<meta name="description" content="The full 30-day Procurement Diplomat mega-campaign: pages, 33 emails, 42 LinkedIn posts, visual assets, and the day-by-day calendar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+  .ops-hero {
+    min-height: 82svh; display: grid; align-items: center;
+    padding-top: 7rem;
+    background: radial-gradient(110% 80% at 50% 0%, rgba(22,38,61,0.95), transparent 65%), var(--navy-0);
+    position: relative; overflow: hidden;
+  }
+  .ops-hero h1 { max-width: 18ch; }
+  .ops-hero h1 em { color: var(--gold); }
+  .ops-stats { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-top: 2.6rem; }
+  .ops-stats .os { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ivory-dim); }
+  .ops-stats .os b { display: block; font-family: var(--serif); font-size: 2rem; color: var(--gold); letter-spacing: 0; text-transform: none; margin-bottom: 0.3rem; }
+
+  /* asset shelf */
+  .shelf { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(19rem,100%),1fr)); margin-top: 3rem; }
+  .shelf-card {
+    border: 1px solid rgba(201,169,106,0.3); border-radius: var(--radius);
+    background: linear-gradient(160deg, var(--navy-2), var(--navy-1));
+    padding: 1.8rem 1.6rem;
+    text-decoration: none; display: flex; flex-direction: column; gap: 0.7rem;
+    transition: transform 0.4s var(--ease-out), border-color 0.4s;
+  }
+  .shelf-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+  .shelf-card .k { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); }
+  .shelf-card h3 { margin: 0; font-size: 1.25rem; }
+  .shelf-card p { font-size: 0.88rem; color: var(--ivory-dim); margin: 0; flex-grow: 1; }
+  .shelf-card .go { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+
+  /* calendar */
+  .cal { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(min(15.5rem,100%),1fr)); margin-top: 3rem; }
+  .day-card {
+    border: 1px solid rgba(242,235,220,0.12); border-radius: var(--radius);
+    background: var(--navy-2); padding: 1.1rem 1.1rem 1.2rem;
+    display: flex; flex-direction: column; gap: 0.55rem;
+    transition: border-color 0.3s;
+  }
+  .day-card:hover { border-color: rgba(201,169,106,0.5); }
+  .day-card.milestone { border-color: rgba(201,169,106,0.55); background: linear-gradient(160deg, #1D2F49, var(--navy-1)); }
+  .day-card .dh {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .day-card .dh .dn { color: var(--gold); }
+  .day-card .dh .dt { color: var(--ivory-dim); }
+  .day-card .item { font-size: 0.8rem; line-height: 1.45; }
+  .day-card .item a { color: var(--ivory); text-decoration: none; }
+  .day-card .item a:hover { color: var(--gold); }
+  .day-card .item .tag {
+    font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase;
+    display: inline-block; margin-right: 0.4rem; padding: 0.12rem 0.4rem; border-radius: 2px;
+  }
+  .day-card .item .tag.em { color: var(--gold); border: 1px solid rgba(201,169,106,0.5); }
+  .day-card .item .tag.li { color: #9FB2CE; border: 1px solid rgba(126,147,184,0.5); }
+  .day-card .item .tag.gr { color: #C98476; border: 1px solid rgba(166,85,70,0.5); }
+  .day-card .mile {
+    font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); border-top: 1px dotted rgba(201,169,106,0.4); padding-top: 0.5rem; margin-top: 0.2rem;
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.6rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ivory-dim); }
+  .legend i { font-style: normal; }
+
+  /* checklist */
+  .launch-list { margin-top: 2.5rem; display: grid; gap: 0.8rem; max-width: 56rem; }
+  .launch-item {
+    display: flex; gap: 1rem; align-items: baseline;
+    border: 1px solid rgba(242,235,220,0.1); border-radius: var(--radius);
+    background: var(--navy-2); padding: 1rem 1.2rem; font-size: 0.94rem; color: var(--ivory-dim);
+  }
+  .launch-item .n { font-family: var(--mono); color: var(--gold); font-size: 0.7rem; flex-shrink: 0; }
+  .launch-item b { color: var(--ivory); font-weight: 500; }
+  .launch-item code { font-family: var(--mono); font-size: 0.78rem; color: var(--gold); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <a class="mark" href="index.html"><span class="knight" aria-hidden="true">♞</span> Operations&nbsp;Room</a>
+  <ul>
+    <li><a href="site/doctrine.html">Doctrine</a></li>
+    <li><a href="site/enterprise.html">Enterprise</a></li>
+    <li><a href="site/cohort.html">Cohort</a></li>
+    <li class="hide-m"><a href="emails/enterprise-flow.html">Emails</a></li>
+    <li class="hide-m"><a href="linkedin/feed.html">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<header class="ops-hero">
+  <div class="wrap">
+    <p class="eyebrow">Campaign operations room · Jul 13 – Aug 11, 2026</p>
+    <h1>The Procurement Diplomat <em>30-day mega-campaign.</em></h1>
+    <p class="lede" style="max-width:56ch">Everything below is launch-ready: four doctrine-grade webpages, two email flows with real (never manufactured) deadlines, a full LinkedIn calendar for the profile and the groups, and screenshot-ready visual assets. Built from the Doctrine, voiced as Ruth, backed by the real testimonial file.</p>
+    <div class="ops-stats">
+      <div class="os"><b>4</b>campaign webpages</div>
+      <div class="os"><b>33</b>emails · 2 flows</div>
+      <div class="os"><b>42</b>LinkedIn posts</div>
+      <div class="os"><b>17</b>visual cards</div>
+      <div class="os"><b>30</b>days, mapped</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ASSET SHELF ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">The assets</p>
+    <h2 class="reveal">Open anything. It&rsquo;s all live.</h2>
+    <div class="shelf">
+      <a class="shelf-card reveal" href="site/doctrine.html">
+        <span class="k">Webpage · flagship</span><h3>The Doctrine</h3>
+        <p>Terrain-map hero, the Great Lie unredacting itself, the Four Games in 3D, the growing pie, the Oath. The page that makes the brand.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" data-delay="1" href="site/enterprise.html">
+        <span class="k">Webpage · $10K–$50K+ offer</span><h3>Enterprise Workshops</h3>
+        <p>&ldquo;This isn&rsquo;t training&rdquo;, a HIPPO Brief that fills itself in as you scroll, the ROI evidence wall, case debriefs, and the honest fall calendar.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" data-delay="2" href="site/cohort.html">
+        <span class="k">Webpage · $1,000 offer</span><h3>The Diplomat Cohort</h3>
+        <p>A 3D Passport that opens as you arrive, six missions, an honest seat map, and enrollment mechanics a skeptic can interrogate.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" href="site/lexicon.html">
+        <span class="k">Webpage · reference</span><h3>The Lexicon</h3>
+        <p>The proprietary vocabulary as a searchable intelligence index, the SEO asset and the credibility signal.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" data-delay="1" href="emails/enterprise-flow.html">
+        <span class="k">Email flow 1 · days 1–15</span><h3>The Commercial Myopia Files</h3>
+        <p>16 emails: story-led enterprise promotion, the transparent Jul 26 calendar deadline, and the Day 15 free Pre-Brief gift. Copy buttons on every email.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" data-delay="2" href="emails/cohort-flow.html">
+        <span class="k">Email flow 2 · days 16–30</span><h3>The First Mission</h3>
+        <p>17 emails: identity-led cohort launch, honest 24-seat scarcity, the reverse-sell, and three sends on deadline day.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" href="linkedin/feed.html">
+        <span class="k">LinkedIn · profile + groups</span><h3>The public terrain</h3>
+        <p>30 personal posts on the doctrine cadence and 12 link-free group discussion posts, each with visual recommendations and a &ldquo;why it works&rdquo; note.</p>
+        <span class="go">Open →</span>
+      </a>
+      <a class="shelf-card reveal" data-delay="1" href="visuals/cards.html">
+        <span class="k">Assets · 4:5 export-ready</span><h3>The visual cards</h3>
+        <p>17 on-brand cards, field guides, stat cards, the Oath, rendered live in the design system, ready to screenshot and post.</p>
+        <span class="go">Open →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap" style="max-width:80rem">
+    <p class="eyebrow reveal">The 30 days, day by day</p>
+    <h2 class="reveal">Mission calendar.</h2>
+    <div class="legend reveal" data-delay="1">
+      <span><i style="color:var(--gold)">EM</i> · email</span>
+      <span><i style="color:#9FB2CE">LI</i> · LinkedIn profile</span>
+      <span><i style="color:#C98476">GR</i> · group post window</span>
+      <span>Gold cards, campaign milestones</span>
+    </div>
+    <div class="cal" id="calendar"></div>
+  </div>
+</section>
+
+<!-- ============ LAUNCH CHECKLIST ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">Before day 1</p>
+    <h2 class="reveal">The launch checklist.</h2>
+    <div class="launch-list reveal" data-delay="1">
+      <div class="launch-item"><span class="n">01</span><span><b>Swap the placeholder links.</b> Every Pre-Brief CTA points to <code>REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK</code>, search-and-replace it with your existing resource&rsquo;s URL across all files. Email CTAs currently point at the local pages; swap for your ESP&rsquo;s tracked links.</span></div>
+      <div class="launch-item"><span class="n">02</span><span><b>Confirm the real numbers.</b> Cohort seat count (cohort.html, <code>seatsTaken</code> in the inline script), the <code>[X] of 24</code> in the Day 28 email, and the &ldquo;two windows held&rdquo; status on the enterprise calendar. Honesty is the campaign&rsquo;s engine, never ship an inflated number.</span></div>
+      <div class="launch-item"><span class="n">03</span><span><b>Set up the booking path.</b> CTAs use <code>mailto:Contact@CastleNegotiate.com</code> with pre-filled subjects. If you use Calendly or similar, replace the scoping-call mailtos with the booking URL.</span></div>
+      <div class="launch-item"><span class="n">04</span><span><b>Load Flow 1 into your ESP.</b> Each email card has subject A, a B-test subject, preview text, send time, and a copy button. Suppress buyers from later deadline emails as noted in the audience line.</span></div>
+      <div class="launch-item"><span class="n">05</span><span><b>Trademark check.</b> Terms carry ™ throughout (Knight&rsquo;s Move™, HIPPO Brief™, etc.). Per the Doctrine, confirm registration status with counsel before publishing ™ externally.</span></div>
+      <div class="launch-item"><span class="n">06</span><span><b>Verify testimonial permissions.</b> Named quotes (Lind, Peck, Jacobson, Meyer, Holzinger, Fort, Schucht, etc.) are from the master testimonials file; stories are extended with narrative detail, confirm each named person is comfortable with the expanded telling before Day 1.</span></div>
+      <div class="launch-item"><span class="n">07</span><span><b>Read LAUNCH-GUIDE.md.</b> The full playbook, decisions made, dates, voice rules, export workflows, and what to update mid-flight, lives in <code>campaign/LAUNCH-GUIDE.md</code>.</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;Whoever controls preparation controls outcomes.&rdquo;</p>
+      <p>Campaign built for Ruth Shlossman · Castle Negotiations Consulting Group<br>Design &amp; copy: Claude (Fable 5) · from the Procurement Diplomat Doctrine</p>
+    </div>
+    <div style="font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="site/doctrine.html">The Doctrine</a><br>
+      <a href="emails/enterprise-flow.html">Email Flow 1</a><br>
+      <a href="emails/cohort-flow.html">Email Flow 2</a><br>
+      <a href="linkedin/feed.html">LinkedIn</a><br>
+      <a href="visuals/cards.html">Visual cards</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+  const EF = "emails/enterprise-flow.html", CF = "emails/cohort-flow.html", LI = "linkedin/feed.html";
+  const days = [
+    { d:1,  dt:"Mon Jul 13", em:[["The $2.1M renewal nobody saw coming", EF+"#d01"]], li:["Launch: the doctrine gets a name", LI], mile:"CAMPAIGN LAUNCH · doctrine page live" },
+    { d:2,  dt:"Tue Jul 14", em:[["Which of these five sentences…?", EF+"#d02"]], li:["Shadow Shark: the Friday deadline", LI] },
+    { d:3,  dt:"Wed Jul 15", em:[["“This offer expires Friday” (no it doesn’t)", EF+"#d03"]], li:["Prevented Regret: $2.1M, zero voices", LI], gr:"G1: fake-deadline stories" },
+    { d:4,  dt:"Thu Jul 16", em:[["The supplier who wanted double", EF+"#d04"]], li:["Knight’s Move: €800K sole-source", LI] },
+    { d:5,  dt:"Fri Jul 17", em:[["A certificate or a story?", EF+"#d05"]], li:["Myth: “procurement cuts costs”", LI], gr:"G2: which-game poll" },
+    { d:6,  dt:"Sat Jul 18", em:[["Note: the calmest person in the room", EF+"#d06"]], li:["Note: the Driver Map at 11 PM", LI] },
+    { d:7,  dt:"Sun Jul 19", em:[["The Dispatch, Issue 001", EF+"#d07"]], li:["Personal: the Ted Lasso of negotiating", LI], gr:"G3: the executive bypass" },
+    { d:8,  dt:"Mon Jul 20", em:[["The “temporary” surcharge, 18 months later", EF+"#d08"]], li:["Law 5: cost changes location", LI] },
+    { d:9,  dt:"Tue Jul 21", em:[["The stakeholder nobody mapped", EF+"#d09"]], li:["Shadow Shark: artificial scarcity", LI] },
+    { d:10, dt:"Wed Jul 22", em:[["What actually happens on a scoping call", EF+"#d10"]], li:["Prevented Regret: page 40", LI], gr:"G4: training ROI debate" },
+    { d:11, dt:"Thu Jul 23", em:[["Forward this one to your CFO", EF+"#d11"]], li:["Knight’s Move: the trade, dissected", LI] },
+    { d:12, dt:"Fri Jul 24", em:[["“Isn’t this just training with better branding?”", EF+"#d12"]], li:["Myth: pushing back damages relationships", LI], gr:"G5: sole-source case" },
+    { d:13, dt:"Sat Jul 25", em:[["Why Sunday night is a real deadline", EF+"#d13"]], li:["Note: the most expensive word", LI] },
+    { d:14, dt:"Sun Jul 26", em:[["AM: The other side already trains", EF+"#d14a"],["PM: A calm final note", EF+"#d14b"]], li:["The 19-point swing", LI], mile:"FALL CALENDAR LOCKS · 11:59 PM" },
+    { d:15, dt:"Mon Jul 27", em:[["THE GIFT: HIPPO Pre-Brief, free", EF+"#d15"]], li:["The giveaway post (pin it)", LI], mile:"THE GIFT · flows pivot", gr:"G6: the invisible win" },
+    { d:16, dt:"Tue Jul 28", em:[["What 24 strangers did with one page", CF+"#d16"]], li:["Shadow Shark: the guilt play", LI] },
+    { d:17, dt:"Wed Jul 29", em:[["You will not get a certificate", CF+"#d17"]], li:["Prevented Regret: a frame is not a fact", LI] },
+    { d:18, dt:"Thu Jul 30", em:[["Seven rounds. $3.7 million.", CF+"#d18"]], li:["Knight’s Move: cut out the middleman", LI], gr:"G7: Pre-Brief share (mods)" },
+    { d:19, dt:"Fri Jul 31", em:[["The negotiator you haven’t mapped: you", CF+"#d19"]], li:["Myth: never show your hand", LI] },
+    { d:20, dt:"Sat Aug 1", em:[["Protecting what, exactly?", CF+"#d20"]], li:["Note: three words", LI], gr:"G8: the inner game" },
+    { d:21, dt:"Sun Aug 2", em:[["The Dispatch, Issue 002, Bigger Pie", CF+"#d21"]], li:["COHORT ANNOUNCEMENT (Passport clip)", LI], mile:"COHORT 001 PUBLIC" },
+    { d:22, dt:"Mon Aug 3", em:[["Three days, mapped to the session", CF+"#d22"]], li:["Law 3: seven rounds, $3.7M", LI] },
+    { d:23, dt:"Tue Aug 4", em:[["Please don’t join Cohort 001 if…", CF+"#d23"]], li:["Shadow Shark: the status play", LI], gr:"G9: walk-away poll" },
+    { d:24, dt:"Wed Aug 5", em:[["$1,000, run through a procurement brain", CF+"#d24"]], li:["Prevented Regret: the auto-renewal", LI] },
+    { d:25, dt:"Thu Aug 6", em:[["“I went from nervous to confident”", CF+"#d25"]], li:["Knight’s Move: anatomy of a 20%", LI], gr:"G10: renewal horror stories" },
+    { d:26, dt:"Fri Aug 7", em:[["Four fair questions, four straight answers", CF+"#d26"]], li:["Myth: “I’ve already done training”", LI] },
+    { d:27, dt:"Sat Aug 8", em:[["If you never give me a dollar…", CF+"#d27"]], li:["The generous one (no links)", LI], gr:"G11: the question flip" },
+    { d:28, dt:"Sun Aug 9", em:[["Dispatch 003 + the honest seat count", CF+"#d28"]], li:["Before / After (participatory)", LI] },
+    { d:29, dt:"Mon Aug 10", em:[["Everything, in one email", CF+"#d29"]], li:["A deadline that survives interrogation", LI], gr:"G12: the Great Lie check" },
+    { d:30, dt:"Tue Aug 11", em:[["8AM: The last file", CF+"#d30a"],["1PM: The 60 seconds after", CF+"#d30b"],["8:30PM: The door closes", CF+"#d30c"]], li:["The Oath (finale)", LI], mile:"ENROLLMENT CLOSES · 11:59 PM ET" }
+  ];
+  const cal = document.getElementById("calendar");
+  days.forEach((day) => {
+    const card = document.createElement("div");
+    card.className = "day-card" + (day.mile ? " milestone" : "");
+    let html = '<div class="dh"><span class="dn">Day ' + String(day.d).padStart(2, "0") + '</span><span class="dt">' + day.dt + "</span></div>";
+    day.em.forEach((e) => { html += '<div class="item"><span class="tag em">EM</span><a href="' + e[1] + '">' + e[0] + "</a></div>"; });
+    if (day.li) html += '<div class="item"><span class="tag li">LI</span><a href="' + day.li[1] + '">' + day.li[0] + "</a></div>";
+    if (day.gr) html += '<div class="item"><span class="tag gr">GR</span>' + day.gr + "</div>";
+    if (day.mile) html += '<div class="mile">◆ ' + day.mile + "</div>";
+    card.innerHTML = html;
+    cal.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>

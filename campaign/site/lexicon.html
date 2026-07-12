@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>The Lexicon | The Language of Procurement Diplomats</title>
+<meta name="description" content="The official glossary of the Procurement Diplomat doctrine: Shadow Sharks, Knight's Moves, Driver Mapping, the Bigger Pie, and every term in between.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .hero-l {
+    padding-top: 10rem; padding-bottom: 4rem;
+    background: radial-gradient(90% 70% at 50% 0%, rgba(22,38,61,0.9), transparent 65%), var(--navy-0);
+  }
+  .hero-l h1 em { color: var(--gold); }
+  .hero-l .note {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ivory-dim); margin-top: 1.6rem;
+  }
+  .search-row { margin-top: 2.6rem; max-width: 34rem; position: relative; }
+  .search-row input {
+    width: 100%;
+    background: var(--navy-2);
+    border: 1px solid rgba(201,169,106,0.35);
+    border-radius: var(--radius);
+    color: var(--ivory);
+    font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.06em;
+    padding: 1rem 1.2rem 1rem 3rem;
+  }
+  .search-row input::placeholder { color: rgba(207,198,178,0.5); }
+  .search-row::before {
+    content: "⌕"; position: absolute; left: 1.05rem; top: 50%;
+    transform: translateY(-52%); color: var(--gold); font-size: 1.25rem;
+  }
+
+  .lex-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(21rem, 100%), 1fr)); margin-top: 3rem; }
+  .term {
+    border: 1px solid rgba(242,235,220,0.12);
+    border-radius: var(--radius);
+    background: linear-gradient(165deg, var(--navy-2), var(--navy-1) 75%);
+    padding: 1.7rem 1.6rem;
+    transition: transform 0.4s var(--ease-out), border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .term:hover { transform: translateY(-4px); border-color: rgba(201,169,106,0.45); }
+  .term .cls {
+    font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase;
+    display: inline-block; padding: 0.28rem 0.6rem; border-radius: 2px; margin-bottom: 1.1rem;
+    border: 1px solid;
+  }
+  .term .cls.instrument { color: var(--gold); border-color: rgba(201,169,106,0.5); }
+  .term .cls.enemy { color: #C98476; border-color: rgba(166,85,70,0.6); }
+  .term .cls.practice { color: #9FB2CE; border-color: rgba(126,147,184,0.5); }
+  .term .cls.role { color: var(--ivory); border-color: rgba(242,235,220,0.4); }
+  .term .cls.principle { color: #D8CBAE; border-color: rgba(216,203,174,0.45); }
+  .term h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .term h3 .tm { font-size: 0.7em; vertical-align: super; color: var(--gold); }
+  .term p { font-size: 0.94rem; color: var(--ivory-dim); margin: 0; }
+  .term .xref {
+    display: block; margin-top: 1rem;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(201,169,106,0.75);
+  }
+  /* the one shark fin in the whole system, enemy context only */
+  .term.shark::after {
+    content: ""; position: absolute; right: -10px; bottom: -6px;
+    width: 74px; height: 54px;
+    background: rgba(166,85,70,0.12);
+    clip-path: polygon(0 100%, 55% 8%, 74% 42%, 100% 100%);
+    transition: background 0.4s;
+  }
+  .term.shark:hover::after { background: rgba(166,85,70,0.22); }
+  .term.knight-mark::after {
+    content: "♞"; position: absolute; right: 0.4rem; bottom: -0.9rem;
+    font-size: 4rem; color: rgba(201,169,106,0.07);
+  }
+  .no-results { display: none; color: var(--ivory-dim); font-family: var(--serif); font-style: italic; font-size: 1.2rem; margin-top: 3rem; }
+  .no-results.show { display: block; }
+
+  .cta-band { text-align: center; background: var(--navy-0); }
+  .cta-band .eyebrow { justify-content: center; }
+  .cta-band .eyebrow::before { display: none; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <a class="mark" href="doctrine.html"><span class="knight" aria-hidden="true">♞</span> Procurement&nbsp;Diplomat</a>
+  <ul>
+    <li><a href="doctrine.html">Doctrine</a></li>
+    <li><a href="enterprise.html">Enterprise</a></li>
+    <li><a href="cohort.html">Cohort</a></li>
+    <li class="hide-m"><a href="lexicon.html" aria-current="page">Lexicon</a></li>
+    <li><a href="../index.html">⌂ Hub</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<header class="hero-l">
+  <div class="wrap">
+    <p class="eyebrow">Reference · The official vocabulary</p>
+    <h1>The <em>Lexicon.</em></h1>
+    <p class="lede" style="max-width:52ch">A doctrine is only as strong as its language. These are the named instruments, enemies, and laws of the Procurement Diplomat: the vocabulary a profession is learning to speak.</p>
+    <p class="note">13 terms · maintained by the Cartographer&rsquo;s office</p>
+    <div class="search-row">
+      <label for="lexSearch" style="position:absolute; left:-9999px">Search the Lexicon</label>
+      <input id="lexSearch" type="search" placeholder="Search: shark, pie, knight, regret…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:1rem">
+  <div class="wrap">
+    <div class="lex-grid" id="lexGrid">
+
+      <article class="term reveal" data-k="procurement diplomat role identity steward">
+        <span class="cls role">Role · The Hero</span>
+        <h3>Procurement Diplomat</h3>
+        <p>A procurement professional who has adopted the doctrine of Commercial Stewardship: they prevent regret and expand value rather than administer transactions.</p>
+        <span class="xref">See: Commercial Stewardship · The Truth</span>
+      </article>
+
+      <article class="term shark reveal" data-k="shadow shark enemy manipulation urgency scarcity intimidation guilt">
+        <span class="cls enemy">Threat · Decoded on sight</span>
+        <h3>Shadow Shark</h3>
+        <p>A counterpart who manipulates through false urgency, status, ego, intimidation, politics, pressure, guilt, or artificial scarcity. Not fought: identified, named, and defused.</p>
+        <span class="xref">See: Shadow Shark Watch, HIPPO Brief field 5</span>
+      </article>
+
+      <article class="term reveal" data-k="commercial myopia enemy short-term transaction">
+        <span class="cls enemy">Enemy · The abstract one</span>
+        <h3>Commercial Myopia</h3>
+        <p>The inability to see beyond today&rsquo;s transaction. The named enemy of the doctrine, parent of false urgency, squeezed suppliers, executive bypass, and every crisis that was once an ignored warning.</p>
+        <span class="xref">See: Law 19 · The Great Lie</span>
+      </article>
+
+      <article class="term knight-mark reveal" data-k="knights move strategic reframe geometry">
+        <span class="cls instrument">Instrument</span>
+        <h3>Knight&rsquo;s Move<span class="tm">™</span></h3>
+        <p>A strategic intervention that changes a negotiation&rsquo;s outcome by changing its underlying dynamics, rather than fighting harder within the existing ones. The L-shaped path no other piece can see.</p>
+        <span class="xref">See: Mission M/05 · the Bigger Pie</span>
+      </article>
+
+      <article class="term reveal" data-k="driver mapping stakeholder protecting asking canvas">
+        <span class="cls instrument">Instrument</span>
+        <h3>Driver Mapping<span class="tm">™</span></h3>
+        <p>The practice of identifying what each stakeholder in a negotiation is <em>protecting</em>, rather than what they&rsquo;re asking for. If you can&rsquo;t fill in the protecting column, you&rsquo;re not ready to negotiate.</p>
+        <span class="xref">See: Driver Mapping Canvas · Law 17</span>
+      </article>
+
+      <article class="term reveal" data-k="prevented regret value metric invisible">
+        <span class="cls principle">Metric · The real one</span>
+        <h3>Prevented Regret<span class="tm">™</span></h3>
+        <p>The measurable (if invisible) value created by stopping a future problem before it occurs. The core unit of Diplomat success, logged, not claimed.</p>
+        <span class="xref">See: Prevented Regret Debrief · Law 1</span>
+      </article>
+
+      <article class="term reveal" data-k="bigger pie expand value zero-sum imagination">
+        <span class="cls principle">Principle &amp; practice</span>
+        <h3>Bigger Pie<span class="tm">™</span></h3>
+        <p>The principle that total value in a negotiation can usually be expanded before it is divided, and the documented attempt to do so, required before any deal is treated as zero-sum.</p>
+        <span class="xref">See: Law 18 · Mission M/05</span>
+      </article>
+
+      <article class="term reveal" data-k="commercial stewardship philosophy long-term enterprise">
+        <span class="cls principle">Philosophy · The parent discipline</span>
+        <h3>Commercial Stewardship<span class="tm">™</span></h3>
+        <p>The overarching philosophy: protecting long-term enterprise value through intelligent negotiation. Procurement Diplomat is its first applied discipline.</p>
+        <span class="xref">See: Stewardship vs. cost-cutting</span>
+      </article>
+
+      <article class="term reveal" data-k="hippo diplomatic brief preparation document instrument">
+        <span class="cls instrument">Instrument · Filed before every major deal</span>
+        <h3>HIPPO Diplomatic Brief<span class="tm">™</span></h3>
+        <p>The pre-negotiation preparation document mapping objectives, stakeholders, the Four Games, Shadow Shark watch, the Bigger Pie search, and a named Prevented Regret target.</p>
+        <span class="xref">See: the free Pre-Brief · Mission M/02</span>
+      </article>
+
+      <article class="term reveal" data-k="diplomatic immunity laws adherence passport">
+        <span class="cls practice">Standing · Self-assessed, community-validated</span>
+        <h3>Diplomatic Immunity<span class="tm">™</span></h3>
+        <p>A member&rsquo;s adherence to the Laws of Life, tracked in the Passport and reviewed quarterly: which law did you break this quarter, and what did it cost you?</p>
+        <span class="xref">See: the Passport · the 22 Laws</span>
+      </article>
+
+      <article class="term reveal" data-k="cartographers notes ruth observations terrain">
+        <span class="cls role">Signal · From the guide</span>
+        <h3>Cartographer&rsquo;s Notes<span class="tm">™</span></h3>
+        <p>Short observations from Ruth Shlossman revealing the hidden dynamics beneath a real negotiation. The Cartographer maps the terrain; she doesn&rsquo;t fight the battle for you.</p>
+        <span class="xref">See: The Cartographer · the Dispatch</span>
+      </article>
+
+      <article class="term reveal" data-k="four games commercial human political systems dimensions">
+        <span class="cls practice">Framework · The way of seeing</span>
+        <h3>The Four Games</h3>
+        <p>The commercial, human, political, and systems dimensions present in every negotiation simultaneously. Missing any one of them means negotiating with one eye closed.</p>
+        <span class="xref">See: HIPPO Brief field 3 · the Doctrine</span>
+      </article>
+
+      <article class="term reveal" data-k="great lie learned identity powerless firefighting ignored">
+        <span class="cls enemy">Diagnosis · The starting condition</span>
+        <h3>The Great Lie</h3>
+        <p>The five-part learned belief (powerless, firefighting, ignored, cost-cutter, cleanup crew) that the profession mistakes for reality. A learned identity, and therefore replaceable.</p>
+        <span class="xref">See: The Truth · Exhibit A</span>
+      </article>
+
+    </div>
+    <p class="no-results" id="noResults">No term matches that, but if it&rsquo;s a manipulation tactic, the Shadow Shark entry probably covers it.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <p class="eyebrow reveal">Speak it fluently</p>
+    <h2 class="reveal" style="max-width:24ch; margin-inline:auto">Vocabulary becomes identity when you use it on a live deal.</h2>
+    <div class="reveal" data-delay="1" style="margin-top:2.2rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a class="btn" href="cohort.html">Join Cohort 001 <span class="arrow">→</span></a>
+      <a class="btn btn--ghost" href="enterprise.html">Bring the doctrine to your team</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;What are they protecting?&rdquo;</p>
+      <p>© 2026 Castle Negotiations Consulting Group, Inc. · Alpharetta, GA<br>
+      <a href="https://www.castlenegotiations.com/">castlenegotiations.com</a> · <a href="mailto:Contact@CastleNegotiate.com">Contact@CastleNegotiate.com</a></p>
+    </div>
+    <div style="font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="doctrine.html">The Doctrine</a><br>
+      <a href="enterprise.html">Enterprise Workshops</a><br>
+      <a href="cohort.html">The Diplomat Cohort</a><br>
+      <a href="REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK">HIPPO Pre-Brief (free)</a><br>
+      <a href="lexicon.html">The Lexicon</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+  const input = document.getElementById("lexSearch");
+  const terms = Array.from(document.querySelectorAll(".term"));
+  const empty = document.getElementById("noResults");
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    terms.forEach((t) => {
+      const hay = (t.textContent + " " + (t.dataset.k || "")).toLowerCase();
+      const hit = !q || hay.includes(q);
+      t.style.display = hit ? "" : "none";
+      if (hit) shown++;
+    });
+    empty.classList.toggle("show", shown === 0);
+  });
+})();
+</script>
+</body>
+</html>

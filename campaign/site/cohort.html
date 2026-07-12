@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>The Diplomat Cohort | Become a Procurement Diplomat | Castle Negotiations</title>
+<meta name="description" content="Six missions across three days. A Passport of logged missions, not a certificate. Cohort 001 runs September 8–10, 2026, a three-day intensive, 24 seats, $1,000 per person.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .hero-c {
+    min-height: 100svh;
+    display: grid; align-items: center;
+    padding-top: 7rem;
+    background:
+      radial-gradient(110% 80% at 80% 0%, rgba(22,38,61,0.95), transparent 65%),
+      var(--navy-0);
+    position: relative; overflow: hidden;
+  }
+  .hero-c canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.5;
+  }
+  .hero-c::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 18vh;
+    background: linear-gradient(180deg, transparent, var(--navy-1));
+    pointer-events: none;
+  }
+  .hero-c .wrap { display: grid; gap: clamp(2.5rem, 6vw, 5rem); grid-template-columns: 1fr; align-items: center; position: relative; z-index: 2; }
+  @media (min-width: 980px) { .hero-c .wrap { grid-template-columns: 1.15fr 0.85fr; } }
+  .hero-c h1 { max-width: 26ch; font-size: clamp(2.2rem, 4vw, 3.1rem); }
+  .hero-c h1 .out { display: block; font-style: italic; font-weight: 400; color: var(--gold); margin-top: 0.12em; }
+  .hero-c .meta-row {
+    display: flex; flex-wrap: wrap; gap: 1.8rem;
+    margin-top: 2.4rem;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .hero-c .meta-row b { display: block; color: var(--gold); font-size: 0.9rem; margin-top: 0.3rem; }
+
+  /* ============ 3D PASSPORT ============ */
+  .passport-scene { perspective: 1600px; display: grid; place-items: center; }
+  .passport {
+    position: relative;
+    width: min(78vw, 330px);
+    aspect-ratio: 0.72;
+    transform-style: preserve-3d;
+    --openAngle: -125deg;
+    /* book slides right as the cover swings open, so the spread stays in its column */
+    transform: rotateX(12deg) rotateY(-16deg) translateX(calc(var(--open, 0) * 48%));
+    transition: transform 1.4s var(--ease-out);
+    cursor: pointer;
+  }
+  .passport:hover { transform: rotateX(6deg) rotateY(-8deg) translateX(calc(var(--open, 0) * 48%)); }
+  @media (max-width: 979px) {
+    .passport { --openAngle: -100deg; }
+    .passport, .passport:hover { transform: rotateX(10deg) rotateY(-12deg) translateX(calc(var(--open, 0) * 16%)); }
+    .passport-scene { margin-top: 3rem; }
+  }
+  .passport .cover, .passport .page {
+    position: absolute; inset: 0;
+    border-radius: 6px 10px 10px 6px;
+  }
+  .passport .cover {
+    transform-origin: left center;
+    transform: rotateY(calc(var(--open, 0) * var(--openAngle, -135deg)));
+    transition: transform 1.4s var(--ease-out);
+    transform-style: preserve-3d;
+    z-index: 3;
+  }
+  .passport .cover .face {
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .passport .cover .face--front {
+    background:
+      radial-gradient(120% 100% at 30% 20%, #1C3050, #0F1B2D 70%),
+      var(--navy-1);
+    border: 1px solid rgba(201,169,106,0.5);
+    display: grid; place-items: center; align-content: center; gap: 1.4rem;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8);
+  }
+  .passport .cover .face--back { /* inside of the cover, seen once opened */
+    background: linear-gradient(178deg, #14233A, #0F1B2D);
+    border: 1px solid rgba(201,169,106,0.35);
+    transform: rotateY(180deg);
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.34em;
+    text-transform: uppercase; color: rgba(201,169,106,0.55);
+  }
+  .passport .cover .crest { font-size: 3.4rem; color: var(--gold); text-shadow: 0 0 30px rgba(201,169,106,0.4); }
+  .passport .cover .t1 {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold);
+    text-align: center;
+  }
+  .passport .cover .t2 { font-family: var(--serif); font-size: 1.3rem; color: var(--ivory); text-align: center; letter-spacing: 0.04em; }
+  .passport .page {
+    background: linear-gradient(178deg, var(--ivory), var(--ivory-2));
+    border-radius: 4px 10px 10px 4px;
+    padding: 1.4rem 1.3rem;
+    color: var(--ink);
+    box-shadow: inset 12px 0 24px -14px rgba(0,0,0,0.35), 0 30px 60px -30px rgba(0,0,0,0.7);
+  }
+  .passport .page .ph {
+    font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ink-soft); text-align: center; margin-bottom: 1rem;
+  }
+  .mission-stamps { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .mstamp {
+    border: 1.5px solid; border-radius: 5px;
+    padding: 0.55rem 0.5rem;
+    font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-align: center; line-height: 1.6;
+    transform: rotate(var(--r, -2deg));
+    opacity: 0.9;
+  }
+  .js .mstamp { opacity: 0; scale: 1.5; transition: opacity 0.45s, scale 0.45s var(--ease-out); }
+  .js .mstamp.on { opacity: 0.9; scale: 1; }
+  .mstamp b { display: block; font-size: 0.62rem; letter-spacing: 0.2em; }
+  .mstamp.gold { color: var(--gold-deep); }
+  .mstamp.ox { color: var(--oxblood); }
+  .mstamp.ink { color: #35507A; }
+  .passport-hint {
+    text-align: center; margin-top: 1.6rem;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ivory-dim);
+  }
+
+  /* identity strike section */
+  .identity-line {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4.2vw, 2.9rem);
+    line-height: 1.35;
+    max-width: 26ch;
+  }
+  .identity-line s { color: var(--ivory-dim); text-decoration-color: var(--oxblood); text-decoration-thickness: 2px; }
+  .identity-line .re { color: var(--gold); font-style: italic; }
+
+  /* ============ MISSION RAIL ============ */
+  .missions { background: var(--navy-0); }
+  .mission-list { display: grid; gap: 0; margin-top: 2rem; position: relative; }
+  .mission-list .rail {
+    position: absolute; left: 1.7rem; top: 1.2rem; bottom: 2.4rem; width: 2px;
+    background: rgba(201,169,106,0.14);
+    transform: translateX(-50%);
+  }
+  .mission-list .rail .rail-fill {
+    position: absolute; left: 0; top: 0; width: 100%;
+    height: calc(var(--p, 1) * 100%);
+    background: linear-gradient(180deg, rgba(201,169,106,0.2), var(--gold));
+  }
+  .mission-list .rail .rail-knight {
+    position: absolute; left: 50%; top: calc(var(--p, 1) * 100%);
+    transform: translate(-50%, -50%);
+    width: 2rem; height: 2rem; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--navy-1); border: 1px solid var(--gold);
+    color: var(--gold); font-size: 1rem;
+    box-shadow: 0 0 24px rgba(201,169,106,0.35);
+  }
+  .dayband {
+    position: relative;
+    padding: 2.6rem 0 1.1rem 5rem;
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .dayband .sub { color: var(--ivory-dim); letter-spacing: 0.14em; display: block; margin-top: 0.35rem; }
+  .dayband::before {
+    content: ""; position: absolute; left: 1.7rem; top: 3rem;
+    width: 0.6rem; height: 0.6rem; background: var(--gold);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .mission {
+    display: grid; grid-template-columns: 3.4rem 1fr; gap: 1.6rem;
+    padding: 1.4rem 0;
+    align-items: start;
+    position: relative;
+  }
+  .mission .badge {
+    width: 3.4rem; height: 3.4rem; flex-shrink: 0;
+    border: 1px solid rgba(201,169,106,0.5); border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 0.66rem; color: var(--gold);
+    background: var(--navy-1);
+    position: relative; z-index: 1;
+  }
+  .mission h3 { margin-bottom: 0.45rem; font-size: 1.3rem; }
+  .mission p { color: var(--ivory-dim); font-size: 0.98rem; margin: 0; max-width: 58ch; }
+  .mission .log { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--gold-deep); margin-top: 0.6rem; display: block; text-transform: uppercase; }
+  @media (max-width: 640px) {
+    .dayband { padding-left: 4.2rem; }
+    .mission { gap: 0.8rem; }
+  }
+
+  /* for/not-for */
+  .fit-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin-top: 3rem; }
+  @media (min-width: 860px) { .fit-grid { grid-template-columns: 1fr 1fr; } }
+  .fit-col { border: 1px solid rgba(242,235,220,0.14); border-radius: var(--radius); padding: 2rem 1.8rem; background: var(--navy-2); }
+  .fit-col.yes { border-color: rgba(201,169,106,0.4); }
+  .fit-col h3 { font-size: 1.15rem; }
+  .fit-col ul { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.9rem; }
+  .fit-col li { display: flex; gap: 0.8rem; font-size: 0.96rem; color: var(--ivory-dim); align-items: baseline; }
+  .fit-col .m { font-family: var(--mono); flex-shrink: 0; font-size: 0.8rem; }
+  .fit-col.yes .m { color: var(--gold); }
+  .fit-col.no .m { color: var(--oxblood); }
+
+  /* ============ UNIT MATH (every square is $1,000) ============ */
+  .unit-math { margin-top: 3rem; display: grid; gap: 2.4rem; }
+  .unit-row { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 860px) { .unit-row { grid-template-columns: 17rem 1fr; gap: 2.5rem; } }
+  .unit-row .amt {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: var(--ivory); line-height: 1; display: block; margin-bottom: 0.5rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .unit-row.you .amt { color: var(--gold); }
+  .unit-row .d { font-size: 0.9rem; color: var(--ivory-dim); margin: 0; max-width: 34ch; }
+  .unit-row .src {
+    display: block; margin-top: 0.6rem;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(207,198,178,0.55);
+  }
+  .sq-field { display: flex; flex-wrap: wrap; gap: 3px; align-content: flex-start; }
+  .sq {
+    width: 11px; height: 11px; border-radius: 1px;
+    background: rgba(126,147,184,0.65);
+  }
+  .sq.gold { background: var(--gold); box-shadow: 0 0 12px rgba(201,169,106,0.5); }
+  .js .sq { opacity: 0; transform: scale(0.4); }
+  .js .sq.on { opacity: 1; transform: scale(1); transition: opacity 0.35s, transform 0.35s var(--ease-out); }
+  .unit-key {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ivory-dim); margin-top: 0.4rem;
+  }
+  .unit-key .k-sq { display: inline-block; width: 9px; height: 9px; background: rgba(126,147,184,0.65); border-radius: 1px; margin-right: 0.5rem; }
+
+  /* manager strip */
+  .manager-strip {
+    margin-top: 3rem;
+    border: 1px dashed rgba(201,169,106,0.5);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 3.5vw, 2.4rem);
+    background: linear-gradient(160deg, rgba(22,38,61,0.6), transparent);
+  }
+  .manager-strip .k {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;
+  }
+  .manager-strip p { color: var(--ivory-dim); max-width: 64ch; margin-bottom: 0; font-size: 0.98rem; }
+  .manager-strip p strong { color: var(--ivory); font-weight: 500; }
+
+  /* enrollment/deadline */
+  .deadline-block {
+    border: 1px solid rgba(201,169,106,0.4); border-radius: var(--radius);
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    background: linear-gradient(160deg, var(--navy-2), var(--navy-1));
+    margin-top: 3rem;
+    display: grid; gap: 2rem; grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) { .deadline-block { grid-template-columns: 1.2fr 0.8fr; align-items: center; } }
+  .seat-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.45rem; max-width: 20rem; }
+  .seat {
+    aspect-ratio: 1; border-radius: 2px;
+    border: 1px solid rgba(201,169,106,0.5);
+    background: transparent;
+    transition: background 0.5s;
+  }
+  .seat.taken { background: var(--gold); border-color: var(--gold); }
+  .seat-cap { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ivory-dim); margin-top: 0.9rem; }
+
+  details.obj { border: 1px solid rgba(242,235,220,0.14); border-radius: var(--radius); margin-bottom: 0.9rem; background: var(--navy-2); }
+  details.obj summary { cursor: pointer; list-style: none; padding: 1.3rem 1.5rem; font-family: var(--serif); font-size: 1.15rem; display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+  details.obj summary::-webkit-details-marker { display: none; }
+  details.obj summary::after { content: "+"; font-family: var(--mono); color: var(--gold); font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; }
+  details.obj[open] summary::after { transform: rotate(45deg); }
+  details.obj .a { padding: 0 1.5rem 1.4rem; color: var(--ivory-dim); max-width: 68ch; }
+
+  /* ================= THE GREAT LIE ================= */
+  .lie-list { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; gap: 1.5rem; }
+  .lie-list li {
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1.3;
+    color: var(--ivory-dim);
+    display: flex; gap: 1.2rem; align-items: baseline;
+  }
+  .lie-list .idx {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--oxblood);
+    letter-spacing: 0.14em; flex-shrink: 0; transform: translateY(-0.3em);
+  }
+  .truth-block {
+    margin-top: 5rem;
+    border-top: 1px solid rgba(201,169,106,0.3);
+    padding-top: 3.5rem;
+  }
+  .truth-block .big {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4.4vw, 3rem);
+    line-height: 1.25;
+    max-width: 24ch;
+    color: var(--ivory);
+  }
+  .truth-block .big em { color: var(--gold); }
+
+  /* ================= LAWS ================= */
+  .law-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); margin-top: 3rem; }
+  .law-card {
+    border: 1px solid rgba(242,235,220,0.12);
+    background: linear-gradient(165deg, var(--navy-2), var(--navy-1) 70%);
+    padding: 1.7rem 1.5rem;
+    border-radius: var(--radius);
+    transition: transform 0.45s var(--ease-out), border-color 0.45s;
+    position: relative;
+    overflow: hidden;
+  }
+  .law-card:hover { transform: translateY(-5px); border-color: rgba(201,169,106,0.5); }
+  .law-card .n {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em;
+    color: var(--gold); display: block; margin-bottom: 0.9rem;
+  }
+  .law-card .law {
+    font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; color: var(--ivory);
+    margin-bottom: 0.7rem;
+  }
+  .law-card .gloss { font-size: 0.9rem; color: var(--ivory-dim); line-height: 1.55; margin: 0; }
+  .law-card::after {
+    content: "♞"; position: absolute; right: -0.4rem; bottom: -1.4rem;
+    font-size: 5rem; color: rgba(201,169,106,0.05);
+    transition: color 0.45s;
+  }
+  .law-card:hover::after { color: rgba(201,169,106,0.12); }
+
+  /* ================= KNIGHT'S MOVE EXHIBIT ================= */
+  .exhibit {
+    border: 1px solid rgba(201,169,106,0.25);
+    background: var(--navy-1);
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border-radius: var(--radius);
+  }
+  .exhibit .cap {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  .exhibit .cap span:last-child { color: var(--ivory-dim); }
+  .exhibit .knight-plot { display: block; width: 100%; max-width: 380px; margin: 0 auto; height: auto; }
+
+  /* ================= BIGGER PIE ================= */
+  .pie-stage { height: 260vh; }
+  .pie-sticky {
+    position: sticky; top: 0; height: 100svh; display: grid; align-items: center;
+    overflow: hidden; background: var(--navy-1);
+  }
+  .pie-grid { display: grid; gap: clamp(2rem, 6vw, 5rem); grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 900px) { .pie-grid { grid-template-columns: 1.1fr 1fr; } }
+  .pie-visual { display: grid; place-items: center; }
+  .pie-visual svg { width: min(70vw, 420px); overflow: visible; }
+  .pie-copy .stage-line { display: none; }
+  .pie-copy .stage-line.active { display: block; }
+
+  /* ================= THE CARTOGRAPHER'S RECORD ================= */
+  .proof-names {
+    display: flex; flex-wrap: wrap; gap: 1rem 2.6rem; margin-top: 2rem;
+    font-family: var(--serif); font-size: 1.1rem; color: var(--ivory-dim);
+    align-items: baseline;
+  }
+  .proof-names span { opacity: 0.85; }
+
+  /* ================= OATH ================= */
+  .oath { background: radial-gradient(80% 60% at 50% 40%, rgba(22,38,61,0.7), transparent 70%), var(--navy-0); text-align: center; }
+  .oath .eyebrow { justify-content: center; }
+  .oath .eyebrow::before { display: none; }
+  .oath-lines { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; gap: 1.6rem; }
+  .oath-lines li {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+    color: var(--ivory); line-height: 1.4;
+    max-width: 34ch; margin-inline: auto;
+  }
+
+  .final-cta { text-align: center; background: radial-gradient(70% 60% at 50% 30%, rgba(22,38,61,0.8), transparent 70%), var(--navy-0); }
+  .final-cta .eyebrow { justify-content: center; }
+  .final-cta .eyebrow::before { display: none; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <a class="mark" href="doctrine.html"><span class="knight" aria-hidden="true">♞</span> Procurement&nbsp;Diplomat</a>
+  <ul>
+    <li><a href="doctrine.html">Doctrine</a></li>
+    <li><a href="enterprise.html">Enterprise</a></li>
+    <li><a href="cohort.html" aria-current="page">Cohort</a></li>
+    <li class="hide-m"><a href="lexicon.html">Lexicon</a></li>
+    <li><a href="../index.html">⌂ Hub</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<header class="hero-c">
+  <canvas data-terrain aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Cohort 001 · Sept 8–10, 2026 · 24 seats</p>
+      <h1>Walk in with a live deal.<span class="out">Walk out a Procurement Diplomat.</span></h1>
+      <p class="lede" style="margin-top:1.4rem; max-width:42ch">A three-day negotiation intensive built on the Diplomat doctrine. You bring one real negotiation from your own desk and work it through six missions, alongside 23 professionals carrying deals of their own.</p>
+      <div class="meta-row">
+        <span>Runs<b>Sept 8–10 · Tue–Thu</b></span>
+        <span>Format<b>3-day intensive · live</b></span>
+        <span>Seats<b>24 total</b></span>
+        <span>Investment<b>$1,000</b></span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.6rem">
+        <a class="btn" href="#enroll">Reserve your seat <span class="arrow">→</span></a>
+        <a class="btn btn--ghost" href="#missions">Read the six missions</a>
+      </div>
+    </div>
+    <div>
+      <div class="passport-scene">
+        <div class="passport" id="passport" role="img" aria-label="The Procurement Diplomat Passport, a navy booklet with a gold knight crest that opens to reveal mission stamps">
+          <div class="page">
+            <p class="ph">Missions logged · not modules completed</p>
+            <div class="mission-stamps">
+              <div class="mstamp gold" style="--r:-3deg"><b>HIPPO</b>Brief filed<br>M/01</div>
+              <div class="mstamp ink" style="--r:2deg"><b>Driver map</b>9 stakeholders<br>M/02</div>
+              <div class="mstamp ox" style="--r:-1.5deg"><b>Shadow shark</b>Decoded ×3<br>M/03</div>
+              <div class="mstamp ink" style="--r:2.5deg"><b>Knight&rsquo;s move</b>Executed<br>M/04</div>
+              <div class="mstamp gold" style="--r:-2deg"><b>Bigger pie</b>Documented<br>M/05</div>
+              <div class="mstamp gold" style="--r:1.5deg"><b>Regret</b>Prevented<br>M/06</div>
+            </div>
+          </div>
+          <div class="cover">
+            <div class="face face--front">
+              <span class="crest" aria-hidden="true">♞</span>
+              <span class="t1">Commercial Stewardship™</span>
+              <span class="t2">Diplomatic Passport</span>
+              <span class="t1" style="letter-spacing:0.26em; opacity:0.7">Procurement Corps · 001</span>
+            </div>
+            <div class="face face--back">Prevent regret</div>
+          </div>
+        </div>
+        <p class="passport-hint">Your record of missions · hover or tap to open</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE GREAT LIE ============ -->
+<section id="lie" data-redact-group>
+  <div class="wrap">
+    <p class="eyebrow reveal">Exhibit A · The Great Lie</p>
+    <h2 class="reveal">The profession has been<br>conditioned to believe:</h2>
+    <ul class="lie-list">
+      <li class="reveal"><span class="idx">LIE/01</span><span><span class="redact">You are powerless.</span></span></li>
+      <li class="reveal"><span class="idx">LIE/02</span><span><span class="redact">You are there to fight fires.</span></span></li>
+      <li class="reveal"><span class="idx">LIE/03</span><span><span class="redact">You are destined to be ignored.</span></span></li>
+      <li class="reveal"><span class="idx">LIE/04</span><span><span class="redact">You exist to cut costs.</span></span></li>
+      <li class="reveal"><span class="idx">LIE/05</span><span><span class="redact">You clean up everyone else&rsquo;s mess.</span></span></li>
+    </ul>
+
+    <div class="truth-block reveal">
+      <p class="eyebrow">Exhibit B · The Truth</p>
+      <p class="big">None of this is a law of nature. It&rsquo;s a <em>learned identity</em>, and learned identities can be <span class="u-gold">replaced</span>.</p>
+      <p class="lede" style="margin-top:1.5rem">The moment you accept responsibility for outcomes, you gain the authority to shape them. That single inversion, responsibility before authority, is where the Procurement Diplomat begins &mdash; and it is where Mission 1 begins too.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAWS OF LIFE ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <p class="eyebrow reveal">The Mind layer · <span class="count" data-to="22">22</span> Laws of Life</p>
+    <h2 class="reveal">Six laws, declassified.</h2>
+    <p class="lede reveal" data-delay="1">The doctrine holds twenty-two. You will work with all of them across the three days. These six do the most damage to the old way of working.</p>
+    <div class="law-cards">
+      <article class="law-card reveal"><span class="n">LAW 01</span><p class="law">Procurement exists to prevent regret.</p><p class="gloss">Regretted contracts, regretted vendors, regretted urgency, regretted silence. Prevention is the whole job; everything else is downstream.</p></article>
+      <article class="law-card reveal" data-delay="1"><span class="n">LAW 03</span><p class="law">Preparation is profit.</p><p class="gloss">Whoever prepares more thoroughly than the room controls the room. This is the mechanical reason the HIPPO Diplomatic Brief™ works, and why you file yours on Day 1.</p></article>
+      <article class="law-card reveal" data-delay="2"><span class="n">LAW 05</span><p class="law">Cost never disappears. It only changes location.</p><p class="gloss">The &ldquo;temporary&rdquo; surcharge you accept this quarter is still on the invoice eighteen months from now. Track where the cost went, not whether it looks smaller today.</p></article>
+      <article class="law-card reveal"><span class="n">LAW 07</span><p class="law">Urgency is usually deferred thinking.</p><p class="gloss">Someone failed to plan, and their failure is being repackaged as your emergency. Name it before you inherit it.</p></article>
+      <article class="law-card reveal" data-delay="1"><span class="n">LAW 17</span><p class="law">Every difficult person is protecting something.</p><p class="gloss">Difficulty is a signal to investigate, not an obstacle to overcome. Find what they&rsquo;re protecting and the posture of the room changes.</p></article>
+      <article class="law-card reveal" data-delay="2"><span class="n">LAW 20</span><p class="law">The highest form of negotiation is preventing the one that never needed to happen.</p><p class="gloss">The best Diplomats are measured in crises that never occurred, which is exactly why their value goes unrecorded &mdash; until you learn to log it.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IDENTITY ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">Why &ldquo;cohort,&rdquo; not &ldquo;course&rdquo;</p>
+    <p class="identity-line reveal" data-delay="1">
+      Courses produce <s>students</s>. Programs produce <s>graduates</s>. Certificates produce <s>attendance</s>.<br>
+      <span class="re">This produces Procurement Diplomats. You will not graduate; you will be commissioned.</span>
+    </p>
+    <p class="reveal" data-delay="2" style="margin-top:2rem; max-width:56ch; color:var(--ivory-dim)">The evidence is a logged mission, not a PDF. By the last afternoon your Passport holds <span class="u-gold">a filed HIPPO Brief&trade;</span> on your live deal, a completed Driver Map&trade;, a decoded Shadow Shark, one executed Knight&rsquo;s Move&trade;, and your first Prevented Regret&trade; story &mdash; told in your own numbers.</p>
+  </div>
+</section>
+
+<!-- ============ MISSIONS ============ -->
+<section class="missions" id="missions">
+  <div class="wrap">
+    <p class="eyebrow reveal">Three days · six missions</p>
+    <h2 class="reveal">What you&rsquo;ll log, day by day.</h2>
+    <p class="reveal" data-delay="1" style="margin-top:1.4rem; max-width:56ch; color:var(--ivory-dim)">One live session per day, roughly 2.5 hours. Fast-paced and highly interactive &mdash; movie clips, negotiation cases, real teardowns. Two instruments stamped into your Passport each day.</p>
+
+    <div class="mission-list" data-scrub>
+      <div class="rail" aria-hidden="true">
+        <span class="rail-fill"></span>
+        <span class="rail-knight">♞</span>
+      </div>
+
+      <p class="dayband">Day 1 · Tue, Sept 8<span class="sub">The Mapout — preparation &amp; setting the stage</span></p>
+      <div class="mission reveal">
+        <span class="badge">M/01</span>
+        <div>
+        <h3>See the whole board</h3>
+        <p>The Great Lie, named and dismantled. The Four Games introduced on a real deal teardown &mdash; one cohort member&rsquo;s live negotiation, mapped in front of everyone. This is where you stop negotiating with yourself.</p>
+        <span class="log">Passport entry: your deal, seen four ways</span></div>
+      </div>
+      <div class="mission reveal" data-delay="1">
+        <span class="badge">M/02</span>
+        <div>
+        <h3>File your first HIPPO Brief&trade;</h3>
+        <p>The preparation instrument, completed on a negotiation you&rsquo;re facing this quarter. Objectives, the numbers, stakeholders, leverage and legitimacy, the opening offer, your Plan B, the agenda, and a Prevented Regret target.</p>
+        <span class="log">Passport entry: HIPPO Brief filed</span></div>
+      </div>
+
+      <p class="dayband">Day 2 · Wed, Sept 9<span class="sub">Offers &amp; counter-offers</span></p>
+      <div class="mission reveal">
+        <span class="badge">M/03</span>
+        <div>
+        <h3>Map the drivers</h3>
+        <p>For every stakeholder: not what they&rsquo;re asking for &mdash; what they&rsquo;re protecting. Positions versus interests, and the probing questions that surface what they really want. The column most negotiators never fill in is the one that changes the deal.</p>
+        <span class="log">Passport entry: Driver Map completed</span></div>
+      </div>
+      <div class="mission reveal" data-delay="1">
+        <span class="badge">M/04</span>
+        <div>
+        <h3>Decode the Shadow Sharks</h3>
+        <p>False urgency, artificial scarcity, status plays, guilt, unrealistic demands. Pattern recognition drilled live: how to hold firm against the tactics being run on you, how to say &ldquo;no&rdquo; without losing the relationship, who opens first, and how to turn a &ldquo;no&rdquo; into a &ldquo;yes.&rdquo;</p>
+        <span class="log">Passport entry: three tactics decoded</span></div>
+      </div>
+
+      <p class="dayband">Day 3 · Thu, Sept 10<span class="sub">Seal the deal — coming to an agreement</span></p>
+      <div class="mission reveal">
+        <span class="badge">M/05</span>
+        <div>
+        <h3>Execute a Knight&rsquo;s Move&trade;</h3>
+        <p>Creative trades and concession patterns: change the geometry of a stuck negotiation instead of fighting harder inside it, and document at least one attempt to make the pie bigger before anyone divides it.</p>
+        <span class="log">Passport entry: Knight&rsquo;s Move + Bigger Pie search</span></div>
+      </div>
+      <div class="mission reveal" data-delay="1">
+        <span class="badge">M/06</span>
+        <div>
+        <h3>Log your first Prevented Regret&trade;</h3>
+        <p>The debrief that makes your value visible: what future problem did you stop, what would the old-way version have cost, and which Law of Life did it prove. Told to the cohort. Logged in the Passport. Yours forever. This is the commissioning.</p>
+        <span class="log">Passport entry: Regret prevented · Diplomat commissioned</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE KNIGHT'S MOVE ============ -->
+<section>
+  <div class="wrap grid-2">
+    <div>
+      <p class="eyebrow reveal">Mission 05, in one diagram</p>
+      <h2 class="reveal">When a deal is stuck,<br>stop pushing harder.</h2>
+      <p class="reveal" data-delay="1">Everyone at the table can see the straight line: push on price, push again, meet somewhere in the middle, call it a negotiation. A Knight&rsquo;s Move&trade; goes around the obstacle instead of through it &mdash; a trade in a different currency entirely. Volume for rate. Term for capability. A service tier nobody thought to price.</p>
+      <p class="reveal" data-delay="2">You will execute one on your own live deal, in front of the cohort, on Day 3.</p>
+      <p class="margin-note reveal" data-delay="2">The move that isn&rsquo;t available on the board is usually the one that ends the standoff.</p>
+    </div>
+    <figure class="exhibit reveal" data-delay="1" data-draw-group>
+      <figcaption class="cap"><span>Exhibit: the move nobody expects</span><span>doctrine · the instrument</span></figcaption>
+      <svg class="knight-plot" viewBox="0 0 320 320" role="img" aria-label="Diagram: a dashed line runs straight across the board, labelled the expected move. A gold path steps up and across in an L shape, labelled the Knight's Move.">
+        <defs>
+          <marker id="dotC" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5">
+            <circle cx="5" cy="5" r="4" fill="#C9A96A"/>
+          </marker>
+        </defs>
+        <g stroke="rgba(126,147,184,0.18)" stroke-width="1">
+          <path d="M40 40 H280 M40 100 H280 M40 160 H280 M40 220 H280 M40 280 H280" fill="none"/>
+          <path d="M40 40 V280 M100 40 V280 M160 40 V280 M220 40 V280 M280 40 V280" fill="none"/>
+        </g>
+        <line x1="70" y1="250" x2="250" y2="250" stroke="rgba(242,235,220,0.25)" stroke-width="1.5" stroke-dasharray="4 6" data-draw/>
+        <text x="150" y="272" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(242,235,220,0.4)" letter-spacing="1.5">THE EXPECTED MOVE</text>
+        <path d="M70 250 L70 130 L190 130" fill="none" stroke="#C9A96A" stroke-width="2.5" marker-end="url(#dotC)" data-draw/>
+        <circle cx="70" cy="250" r="5" fill="none" stroke="#C9A96A" stroke-width="1.5"/>
+        <text x="120" y="118" font-family="IBM Plex Mono, monospace" font-size="9" fill="#C9A96A" letter-spacing="1.5">THE KNIGHT&#8217;S MOVE&#8482;</text>
+      </svg>
+      <p style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.1em; color:var(--ivory-dim); margin:1rem 0 0;">PASSPORT ENTRY M/05 · KNIGHT&rsquo;S MOVE EXECUTED</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ BIGGER PIE (scroll-scrub) ============ -->
+<section class="pie-stage" data-stage style="padding:0">
+  <div class="pie-sticky">
+    <div class="wrap pie-grid">
+      <div class="pie-visual" aria-hidden="true">
+        <svg viewBox="0 0 400 400" id="pieSvg">
+          <g id="pieKnives" stroke="rgba(242,235,220,0.5)" stroke-width="1.5">
+            <line x1="200" y1="200" x2="200" y2="80"/>
+            <line x1="200" y1="200" x2="304" y2="260"/>
+            <line x1="200" y1="200" x2="96" y2="260"/>
+          </g>
+          <circle id="pieCircle" cx="200" cy="200" r="120" fill="none" stroke="#C9A96A" stroke-width="2.5"/>
+          <circle id="pieGhost" cx="200" cy="200" r="120" fill="rgba(201,169,106,0.07)" stroke="none"/>
+          <text id="pieLabel" x="200" y="206" text-anchor="middle" font-family="Newsreader, serif" font-size="21" fill="#F2EBDC" font-style="italic">the deal as found</text>
+        </svg>
+      </div>
+      <div class="pie-copy">
+        <p class="eyebrow">Doctrine of the Bigger Pie™</p>
+        <h2>We don&rsquo;t divide the pie.</h2>
+        <div class="stage-line active" data-pie="0">
+          <p class="lede">Most negotiators inherit the size of the deal as a fact, and spend the whole meeting fighting over how to slice it.</p>
+        </div>
+        <div class="stage-line" data-pie="1">
+          <p class="lede">The size of the pie is usually a failure of imagination. Volume for rate. Term for capability. A service tier nobody priced.</p>
+        </div>
+        <div class="stage-line" data-pie="2">
+          <p class="lede">Before any deal is treated as zero-sum, a Diplomat documents one attempt to expand it. One question is often enough: <em>what would make saying yes easy for them?</em> Mission 5 is where you ask it out loud.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">From the field</p>
+    <h2 class="reveal">People who sat where you&rsquo;re sitting.</h2>
+    <div class="grid-2" style="margin-top:3rem; align-items:start">
+      <div style="display:grid; gap:1.5rem">
+        <article class="debrief reveal">
+          <span class="tag">Identity shift · logged</span>
+          <blockquote>&ldquo;After Ruth&rsquo;s coaching, I was no longer nervous about negotiating. I went from nervous to confident, and negotiating is a lot more creative than I thought.&rdquo;</blockquote>
+          <cite><strong>Ezra Wanetik</strong> · Solutions Architect</cite>
+        </article>
+        <article class="debrief reveal" data-delay="1">
+          <span class="tag">The mirror moment</span>
+          <blockquote>&ldquo;One exercise revealed the flaws of our own negotiation style. Many of us realized we also negotiate with ourselves.&rdquo;</blockquote>
+          <cite><strong>Monika Schucht</strong> · Category Manager, Speira GmbH</cite>
+        </article>
+        <article class="debrief reveal">
+          <span class="tag">25 years in, still new terrain</span>
+          <blockquote>&ldquo;More than 25 years in logistics, and this seminar has helped me negotiate with monopoly suppliers. Ruth is a very impressive personality and an experienced negotiator.&rdquo;</blockquote>
+          <cite><strong>Alisa Hsu-Young</strong> · Logistics Professional</cite>
+        </article>
+      </div>
+      <div style="display:grid; gap:1.5rem">
+        <article class="debrief reveal" data-delay="1">
+          <span class="tag">The verdict</span>
+          <blockquote>&ldquo;Ruth is spectacular. If you are lucky enough to get an invite, jump on it. As someone who took Conflict &amp; Negotiations in my MBA, I learned things I hadn&rsquo;t learned previously.&rdquo;</blockquote>
+          <cite><strong>Kevin Fort</strong> · VP of Sales, Dexter Axle</cite>
+        </article>
+        <article class="debrief reveal">
+          <span class="tag">Documented ROI · one instrument</span>
+          <blockquote>&ldquo;I put together a list of additional marketing concessions the distributor agreed to, saving us about $4,000 in fees. I&rsquo;ve replicated this in two other negotiations with identical results.&rdquo;</blockquote>
+          <cite><strong>Dan Wright</strong> · Impossible Foods</cite>
+        </article>
+        <article class="debrief reveal" data-delay="1">
+          <span class="tag">The Bigger Pie™, in the wild</span>
+          <blockquote>&ldquo;Tripled a sales deal, turning a $250K sale into a $750K deal.&rdquo;</blockquote>
+          <cite><strong>Kent</strong> · B2B Sales Manager</cite>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE CARTOGRAPHER'S RECORD ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">The Cartographer&rsquo;s record</p>
+    <h2 class="reveal">Ruth Shlossman has spent 25 years<br>mapping rooms like yours.</h2>
+    <p class="reveal lede" data-delay="1">Harvard-trained M.Ed. Founder &amp; CEO of Castle Negotiations Consulting Group. Her clients call her the Ted&nbsp;Lasso of negotiating: warm on the surface, ruthless about preparation underneath. She runs all three days herself &mdash; your deal teardown is hers, not an assistant&rsquo;s.</p>
+    <div class="stat-wall reveal" data-delay="1" style="margin-top:2.5rem">
+      <div class="stat"><span class="num"><span class="count" data-to="1" data-prefix="$" data-suffix="B+">$1B+</span></span><span class="lbl">in value created, protected, and captured through stronger agreements</span></div>
+      <div class="stat"><span class="num"><span class="count" data-to="10000" data-format="compact" data-suffix="+">10K+</span></span><span class="lbl">professionals trained, from new hires to senior executives</span></div>
+      <div class="stat"><span class="num"><span class="count" data-to="25" data-suffix="+">25+</span></span><span class="lbl">years as a front-line negotiator and strategist in live deals</span></div>
+    </div>
+    <div class="proof-names reveal" data-delay="2">
+      <span style="font-family:var(--mono); font-size:0.64rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold)">In the field with:</span>
+      <span>BAE Systems</span><span>Accenture</span><span>AlixPartners</span><span>KPS Capital Partners</span><span>Chart Industries</span><span>Institute for Management Studies</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIT ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <p class="eyebrow reveal">An honest fit check</p>
+    <h2 class="reveal">This is for you. Or it isn&rsquo;t.</h2>
+    <div class="fit-grid">
+      <div class="fit-col yes reveal">
+        <h3 style="color:var(--gold)">Join Cohort 001 if&hellip;</h3>
+        <ul>
+          <li><span class="m">♞</span><span><strong>You run real negotiations</strong> (renewals, sourcing, capacity, rates) and have at least one live deal to work across the three days.</span></li>
+          <li><span class="m">♞</span><span>Some version of the Great Lie (&ldquo;powerless, firefighting, ignored&rdquo;) has come out of your own mouth this year.</span></li>
+          <li><span class="m">♞</span><span>You want <strong>a documented outcome</strong> (a filed brief, a logged story), not another certificate for a drawer.</span></li>
+          <li><span class="m">♞</span><span>You can <strong>clear three consecutive days</strong> (Tue&ndash;Thu, Sept 8&ndash;10) for a live intensive.</span></li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal" data-delay="1">
+        <h3 style="color:var(--ivory-dim)">Pass on it if&hellip;</h3>
+        <ul>
+          <li><span class="m">×</span><span><strong>You want scripts to recite.</strong> The doctrine teaches pattern recognition, not lines.</span></li>
+          <li><span class="m">×</span><span><strong>You have no negotiation on your desk this quarter.</strong> Come back when you do; the missions run on live deals.</span></li>
+          <li><span class="m">×</span><span><strong>You&rsquo;re looking for a fight-winning masterclass.</strong> Diplomats are measured in crises that never happened.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MATH ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">The math, plainly</p>
+    <h2 class="reveal">Every square below is $1,000.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:54ch">The gold square is your seat. The rest are outcomes individual participants reported after working with Ruth &mdash; drawn to the same scale.</p>
+
+    <div class="unit-math">
+      <div class="unit-row you reveal" data-squares="1" data-kind="gold">
+        <div>
+          <span class="amt">$1,000</span>
+          <p class="d">The seat. Passport, three live sessions, all six instruments, and your first commissioned story.</p>
+          <span class="src">Cohort 001 · all-in price</span>
+        </div>
+        <div class="sq-field" aria-hidden="true"></div>
+      </div>
+      <div class="unit-row reveal" data-delay="1" data-squares="4">
+        <div>
+          <span class="amt">$4,000</span>
+          <p class="d">Saved in fees with a single concession list &mdash; then replicated in two more negotiations with identical results.</p>
+          <span class="src">Dan Wright · Impossible Foods</span>
+        </div>
+        <div class="sq-field" aria-hidden="true"></div>
+      </div>
+      <div class="unit-row reveal" data-delay="2" data-squares="500">
+        <div>
+          <span class="amt">$500,000</span>
+          <p class="d">Logged across contract spend from one instrument: confidence in a prepared opening position.</p>
+          <span class="src">Participant debrief · 2017 cohort</span>
+        </div>
+        <div class="sq-field" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="unit-key reveal" data-delay="2"><span class="k-sq" aria-hidden="true"></span>1 square = $1,000, drawn to scale · figures from written participant debriefs</p>
+
+    <div class="manager-strip reveal" data-delay="1">
+      <span class="k">Sending this to your manager?</span>
+      <p>Most members expense the seat. Enrollment includes <strong>a one-page memo for whoever approves it</strong>, framed against a named, current deal: the regret you&rsquo;re on course to sign, what the old-way version would cost, and what a prepared position changes. Managers rarely decline an argument written in their own P&amp;L.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENROLLMENT ============ -->
+<section style="background:var(--navy-0)" id="enroll">
+  <div class="wrap">
+    <p class="eyebrow reveal">Enrollment · Cohort 001</p>
+    <h2 class="reveal">24 seats. A real deadline.<br>Here&rsquo;s exactly why.</h2>
+    <div class="deadline-block reveal" data-delay="1">
+      <div>
+        <p style="color:var(--ivory)">We teach people to see through manufactured urgency, so we owe you the real mechanics: cohorts are capped at 24 because live deal teardowns stop working past that size. Physical Passports go to print on <strong style="color:var(--gold)">August 12</strong> so they arrive before Mission 1. Enrollment therefore closes <strong style="color:var(--gold)">Tuesday, August 11 at 11:59 PM ET</strong> &mdash; not because a countdown timer says so, but <strong>because a printer does.</strong></p>
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.8rem">
+          <a class="btn" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20reserve%20my%20seat&body=Ruth%2C%0A%0AName%3A%0ARole%20%2F%20company%3A%0AThe%20live%20deal%20I%27ll%20work%20during%20the%20cohort%20(one%20line)%3A%0A%0Asent%20from%20the%20Cohort%20001%20page">Reserve your seat, $1,000 <span class="arrow">→</span></a>
+          <a class="btn btn--ghost" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20two%20seats&body=Ruth%2C%0A%0AWe%27d%20like%20two%20seats%3A%20recruiting%20a%20fellow%20Diplomat.%0A%0ANames%20%2F%20roles%3A">Recruit a fellow Diplomat, 2 seats</a>
+        </div>
+      </div>
+      <div>
+        <div class="seat-grid" id="seatGrid" aria-label="Seat map: 24 seats, filling as enrollment progresses"></div>
+        <p class="seat-cap"><span id="seatCount">0</span> of 24 seats spoken for · updated manually, honestly</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section>
+  <div class="wrap" style="max-width:56rem">
+    <p class="eyebrow reveal">Before you decide</p>
+    <h2 class="reveal">Fair questions, straight answers.</h2>
+    <div class="reveal" data-delay="1" style="margin-top:2.5rem">
+      <details class="obj">
+        <summary>&ldquo;I&rsquo;ve done negotiation training before.&rdquo;</summary>
+        <div class="a"><p>So had the VP who wrote: &ldquo;As a person that took Conflict and Negotiations as part of my MBA studies, I learned things I hadn&rsquo;t learned previously.&rdquo; Most training teaches tactics for dividing a fixed pie. The missions teach you to see the human, political, and systems games running underneath &mdash; on your own live deal, not a case study.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;I can&rsquo;t take three days out of the office.&rdquo;</summary>
+        <div class="a"><p>The sessions run about 2.5 hours per day, and the deal you bring is a negotiation already sitting on your desk. Across the three days you prepare it, pressure-test it, and move it &mdash; in a room built to do exactly that. <strong>Three focused mornings now, against weeks of rounds, standoffs, and cleanup later.</strong></p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;Will my company pay for it?&rdquo;</summary>
+        <div class="a"><p>Usually, yes. Enrollment includes a one-page expense memo for your manager framing the seat against a named, current deal: a Prevented Regret target with your numbers in it. Managers rarely decline an argument written in their own P&amp;L.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;What if I can&rsquo;t make all three days?&rdquo;</summary>
+        <div class="a"><p>Every session is recorded, and any mission you miss can be logged afterward. But the live teardowns are where the doctrine gets into your hands; the whole design is three consecutive days in one room. Clear the block if you can; it&rsquo;s the point.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE OATH ============ -->
+<section class="oath">
+  <div class="wrap">
+    <p class="eyebrow reveal">What you are commissioned into · The Procurement Diplomat Oath</p>
+    <ul class="oath-lines">
+      <li class="reveal">I exist to prevent regret.</li>
+      <li class="reveal">I prepare before I posture.</li>
+      <li class="reveal">I ask what people are protecting before I ask what they want.</li>
+      <li class="reveal">I see the commercial game, the human game, the political game, and the systems game, and I never mistake one for all four.</li>
+      <li class="reveal">I do not divide the pie. I make it bigger.</li>
+      <li class="reveal" style="color:var(--gold)">I am the calmest person in the room, because I have seen the room more clearly than anyone else in it.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="wrap">
+    <p class="eyebrow reveal">Cohort 001 · Sept 8–10 · closes Aug 11</p>
+    <h2 class="reveal" style="max-width:22ch; margin-inline:auto">The negotiation begins long before anyone enters the room.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:46ch; margin-inline:auto">So does the Diplomat. Reserve your seat, name the live deal you&rsquo;ll work, and arrive at Mission 1 with your Passport already in hand.</p>
+    <div class="reveal" data-delay="2" style="margin-top:2.4rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a class="btn" href="mailto:Contact@CastleNegotiate.com?subject=Cohort%20001%3A%20reserve%20my%20seat">Reserve your seat, $1,000 <span class="arrow">→</span></a>
+      <a class="btn btn--ghost" href="REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK">Not yet? Take the free Pre-Brief</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;Procurement doesn&rsquo;t happen to you. It happens through you.&rdquo;</p>
+      <p>© 2026 Castle Negotiations Consulting Group, Inc. · Alpharetta, GA<br>
+      <a href="https://www.castlenegotiations.com/">castlenegotiations.com</a> · <a href="mailto:Contact@CastleNegotiate.com">Contact@CastleNegotiate.com</a></p>
+    </div>
+    <div style="font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="doctrine.html">The Doctrine</a><br>
+      <a href="enterprise.html">Enterprise Workshops</a><br>
+      <a href="cohort.html">The Diplomat Cohort</a><br>
+      <a href="REPLACE-WITH-YOUR-HIPPO-PREBRIEF-LINK">HIPPO Pre-Brief (free)</a><br>
+      <a href="lexicon.html">The Lexicon</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* passport opens when it scrolls into view; stamps land in sequence */
+  const passport = document.getElementById("passport");
+  const stamps = Array.from(document.querySelectorAll(".mstamp"));
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      setTimeout(() => {
+        passport.style.setProperty("--open", "1");
+        stamps.forEach((s, i) => setTimeout(() => s.classList.add("on"), 900 + i * 260));
+      }, reduced ? 0 : 700);
+    });
+  }, { threshold: 0.5 });
+  io.observe(passport);
+  passport.addEventListener("click", () => {
+    const open = passport.style.getPropertyValue("--open") === "1";
+    passport.style.setProperty("--open", open ? "0" : "1");
+  });
+
+  /* unit math: build the $1,000 squares, stagger them in on reveal */
+  document.querySelectorAll(".unit-row").forEach((row) => {
+    const field = row.querySelector(".sq-field");
+    const n = parseInt(row.dataset.squares, 10);
+    const gold = row.dataset.kind === "gold";
+    for (let i = 0; i < n; i++) {
+      const s = document.createElement("span");
+      s.className = "sq" + (gold ? " gold" : "");
+      field.appendChild(s);
+    }
+    const sqs = Array.from(field.children);
+    const sqIO = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        sqIO.unobserve(row);
+        sqs.forEach((s, i) =>
+          setTimeout(() => s.classList.add("on"), reduced ? 0 : Math.min(i * 4, 1600) + 200));
+      });
+    }, { threshold: 0.3 });
+    sqIO.observe(row);
+  });
+
+  /* seat map, EDIT seatsTaken as enrollments come in (honest, manual) */
+  const seatsTaken = 7; /* ← update this number as real seats fill */
+  const grid = document.getElementById("seatGrid");
+  for (let i = 0; i < 24; i++) {
+    const d = document.createElement("div");
+    d.className = "seat";
+    grid.appendChild(d);
+  }
+  const seats = Array.from(grid.children);
+  const seatIO = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      seatIO.unobserve(grid);
+      seats.slice(0, seatsTaken).forEach((s, i) =>
+        setTimeout(() => s.classList.add("taken"), reduced ? 0 : i * 120));
+      document.getElementById("seatCount").textContent = seatsTaken;
+    });
+  }, { threshold: 0.4 });
+  seatIO.observe(grid);
+
+  /* Bigger Pie stage: the circle grows and the dividing knives fade as --sp goes 0→1 */
+  const pieStage = document.querySelector(".pie-stage");
+  if (pieStage) {
+    const pieCircle = document.getElementById("pieCircle");
+    const pieGhost = document.getElementById("pieGhost");
+    const pieKnives = document.getElementById("pieKnives");
+    const pieLabel = document.getElementById("pieLabel");
+    const pieLines = Array.from(document.querySelectorAll(".stage-line"));
+    const pieLabels = ["the deal as found", "the trade nobody priced", "the Bigger Pie™"];
+    let lastPie = -1;
+    const pieFrame = function () {
+      const sp = parseFloat(getComputedStyle(pieStage).getPropertyValue("--sp")) || 0;
+      const r = 90 + sp * 85;
+      pieCircle.setAttribute("r", r);
+      pieGhost.setAttribute("r", r);
+      pieKnives.style.opacity = Math.max(0, 1 - sp * 2.4);
+      pieCircle.setAttribute("stroke-width", 2 + sp * 1.5);
+      const idx = Math.min(Math.floor(sp / 0.34), 2);
+      if (idx !== lastPie) {
+        lastPie = idx;
+        pieLines.forEach((el, i) => el.classList.toggle("active", i === idx));
+        pieLabel.textContent = pieLabels[idx];
+      }
+      requestAnimationFrame(pieFrame);
+    };
+    requestAnimationFrame(pieFrame);
+  }
+})();
+</script>
+</body>
+</html>
