@@ -16,7 +16,7 @@ Everything previews locally: run `python3 -m http.server 8765` inside `campaign/
 | The Lexicon | `site/lexicon.html` | Searchable vocabulary index (SEO + credibility) |
 | Email Flow 1 (Days 1–15) | `emails/enterprise-flow.html` | 16 emails, "The Commercial Myopia Files" |
 | Email Flow 2 (Days 16–30) | `emails/cohort-flow.html` | 17 emails, "The First Mission" (3 on final day) |
-| LinkedIn campaign | `linkedin/feed.html` | 30 profile posts + 12 group posts, visual recs, "why" notes |
+| LinkedIn campaign | `linkedin/feed.html` | 60 profile posts (3 slots/day) + 24 group posts, visual recs, "why" notes |
 | Visual cards | `visuals/cards.html` | 17 screenshot-ready 4:5 cards |
 
 ## Decisions made on your behalf (all changeable)
@@ -43,7 +43,8 @@ Everything previews locally: run `python3 -m http.server 8765` inside `campaign/
 
 - **Emails**: send at the stated times (8:15 AM weekdays; Sat 9:30/10; Sun Dispatch 5 PM). Suppress converters from deadline emails (noted per email). Reply personally to responses, two emails explicitly promise you read replies.
 - **LinkedIn**: post at stated times; links go in the **first comment**, never the body. Pin the Day 15 gift post through Day 30. Budget 20–30 min/day for replies, Days 2, 28, and 30 are engineered to fill your comments; the campaign's compounding comes from your replies.
-- **Groups**: 2–3 posts/week from the Groups tab; never post links without mod approval; return to G5 with the Bernd outcome after ~48h.
+- **LinkedIn, the three slots**: 8:30 AM (teach), 4:30 PM (**The Case File**, the investigative franchise), and on eight high-leverage days a 12:30 PM poll or short post. **Leave ≥6 hours between native posts** — LinkedIn suppresses a second post published too soon after the first, and a poll is the only safe third object in a day. Weekends stay single-post on purpose. **If you can only sustain one extra post a week, run the Case Files and drop the rest**: the franchise is the asset, cadence is only how fast it compounds. The reach mechanics (hook rules, dwell time, saves > likes) are written into the top of both profile tabs.
+- **Groups**: 2–3 posts/week from the twelve calendared group posts; never post links without mod approval; return to G5 with the Bernd outcome after ~48h. **G13–G24 are a reserve bank** — groups reward frequency far more than the profile does, so use them to lift the cadence to 4–5/week, to seed a second group, or to keep the groups warm for six weeks after Day 30.
 - **Screenshots for posts**: visual cards page at 200% zoom → screenshot → crop. Motion clips: screen-record the doctrine hero and the cohort Passport (QuickTime → New Screen Recording), 15–20s, no audio needed.
 - **Mid-flight truth maintenance**: update seat counts and calendar-window numbers as reality changes. The one unforgivable move for this brand is a caught exaggeration.
 
