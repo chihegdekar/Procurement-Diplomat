@@ -1,0 +1,12 @@
+{
+  "name": "procurement-diplomat",
+  "version": "1.0.0",
+  "description": "Procurement Diplomat Campaign Site",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build required'"
+  },
+  "devDependencies": {
+    "@vercel/speed-insights": "^1.0.0"
+  }
+}
