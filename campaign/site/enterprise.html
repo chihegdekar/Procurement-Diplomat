@@ -77,7 +77,7 @@
     background: var(--navy-1);
     padding: clamp(1.2rem, 3vw, 2rem);
     border-radius: var(--radius);
-    margin-top: 3.5rem;
+    margin: 3.5rem 0 0;
   }
   .exhibit .cap {
     font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.22em;
@@ -85,7 +85,7 @@
     display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
   }
   .exhibit .cap span:last-child { color: var(--ivory-dim); }
-  .exhibit .scroll-pane { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .exhibit .scroll-pane { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%; }
   .exhibit .scroll-pane svg { min-width: 560px; }
   .exhibit svg text { font-family: var(--mono); font-size: 10px; fill: var(--ivory-dim); letter-spacing: 0.08em; }
   .exhibit svg .lbl-gold { fill: var(--gold); }

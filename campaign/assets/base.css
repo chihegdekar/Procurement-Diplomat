@@ -134,8 +134,8 @@ em { font-family: var(--serif); font-style: italic; }
 /* ---------- layout ---------- */
 .wrap { max-width: 72rem; margin: 0 auto; padding-inline: var(--pad); }
 section { padding-block: var(--section-gap); position: relative; }
-.grid-2 { display: grid; gap: clamp(2rem, 5vw, 4.5rem); grid-template-columns: 1fr; }
-@media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; align-items: center; } }
+.grid-2 { display: grid; gap: clamp(2rem, 5vw, 4.5rem); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .grid-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; } }
 
 /* hairline rules that read as briefing-document dividers */
 .rule {
