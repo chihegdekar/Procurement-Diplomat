@@ -351,7 +351,10 @@ section { padding-block: var(--section-gap); position: relative; }
   margin: 0 0 1.5rem;
 }
 .logo-marquee .track-wrap {
+  position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
