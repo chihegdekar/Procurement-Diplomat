@@ -103,7 +103,9 @@ em { font-family: var(--serif); font-style: italic; }
 /* gold brush underline: brand highlight */
 .u-gold {
   position: relative;
-  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .u-gold { white-space: nowrap; }
 }
 .u-gold::after {
   content: "";
