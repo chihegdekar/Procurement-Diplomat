@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>Book a scoping call | Ruth Shlossman, Castle Negotiations</title>
+<meta name="description" content="30 minutes with Ruth Shlossman. Bring one live deal. You leave with a straight recommendation and one real number — engagements start at $12,500.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* ================= HERO ================= */
+  .hero-e {
+    min-height: 100svh;
+    display: grid; align-items: center;
+    padding-top: 7rem;
+    background:
+      radial-gradient(110% 85% at 25% 0%, rgba(22,38,61,0.92), transparent 62%),
+      var(--navy-0);
+    position: relative; overflow: hidden;
+  }
+  .hero-e canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.85;
+  }
+  .hero-e::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20vh;
+    background: linear-gradient(180deg, transparent, var(--navy-1));
+    pointer-events: none;
+  }
+  .hero-e .wrap {
+    position: relative; z-index: 2;
+    display: grid; gap: clamp(2.5rem, 6vw, 6rem);
+    grid-template-columns: 1fr; align-items: center;
+  }
+  .hero-e h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); max-width: 21ch; }
+  .hero-e h1 em { color: var(--gold); }
+  .hero-e .lede { max-width: 54ch; margin-top: 1.6rem; }
+  .hero-checks { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.65rem; max-width: 54ch; }
+  .hero-checks li { display: flex; gap: 0.75rem; align-items: baseline; color: var(--ivory); font-size: 1.04rem; }
+  .hero-checks li b { color: var(--gold); font-family: var(--mono); flex-shrink: 0; }
+  .hero-e .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.6rem; }
+  .hero-e .scope-line {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ivory-dim); margin-top: 2.4rem; max-width: none;
+  }
+  .hero-e .scope-line b { color: var(--gold); font-weight: 600; }
+
+  /* ================= AFTER 30 MINUTES ================= */
+  .after-box {
+    background: var(--navy-1);
+    border-top: 1px solid rgba(201,169,106,0.2);
+    border-bottom: 1px solid rgba(201,169,106,0.2);
+    padding: clamp(2.2rem, 5vw, 3.2rem) 0;
+  }
+  .after-box .k {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.5rem;
+  }
+  .after-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem 2.4rem; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .after-grid { grid-template-columns: 1fr 1fr; } }
+  .after-grid li { display: flex; gap: 0.85rem; align-items: baseline; font-size: 1.06rem; color: var(--ivory); }
+  .after-grid li b { color: var(--gold); font-family: var(--mono); flex-shrink: 0; }
+
+  /* ================= THESIS ================= */
+  .thesis {
+    text-align: center;
+    background: radial-gradient(70% 60% at 50% 40%, rgba(22,38,61,0.9), transparent 70%), var(--navy-0);
+    padding: clamp(4rem, 10vw, 7rem) 0;
+  }
+  .thesis .line1 {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.25rem, 2.8vw, 1.7rem); color: var(--ivory-dim);
+    max-width: 28ch; margin: 0 auto;
+  }
+  .thesis .line2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2rem, 5.4vw, 3.4rem); line-height: 1.18; color: var(--ivory);
+    max-width: 17ch; margin: 1.3rem auto 0;
+  }
+  .thesis .line2 em { color: var(--gold); font-style: italic; }
+
+  /* ================= DIAGNOSIS ================= */
+  .symptoms { list-style: none; margin: 2.6rem 0 0; padding: 0; display: grid; gap: 0.9rem; max-width: 56ch; }
+  .symptoms li {
+    display: flex; gap: 1rem; align-items: baseline;
+    font-size: 1.02rem; color: var(--ivory-dim);
+    border-bottom: 1px dotted rgba(242,235,220,0.14);
+    padding-bottom: 0.9rem;
+  }
+  .symptoms .box { font-family: var(--mono); color: var(--oxblood); flex-shrink: 0; font-size: 0.9rem; }
+  .symptoms li strong { color: var(--ivory); font-weight: 500; }
+
+  /* bypass exhibit */
+  .exhibit {
+    border: 1px solid rgba(201,169,106,0.25);
+    background: var(--navy-1);
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border-radius: var(--radius);
+    margin: 3.5rem 0 0;
+  }
+  .exhibit .cap {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  .exhibit .cap span:last-child { color: var(--ivory-dim); }
+  .exhibit .scroll-pane { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%; }
+  .exhibit .scroll-pane svg { min-width: 560px; }
+  .exhibit svg text { font-family: var(--mono); font-size: 10px; fill: var(--ivory-dim); letter-spacing: 0.08em; }
+  .exhibit svg .lbl-gold { fill: var(--gold); }
+  .exhibit svg .lbl-ox { fill: #C98476; }
+  .exhibit svg .lbl-dim { fill: rgba(207,198,178,0.6); }
+  .exhibit .verdict {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+    color: var(--ivory-dim); margin: 1rem 0 0;
+  }
+
+  /* ============ HIPPO assembling paper ============ */
+  .hippo-stage { height: 300vh; }
+  .hippo-sticky {
+    position: sticky; top: 0; height: 100svh;
+    display: grid; align-items: center; overflow: hidden;
+    background: radial-gradient(80% 70% at 50% 20%, rgba(22,38,61,0.8), transparent 65%), var(--navy-0);
+  }
+  .hippo-grid { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .hippo-grid { grid-template-columns: 0.9fr 1.1fr; } }
+  .hippo-doc { max-width: 34rem; transform: rotate(-0.6deg); }
+  .js .hippo-doc .hfield { opacity: 0.06; transition: opacity 0.5s var(--ease-swift); }
+  .js .hippo-doc .hfield.on { opacity: 1; }
+  .hippo-doc .hfield .field-label { margin-top: 1.05rem; }
+  .hippo-doc .hfield:first-child .field-label { margin-top: 1.9rem; }
+  .hippo-doc .fill-line { min-height: 1.5em; }
+  .hippo-doc .stamp-wrap { margin-top: 1.4rem; }
+  .js .hippo-doc .stamp-wrap { opacity: 0; transform: scale(1.6) rotate(-10deg); transition: opacity 0.4s, transform 0.4s var(--ease-out); }
+  .js .hippo-doc .stamp-wrap.on { opacity: 1; transform: scale(1) rotate(-4deg); }
+  .hippo-copy .step-note { display: none; }
+  .hippo-copy .step-note.active { display: block; }
+  .hippo-copy h2 { max-width: 16ch; }
+  @media (max-width: 959px) {
+    .hippo-stage { height: auto; }
+    .hippo-sticky { position: static; height: auto; padding-block: var(--section-gap); }
+    .hippo-copy .step-note { display: block; margin-bottom: 0.6rem; }
+    .js .hippo-doc .hfield, .js .hippo-doc .stamp-wrap { opacity: 1; transform: none; }
+  }
+
+  /* deliverable cards */
+  .artifact-cards { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(17rem,100%),1fr)); margin-top: 3rem; }
+  .artifact {
+    background: linear-gradient(178deg, var(--ivory), var(--ivory-2));
+    color: var(--ink); border-radius: 2px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: 0 20px 40px -18px rgba(0,0,0,0.55);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.45s var(--ease-out);
+  }
+  .artifact:hover { transform: rotate(0deg) translateY(-6px); }
+  .artifact .k { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 0.9rem; }
+  .artifact h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .artifact p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+
+  /* video library, included with a full engagement */
+  .video-library { margin-top: 3.2rem; }
+  .video-library h3 { font-size: 1.3rem; margin: 0 0 0.6rem; }
+  .video-library .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+  .video-library > p { color: var(--ivory-dim); max-width: 62ch; margin-bottom: 0; }
+  .vid-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem; margin-top: 1.7rem; }
+  .vid-card {
+    position: relative; aspect-ratio: 16/10; overflow: hidden;
+    border: 1px solid rgba(201,169,106,0.25); border-radius: var(--radius);
+    background-size: cover; background-position: center;
+    display: flex; align-items: flex-end;
+  }
+  .vid-card .cap {
+    position: relative; z-index: 2; width: 100%;
+    padding: 0.75rem 0.85rem;
+    font-family: var(--mono); font-size: 0.68rem; line-height: 1.35; color: var(--ivory);
+    background: linear-gradient(0deg, rgba(10,16,26,0.88), transparent);
+  }
+  .video-library .vid-note {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ivory-dim); margin-top: 1.4rem;
+  }
+
+  /* ================= FEE, DRAWN TO SCALE ================= */
+  .roi { background: var(--navy-0); }
+  .fee-scale { margin-top: 3rem; display: grid; gap: 1.6rem; }
+  .roi-row { display: grid; gap: 0.45rem; }
+  .roi-row .meta {
+    display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap;
+  }
+  .roi-row .amt {
+    font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    color: var(--ivory); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .roi-row .desc { font-size: 0.88rem; color: var(--ivory-dim); max-width: 46ch; }
+  .roi-row .src {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(207,198,178,0.55);
+  }
+  .roi-row .bar {
+    height: 14px; border-radius: 2px;
+    background: rgba(242,235,220,0.06);
+    overflow: hidden;
+    position: relative;
+  }
+  .roi-row .fill {
+    position: absolute; inset: 0;
+    width: calc(var(--w) * 100%);
+    min-width: 4px;
+    background: linear-gradient(90deg, rgba(126,147,184,0.55), var(--steel));
+    border-radius: 2px;
+  }
+  .js .roi-row .fill { transform: scaleX(0); transform-origin: left center; transition: transform 1.4s var(--ease-out) 0.25s; }
+  .js .roi-row.is-visible .fill { transform: scaleX(1); }
+  .roi .honesty {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ivory-dim); margin-top: 2.2rem; line-height: 2;
+  }
+  .roi .also {
+    margin-top: 2rem; font-family: var(--serif); font-style: italic;
+    color: var(--gold); border-left: 2px solid var(--gold); padding-left: 1rem;
+    max-width: 52ch; font-size: 1.02rem;
+  }
+
+  /* ================= WHAT IT COSTS ================= */
+  .rungs { display: grid; gap: 1.4rem; grid-template-columns: 1fr; margin-top: 3rem; }
+  @media (min-width: 880px) { .rungs { grid-template-columns: 1fr 1fr; } }
+  .rung {
+    border: 1px solid rgba(201,169,106,0.28);
+    border-radius: var(--radius);
+    background: linear-gradient(165deg, var(--navy-2), var(--navy-1));
+    padding: clamp(1.5rem, 3.5vw, 2.2rem);
+    display: flex; flex-direction: column;
+  }
+  .rung .k {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;
+  }
+  .rung .price {
+    font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 2.9rem);
+    line-height: 1; color: var(--ivory); font-variant-numeric: tabular-nums;
+  }
+  .rung .price small {
+    display: block; font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory-dim);
+    margin-top: 0.6rem; line-height: 1.8;
+  }
+  .rung h3 { font-size: 1.3rem; margin: 1.4rem 0 0.5rem; }
+  .rung p { color: var(--ivory-dim); font-size: 0.97rem; }
+  .rung ul { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+  .rung ul li { display: flex; gap: 0.75rem; align-items: baseline; font-size: 0.95rem; color: var(--ivory-dim); }
+  .rung ul li b { color: var(--gold); font-family: var(--mono); font-size: 0.8rem; flex-shrink: 0; }
+  .rung .foot {
+    margin-top: auto; padding-top: 1.4rem;
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(207,198,178,0.65); line-height: 1.9;
+  }
+  .cost-rules { margin-top: 3rem; display: grid; gap: 1.6rem; max-width: 62ch; }
+  .cost-rules p { color: var(--ivory-dim); margin: 0; font-size: 0.99rem; }
+  .cost-rules p strong { color: var(--ivory); font-weight: 500; }
+
+  /* forwarded-to-you strip */
+  .approver {
+    margin-top: 3.5rem;
+    border: 1px dashed rgba(201,169,106,0.5);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 3.5vw, 2.4rem);
+    background: linear-gradient(160deg, rgba(22,38,61,0.6), transparent);
+  }
+  .approver .k {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;
+  }
+  .approver p { color: var(--ivory-dim); max-width: 66ch; margin-bottom: 0; font-size: 0.98rem; }
+  .approver p strong { color: var(--ivory); font-weight: 500; }
+
+  /* case story cards */
+  .cases { display: grid; gap: 2rem; margin-top: 3rem; }
+  .case-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .case-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* engagement path */
+  .path-steps { counter-reset: step; display: grid; gap: 0; margin-top: 3rem; border-left: 1px solid rgba(201,169,106,0.35); }
+  .path-step { position: relative; padding: 0 0 2.6rem 2.4rem; }
+  .path-step:last-child { padding-bottom: 0; }
+  .path-step::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: -1.05rem; top: 0.1rem;
+    width: 2.1rem; height: 2.1rem;
+    display: grid; place-items: center;
+    background: var(--navy-1); border: 1px solid var(--gold);
+    border-radius: 50%;
+    font-family: var(--mono); font-size: 0.68rem; color: var(--gold);
+  }
+  .path-step h3 { margin-bottom: 0.4rem; font-size: 1.35rem; }
+  .path-step .when { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.8rem; }
+  .path-step p { color: var(--ivory-dim); font-size: 0.99rem; }
+
+  /* objections */
+  details.obj {
+    border: 1px solid rgba(242,235,220,0.14);
+    border-radius: var(--radius);
+    margin-bottom: 0.9rem;
+    background: var(--navy-2);
+  }
+  details.obj summary {
+    cursor: pointer; list-style: none;
+    padding: 1.3rem 1.5rem;
+    font-family: var(--serif); font-size: 1.15rem;
+    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  }
+  details.obj summary::-webkit-details-marker { display: none; }
+  details.obj summary::after { content: "+"; font-family: var(--mono); color: var(--gold); font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; }
+  details.obj[open] summary::after { transform: rotate(45deg); }
+  details.obj .a { padding: 0 1.5rem 1.4rem; color: var(--ivory-dim); max-width: 68ch; }
+
+  /* calendar block */
+  .calendar-block {
+    border: 1px solid rgba(201,169,106,0.35);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    background: linear-gradient(165deg, var(--navy-2), var(--navy-1));
+    margin-top: 3rem;
+  }
+  .windows { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); margin: 1.6rem 0; }
+  .window {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+    border: 1px solid rgba(242,235,220,0.2); border-radius: 3px;
+    padding: 0.8rem; text-align: center; color: var(--ivory-dim);
+  }
+  .window.held { border-color: var(--gold); color: var(--gold); }
+  .window .st { display: block; margin-top: 0.4rem; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
+
+  /* ================= FOUR GAMES (3D sticky stage) ================= */
+  .games-stage { height: 460vh; position: relative; }
+  .games-sticky {
+    position: sticky; top: 0; height: 100svh; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 6vh 0 5vh;
+    background:
+      radial-gradient(90% 70% at 50% 110%, rgba(22,38,61,0.85), transparent 70%),
+      var(--navy-0);
+  }
+  .games-head { text-align: center; padding-inline: var(--pad); z-index: 5; }
+  .games-head .eyebrow { justify-content: center; max-width: none; margin-inline: auto; }
+  .games-head .eyebrow::before { display: none; }
+  .games-head h2 { font-size: clamp(1.5rem, 3.4vw, 2.5rem); margin: 0; }
+
+  /* the stack is diagram only: no reading matter lives on a tilted surface */
+  .board-scene { perspective: 1500px; width: min(64vw, 560px); margin: 0 auto; }
+  .board-stack { transform-style: preserve-3d; position: relative; height: min(46vw, 340px, 32svh); }
+  .plane {
+    position: absolute; inset: 0;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    transform-style: preserve-3d;
+    transition: box-shadow 0.45s var(--ease-out), opacity 0.45s var(--ease-out), background 0.45s;
+  }
+  .plane::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(currentColor 1px, transparent 1px),
+      linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 12.5% 12.5%;
+    opacity: 0.12;
+    border-radius: inherit;
+  }
+  /* counter-rotated so the tag faces the reader while its plane stays tilted */
+  .plane .plane-tag {
+    position: absolute; left: 0; top: 50%;
+    transform: translate(-135%, -50%);
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.16em; line-height: 1; white-space: nowrap;
+    color: currentColor; background: var(--navy-0);
+    border: 1px solid currentColor; border-radius: 3px;
+    padding: 0.36rem 0.5rem;
+  }
+
+  .games-readout {
+    text-align: center; padding-inline: var(--pad); z-index: 5;
+    min-height: 12.5rem;
+    transition: opacity 0.25s var(--ease-out);
+  }
+  .games-readout.fading { opacity: 0; }
+  .game-name {
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ivory);
+    margin: 0 auto 0.9rem; max-width: none;
+  }
+  .game-q {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.35rem, 2.9vw, 2rem); line-height: 1.25;
+    color: var(--ivory);
+    margin: 0 auto 1rem; max-width: 22ch;
+  }
+  .games-readout .gloss {
+    margin: 0 auto; max-width: 56ch;
+    font-size: clamp(0.92rem, 1.5vw, 1.02rem); line-height: 1.6;
+    color: var(--ivory-dim);
+  }
+  .games-readout .gloss b { color: var(--gold); font-weight: 500; }
+  .games-progress { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
+  .games-progress i {
+    width: 2.4rem; height: 2px; background: rgba(242,235,220,0.15); border-radius: 2px;
+    transition: background 0.35s;
+  }
+  @media (max-width: 760px) {
+    .board-scene { width: min(84vw, 420px); }
+    .board-stack { height: min(62vw, 260px); }
+    .games-readout { min-height: 14rem; }
+    .game-q { max-width: 18ch; }
+    /* narrow screens have no room beside the board, so the tag sits on it */
+    .plane .plane-tag { transform: translate(6%, -50%); font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.3rem 0.4rem; }
+  }
+
+  /* ================= THE CARTOGRAPHER'S RECORD ================= */
+  .proof-names {
+    display: flex; flex-wrap: wrap; gap: 1rem 2.6rem; margin-top: 2rem;
+    font-family: var(--serif); font-size: 1.1rem; color: var(--ivory-dim);
+    align-items: baseline;
+  }
+  .proof-names span { opacity: 0.85; }
+
+  .final-cta { text-align: center; background: radial-gradient(70% 60% at 50% 30%, rgba(22,38,61,0.8), transparent 70%), var(--navy-0); }
+  .final-cta h2 { max-width: 22ch; margin-inline: auto; }
+  .final-cta .eyebrow { justify-content: center; }
+  .final-cta .eyebrow::before { display: none; }
+
+  /* ============ THE NO REGRET GUARANTEE ============ */
+  .g-note {
+    margin-top: 1.2rem;
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .g-note a {
+    color: var(--ivory-dim); text-decoration: none;
+    border-bottom: 1px dotted rgba(201,169,106,0.55); padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .g-note a:hover { color: var(--gold); border-color: var(--gold); }
+  .g-note .kn { color: var(--gold); margin-right: 0.45rem; }
+  .guarantee { text-align: center; }
+  .guarantee .g-copy { max-width: 54ch; margin-inline: auto; }
+  .g-stamp-scene { position: relative; display: grid; place-items: center; margin-bottom: 2.4rem; }
+  .g-stamp {
+    width: min(62vw, 250px); height: auto;
+    color: var(--gold);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 0 34px rgba(201,169,106,0.16));
+  }
+  .g-thud {
+    position: absolute; width: min(58vw, 234px); aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,106,0.6);
+    opacity: 0; pointer-events: none;
+  }
+  .js .g-stamp { opacity: 0; }
+  .js .u-reveal-host.is-visible .g-stamp { animation: g-press 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards; }
+  .js .u-reveal-host.is-visible .g-thud { animation: g-ring 0.9s var(--ease-out) 0.68s; }
+  @keyframes g-press {
+    0%   { opacity: 0; transform: scale(2.4) rotate(6deg); }
+    55%  { opacity: 1; transform: scale(0.95) rotate(-6.9deg); }
+    74%  { transform: scale(1.04) rotate(-5.4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+  }
+  @keyframes g-ring {
+    0%   { opacity: 0.8; transform: scale(0.94); }
+    100% { opacity: 0; transform: scale(1.4); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .g-stamp { opacity: 1; animation: none !important; }
+    .js .u-reveal-host.is-visible .g-thud { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<header class="hero-e">
+  <canvas data-terrain aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Scoping call · for category managers, buyers &amp; the directors they report to</p>
+      <h1>Your team has already been to negotiation training.<br><em>They still fold in the room that matters.</em></h1>
+      <p class="lede">That isn&rsquo;t a knowledge problem, and another course won&rsquo;t touch it. Book a 30-minute scoping call with Ruth Shlossman and bring one live deal: a renewal, a sole-source price demand, an increase you&rsquo;re expected to absorb. You&rsquo;ll leave with:</p>
+      <ul class="hero-checks">
+        <li class="reveal"><b>&#10003;</b>Where that deal is most likely leaking money, and roughly how much</li>
+        <li class="reveal" data-delay="1"><b>&#10003;</b>Which of the four games your team keeps losing</li>
+        <li class="reveal" data-delay="2"><b>&#10003;</b>A straight recommendation &mdash; including &ldquo;not us,&rdquo; if that&rsquo;s the answer</li>
+        <li class="reveal" data-delay="2"><b>&#10003;</b>What it would cost. One number, not a range</li>
+      </ul>
+      <p class="lede reveal" data-delay="3" style="margin-top:1.2rem; font-style:italic; opacity:0.85">Nothing is quoted until eight questions are answered. That&rsquo;s what the 30 minutes is for.</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:ruths@castlenegotiate.com?subject=Scoping%20call%3A%20%5BCompany%5D&body=Ruth%2C%0A%0ATeam%3A%20%5Bhow%20many%20people%2C%20what%20titles%5D%0AIndustry%20and%20sites%3A%20%5B%20%5D%0AThe%20deal%20that%20triggered%20this%3A%20%5Bone%20sentence%5D%0APrevious%20negotiation%20training%3A%20%5Bwhat%2C%20and%20what%20they%20thought%20of%20it%5D%0AIn-person%20or%20virtual%3A%20%5B%20%5D%0A%0ABest%20times%20this%20week%3A">Book a scoping call <span class="arrow">→</span></a>
+        <a class="btn btn--ghost" href="#cost">What it costs</a>
+      </div>
+      <p class="g-note"><a href="#guarantee"><span class="kn" aria-hidden="true">♞</span>Any engagement that follows is backed by the No Regret Guarantee™</a></p>
+      <p class="scope-line">30 minutes · free · no pitch · engagements start at <b>$12,500</b>, and we&rsquo;ll tell you where you&rsquo;d land</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ AFTER 30 MINUTES ============ -->
+<section class="after-box">
+  <div class="wrap">
+    <span class="k reveal">After 30 minutes, you&rsquo;ll know</span>
+    <ul class="after-grid">
+      <li class="reveal"><b>&#10003;</b><span>The agreement your team is most likely to regret</span></li>
+      <li class="reveal" data-delay="1"><b>&#10003;</b><span>Which of the four games you&rsquo;re currently losing</span></li>
+      <li class="reveal" data-delay="1"><b>&#10003;</b><span>Why your best negotiators still lose avoidable deals</span></li>
+      <li class="reveal" data-delay="2"><b>&#10003;</b><span>Whether the first move is a half-day Risk Reset or a full engagement</span></li>
+      <li class="reveal" data-delay="2"><b>&#10003;</b><span>What that costs &mdash; one number, built line by line</span></li>
+      <li class="reveal" data-delay="3"><b>&#10003;</b><span>Or that we&rsquo;re the wrong people, and who to call instead</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TRUSTED BY ============ -->
+<div class="logo-marquee" role="region" aria-label="Companies Ruth Shlossman has trained teams at">
+  <p class="label">Trusted by teams at</p>
+  <div class="track-wrap">
+    <div class="track">
+      <img src="../assets/logos/ae.png" alt="A&amp;E" width="296" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/nasa.png" alt="NASA" width="513" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/chevron.png" alt="Chevron" width="144" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/sanofi.png" alt="Sanofi" width="550" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/gillette.png" alt="Gillette" width="573" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/us-foods.png" alt="US Foods" width="179" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/arcelormittal.png" alt="ArcelorMittal" width="385" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/hallmark.png" alt="Hallmark" width="388" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/impossible-foods.png" alt="Impossible Foods" width="640" height="157" loading="lazy" decoding="async">
+      <img src="../assets/logos/howden.png" alt="Howden" width="612" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/taylormade.png" alt="TaylorMade" width="640" height="149" loading="lazy" decoding="async">
+      <img src="../assets/logos/campbells.png" alt="Campbell&rsquo;s" width="532" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/tyco.png" alt="Tyco" width="447" height="160" loading="lazy" decoding="async">
+      <img src="../assets/logos/estee-lauder.png" alt="Est&eacute;e Lauder Companies" width="256" height="160" loading="lazy" decoding="async">
+      <div style="display:contents" aria-hidden="true">
+        <img src="../assets/logos/ae.png" alt="" width="296" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/nasa.png" alt="" width="513" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/chevron.png" alt="" width="144" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/sanofi.png" alt="" width="550" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/gillette.png" alt="" width="573" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/us-foods.png" alt="" width="179" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/arcelormittal.png" alt="" width="385" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/hallmark.png" alt="" width="388" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/impossible-foods.png" alt="" width="640" height="157" loading="lazy" decoding="async">
+        <img src="../assets/logos/howden.png" alt="" width="612" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/taylormade.png" alt="" width="640" height="149" loading="lazy" decoding="async">
+        <img src="../assets/logos/campbells.png" alt="" width="532" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/tyco.png" alt="" width="447" height="160" loading="lazy" decoding="async">
+        <img src="../assets/logos/estee-lauder.png" alt="" width="256" height="160" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OBSERVATION ============ -->
+<section id="diagnosis">
+  <div class="wrap" style="max-width:50rem">
+    <p class="eyebrow reveal">Observation</p>
+    <h2 class="reveal">The training worked.<br>The behaviour didn&rsquo;t change.<br>That gap is the whole problem.</h2>
+    <p class="lede reveal" data-delay="1">Negotiation is already the most-delivered training in procurement. Your team has had it, probably twice. They can recite BAM, should-cost and the walk-away. Then an engineer promises a supplier something before anyone asks, a vendor sets a Friday deadline, and every bit of it goes out of the room.</p>
+    <p class="lede reveal" data-delay="2">That&rsquo;s not a capability gap. Nobody trained them for the other three games running in every deal, and nobody gave them the reps to hold a position while someone senior is undercutting it.</p>
+  </div>
+</section>
+
+<!-- ============ THESIS ============ -->
+<section class="thesis">
+  <div class="wrap">
+    <p class="line1 reveal">Enterprises spend millions teaching people how to negotiate.</p>
+    <p class="line2 reveal" data-delay="1">Almost nobody teaches them how to <em>see</em> a negotiation.</p>
+  </div>
+</section>
+
+<!-- ============ FOUR GAMES (3D sticky stage) ============ -->
+<section class="games-stage" data-stage id="four-games" style="padding:0">
+  <div class="games-sticky">
+    <div class="games-head">
+      <p class="eyebrow">Pattern &middot; what your team was never trained to see</p>
+      <h2>Every negotiation is four games,<br>played at once.</h2>
+    </div>
+    <div class="board-scene" aria-hidden="true">
+      <div class="board-stack" id="boardStack">
+        <div class="plane" data-i="0" style="color:#C9A96A"><span class="plane-tag">01</span></div>
+        <div class="plane" data-i="1" style="color:#D8CBAE"><span class="plane-tag">02</span></div>
+        <div class="plane" data-i="2" style="color:#9FB2CE"><span class="plane-tag">03</span></div>
+        <div class="plane" data-i="3" style="color:#7E93B8"><span class="plane-tag">04</span></div>
+      </div>
+    </div>
+    <div class="games-readout" id="gamesReadout" aria-live="polite">
+      <p class="game-name" id="gameName"><span class="gn" style="color:#C9A96A">01</span> The Commercial Game</p>
+      <p class="game-q" id="gameQ">What&rsquo;s actually on the table?</p>
+      <p class="gloss" id="gamesCaption"><b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see.</p>
+      <div class="games-progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TERRAIN ============ -->
+<section>
+  <div class="wrap">
+    <div class="grid-2">
+      <div>
+        <p class="eyebrow reveal">Terrain</p>
+        <h2 class="reveal">What losing three of the four games looks like by Tuesday.</h2>
+        <p class="reveal" data-delay="1">We find this pattern inside strong procurement functions: the skills are there, the outcomes aren&rsquo;t. The human game, the political game, the systems game &mdash; that&rsquo;s the gap where deals go sideways.</p>
+        <p class="margin-note reveal" data-delay="2">If more than two of these read like last quarter, the problem isn&rsquo;t skill. It&rsquo;s sight.</p>
+      </div>
+      <ul class="symptoms">
+        <li class="reveal"><span class="box">[×]</span><span><strong>The executive bypass.</strong> A stakeholder goes around the team &ldquo;just this once,&rdquo; and the once becomes the norm.</span></li>
+        <li class="reveal" data-delay="1"><span class="box">[×]</span><span><strong>The Friday deadline.</strong> Vendors set the tempo, and your team inherits urgency it never created.</span></li>
+        <li class="reveal" data-delay="2"><span class="box">[×]</span><span><strong>The invisible win.</strong> Prevented disasters never hit the P&amp;L, so the function is measured only on the savings line.</span></li>
+        <li class="reveal" data-delay="3"><span class="box">[×]</span><span><strong>The squeezed supplier.</strong> Short-term pressure degrading the exact capability you&rsquo;ll need in the next crisis.</span></li>
+        <li class="reveal" data-delay="3"><span class="box">[×]</span><span><strong>The blame rotation.</strong> When a contract goes wrong, the team that flagged the risk is the team that wears it.</span></li>
+      </ul>
+    </div>
+
+    <figure class="exhibit reveal" data-delay="1" data-draw-group>
+      <figcaption class="cap"><span>Exhibit D: The executive bypass, mapped</span><span>the most expensive line in your org chart</span></figcaption>
+      <div class="scroll-pane">
+      <svg viewBox="0 0 640 250" role="img" aria-label="Diagram: a dashed red arc shows a business stakeholder bypassing procurement to reach the vendor directly. A solid gold path shows the Diplomat route, where the deal runs through a prepared procurement team and holds.">
+        <!-- nodes -->
+        <g font-family="IBM Plex Mono, monospace">
+          <rect x="40" y="150" width="150" height="42" rx="3" fill="none" stroke="rgba(242,235,220,0.3)"/>
+          <text x="115" y="175" text-anchor="middle" fill="rgba(242,235,220,0.8)" letter-spacing="1.5" font-size="10">THE BUSINESS</text>
+          <rect x="255" y="150" width="150" height="42" rx="3" fill="rgba(201,169,106,0.08)" stroke="#C9A96A"/>
+          <text x="330" y="175" text-anchor="middle" fill="#C9A96A" letter-spacing="1.5" font-size="10">PROCUREMENT</text>
+          <rect x="470" y="150" width="130" height="42" rx="3" fill="none" stroke="rgba(242,235,220,0.3)"/>
+          <text x="535" y="175" text-anchor="middle" fill="rgba(242,235,220,0.8)" letter-spacing="1.5" font-size="10">THE VENDOR</text>
+        </g>
+        <!-- bypass arc -->
+        <path d="M115 148 C 160 55, 480 55, 533 146" fill="none" stroke="#A65546" stroke-width="2" stroke-dasharray="5 6" data-draw/>
+        <text x="320" y="52" text-anchor="middle" class="lbl-ox">&ldquo;JUST THIS ONCE&rdquo; · UNPREPARED, UNMAPPED, UNPRICED</text>
+        <!-- diplomat route -->
+        <line x1="192" y1="171" x2="253" y2="171" stroke="#C9A96A" stroke-width="2.5" data-draw/>
+        <line x1="407" y1="171" x2="468" y2="171" stroke="#C9A96A" stroke-width="2.5" data-draw/>
+        <text x="320" y="225" text-anchor="middle" class="lbl-gold">THE DIPLOMAT ROUTE · PREPARED, MAPPED, HELD</text>
+      </svg>
+      </div>
+      <p class="verdict">EVERY BYPASS IS A NEGOTIATION YOUR ENTERPRISE RUNS UNPREPARED. A MANDATE CAN&rsquo;T CLOSE THAT ARC. A TEAM WORTH ROUTING THROUGH CAN.</p>
+    </figure>
+
+    <p class="reveal" data-delay="2" style="margin-top:2.2rem; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ivory-dim)">Bring the bypass that&rsquo;s happening in your function right now to the <a href="#scoping" style="color:var(--gold); text-decoration:none; border-bottom:1px dotted var(--gold)">scoping call</a>.</p>
+  </div>
+</section>
+
+<!-- ============ OLD WAY / DIPLOMAT WAY ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">Doctrine</p>
+    <h2 class="reveal">The old way ran on Commercial Myopia.<br>The Diplomat way runs on sight.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:56ch">This is the shift the engagement installs &mdash; not a new script for your team to recite, but a different question at the top of every deal.</p>
+    <div class="reveal" data-delay="1" style="overflow-x:auto; margin-top:2.5rem">
+      <table class="ledger">
+        <thead><tr><th scope="col">The old way</th><th scope="col">The Diplomat way</th></tr></thead>
+        <tbody>
+          <tr><td>&ldquo;What do they want?&rdquo;</td><td>&ldquo;What are they protecting?&rdquo;</td></tr>
+          <tr><td>Negotiate the price</td><td>Negotiate the terrain</td></tr>
+          <tr><td>React to urgency</td><td>Diagnose urgency as a signal</td></tr>
+          <tr><td>Split the pie</td><td>Expand the pie</td></tr>
+          <tr><td>Win the meeting</td><td>Prevent the crisis the meeting was about</td></tr>
+          <tr><td>Procurement as cost center</td><td>Procurement as stewardship</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HIPPO ASSEMBLY (sticky stage) ============ -->
+<section class="hippo-stage" data-stage style="padding:0">
+  <div class="hippo-sticky">
+    <div class="wrap hippo-grid">
+      <div class="hippo-copy">
+        <p class="eyebrow">The instrument · inside a full engagement</p>
+        <h2>If it&rsquo;s a fit, every engagement ends with this document, filled in.</h2>
+        <div class="step-note active" data-h="0">
+          <p class="lede">The HIPPO Diplomatic Brief&trade;: the preparation instrument every Procurement Diplomat completes before a major negotiation.</p>
+        </div>
+        <div class="step-note" data-h="1">
+          <p class="lede">Your team completes it live, in the room, on a deal they are facing this quarter. Not a case study. Theirs.</p>
+        </div>
+        <div class="step-note" data-h="2">
+          <p class="lede">Objectives. Stakeholders. The Four Games. Shadow Shark Watch. The Bigger Pie search. A named walk-away position.</p>
+        </div>
+        <div class="step-note" data-h="3">
+          <p class="lede">And at the top of the page, the question that reorganizes everything beneath it: <em>what regret is this deal capable of creating, and how do we prevent it?</em></p>
+        </div>
+      </div>
+      <article class="paper hippo-doc" data-classification="HIPPO Diplomatic Brief™, working copy" aria-label="Preview of the HIPPO Diplomatic Brief template, its fields filling in as you scroll">
+        <div class="hfield" data-hf="0">
+          <p class="field-label">Deal / counterparty</p>
+          <p class="fill-line">Logistics master agreement, renewal, FY27</p>
+        </div>
+        <div class="hfield" data-hf="0">
+          <p class="field-label">1 · Objective, the enterprise interest we are protecting</p>
+          <p class="fill-line">Freight capability through two peak seasons; not &ldquo;best price&rdquo;</p>
+        </div>
+        <div class="hfield" data-hf="1">
+          <p class="field-label">2 · Stakeholder map</p>
+          <p class="fill-line">Ops VP · CFO · vendor account lead · vendor&rsquo;s regional director · plant managers ×3</p>
+        </div>
+        <div class="hfield" data-hf="1">
+          <p class="field-label">3 · The Four Games</p>
+          <p class="fill-line">Commercial: rate + fuel clause · Human: account lead fears losing the logo · Political: their Q3 volume target · Systems: what this precedent makes normal</p>
+        </div>
+        <div class="hfield" data-hf="2">
+          <p class="field-label">5 · Shadow Shark watch</p>
+          <p class="fill-line">Expect: false deadline (&ldquo;expires Friday&rdquo;) + artificial scarcity on capacity</p>
+        </div>
+        <div class="hfield" data-hf="2">
+          <p class="field-label">6 · Bigger Pie search</p>
+          <p class="fill-line">Volume commitment ↔ rate lock + service tier upgrade</p>
+        </div>
+        <div class="hfield" data-hf="3">
+          <p class="field-label">9 · Prevented Regret target</p>
+          <p class="fill-line">A 5-year rate we&rsquo;d regret by month 7</p>
+        </div>
+        <div class="stamp-wrap" data-hf="3"><span class="stamp stamp--gold">Prepared · Before posture</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DELIVERABLES ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">Intervention · if we&rsquo;re a fit</p>
+    <h2 class="reveal">A brief look at what a full engagement includes.</h2>
+    <p class="lede reveal" data-delay="1">The scoping call decides whether this is worth designing at all. If it is, each engagement is scoped to your team&rsquo;s size and stakes &mdash; a single high-value renewal, or a full function rebuild. Every participant gets the on-demand course as pre-work, included, so day one starts with practice instead of catch-up.</p>
+    <p class="margin-note reveal" data-delay="1" style="font-size:1.25rem; max-width:44ch">For many teams, one prepared negotiation pays for the entire engagement.</p>
+    <p class="lede reveal" data-delay="2" style="margin-top:1.8rem">It keeps three working instruments:</p>
+    <div class="artifact-cards">
+      <article class="artifact reveal" style="--tilt:-0.8deg">
+        <span class="k">Artifact 01</span>
+        <h3>Completed HIPPO Briefs&trade;</h3>
+        <p>One per participating team, each on a live deal &mdash; not a binder, a working document.</p>
+      </article>
+      <article class="artifact reveal" data-delay="1" style="--tilt:0.6deg">
+        <span class="k">Artifact 02</span>
+        <h3>Driver Mapping Canvas&trade;</h3>
+        <p>Customized to your industry and supplier base. Its center column is the one most teams never fill in: not what each stakeholder is asking for &mdash; what they&rsquo;re protecting.</p>
+      </article>
+      <article class="artifact reveal" data-delay="2" style="--tilt:-0.5deg">
+        <span class="k">Artifact 03</span>
+        <h3>Prevented Regret Debrief&trade;</h3>
+        <p>A post-negotiation process your team runs independently, forever. This is the mechanism that finally makes prevention visible to your CFO.</p>
+      </article>
+    </div>
+
+    <div class="video-library reveal" data-delay="3">
+      <span class="k">Also included, every engagement</span>
+      <h3>A year inside Ruth&rsquo;s tactics library.</h3>
+      <p>27 videos, indexed by the moment your team is actually in &mdash; not a syllabus to work through. Plus six months of coaching access: email to Ruth on live deals, and monthly Zoom debriefs with the team.</p>
+      <div class="vid-strip" aria-label="Sample topics from the tactics video library">
+        <div class="vid-card" style="background-image:url('../assets/video-thumbs/vid-1.jpg')"><span class="cap">When a counterpart turns rude or dismissive</span></div>
+        <div class="vid-card" style="background-image:url('../assets/video-thumbs/vid-2.jpg')"><span class="cap">A sole-source supplier applying pressure</span></div>
+        <div class="vid-card" style="background-image:url('../assets/video-thumbs/vid-3.jpg')"><span class="cap">Planning a negotiation you&rsquo;re dreading</span></div>
+        <div class="vid-card" style="background-image:url('../assets/video-thumbs/vid-4.jpg'); background-position:left center"><span class="cap">Building a real Plan B</span></div>
+      </div>
+      <p class="vid-note">27 videos total · 1 year of access · included, not upsold</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS, DOCUMENTED ============ -->
+<section class="roi" id="evidence">
+  <div class="wrap">
+    <p class="eyebrow reveal">Outcome · documented in participant debriefs</p>
+    <h2 class="reveal">Prevented Regret, Documented.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:56ch">Every bar below is one participant&rsquo;s reported outcome after Castle Negotiations training &mdash; in their own written debrief, in their very next negotiation. Each one is a single deal, by a single person, in a single category &mdash; which is the comparison to hold against the fee.</p>
+
+    <div class="fee-scale">
+      <div class="roi-row reveal" data-delay="1" style="--w:1">
+        <div class="meta">
+          <span class="amt">$<span class="count" data-to="3.7" data-format="float1" data-suffix="M">3.7M</span></span>
+          <span class="src">Automotive procurement lead · Michigan</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">In piece price across 7 rounds, sourced 1.5% above the target the team had set.</p>
+      </div>
+      <div class="roi-row reveal" data-delay="1" style="--w:0.216">
+        <div class="meta">
+          <span class="amt">€<span class="count" data-to="800" data-suffix="K">800K</span></span>
+          <span class="src">VP Procurement · DexKo Global</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">Protected on a sole-source relocation where the supplier opened at double the price.</p>
+      </div>
+      <div class="roi-row reveal" data-delay="2" style="--w:0.162">
+        <div class="meta">
+          <span class="amt">$<span class="count" data-to="600" data-suffix="K">600K</span></span>
+          <span class="src">Participant debrief · 2017 cohort</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">Saved in testing by identifying the issues and opening from a prepared position.</p>
+      </div>
+      <div class="roi-row reveal" data-delay="2" style="--w:0.135">
+        <div class="meta">
+          <span class="amt">$<span class="count" data-to="500" data-suffix="K+">500K+</span></span>
+          <span class="src">Participant debrief · 2017 cohort</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">In contract spend, negotiated with confidence. &ldquo;Suppliers take you more seriously after.&rdquo;</p>
+      </div>
+      <div class="roi-row reveal" data-delay="3" style="--w:0.0675">
+        <div class="meta">
+          <span class="amt">€<span class="count" data-to="250" data-suffix="K">250K</span></span>
+          <span class="src">Category lead · AL-KO Vehicle Technology</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">Per year, after a Driver Map revealed the supplier&rsquo;s true interest was more orders, not a 20% increase.</p>
+      </div>
+    </div>
+
+    <p class="also reveal" data-delay="1">Also on file: a customer demanded a 25% price rollback. The prepared team settled at 6% &mdash; a 19-point swing. <span style="font-family:var(--mono); font-style:normal; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ivory-dim)">Director of Sales · Dexter Axle</span></p>
+
+    <p class="honesty reveal" data-delay="2">All figures reported by participants in written debriefs after Castle Negotiations engagements. Euro amounts drawn at dollar parity for scale. We log missions, not marketing claims.</p>
+
+    <div class="approver reveal" data-delay="1">
+      <span class="k">If this page was forwarded to you</span>
+      <p>You&rsquo;re probably the one who&rsquo;d approve it, so here&rsquo;s the whole thing. The call is free and nobody signs anything on it. If your team wants proof before committing to a programme, a $7,500 half-day Risk Reset takes one live deal apart and ends in a written number; book an engagement within 90 days and that fee comes off it in full. The engagement itself starts at $12,500. One to three days, in-person or virtual, 8 to 30 people, six months of coaching access afterwards. The figures above this paragraph are single deals, by single people, in single categories. And if we&rsquo;re not right for this, Ruth says so on the call and tells you who is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT COSTS ============ -->
+<section id="cost">
+  <div class="wrap">
+    <p class="eyebrow reveal">The number, before you spend 30 minutes</p>
+    <h2 class="reveal">What this costs, published.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:58ch">You negotiate for a living. Making you book a call to find out whether we&rsquo;re in your range would be the exact behaviour we teach people to see through. So here it is, and here&rsquo;s what moves it.</p>
+
+    <div class="rungs">
+      <article class="rung reveal">
+        <span class="k">The smallest yes</span>
+        <p class="price">$7,500<small>Fixed · half day · one team, up to 8</small></p>
+        <h3>Negotiation Risk Reset&trade;</h3>
+        <p>One deal that&rsquo;s open right now, not a case study. Half a day on it with Ruth and the people who own it.</p>
+        <ul>
+          <li><b>&rarr;</b>A completed HIPPO Brief&trade; and Driver Map on that deal</li>
+          <li><b>&rarr;</b>A written leakage finding: the number, and where it&rsquo;s going</li>
+          <li><b>&rarr;</b>Usually sits under a procurement director&rsquo;s sign-off ceiling, and reads as category spend rather than a training line</li>
+        </ul>
+        <p class="foot">The full $7,500 credits against an engagement booked within 90 days. That isn&rsquo;t a discount. You pay for the diagnosis once.</p>
+      </article>
+
+      <article class="rung reveal" data-delay="1">
+        <span class="k">The full engagement</span>
+        <p class="price">From $12,500<small>Scoped · 1&ndash;3 days · in-person or virtual</small></p>
+        <h3>Enterprise engagement</h3>
+        <p>Four things move the number, and we&rsquo;ll walk your quote through them line by line if you ask:</p>
+        <ul>
+          <li><b>01</b>How many days</li>
+          <li><b>02</b>In-person or live virtual</li>
+          <li><b>03</b>How many people are in the room</li>
+          <li><b>04</b>How senior they are &mdash; a director-level room needs bespoke prep on their live deals</li>
+        </ul>
+        <p class="foot">Includes discovery, the HIPPO Brief and Driver Map customised to your industry, the on-demand course for every participant, and six months of coaching access. Travel at cost, invoiced separately, never buried in the fee.</p>
+      </article>
+    </div>
+
+    <div class="cost-rules">
+      <p>You get one configuration and one price. Put a range in writing and you&rsquo;ve handed a room full of professional negotiators an invitation to work it down to the floor, which is what they should do.</p>
+      <p>If the budget doesn&rsquo;t reach, we take something out of the scope and say what it was. Ruth has been saying this to clients for years, long before it appeared on a website: <em>&ldquo;You will always get the best price from me the first time around. If we need to remove something from the quote to meet your budget, we can certainly do that.&rdquo;</em> A discount on unchanged scope would tell you the first number was made up, and you&rsquo;d be right.</p>
+      <p>Prices are the same in Europe. We don&rsquo;t discount for geography. International delivery adds a flat travel figure on top, shown separately.</p>
+      <p>Above 30 people we split into cohorts and price each one, because past 30 the role-plays stop working and the debrief turns into a lecture. That&rsquo;s the delivery limit talking, not a pricing tactic.</p>
+      <p>And if $12,500 is out of reach, say so on the call. It means the engagement isn&rsquo;t the right shape for you yet. The cohort at $1,000 a seat probably is, and we&rsquo;d rather send you there than sell you a thin version of this one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STORIES ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">Evidence · declassified</p>
+    <h2 class="reveal">Anatomy of an €800K save.</h2>
+    <div class="cases">
+      <article class="paper reveal" data-classification="Prevented Regret Debrief, DexKo Global" style="max-width:none">
+        <h3 style="font-size:1.4rem">The supplier who wanted double.</h3>
+        <p><strong>The setup.</strong> A sole-sourced product. No short-term alternative supplier. The vendor announces they are closing the production site, and offers to relocate production to France <em>if the price doubles</em>. A textbook Shadow Shark opening: real leverage, theatrical framing.</p>
+        <p><strong>The old-way instinct.</strong> Panic math. Accept 2&times; as the anchor, fight to land at 1.7&times;, call it a win, and quietly absorb the requalification costs.</p>
+        <p><strong>The Diplomat move.</strong> Bernd&rsquo;s team refused the anchor entirely. They established common ground, reversed the hardball framing, and rebuilt the number from raw-material reality instead of from the vendor&rsquo;s opening position.</p>
+        <p><strong>The prevented regret.</strong> A price increase below half of what was demanded, roughly <strong style="color:var(--gold-deep)">€800,000 protected</strong>, plus every qualification, testing, and travel cost that never had to exist.</p>
+        <p style="margin-bottom:0"><em>&ldquo;Instead of agreeing to double the price, we secured an increase below 50%.&rdquo;</em><br><span style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ivory-dim)">Bernd Holzinger · VP Procurement, DexKo Global</span></p>
+        <div style="margin-top:1.4rem"><span class="stamp stamp--gold">Regret · Prevented</span></div>
+      </article>
+
+      <div class="case-grid">
+        <article class="debrief reveal">
+          <span class="tag">Debrief · cross-functional rollout</span>
+          <blockquote>&ldquo;Ruth trained a cross-functional, cross-generational group in conflict management. Everyone, from Associate to SVP, uses her tools now. There&rsquo;s even a waitlist for the next round.&rdquo;</blockquote>
+          <cite><strong>Stephanie Lind</strong> · Founder &amp; CEO, ESA (ex-Impossible Foods)</cite>
+        </article>
+        <article class="debrief reveal" data-delay="1">
+          <span class="tag">Debrief · the consultant&rsquo;s consultant</span>
+          <blockquote>&ldquo;I have hired Ruth as a third party to train clients my firm is working for, because she does such a good job.&rdquo;</blockquote>
+          <cite><strong>Brett Meyer</strong> · Partner, AlixPartners</cite>
+        </article>
+        <article class="debrief reveal">
+          <span class="tag">Debrief · function-level ROI</span>
+          <blockquote>&ldquo;Hundreds of employees trained&hellip; both sales and procurement functions improved outcomes by a large margin. ROI in Ruth is extremely high.&rdquo;</blockquote>
+          <cite><strong>David Peck</strong> · Head of Supply Chain, Dunes Point Capital</cite>
+        </article>
+        <article class="debrief reveal" data-delay="1">
+          <span class="tag">Debrief · reading difficult rooms</span>
+          <blockquote>&ldquo;What is truly special about her was her ability to effortlessly customize her material on the fly to the needs of the specific, and in most cases difficult, people and situation.&rdquo;</blockquote>
+          <cite><strong>Tom Jacobson</strong> · Managing Director, Accenture</cite>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE CARTOGRAPHER'S RECORD ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">The Cartographer&rsquo;s record</p>
+    <h2 class="reveal">Ruth Shlossman has spent 25 years<br>mapping rooms like yours.</h2>
+    <p class="reveal lede" data-delay="1">Harvard-trained M.Ed. Founder &amp; CEO of Castle Negotiations Consulting Group. Her clients call her the Ted&nbsp;Lasso of negotiating: warm on the surface, ruthless about preparation underneath. She delivers every engagement herself.</p>
+    <div class="stat-wall reveal" data-delay="1" style="margin-top:2.5rem">
+      <div class="stat"><span class="num"><span class="count" data-to="1" data-prefix="$" data-suffix="B+">$1B+</span></span><span class="lbl">in value created, protected, and captured through stronger agreements</span></div>
+      <div class="stat"><span class="num"><span class="count" data-to="10000" data-format="compact" data-suffix="+">10K+</span></span><span class="lbl">professionals trained, from new hires to senior executives</span></div>
+      <div class="stat"><span class="num"><span class="count" data-to="25" data-suffix="+">25+</span></span><span class="lbl">years as a front-line negotiator and strategist in live deals</span></div>
+    </div>
+    <div class="proof-names reveal" data-delay="2">
+      <span style="font-family:var(--mono); font-size:0.64rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold)">In the field with:</span>
+      <span>BAE Systems</span><span>Accenture</span><span>AlixPartners</span><span>KPS Capital Partners</span><span>Chart Industries</span><span>Institute for Management Studies</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section style="background:var(--navy-0)" id="scoping">
+  <div class="wrap grid-2" style="align-items:start">
+    <div>
+      <p class="eyebrow reveal">What happens after you book</p>
+      <h2 class="reveal">Book the call. Here&rsquo;s exactly what happens next.</h2>
+      <p class="reveal" data-delay="1">A scoping call is scoping. Ruth asks eight questions, you answer them, and nothing gets quoted until all eight are done. At the end you get a recommendation and a number &mdash; or the honest answer that we&rsquo;re not the right people, which happens often enough that we built it into the process.</p>
+      <p class="margin-note reveal" data-delay="2">Preparation is profit. We practise the doctrine we teach, starting with how we scope.</p>
+    </div>
+    <div class="path-steps">
+      <div class="path-step reveal">
+        <span class="when">30 minutes · free · no obligation</span>
+        <h3>The scoping call</h3>
+        <p>What deal triggered this. Who&rsquo;s in the room and what they&rsquo;re called. What training they&rsquo;ve already had and what they thought of it. What the people in that room control in annual spend. Who signs. What happens in month two. Written recap within 48 hours, yours to forward.</p>
+      </div>
+      <div class="path-step reveal" data-delay="1">
+        <span class="when">Optional · half a day · $7,500</span>
+        <h3>The Risk Reset, if you want proof first</h3>
+        <p>Most teams don&rsquo;t want to buy a three-day programme off one call, and shouldn&rsquo;t have to. So: half a day on one live deal, ending in a written leakage finding. If you then book an engagement within 90 days, the whole $7,500 comes off it.</p>
+      </div>
+      <div class="path-step reveal" data-delay="2">
+        <span class="when">Scoped: 1–3 days · in-person or virtual</span>
+        <h3>The engagement</h3>
+        <p>Built around the four games. Ends with every team completing a live HIPPO Diplomatic Brief&trade; on a real, current deal, and a debrief process your CFO will actually see &mdash; plus the tactics video library and six months of coaching access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OBJECTIONS ============ -->
+<section>
+  <div class="wrap" style="max-width:56rem">
+    <p class="eyebrow reveal">Asked and answered</p>
+    <h2 class="reveal">The five questions everyone asks before booking.</h2>
+    <div class="reveal" data-delay="1" style="margin-top:2.5rem">
+      <details class="obj">
+        <summary>&ldquo;Is the call actually free, or a sales pitch in a trench coat?&rdquo;</summary>
+        <div class="a"><p>It&rsquo;s a scoping call, and it&rsquo;s called that on purpose. Ruth is working out whether there&rsquo;s a fit here and what it would cost. You&rsquo;re working out the same thing about her. You leave with a written recap and a real number either way. And if the fit isn&rsquo;t there, she says so on the call and points you somewhere else. That answer is free too, and it gets given more often than people expect.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;We already have negotiation training.&rdquo;</summary>
+        <div class="a"><p>Almost everyone does. That&rsquo;s the point. Ask the harder question instead: did anyone&rsquo;s behaviour change? Most negotiation training hands over knowledge, and knowledge isn&rsquo;t what fails in the room. It&rsquo;s forgotten by Thursday. What fails is holding a position while an engineer undercuts you and a supplier leans on you. That takes rehearsal and a debrief honest enough to be uncomfortable, which most programmes treat as filler and we treat as the product.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;Budget&rsquo;s tight and the savings target went up anyway.&rdquo;</summary>
+        <div class="a"><p>Then price the alternative rather than the training. One escalator clause nobody caught will outrun the entire fee over the life of that contract. And if a full engagement isn&rsquo;t fundable this quarter, the $7,500 Risk Reset exists for exactly this situation. It&rsquo;s a diagnostic on one live deal, it usually sits under a director&rsquo;s sign-off ceiling rather than needing a budget round, and the fee credits back in full if you go further within 90 days.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;No time. We&rsquo;re drowning.&rdquo;</summary>
+        <div class="a"><p>We believe you, and it&rsquo;s why the work gets tied to a deal already on your calendar. Nobody practises on invented case studies here. Your team fills in the brief on a live negotiation they were going to have to prepare for anyway, so the training is the preparation rather than another thing stacked on top of it.</p></div>
+      </details>
+      <details class="obj">
+        <summary>&ldquo;This sounds like old concepts with new names.&rdquo;</summary>
+        <div class="a"><p>Fair, and we&rsquo;d be suspicious too. The honest answer: there aren&rsquo;t many tricks you can play in a negotiation, and we don&rsquo;t claim otherwise. We can&rsquo;t manufacture leverage you don&rsquo;t have. What we do is find the leverage you already have and aren&rsquo;t using &mdash; should-cost, preparation, the question nobody asked, mapping what the other side is protecting rather than what they&rsquo;re demanding. If that&rsquo;s already how your team works, you don&rsquo;t need us, and the call will establish that in about ten minutes.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FALL CALENDAR ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <p class="eyebrow reveal">The calendar, plainly</p>
+    <h2 class="reveal">There is no countdown on this page.<br>Here is the actual constraint.</h2>
+    <p class="reveal lede" data-delay="1" style="max-width:60ch">We teach a profession to recognise false urgency, so using it here would disprove the curriculum. What&rsquo;s true instead: Ruth delivers every engagement herself, which caps her at about six a quarter. Scoping call to delivery runs roughly six weeks, most of it discovery and customising the materials to your industry before anyone books a room. Windows get assigned in the order the calls happen, not by who pushes hardest.</p>
+    <p class="reveal" data-delay="1" style="max-width:60ch">Which makes the only real urgency here arithmetic. Book a call in the next fortnight and you&rsquo;re looking at the following quarter; leave it three months and you&rsquo;re looking at the one after that. If we&rsquo;re full, you&rsquo;ll hear the first open window on the call itself, not buried in a proposal three weeks later.</p>
+    <!-- TRUTH MAINTENANCE: update these six windows and the "current as of" date whenever
+         the calendar moves. A stale window here is the one unforgivable move for this brand. -->
+    <div class="calendar-block reveal" data-delay="1">
+      <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold)">Q4 2026 · delivery windows</span>
+      <div class="windows">
+        <div class="window held">OCT · W1-2<span class="st">Held</span></div>
+        <div class="window held">OCT · W3-4<span class="st">Held</span></div>
+        <div class="window">NOV · W1-2<span class="st">Open</span></div>
+        <div class="window">NOV · W3-4<span class="st">Open</span></div>
+        <div class="window">DEC · W1-2<span class="st">Open</span></div>
+        <div class="window">DEC · W3<span class="st">Open</span></div>
+      </div>
+      <p style="color:var(--ivory-dim); font-size:0.95rem; margin:0">Four windows open for the rest of 2026. <strong style="color:var(--ivory)">Current as of 27 July 2026</strong> &mdash; this block is updated by hand, and it&rsquo;s the only scarcity claim on the page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="wrap">
+    <p class="eyebrow reveal">The first move</p>
+    <h2 class="reveal">Bring the deal you&rsquo;re dreading.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:52ch; margin-inline:auto">Thirty minutes with Ruth, spent taking one live negotiation apart. You&rsquo;ll get a straight recommendation and a real number, and no obligation to do anything with either of them.</p>
+    <div class="reveal" data-delay="2" style="margin-top:2.4rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a class="btn" href="mailto:ruths@castlenegotiate.com?subject=Scoping%20call%3A%20%5BCompany%5D&body=Ruth%2C%0A%0ATeam%3A%20%5Bhow%20many%20people%2C%20what%20titles%5D%0AIndustry%20and%20sites%3A%20%5B%20%5D%0AThe%20deal%20that%20triggered%20this%3A%20%5Bone%20sentence%5D%0APrevious%20negotiation%20training%3A%20%5Bwhat%2C%20and%20what%20they%20thought%20of%20it%5D%0AIn-person%20or%20virtual%3A%20%5B%20%5D%0A%0ABest%20times%20this%20week%3A">Book a scoping call <span class="arrow">→</span></a>
+    </div>
+    <p class="reveal" data-delay="3" style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ivory-dim); margin-top:2rem">202-249-7614 · ruths@castlenegotiate.com</p>
+  </div>
+</section>
+
+<!-- ============ THE NO REGRET GUARANTEE ============ -->
+<section class="guarantee" id="guarantee">
+  <div class="wrap" style="max-width:52rem">
+    <div class="g-stamp-scene u-reveal-host">
+      <span class="g-thud" aria-hidden="true"></span>
+      <svg class="g-stamp" viewBox="0 0 260 260" role="img" aria-label="A circular ink passport stamp reading No Regret Guarantee, with a knight emblem at its center">
+        <defs>
+          <filter id="gInk">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+          </filter>
+          <path id="gArcTop" d="M 48 130 A 82 82 0 0 1 212 130" fill="none"/>
+          <path id="gArcBot" d="M 35 130 A 95 95 0 0 0 225 130" fill="none"/>
+        </defs>
+        <g filter="url(#gInk)">
+          <g fill="none" stroke="currentColor">
+            <circle cx="130" cy="130" r="122" stroke-width="5"/>
+            <circle cx="130" cy="130" r="112" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="62" stroke-width="1.5"/>
+          </g>
+          <g fill="currentColor">
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcTop" startOffset="50%" text-anchor="middle">NO REGRET</textPath></text>
+            <text font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="6"><textPath href="#gArcBot" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
+            <text x="130" y="158" text-anchor="middle" font-size="80">&#9822;</text>
+            <path d="M42 124.5 L47.5 130 L42 135.5 L36.5 130 Z"/>
+            <path d="M218 124.5 L223.5 130 L218 135.5 L212.5 130 Z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <h2 class="reveal">The No Regret Guarantee&trade;</h2>
+    <p class="lede reveal g-copy" data-delay="1" style="margin-top:1.6rem">We believe this engagement will fundamentally change the way your team prepares, negotiates and influences commercial outcomes. If your team fully participates and you genuinely don&rsquo;t believe the engagement has delivered that transformation, we&rsquo;ll refund your investment.</p>
+    <p class="reveal g-copy" data-delay="2" style="margin-top:1.4rem; color:var(--ivory-dim)">We teach procurement teams to prevent commercial regret. <strong style="color:var(--ivory)">The last thing we want is for you to experience it by choosing us.</strong></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;Whoever prepares more thoroughly than the room controls the room.&rdquo;</p>
+      <p>© 2026 Castle Negotiations Consulting Group, Inc. · Alpharetta, GA<br>
+      <a href="https://www.castlenegotiations.com/">castlenegotiations.com</a> · <a href="mailto:ruths@castlenegotiate.com">ruths@castlenegotiate.com</a></p>
+    </div>
+    <div style="display:none; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="doctrine.html">The Doctrine</a><br>
+      <a href="scopingcall.html">Book a scoping call</a><br>
+      <a href="enterprise.html">Enterprise Workshops</a><br>
+      <a href="cohort.html">The Diplomat Cohort</a><br>
+      <a href="lexicon.html">The Lexicon</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+  /* HIPPO brief fields fill in as the sticky stage progresses */
+  const stage = document.querySelector(".hippo-stage");
+  if (!stage) return;
+  const fields = Array.from(document.querySelectorAll(".hfield, .stamp-wrap"));
+  const notes = Array.from(document.querySelectorAll(".step-note"));
+  let last = -1;
+  function frame() {
+    const sp = parseFloat(getComputedStyle(stage).getPropertyValue("--sp")) || 0;
+    const idx = Math.min(Math.floor(sp / 0.25), 3);
+    if (idx !== last) {
+      last = idx;
+      fields.forEach((f) => f.classList.toggle("on", parseInt(f.dataset.hf, 10) <= idx));
+      notes.forEach((n, i) => n.classList.toggle("active", i === idx));
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  /* Four Games stage: fan the planes as --sp goes 0→1 */
+  const stage = document.querySelector(".games-stage");
+  if (!stage) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const planes = Array.from(document.querySelectorAll(".plane"));
+  const readout = document.getElementById("gamesReadout");
+  const gameName = document.getElementById("gameName");
+  const gameQ = document.getElementById("gameQ");
+  const caption = document.getElementById("gamesCaption");
+  const progress = Array.from(document.querySelectorAll(".games-progress i"));
+  const games = [
+    { n: "01", name: "The Commercial Game", c: "#C9A96A", q: "What&rsquo;s actually on the table?", gloss: "<b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see." },
+    { n: "02", name: "The Human Game", c: "#D8CBAE", q: "Whose identity, fear, or ego is in play?", gloss: "<b>Identity, fear, ego, recognition.</b> The counterpart who goes quiet isn&rsquo;t agreeing. They&rsquo;re protecting something." },
+    { n: "03", name: "The Political Game", c: "#9FB2CE", q: "Whose career is riding on this outcome?", gloss: "<b>Status, power, career incentive.</b> Half of every stuck negotiation is an unmapped politics problem, often on your own side of the table." },
+    { n: "04", name: "The Systems Game", c: "#7E93B8", q: "What does this precedent make normal tomorrow?", gloss: "<b>Precedent.</b> Whatever your function makes normal today, it will negotiate against tomorrow. The systems game is the longest one." }
+  ];
+  let lastIdx = -1, swapTimer = null;
+
+  function paintReadout(g) {
+    gameName.innerHTML = '<span class="gn" style="color:' + g.c + '">' + g.n + "</span> " + g.name;
+    gameQ.innerHTML = g.q;
+    caption.innerHTML = g.gloss;
+  }
+  function showGame(idx) {
+    const g = games[idx];
+    progress.forEach((bar, i) => {
+      bar.style.background = i <= idx ? "rgba(201,169,106,0.8)" : "rgba(242,235,220,0.15)";
+    });
+    if (reduced) { paintReadout(g); return; }
+    clearTimeout(swapTimer);
+    readout.classList.add("fading");
+    swapTimer = setTimeout(function () {
+      paintReadout(g);
+      readout.classList.remove("fading");
+    }, 200);
+  }
+
+  function gamesFrame() {
+    const sp = parseFloat(getComputedStyle(stage).getPropertyValue("--sp")) || 0;
+    const settle = Math.min(sp / 0.18, 1);
+    const focusIdx = Math.min(Math.floor(sp / 0.25), 3);
+    const rotX = 60 - 8 * settle;
+    const tagX = window.innerWidth <= 760 ? "6%" : "-135%";
+    planes.forEach((pl, i) => {
+      const isFocus = i === focusIdx;
+      // neighbours retreat from the focused board rather than the board lunging
+      // forward, which would collide with the plane beneath it
+      const spread = i > focusIdx ? 24 : i < focusIdx ? -24 : 0;
+      const depth = ((i - 1.5) * 48 + spread) * settle;
+      pl.style.transform = "rotateX(" + rotX + "deg) translateZ(" + depth + "px)";
+      pl.style.opacity = isFocus ? 1 : 0.22 + 0.1 * settle;
+      pl.style.background = isFocus ? "rgba(242,235,220,0.03)" : "transparent";
+      pl.style.borderWidth = isFocus ? "1.5px" : "1px";
+      pl.style.boxShadow = isFocus
+        ? "0 40px 80px -40px rgba(0,0,0,0.9), inset 0 0 60px -22px currentColor"
+        : "none";
+      // keep the number tag square to the reader, whatever the board is doing
+      pl.querySelector(".plane-tag").style.transform =
+        "translate(" + tagX + ", -50%) rotateX(" + -rotX + "deg)";
+    });
+    if (focusIdx !== lastIdx) { lastIdx = focusIdx; showGame(focusIdx); }
+    requestAnimationFrame(gamesFrame);
+  }
+  requestAnimationFrame(gamesFrame);
+})();
+</script>
+</body>
+</html>
