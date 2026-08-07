@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>The Procurement Diplomat | 30-Minute Negotiation Triage | Castle Negotiations</title>
+<meta name="description" content="Protect margin, avoid bad precedent, and pressure-test your supplier increase in 30 minutes. A Castle Negotiations discipline for procurement leaders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* ================= HERO ================= */
+  .hero-t {
+    min-height: 100svh;
+    display: grid; align-items: center;
+    padding-top: 7rem;
+    background:
+      radial-gradient(110% 85% at 25% 0%, rgba(22,38,61,0.92), transparent 62%),
+      var(--navy-0);
+    position: relative; overflow: hidden;
+  }
+  .hero-t canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.7;
+  }
+  .hero-t::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20vh;
+    background: linear-gradient(180deg, transparent, var(--navy-1));
+    pointer-events: none;
+  }
+  .hero-t .wrap {
+    position: relative; z-index: 2;
+    display: grid; gap: clamp(2.5rem, 6vw, 5rem);
+    grid-template-columns: 1fr; align-items: start;
+  }
+  @media (min-width: 1040px) { .hero-t .wrap { grid-template-columns: 1.2fr 0.9fr; } }
+  .hero-t h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); max-width: 20ch; }
+  .hero-t h1 em { color: var(--gold); }
+  .hero-t .lede { max-width: 48ch; margin-top: 1.5rem; }
+  .hero-t .proof-line {
+    display: flex; gap: 0.7rem; align-items: baseline; flex-wrap: nowrap; white-space: nowrap;
+    font-family: var(--sans); font-size: 0.95rem; color: var(--ivory-dim);
+    margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid rgba(242,235,220,0.16);
+    max-width: none;
+  }
+  .hero-t .proof-line .stars { color: var(--gold); letter-spacing: 0.1em; flex: none; }
+  @media (max-width: 420px) { .hero-t .proof-line { font-size: 0.82rem; gap: 0.5rem; } }
+  .hero-t .figs {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+    color: var(--gold); border: 1px solid rgba(201,169,106,0.45);
+    padding: 0.5rem 0.7rem; border-radius: var(--radius); display: inline-block;
+    margin-bottom: 1.6rem;
+  }
+
+  /* qualification form panel */
+  .qual-panel {
+    background: linear-gradient(178deg, var(--ivory) 0%, var(--ivory-2) 100%);
+    color: var(--ink);
+    border: 1px solid rgba(201,169,106,0.4);
+    border-radius: 2px;
+    box-shadow: 0 30px 60px -18px rgba(0,0,0,0.55), 0 8px 18px -8px rgba(0,0,0,0.4);
+  }
+  .qual-panel .titlebar {
+    background: var(--navy-0);
+    padding: 0.9rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 0.7rem; flex-wrap: nowrap;
+    border-bottom: 1px solid rgba(201,169,106,0.3);
+  }
+  .qual-panel .titlebar span:first-child {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+  }
+  .qual-panel .titlebar span:last-child {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(242,235,220,0.5); white-space: nowrap; flex: none;
+  }
+  .qual-panel .body { padding: 1.7rem 1.6rem 1.5rem; }
+  .qual-panel .qh { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; color: var(--navy-0); margin-bottom: 0.4rem; }
+  .qual-panel .qp { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
+
+  .qf { display: flex; flex-direction: column; gap: 1rem; }
+  .qf-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .qf label {
+    display: block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.45rem;
+  }
+  .qf input, .qf select {
+    width: 100%; box-sizing: border-box; background: transparent; border: none;
+    border-bottom: 1.5px solid rgba(28,34,44,0.3); padding: 0 0 0.55rem;
+    font-family: var(--sans); font-size: 0.95rem; color: var(--ink);
+    border-radius: 0;
+  }
+  .qf input:focus, .qf select:focus { outline: none; border-color: var(--gold-deep); }
+  .qf input.q-error, .qf select.q-error { border-bottom-color: #A65546; }
+  .qf .q-field-error { display: none; font-family: var(--sans); font-size: 0.72rem; line-height: 1.4; color: #A65546; margin-top: 0.4rem; }
+  .qf button {
+    margin-top: 0.35rem; width: 100%; background: var(--navy-0); color: var(--ivory);
+    border: none; padding: 1.05rem 1.2rem; border-radius: var(--radius);
+    font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .qf button:hover { background: var(--navy-2); }
+  .qf .q-limit { font-family: var(--sans); font-size: 0.74rem; color: var(--ink-soft); text-align: center; }
+
+  .q-success { display: none; background: #FBF9F4; border: 1px solid rgba(28,34,44,0.14); padding: 1.2rem; border-radius: 2px; }
+  .q-success .qs-tag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.55rem; }
+  .q-success .qs-head { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: var(--navy-0); margin-bottom: 0.5rem; }
+  .q-success .qs-body { font-family: var(--sans); font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
+  .q-success .qs-booking { display: none; margin-top: 1.1rem; }
+  .q-success .qs-resource { display: none; margin-top: 1.1rem; }
+  .q-success .qs-resource a {
+    display: block; width: 100%; box-sizing: border-box; text-align: center;
+    background: var(--navy-0); color: var(--ivory); padding: 0.95rem 1.2rem; border-radius: var(--radius);
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-decoration: none;
+  }
+
+  /* reusable top-right corner bracket accent, ties evidence callouts to the exhibit motif */
+  .brk { position: relative; }
+  .brk::after {
+    content: ""; position: absolute; top: -1px; right: -1px; width: 14px; height: 14px;
+    border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); opacity: 0.75; pointer-events: none;
+  }
+
+  /* ================= LOGO + QUOTE WALL ================= */
+  .proof-wall { position: relative; overflow: hidden; background: var(--navy-2); border-top: 1px solid rgba(201,169,106,0.16); border-bottom: 1px solid rgba(201,169,106,0.16); padding-block: clamp(1.8rem, 4vw, 2.6rem); }
+  .proof-wall::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(126,147,184,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(126,147,184,0.09) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+    -webkit-mask-image: radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+  }
+  .proof-wall .wrap { position: relative; z-index: 1; }
+  .proof-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.6rem; margin-top: 1.5rem; }
+  @media (max-width: 980px) { .proof-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+  .proof-cell { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
+  .proof-cell img { height: 34px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.55; }
+  .proof-cell .pq { font-family: var(--serif); font-style: italic; font-size: 0.86rem; line-height: 1.5; color: var(--ivory-dim); }
+  .proof-cell .pq b { color: var(--ivory); font-weight: 500; font-style: normal; }
+  .proof-cell .pq span { display: block; margin-top: 0.3rem; font-style: normal; opacity: 0.75; }
+
+  /* ================= OLD WAY / PAIN ================= */
+  .problem-figure {
+    position: relative; margin: 0 auto 2.4rem; width: 100%; max-width: 48rem;
+    border: 1px solid rgba(201,169,106,0.28); background: var(--navy-1);
+    padding: clamp(1.1rem, 3vw, 1.7rem) clamp(1.1rem, 3vw, 1.7rem) clamp(1.3rem, 3vw, 1.8rem);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .problem-figure::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(126,147,184,0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(126,147,184,0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(120% 90% at 50% 0%, black 25%, transparent 88%);
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, black 25%, transparent 88%);
+  }
+  .pf-contour { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+  .pf-contour path { fill: none; stroke: var(--gold); stroke-width: 1; }
+  .pf-contour .a { opacity: 0.2; }
+  .pf-contour .b { opacity: 0.11; }
+  .pf-cap {
+    position: relative; z-index: 1; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin: 0 0 1rem; display: flex;
+    justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  .pf-cap span:last-child { color: var(--ivory-dim); letter-spacing: 0.1em; }
+  .pf-frame { position: relative; z-index: 1; }
+  .pf-frame img { width: 100%; height: auto; display: block; border-radius: 2px; border: 1px solid rgba(201,169,106,0.3); }
+  .pf-corner { position: absolute; width: 16px; height: 16px; border: 1.5px solid var(--gold); z-index: 2; opacity: 0.85; }
+  .pf-corner--tl { top: -6px; left: -6px; border-right: none; border-bottom: none; }
+  .pf-corner--br { bottom: -6px; right: -6px; border-left: none; border-top: none; }
+  .pf-knight {
+    position: absolute; right: -0.6rem; bottom: -1.5rem; z-index: 0;
+    font-size: 5.5rem; line-height: 1; color: rgba(201,169,106,0.07); pointer-events: none;
+  }
+  .pf-legend {
+    position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem;
+    margin-top: 1.1rem; padding-top: 1rem; border-top: 1px dotted rgba(242,235,220,0.16);
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.02em; color: var(--ivory-dim);
+  }
+  .pf-legend span { display: inline-flex; align-items: center; gap: 0.55rem; }
+  .pf-legend i { display: inline-block; width: 20px; border-top: 2px solid var(--gold); flex: none; }
+  .pf-legend .dash { border-top-style: dashed; opacity: 0.55; }
+  .problem-head { text-align: center; }
+  .problem-head .eyebrow { justify-content: center; max-width: none; margin-inline: auto; }
+  .problem-head h2 { max-width: 28ch; margin-inline: auto; }
+  .problem-quote {
+    font-family: var(--serif); font-style: italic; font-size: 1.2rem; line-height: 1.5;
+    color: var(--ivory); max-width: 44ch; margin: 0 auto; padding: 0;
+  }
+  .problem-body { max-width: 62ch; margin: 2.2rem auto 0; text-align: left; }
+  .pain-lede { max-width: 62ch; }
+  .pain-split {
+    list-style: none; margin: 0 0 1.4rem; padding: 0; display: grid; gap: 0;
+    border-top: 1px solid rgba(242,235,220,0.14); max-width: 60ch;
+  }
+  .pain-split li {
+    display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(242,235,220,0.14);
+    font-size: 0.98rem; color: var(--ivory-dim);
+  }
+  .pain-split li b {
+    flex: 0 0 8rem; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+
+  /* ================= TESTIMONIAL WALL ================= */
+  .tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.8rem; }
+  .tgrid .t-span2 { grid-column: span 2; }
+  @media (max-width: 900px) { .tgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .tgrid { grid-template-columns: 1fr; } .tgrid .t-span2 { grid-column: span 1; } }
+
+  .tcard { border-radius: 2px; padding: 1.7rem; }
+  .tcard .tq strong { color: var(--gold); font-weight: 600; }
+
+  .tcard.photo {
+    background: linear-gradient(160deg, var(--navy-2), var(--navy-0) 65%);
+    border: 1px solid rgba(201,169,106,0.35);
+  }
+  .tcard.photo .qmark { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 2.6rem; line-height: 1; color: rgba(201,169,106,0.55); margin: 0 0 -0.35rem; }
+  .tcard.photo .tq { font-family: var(--serif); font-size: 1.06rem; line-height: 1.55; color: var(--ivory); margin: 0 0 1.3rem; }
+  .tcard.photo .person { display: flex; gap: 0.85rem; align-items: center; }
+  .tcard.photo .person img { width: 52px; height: 52px; flex: none; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+  .tcard.photo .person .name { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gold); }
+  .tcard.photo .person .role { font-family: var(--sans); font-size: 0.72rem; color: rgba(242,235,220,0.6); margin-top: 0.25rem; }
+
+  .tcard.stat { background: var(--navy-1); border: 1px solid rgba(201,169,106,0.22); border-left: 3px solid var(--gold); }
+  .tcard.stat.inline { display: grid; grid-template-columns: auto 1fr; gap: 1.8rem; align-items: center; }
+  .tcard.stat .st-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,235,220,0.55); margin-bottom: 0.6rem; max-width: 12rem; }
+  .tcard.stat .st-num { font-family: var(--serif); font-size: 2.5rem; line-height: 1; color: var(--gold); white-space: nowrap; }
+  .tcard.stat .tq { font-family: var(--serif); font-size: 1rem; line-height: 1.55; color: var(--ivory); margin: 0 0 0.7rem; }
+  .tcard.stat .name { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--gold); }
+  .tcard.stat .name span { color: rgba(242,235,220,0.5); font-weight: 400; }
+  .tcard.stat:not(.inline) .st-num { font-size: 2rem; margin-bottom: 0.7rem; display: block; }
+  .tcard.stat:not(.inline) .st-tag { margin-bottom: 0.5rem; max-width: none; }
+
+  .tcard.plain { background: var(--navy-2); border-top: 2px solid rgba(201,169,106,0.4); display: flex; flex-direction: column; }
+  .tcard.plain .pl-tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8FA3B8; margin-bottom: 0.9rem; }
+  .tcard.plain .tq { font-family: var(--serif); font-size: 0.96rem; line-height: 1.6; color: var(--ivory); margin: 0 0 1rem; }
+  .tcard.plain .name { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--gold); }
+  .tcard.plain .role { font-family: var(--sans); font-size: 0.7rem; color: rgba(242,235,220,0.6); margin-top: 0.25rem; }
+
+  .tcard.gold { background: var(--gold); color: var(--navy-0); display: flex; flex-direction: column; justify-content: space-between; }
+  .tcard.gold.brk::after { border-color: var(--navy-0); opacity: 0.55; width: 16px; height: 16px; border-width: 2px; }
+  .tcard.gold .gl-tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(11,20,34,0.7); margin-bottom: 0.9rem; }
+  .tcard.gold .gl-num { font-family: var(--serif); font-size: 2.3rem; color: var(--navy-0); margin-bottom: 0.7rem; }
+  .tcard.gold .gl-body { font-family: var(--sans); font-size: 0.9rem; line-height: 1.55; color: var(--navy-0); }
+  .tcard.gold .name { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(11,20,34,0.7); margin-top: 1.1rem; }
+
+  /* ================= PROOF BAND (benefit sections) ================= */
+  .benefit { padding-block: var(--section-gap); }
+  .benefit .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; display: block; }
+  .benefit-grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 900px) { .benefit-grid { grid-template-columns: 1fr 1fr; } }
+  .benefit-media {
+    position: relative; aspect-ratio: 4/3; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid rgba(201,169,106,0.22);
+  }
+  .fig-tag {
+    position: absolute; top: 0.9rem; left: 1rem; z-index: 2;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(201,169,106,0.6);
+  }
+  .benefit-media video, .benefit-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .benefit-media.placeholder {
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.7rem;
+    background: repeating-linear-gradient(135deg, var(--navy-1), var(--navy-1) 10px, var(--navy-2) 10px, var(--navy-2) 20px);
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; line-height: 1.7; color: var(--ivory-dim);
+  }
+  .benefit-media.pie-media {
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at center, var(--navy-1), var(--navy-0));
+  }
+  .benefit-media.pie-media svg { width: min(76%, 320px); height: auto; overflow: visible; }
+  .benefit-media.knight-media {
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at center, var(--navy-1), var(--navy-0));
+  }
+  .benefit-media.knight-media svg { width: min(84%, 300px); height: auto; }
+  .benefit-stat {
+    background: var(--navy-1); border: 1px solid rgba(201,169,106,0.28); border-left: 3px solid var(--gold);
+    padding: 1.4rem 1.5rem; border-radius: var(--radius); max-width: 44ch; margin-top: 1.6rem;
+  }
+  .benefit-stat .bs-tag { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+  .benefit-stat .bs-num { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.2rem); color: var(--ivory); line-height: 1; margin-bottom: 0.7rem; }
+  .benefit-stat .bs-body { font-size: 0.92rem; color: var(--ivory-dim); line-height: 1.6; }
+  .benefit-stat .bs-src { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; color: rgba(207,198,178,0.6); margin-top: 0.7rem; }
+  .benefit-note { margin-top: 1.6rem; font-size: 0.95rem; color: var(--ink-soft); max-width: 46ch; }
+  .benefit .stat-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 46ch; margin-top: 1.4rem; }
+  .stat-mini { border: 1px solid rgba(201,169,106,0.25); background: var(--navy-1); padding: 1.1rem 1.2rem; border-radius: var(--radius); }
+  .stat-mini .sm-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ivory-dim); margin-bottom: 0.5rem; }
+  .stat-mini .sm-num { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .stat-mini .sm-body { font-size: 0.82rem; color: var(--ivory-dim); line-height: 1.5; }
+
+  /* ================= DIFFERENTIATORS ================= */
+  .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 3rem; }
+  @media (max-width: 900px) { .diff-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .diff-grid { grid-template-columns: 1fr; } }
+  .diff-item .mk {
+    width: 1.7rem; height: 1.7rem; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: flex-end; padding-bottom: 0.12rem;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.03em; color: var(--gold);
+  }
+  .diff-item h3 { font-family: var(--sans); font-weight: 600; font-size: 1.02rem; color: var(--ivory); margin-bottom: 0.5rem; letter-spacing: -0.005em; }
+  .diff-item p { font-size: 0.92rem; color: var(--ivory-dim); margin: 0; }
+
+  /* ================= PATH STEPS (how it works) ================= */
+  .path-steps { counter-reset: step; display: grid; gap: 0; margin-top: 3rem; border-left: 1px solid rgba(201,169,106,0.35); position: relative; }
+  .path-steps::after {
+    content: ""; position: absolute; left: -0.3rem; bottom: -0.3rem;
+    width: 0.6rem; height: 0.6rem; background: var(--gold); transform: rotate(45deg); opacity: 0.85;
+  }
+  .path-step { position: relative; padding: 0 0 2.6rem 2.4rem; }
+  .path-step:last-child { padding-bottom: 0; }
+  .path-step::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: -1.05rem; top: 0.1rem;
+    width: 2.1rem; height: 2.1rem;
+    display: grid; place-items: center;
+    background: var(--navy-1); border: 1px solid var(--gold);
+    border-radius: 50%;
+    font-family: var(--mono); font-size: 0.68rem; color: var(--gold);
+  }
+  .path-step h3 { margin-bottom: 0.4rem; font-size: 1.35rem; }
+  .path-step .when { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.8rem; }
+  .path-step p { color: var(--ivory-dim); font-size: 0.99rem; }
+
+  /* ================= MEET RUTH ================= */
+  .ruth-grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 900px) { .ruth-grid { grid-template-columns: 0.85fr 1.15fr; } }
+
+  /* ================= QUALIFY (fit / not fit) ================= */
+  .fit-grid { display: grid; gap: 1.6rem; grid-template-columns: 1fr; margin-top: 2.4rem; }
+  @media (min-width: 780px) { .fit-grid { grid-template-columns: 1fr 1fr; } }
+  .fit-card { border: 1px solid rgba(201,169,106,0.25); border-radius: var(--radius); background: var(--navy-2); padding: 1.7rem 1.8rem; }
+  .fit-card .ft { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.2rem; display: block; }
+  .fit-card.yes .ft { color: var(--gold); }
+  .fit-card.no .ft { color: var(--ivory-dim); }
+  .fit-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  .fit-card li { display: flex; gap: 0.75rem; font-size: 0.94rem; line-height: 1.55; }
+  .fit-card.yes li { color: var(--ivory); }
+  .fit-card.no li { color: var(--ivory-dim); }
+  .fit-card li b { flex: none; font-family: var(--mono); }
+  .fit-card.yes li b { color: var(--gold); }
+  .fit-card.no li b { color: var(--ivory-dim); }
+
+  /* ================= FAQ ================= */
+  .faq-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .faq-grid { grid-template-columns: 0.7fr 1.3fr; } }
+  details.obj-t {
+    border-top: 1px solid rgba(242,235,220,0.14);
+    border-bottom: none;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+  details.obj-t:last-child { border-bottom: 1px solid rgba(242,235,220,0.14); }
+  details.obj-t summary {
+    cursor: pointer; list-style: none;
+    padding: 1.15rem 0;
+    font-family: var(--sans); font-weight: 600; font-size: 1.02rem; color: var(--ivory);
+    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  }
+  details.obj-t summary::-webkit-details-marker { display: none; }
+  details.obj-t summary::after { content: "+"; font-family: var(--mono); color: var(--gold); font-size: 1.15rem; transition: transform 0.3s; flex-shrink: 0; }
+  details.obj-t[open] summary::after { transform: rotate(45deg); }
+  details.obj-t .a { padding: 0 0 1.3rem; color: var(--ivory-dim); max-width: 64ch; font-size: 0.95rem; line-height: 1.65; }
+
+  /* ================= FINAL RECAP ================= */
+  .recap { position: relative; overflow: hidden; background: radial-gradient(80% 60% at 20% 20%, rgba(22,38,61,0.9), transparent 65%), var(--navy-0); }
+  .recap-contour { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .recap-contour path { fill: none; stroke: var(--gold); stroke-width: 1; opacity: 0.12; }
+  .recap .wrap { position: relative; z-index: 1; }
+  .recap-grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 980px) { .recap-grid { grid-template-columns: 1.15fr 0.85fr; } }
+  .recap-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid rgba(242,235,220,0.16); }
+  @media (max-width: 620px) { .recap-nums { grid-template-columns: 1fr; } }
+  .recap-nums .rn-i {
+    font-family: var(--mono); font-size: 0.62rem; color: var(--gold); margin-bottom: 0.9rem;
+    width: 1.9rem; height: 1.9rem; border: 1px solid rgba(201,169,106,0.5); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .recap-nums h4 { font-family: var(--sans); font-weight: 500; font-size: 0.94rem; color: var(--ivory); margin: 0 0 0.35rem; }
+  .recap-nums p { font-size: 0.82rem; color: rgba(242,235,220,0.55); margin: 0; }
+
+  /* ================= STICKY CTA ================= */
+  .sticky-cta {
+    display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+    background: var(--navy-0); border-top: 1px solid rgba(201,169,106,0.4);
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.3);
+  }
+  .sticky-cta .inner {
+    max-width: 72rem; margin: 0 auto; padding: 0.85rem var(--pad);
+    display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  }
+  .sticky-cta .msg { font-family: var(--sans); font-size: 0.92rem; color: rgba(242,235,220,0.85); }
+  .sticky-cta .msg b { font-weight: 600; color: var(--ivory); }
+  .sticky-cta .btn { padding: 0.85rem 1.3rem; font-size: 0.72rem; white-space: nowrap; }
+
+  @media (max-width: 640px) {
+    .qf-2col { grid-template-columns: 1fr; }
+    .stat-mini-grid { grid-template-columns: 1fr !important; }
+    .tcard.stat.inline { grid-template-columns: 1fr !important; gap: 1rem; }
+    .tcard.stat.inline .st-num { font-size: 2.1rem; }
+    .tcard.stat.inline .st-tag { max-width: none; }
+  }
+
+  /* ================= FOUR GAMES (3D sticky stage) ================= */
+  .games-stage { height: 460vh; position: relative; }
+  .games-sticky {
+    position: sticky; top: 0; height: 100svh; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 6vh 0 5vh;
+    background:
+      radial-gradient(90% 70% at 50% 110%, rgba(22,38,61,0.85), transparent 70%),
+      var(--navy-0);
+  }
+  .games-head { text-align: center; padding-inline: var(--pad); z-index: 5; }
+  .games-head .eyebrow { justify-content: center; max-width: none; margin-inline: auto; }
+  .games-head .eyebrow::before { display: none; }
+  .games-head h2 { font-size: clamp(1.5rem, 3.4vw, 2.5rem); margin: 0; }
+
+  /* the stack is diagram only: no reading matter lives on a tilted surface */
+  .board-scene { perspective: 1500px; width: min(64vw, 560px); margin: 0 auto; }
+  .board-stack { transform-style: preserve-3d; position: relative; height: min(46vw, 340px, 32svh); }
+  .plane {
+    position: absolute; inset: 0;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    transform-style: preserve-3d;
+    transition: box-shadow 0.45s var(--ease-out), opacity 0.45s var(--ease-out), background 0.45s;
+  }
+  .plane::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(currentColor 1px, transparent 1px),
+      linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 12.5% 12.5%;
+    opacity: 0.12;
+    border-radius: inherit;
+  }
+  /* counter-rotated so the tag faces the reader while its plane stays tilted */
+  .plane .plane-tag {
+    position: absolute; left: 0; top: 50%;
+    transform: translate(-135%, -50%);
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.16em; line-height: 1; white-space: nowrap;
+    color: currentColor; background: var(--navy-0);
+    border: 1px solid currentColor; border-radius: 3px;
+    padding: 0.36rem 0.5rem;
+  }
+
+  .games-readout {
+    text-align: center; padding-inline: var(--pad); z-index: 5;
+    min-height: 12.5rem;
+    transition: opacity 0.25s var(--ease-out);
+  }
+  .games-readout.fading { opacity: 0; }
+  .game-name {
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ivory);
+    margin: 0 auto 0.9rem; max-width: none;
+  }
+  .game-q {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.35rem, 2.9vw, 2rem); line-height: 1.25;
+    color: var(--ivory);
+    margin: 0 auto 1rem; max-width: 22ch;
+  }
+  .games-readout .gloss {
+    margin: 0 auto; max-width: 56ch;
+    font-size: clamp(0.92rem, 1.5vw, 1.02rem); line-height: 1.6;
+    color: var(--ivory-dim);
+  }
+  .games-readout .gloss b { color: var(--gold); font-weight: 500; }
+  .games-progress { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
+  .games-progress i {
+    width: 2.4rem; height: 2px; background: rgba(242,235,220,0.15); border-radius: 2px;
+    transition: background 0.35s;
+  }
+  @media (max-width: 760px) {
+    .board-scene { width: min(84vw, 420px); }
+    .board-stack { height: min(62vw, 260px); }
+    .games-readout { min-height: 14rem; }
+    .game-q { max-width: 18ch; }
+    /* narrow screens have no room beside the board, so the tag sits on it */
+    .plane .plane-tag { transform: translate(6%, -50%); font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.3rem 0.4rem; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<header class="hero-t">
+  <canvas data-terrain aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="figs">$800K &middot; $600K &middot; $500K &middot; $3.7M DOCUMENTED</span>
+      <h1>Turn your supplier&rsquo;s 8% increase into a <em class="u-gold">six-figure saving</em> in 30 minutes</h1>
+      <p class="lede">Did that increase letter make your team go quiet? In 30 minutes, Fortune 500 negotiation expert, Ruth Shlossman, helps you map the 4 Games behind your supplier&rsquo;s demand, give your team a HIPPO Diplomatic Brief&trade; to align around, and put to work the Procurement Diplomat system behind <strong style="color:var(--ivory); text-decoration:underline">6-figure outcomes</strong> in your very next negotiation (even when you&rsquo;re single-sourced).</p>
+      <p class="proof-line"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 10,000+ Procurement Diplomats trained over 25 years</p>
+    </div>
+
+    <div class="qual-panel" id="qualify">
+      <div class="titlebar"><span>30-Min Negotiation Triage</span><span>No cost</span></div>
+      <div class="body">
+        <div class="qh">See if your negotiation qualifies</div>
+        <p class="qp">Fill the form below. If you qualify, you&rsquo;ll get instant access to Ruth&rsquo;s personal calendar.</p>
+
+        <div class="q-success">
+          <div class="qs-tag">Request logged</div>
+          <div class="qs-head"></div>
+          <div class="qs-body"></div>
+          <div class="qs-booking"><div class="tidycal-embed" data-path="castle-negotiations/procurement-triage"></div></div>
+          <div class="qs-resource"><a href="https://www.castlenegotiations.com/shadow-shark-80-off/" target="_blank" rel="noopener" class="q-resource-link">GET THE SHADOW SHARK FIELD KIT</a></div>
+        </div>
+
+        <form class="qf" onsubmit="return handleTriageSubmit(event)" novalidate>
+          <div>
+            <label for="hero-fullName">Full name</label>
+            <input type="text" id="hero-fullName" name="fullName" required placeholder="Jane Ellis" aria-describedby="hero-fullName-error">
+            <div class="q-field-error" id="hero-fullName-error" data-error-for="hero-fullName"></div>
+          </div>
+          <div>
+            <label for="hero-workEmail">Work email</label>
+            <input type="email" id="hero-workEmail" name="workEmail" required placeholder="name@company.com" aria-describedby="hero-workEmail-error">
+            <div class="q-field-error" id="hero-workEmail-error" data-error-for="hero-workEmail"></div>
+          </div>
+          <div>
+            <label for="hero-companyTitle">Company &amp; job title</label>
+            <input type="text" id="hero-companyTitle" name="companyTitle" required placeholder="e.g. Ford Motor Company, Director of Commodity Purchasing" aria-describedby="hero-companyTitle-error">
+            <div class="q-field-error" id="hero-companyTitle-error" data-error-for="hero-companyTitle"></div>
+          </div>
+          <div>
+            <label for="hero-decisionRole">Your role in this decision</label>
+            <select id="hero-decisionRole" name="decisionRole" required aria-describedby="hero-decisionRole-error">
+              <option value="" disabled selected>Select one</option>
+              <option value="can_approve">I can approve external support</option>
+              <option value="can_sponsor">I can sponsor it and bring the approver</option>
+              <option value="lead_need_approval">I lead the negotiation and need approval</option>
+              <option value="gathering_options">I am gathering options for my team</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="q-field-error" id="hero-decisionRole-error" data-error-for="hero-decisionRole"></div>
+          </div>
+          <div class="qf-2col">
+            <div>
+              <label for="hero-decisionTiming">When does this need to be decided?</label>
+              <select id="hero-decisionTiming" name="decisionTiming" required aria-describedby="hero-decisionTiming-error">
+                <option value="" disabled selected>Select one</option>
+                <option value="within_30">Within 30 days</option>
+                <option value="31_60">31&ndash;60 days</option>
+                <option value="61_90">61&ndash;90 days</option>
+                <option value="more_90">More than 90 days</option>
+                <option value="not_sure">Not sure yet</option>
+              </select>
+              <div class="q-field-error" id="hero-decisionTiming-error" data-error-for="hero-decisionTiming"></div>
+            </div>
+            <div>
+              <label for="hero-valueAtRisk">Value at risk</label>
+              <select id="hero-valueAtRisk" name="valueAtRisk" required aria-describedby="hero-valueAtRisk-error">
+                <option value="" disabled selected>Select one</option>
+                <option value="under_250k">Under $250K</option>
+                <option value="250k_499k">$250K&ndash;$499K</option>
+                <option value="500k_999k">$500K&ndash;$999K</option>
+                <option value="1m_2_49m">$1M&ndash;$2.49M</option>
+                <option value="2_5m_4_99m">$2.5M&ndash;$4.99M</option>
+                <option value="5m_plus">$5M+</option>
+                <option value="not_sure">Not sure yet</option>
+              </select>
+              <div class="q-field-error" id="hero-valueAtRisk-error" data-error-for="hero-valueAtRisk"></div>
+            </div>
+          </div>
+          <button type="submit">See if you qualify</button>
+          <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUSTED BY, WITH RESULTS ============ -->
+<section class="proof-wall">
+  <div class="wrap">
+    <p class="label" style="text-align:center; max-width:none; width:100%; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--ivory-dim); opacity:0.7; margin:0">Trusted by procurement teams at</p>
+    <div class="proof-grid">
+      <div class="proof-cell reveal">
+        <img src="../assets/logos/dexko-global.png" alt="DexKo Global">
+        <p class="pq"><b>&ldquo;Secured a price increase below 50%, saving approximately $800K.&rdquo;</b><span>Bernd Holzinger, VP Procurement</span></p>
+      </div>
+      <div class="proof-cell reveal" data-delay="1">
+        <img src="../assets/logos/fca.png" alt="FCA (Fiat Chrysler Automobiles)">
+        <p class="pq"><b>&ldquo;$3.7M in piece-price value after 7 negotiation rounds.&rdquo;</b><span>Automotive Procurement Lead, Auburn Hills, MI</span></p>
+      </div>
+      <div class="proof-cell reveal" data-delay="2">
+        <img src="../assets/logos/chart-industries.png" alt="Chart Industries">
+        <p class="pq"><b>&ldquo;Critical tools: BAM, anchoring, preparation, probing, listening.&rdquo;</b><span>Paul McGoldrick, Global Category Manager Metals</span></p>
+      </div>
+      <div class="proof-cell reveal">
+        <img src="../assets/logos/nasa.png" alt="NASA">
+        <p class="pq"><b>&ldquo;Invaluable tools I will be using in every negotiation henceforth.&rdquo;</b><span>Procurement Lead, NASA</span></p>
+      </div>
+      <div class="proof-cell reveal" data-delay="1">
+        <img src="../assets/logos/speira.png" alt="Speira" style="opacity:0.8">
+        <p class="pq"><b>&ldquo;Really helped our team go out and re-negotiate with suppliers.&rdquo;</b><span>Michael Hellenkamp, Sales Director</span></p>
+      </div>
+      <div class="proof-cell reveal" data-delay="2">
+        <img src="../assets/logos/arcelormittal.png" alt="ArcelorMittal" style="opacity:0.95">
+        <p class="pq"><b>&ldquo;Valuable tools I&rsquo;ll be using in an upcoming freight negotiation.&rdquo;</b><span>Workshop Participant</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE OLD WAY ============ -->
+<section id="diagnosis">
+  <div class="wrap">
+    <figure class="problem-figure reveal">
+      <svg class="pf-contour" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+        <path class="a" d="M-20,430 C110,395 170,465 310,420 C450,375 510,450 650,415 C730,395 780,405 830,385"/>
+        <path class="b" d="M-20,55 C100,85 160,25 300,50 C440,75 500,15 640,45 C730,63 780,42 830,58"/>
+      </svg>
+      <figcaption class="pf-cap"><span>Exhibit A &middot; the default handoff</span><span>4 owners &middot; 1 vendor &middot; 1 shot</span></figcaption>
+      <div class="pf-frame">
+        <span class="pf-corner pf-corner--tl" aria-hidden="true"></span>
+        <span class="pf-corner pf-corner--br" aria-hidden="true"></span>
+        <span class="pf-knight" aria-hidden="true">&#9822;</span>
+        <img src="../assets/triage/problem-image.png" alt="Diagram: four business stakeholders each carrying budget, contract, blueprint and project-plan documents bypass procurement with a dashed gold line straight to the vendor, while a solid gold path runs from the business, through a prepared procurement team at the table, to the vendor.">
+      </div>
+      <div class="pf-legend">
+        <span><i class="dash"></i>The expected move &mdash; everyone routes around procurement</span>
+        <span><i></i>The Diplomat move &mdash; one coordinated path through</span>
+      </div>
+    </figure>
+
+    <div class="problem-head">
+      <h2 class="reveal">When your team has 4 priorities, your supplier barely has to negotiate.</h2>
+      <blockquote class="problem-quote reveal" data-delay="1">&ldquo;Make sure everyone from your side is bought in &hellip; otherwise they are likely to cut you up.&rdquo;</blockquote>
+    </div>
+
+    <div class="problem-body">
+      <p class="reveal" data-delay="1"><strong style="color:var(--ivory)">An 8% price increase lands in your inbox.</strong> Within an hour, four departments have four different answers:</p>
+
+      <ul class="pain-split reveal" data-delay="1">
+        <li><b>Legal</b><span>&ldquo;What does the contract say?&rdquo;</span></li>
+        <li><b>Finance</b><span>&ldquo;There&rsquo;s no budget.&rdquo;</span></li>
+        <li><b>Engineering</b><span>&ldquo;The part can&rsquo;t change.&rdquo;</span></li>
+        <li><b>Operations</b><span>&ldquo;Production can&rsquo;t stop.&rdquo;</span></li>
+      </ul>
+
+      <p class="reveal" data-delay="2">All of a sudden, procurement is firefighting, getting cc-ed by all sides, and has to defend four internal positions, while the supplier only needs to win one of them.</p>
+
+      <p class="reveal" data-delay="2">That&rsquo;s how a supplier&rsquo;s opening number becomes the final deal.</p>
+
+      <p class="reveal" data-delay="2">We&rsquo;re Castle Negotiations, and for over 25+ years, we&rsquo;ve worked with elite procurement teams in 25+ countries. From Beijing to New York.</p>
+      <p class="reveal" data-delay="2">We kept seeing the same problems over and over that you are likely facing.</p>
+      <p class="reveal" data-delay="2">Eventually, we learned how to take teams from knowing to doing &mdash; WITHOUT months of training or random AI tools.</p>
+      <p class="reveal" data-delay="2">It&rsquo;s called The Procurement Diplomat and it&rsquo;s helped 10,000+ professionals read the room, execute strategy with confidence, and <strong style="color:var(--ivory)"><span class="u-gold">walk out with a win-win in ANY mishmash of market conditions.</span></strong></p>
+      <p class="reveal" data-delay="2">Many of our graduates achieve ORG-DEFINING results after just ONE session.</p>
+    </div>
+
+    <div class="reveal" data-delay="2" style="overflow-x:auto; margin-top:2.5rem">
+      <table class="ledger" aria-label="The old way, compared with the Diplomat way">
+        <thead><tr><th scope="col">The old way</th><th scope="col">The Diplomat way</th></tr></thead>
+        <tbody>
+          <tr><td>&ldquo;Our costs are up&rdquo;</td><td>Ask which costs, how much, and why now</td></tr>
+          <tr><td>Rush to answer Friday</td><td>Build the position before the meeting</td></tr>
+          <tr><td>Accept or reject 1 number</td><td>Trade every move for something back</td></tr>
+          <tr><td>Bluff about switching</td><td>Build leverage without a fake fallback</td></tr>
+          <tr><td>Temporary increase</td><td>Price protection, review triggers, future terms</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reveal" data-delay="3" style="margin-top:2.75rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; text-align:center">
+      <a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a>
+      <span style="font-size:0.9rem; color:var(--ivory-dim)">Join 10,000+ Procurement Diplomats controlling the frame.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN THEIR WORDS ============ -->
+<section id="evidence" style="background:var(--navy-0)">
+  <div class="wrap">
+    <p class="eyebrow reveal">In their words</p>
+    <h2 class="reveal">The people who send their teams back a second time.</h2>
+
+    <div class="tgrid reveal" data-delay="1">
+
+      <div class="tcard photo">
+        <div class="qmark">&ldquo;</div>
+        <div class="tq">Hundreds of employees trained. Both sales and procurement functions improved outcomes by a large margin. <strong>ROI in Ruth is extremely high.</strong></div>
+        <div class="person">
+          <img src="../assets/testimonials/DAVID-PECK.png" alt="David Peck">
+          <div><div class="name">DAVID PECK</div><div class="role">Head of Supply Chain, Dunes Point Capital</div></div>
+        </div>
+      </div>
+
+      <div class="tcard stat inline t-span2">
+        <div>
+          <div class="st-tag">Annual savings, no new investment</div>
+          <div class="st-num">&euro;200K</div>
+        </div>
+        <div>
+          <div class="tq">&ldquo;Our supplier increased prices by more than 20%. By identifying the issues, finding their true interests, and creating trades, we discovered the supplier wanted more orders. <strong>We were able to go direct</strong>&mdash;and generate around &euro;200,000 in annual savings without new investment.&rdquo;</div>
+          <div class="name">CHENQUI MIAO <span>/ AL-KO VEHICLE TECHNOLOGY</span></div>
+        </div>
+      </div>
+
+      <div class="tcard stat inline t-span2">
+        <div>
+          <div class="st-tag">Piece-price value protected</div>
+          <div class="st-num">$3.7M</div>
+        </div>
+        <div>
+          <div class="tq">&ldquo;After <strong>seven rounds</strong> of negotiation, I sourced 1.5% above my BAM. Compared with the most competitive first-round quote, that was worth $3.7 million in piece-price value.&rdquo;</div>
+          <div class="name">AUTOMOTIVE PROCUREMENT LEAD <span>/ AUBURN HILLS, MICHIGAN</span></div>
+        </div>
+      </div>
+
+      <div class="tcard photo">
+        <div class="qmark">&ldquo;</div>
+        <div class="tq">Ruth is a deep expert in negotiating strategy. With difficult people and situations, across a host of geographies. <strong>Highly recommend.</strong></div>
+        <div class="person">
+          <img src="../assets/testimonials/TOM-JACOBSON.png" alt="Tom Jacobson">
+          <div><div class="name">TOM JACOBSON</div><div class="role">Founder of Mindvantage</div></div>
+        </div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Cost avoidance</div>
+        <div class="tq">&ldquo;We were facing daily overtime and expedites that could have cost <strong>$20,000&ndash;$30,000</strong>. Using these strategies, we pushed out most of the demand and kept the total impact under $10,000.&rdquo;</div>
+        <div><div class="name">CYNDI SPEIDEL</div><div class="role">Electrical Components International</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">BAM methodology</div>
+        <div class="tq">&ldquo;I used a BAM methodology rather than simply asking for the best price. We did not get all the way to our BAM, but the supplier improved its offer by <strong>$97,000</strong>.&rdquo;</div>
+        <div><div class="name">WORKSHOP PARTICIPANT</div><div class="role">Procurement Professional</div></div>
+      </div>
+
+      <div class="tcard photo">
+        <div class="qmark">&ldquo;</div>
+        <div class="tq">Ruth does an excellent job of distilling the important principles of negotiation into <strong>a package that is enjoyable to learn from.</strong></div>
+        <div class="person">
+          <img src="../assets/testimonials/BRETT-MEYER.png" alt="Brett Meyer">
+          <div><div class="name">BRETT MEYER</div><div class="role">Partner at AlixPartners</div></div>
+        </div>
+      </div>
+
+      <div class="tcard stat">
+        <div class="st-tag">Contract spend saved</div>
+        <div class="st-num">$500K</div>
+        <div class="tq">&ldquo;Being confident in my BAM made me more assertive in contract negotiations. After doing the research and showing confidence in the numbers, I have saved more than $500,000 in contract spend.&rdquo;</div>
+        <div class="name">WORKSHOP PARTICIPANT <span>/ PROCUREMENT PROFESSIONAL</span></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Testing budget</div>
+        <div class="tq">&ldquo;By identifying the issues and opening at BAM, I negotiated more testing vehicles with higher priority. That saved about <strong>$600,000</strong> in testing.&rdquo;</div>
+        <div><div class="name">WORKSHOP PARTICIPANT</div><div class="role">Procurement Professional</div></div>
+      </div>
+
+      <div class="tcard photo">
+        <div class="qmark">&ldquo;</div>
+        <div class="tq">Ruth trained a cross functional, cross generational group. Everyone, from Associate to SVP, uses her tools now. <strong>There is even a waitlist for the next round.</strong></div>
+        <div class="person">
+          <img src="../assets/testimonials/STEPHANIE-LIND.png" alt="Stephanie Lind">
+          <div><div class="name">STEPHANIE LIND</div><div class="role">Founder &amp; CEO, ESA (ex-Impossible Foods)</div></div>
+        </div>
+      </div>
+
+      <div class="tcard stat">
+        <div class="st-tag">Deadlock closed</div>
+        <div class="st-num">$38,461</div>
+        <div class="tq">&ldquo;We used the Negotiate Smart training to identify the customer&rsquo;s true interests, settle the RMI issue with Renault, and close a deadlock worth $38,461 to the company.&rdquo;</div>
+        <div class="name">KPS WORKSHOP PARTICIPANT <span>/ DELHI, INDIA</span></div>
+      </div>
+
+      <div class="tcard stat">
+        <div class="st-tag">Annual productivity gain</div>
+        <div class="st-num">$80K/YR</div>
+        <div class="tq">&ldquo;We explored a second-source scenario and additional productivity. The result was savings compared with the current supplier, plus an additional $80,000 per year.&rdquo;</div>
+        <div class="name">KPS WORKSHOP PARTICIPANT <span>/ SHANGHAI, CHINA</span></div>
+      </div>
+
+      <div class="tcard photo">
+        <div class="qmark">&ldquo;</div>
+        <div class="tq">Ruth has an <strong>uncanny grasp of the negotiating process.</strong> I am only sorry I did not turn to her earlier in the process.</div>
+        <div class="person">
+          <img src="../assets/testimonials/MICHAEL-ROSE.png" alt="Michael Rose">
+          <div><div class="name">MICHAEL ROSE</div><div class="role">Author &amp; Speaker, Bipolar Wellness Foundation</div></div>
+        </div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Supplier trust</div>
+        <div class="tq">&ldquo;I built trust with the supplier and probed the production arrangement. We reduced the sales price <em>from six times to two times</em> the serial-production price, saving <strong>$60,000</strong>.&rdquo;</div>
+        <div><div class="name">KPS WORKSHOP PARTICIPANT</div><div class="role">Shanghai, China</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Training toolkit</div>
+        <div class="tq">&ldquo;The training gave me <strong>critical tools</strong>: BAM, anchoring, preparation frameworks, probing and listening, and debriefing.&rdquo;</div>
+        <div><div class="name">PAUL MCGOLDRICK</div><div class="role">Global Category Manager, Metals, Chart Industries</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Team-wide impact</div>
+        <div class="tq">&ldquo;The workshop helped our team go out and re-negotiate with suppliers. We had seasoned negotiators and people brand new to negotiation; <strong>everyone got a lot from it.</strong>&rdquo;</div>
+        <div><div class="name">MICHAEL HELLENKAMP</div><div class="role">Sales Director, Beverage Can, Speira GmbH</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">25+ years in logistics</div>
+        <div class="tq">&ldquo;This seminar helped me in my current role negotiating with <strong>monopoly suppliers</strong>. Ruth is an impressive and highly experienced negotiator.&rdquo;</div>
+        <div><div class="name">ALISA HSU-YOUNG</div><div class="role">Logistics Professional</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Supplier relations</div>
+        <div class="tq">&ldquo;Ruth helped me find ways to <strong>take a firmer stance while preserving relationships</strong>. That matters in a development environment where flexibility and long-term supplier relationships are essential.&rdquo;</div>
+        <div><div class="name">FRANCISCO ROMERO DIAZ</div><div class="role">Logistics and Trade Compliance Manager, Lufkin</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">Structure &amp; method</div>
+        <div class="tq">&ldquo;Ruth&rsquo;s training gave us a strong structure and methodology for approaching and executing negotiations. It was <strong>interactive, practical, and directly applicable.</strong>&rdquo;</div>
+        <div><div class="name">ROSS MACPHERSON</div><div class="role">Global Category Manager, Howden Group</div></div>
+      </div>
+
+      <div class="tcard plain">
+        <div class="pl-tag">The hard no</div>
+        <div class="tq">&ldquo;I learned practical techniques for when a supplier gives you a hard no: <strong>probing questions, recognising emotional triggers</strong>, and staying in control of the situation.&rdquo;</div>
+        <div><div class="name">JOAQUIN</div><div class="role">Sales Manager, Key Accounts, Life Fitness</div></div>
+      </div>
+
+      <div class="tcard gold brk">
+        <div>
+          <div class="gl-tag">Capacity negotiation, sole vendor</div>
+          <div class="gl-num">20%</div>
+          <div class="gl-body">Buffer over bottom line, won back after the vendor said lost capacity could not be recovered. Preparation and probing did it.</div>
+        </div>
+        <div class="name">POLLY WENG / GLOBAL PURCHASING MANAGER, TAYLOR MADE</div>
+      </div>
+
+    </div>
+
+    <div class="reveal" data-delay="2" style="margin-top:2.6rem; display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap">
+      <a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a>
+      <span style="font-size:0.95rem; color:var(--ivory-dim)">Over $1 billion in value created and protected across 25 years.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFIT: SEE WHAT YOUR TEAM IS TOO CLOSE TO SEE ============ -->
+<section class="benefit">
+  <div class="wrap">
+    <span class="k reveal">30-minute negotiation triage</span>
+    <div class="benefit-grid">
+      <div class="reveal">
+        <h2>See what your team is too close to see</h2>
+        <p class="lede">When you are in the middle of a supplier escalation, it is easy to miss leverage hiding in the details. Ruth brings an expert outside view to the deal, helping you spot the trades that create the most value: price stability for volume, capacity for term, or a rate lock for a longer commitment, while <strong style="color:var(--ivory)">protecting what you should never trade away.</strong> That is how a price increase stops being a yes-or-no and becomes a deal you can shape.</p>
+        <div class="benefit-stat brk">
+          <div class="bs-tag">Sole sourced part &middot; no alternative supplier</div>
+          <div class="bs-num">&euro;800K</div>
+          <div class="bs-body">The supplier said it was closing the site and would move production if we doubled the price. We ended below a 50% increase instead, and avoided all the qualification, testing and travel cost.</div>
+          <div class="bs-src">Bernd Holzinger &middot; VP Procurement, DexKo Global</div>
+        </div>
+      </div>
+      <div class="benefit-media pie-media reveal" data-delay="1">
+        <span class="fig-tag">Fig. 01 &middot; The Bigger Pie&trade;</span>
+        <svg viewBox="0 0 400 400" id="triagePieSvg" aria-hidden="true">
+          <g id="triagePieGroup">
+            <g id="triagePieKnives" stroke="rgba(242,235,220,0.5)" stroke-width="1.5">
+              <line x1="200" y1="200" x2="200" y2="80"/>
+              <line x1="200" y1="200" x2="304" y2="260"/>
+              <line x1="200" y1="200" x2="96" y2="260"/>
+            </g>
+            <circle id="triagePieGhost" cx="200" cy="200" r="90" fill="rgba(201,169,106,0.07)" stroke="none"/>
+            <circle id="triagePieCircle" cx="200" cy="200" r="90" fill="none" stroke="#C9A96A" stroke-width="2"/>
+            <text id="triagePieLabel0" x="200" y="206" text-anchor="middle" font-family="Newsreader, serif" font-size="19" font-style="italic" fill="#F2EBDC" opacity="1">the deal as found</text>
+            <text id="triagePieLabel1" x="200" y="206" text-anchor="middle" font-family="Newsreader, serif" font-size="19" font-style="italic" fill="#F2EBDC" opacity="0">the trade nobody priced</text>
+            <text id="triagePieLabel2" x="200" y="206" text-anchor="middle" font-family="Newsreader, serif" font-size="19" font-style="italic" fill="#F2EBDC" opacity="0">the Bigger Pie&trade;</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div style="margin-top:2.6rem"><a class="btn btn--ghost" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ============ FOUR GAMES (3D sticky stage) ============ -->
+<section class="games-stage" data-stage id="four-games" style="padding:0">
+  <div class="games-sticky">
+    <div class="games-head">
+      <p class="eyebrow">The doctrine &middot; what your team was never trained to see</p>
+      <h2>Every negotiation is four games,<br>played at once.</h2>
+    </div>
+    <div class="board-scene" aria-hidden="true">
+      <div class="board-stack" id="boardStack">
+        <div class="plane" data-i="0" style="color:#C9A96A"><span class="plane-tag">01</span></div>
+        <div class="plane" data-i="1" style="color:#D8CBAE"><span class="plane-tag">02</span></div>
+        <div class="plane" data-i="2" style="color:#9FB2CE"><span class="plane-tag">03</span></div>
+        <div class="plane" data-i="3" style="color:#7E93B8"><span class="plane-tag">04</span></div>
+      </div>
+    </div>
+    <div class="games-readout" id="gamesReadout" aria-live="polite">
+      <p class="game-name" id="gameName"><span class="gn" style="color:#C9A96A">01</span> The Commercial Game</p>
+      <p class="game-q" id="gameQ">What&rsquo;s actually on the table?</p>
+      <p class="gloss" id="gamesCaption"><b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see.</p>
+      <div class="games-progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFIT: PRE-BRIEF TRIAGE ============ -->
+<section class="benefit" style="background:var(--navy-0)">
+  <div class="wrap">
+    <div class="benefit-grid">
+      <div class="benefit-media knight-media reveal" data-delay="1">
+        <span class="fig-tag">Fig. 02 &middot; The Knight&rsquo;s Move&trade;</span>
+        <svg viewBox="0 0 320 320" id="triageKnightSvg" role="img" aria-label="Diagram: a dashed line runs straight across the board, labelled the expected move. A gold path steps up and across in an L shape, labelled the Knight's Move, drawing in and retracting on a loop.">
+          <g stroke="rgba(126,147,184,0.18)" stroke-width="1">
+            <path d="M40 40 H280 M40 100 H280 M40 160 H280 M40 220 H280 M40 280 H280" fill="none"/>
+            <path d="M40 40 V280 M100 40 V280 M160 40 V280 M220 40 V280 M280 40 V280" fill="none"/>
+          </g>
+          <line x1="70" y1="250" x2="250" y2="250" stroke="rgba(242,235,220,0.25)" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <text x="150" y="272" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(242,235,220,0.4)" letter-spacing="1.5">THE EXPECTED MOVE</text>
+          <circle cx="70" cy="250" r="5" fill="none" stroke="#C9A96A" stroke-width="1.5"/>
+          <path id="triageKnightPath" d="M70 250 L70 130 L190 130" fill="none" stroke="#C9A96A" stroke-width="2.5"/>
+          <text id="triageKnightLabel" x="120" y="118" font-family="IBM Plex Mono, monospace" font-size="9" fill="#C9A96A" letter-spacing="1.5" opacity="0">THE KNIGHT&#8217;S MOVE&#8482;</text>
+        </svg>
+      </div>
+      <div class="reveal" data-delay="1">
+        <span class="k">KNIGHT&rsquo;S MOVE</span>
+        <h2>Turn your supplier&rsquo;s price increase a into win-win with a Knight&rsquo;s Move</h2>
+        <p class="lede">A price increase can send the whole business in four directions. In 30 minutes, Ruth helps you see what the supplier is protecting, where your team is split, what needs to happen next, and your Knight&rsquo;s Move to blow the negotiation wide open.</p>
+        <p style="font-size:0.9rem; color:var(--ivory-dim)">This is why teams keep sending more people, and why one client had a waitlist for the next round.</p>
+        <blockquote class="margin-note" style="max-width:48ch; font-size:1rem">&ldquo;Ruth trained a cross functional, cross generational group. Everyone, from Associate to SVP, uses her tools now. There is even a waitlist for the next round.&rdquo;</blockquote>
+        <p style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ivory-dim); margin-top:0.8rem">Stephanie Lind &middot; Founder &amp; CEO, ESA (ex-Impossible Foods)</p>
+        <div style="margin-top:1rem"><a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFIT: KEEP THE METHOD ============ -->
+<section class="benefit">
+  <div class="wrap">
+    <span class="k reveal">HIPPO DIPLOMATIC BRIEF&trade;</span>
+    <div class="benefit-grid">
+      <div class="reveal">
+        <h2>Your team keeps the method after we leave.</h2>
+        <p class="lede">Leave the triage with the HIPPO Diplomatic Brief&trade;. This 3-page prep document helps your buyers map: Objective, stakeholder map, what each side can trade, walk-away position, and written alignment of everyone involved A.K.A. They get to focus on their job without firefighting or worrying about being blamed.</p>
+        <p style="max-width:50ch">HIPPO Pre-Brief included with triage. Normally $97.</p>
+        <div class="stat-mini-grid">
+          <div class="stat-mini">
+            <div class="sm-tag">Piece price protected</div>
+            <div class="sm-num">$3.7M</div>
+            <div class="sm-body">After 7 rounds, sourced 1.5% above target. 3 months after the workshop.</div>
+          </div>
+          <div class="stat-mini">
+            <div class="sm-tag">Contract spend</div>
+            <div class="sm-num">$500K</div>
+            <div class="sm-body">&ldquo;Suppliers take you more seriously once the numbers are researched.&rdquo; &mdash; Global senior buyer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="benefit-media reveal" data-delay="1" style="max-width:20rem; aspect-ratio:9/16; margin:0 auto">
+        <video src="../assets/triage/pre-brief-animation.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+    <div style="margin-top:2.6rem"><a class="btn btn--ghost" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ============ DIFFERENTIATORS ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <p class="eyebrow reveal">why this is not a course</p>
+    <h2 class="reveal">6 outcomes your next supplier meeting needs.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:62ch">You have probably done the training and run the simulations. But neither can attend your supplier escalation meeting. This can.</p>
+
+    <div class="diff-grid">
+      <div class="diff-item reveal"><div class="mk">01</div><h3>Make them prove the increase</h3><p>Separate a real cost change from a vague claim. See what is temporary, what is pass-through, and what does not hold up.</p></div>
+      <div class="diff-item reveal" data-delay="1"><div class="mk">02</div><h3>Stop a &ldquo;one-off&rdquo; becoming the baseline</h3><p>A concession today can become the number every supplier uses tomorrow. Protect the precedent before it starts costing you.</p></div>
+      <div class="diff-item reveal" data-delay="2"><div class="mk">03</div><h3>Get something back when you move</h3><p>If you give on price, get value back. Capacity. Better terms. Cost visibility. A future reduction. Supply protection.</p></div>
+      <div class="diff-item reveal"><div class="mk">04</div><h3>Keep unpriced promises off the table</h3><p>Find out what Finance, Engineering, Operations, and Legal can really move before someone gives it away in the meeting.</p></div>
+      <div class="diff-item reveal" data-delay="1"><div class="mk">05</div><h3>Protect the programme, not just the unit price</h3><p>A price win that risks delivery, quality, or production is not a win. Make the trade-offs clear before you commit.</p></div>
+      <div class="diff-item reveal" data-delay="2"><div class="mk">06</div><h3>Walk in with an answer your leaders can defend</h3><p>Know what you can accept, what you must refuse, and why. No scrambling after the supplier asks for a decision.</p></div>
+    </div>
+
+    <div class="reveal" data-delay="3" style="margin-top:2.8rem; padding-top:2rem; border-top:1px solid rgba(242,235,220,0.14)"><a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal">3 steps. The first one takes 30 minutes.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:58ch">You do not have to commit to a programme to see whether this is worth doing. Start with the live deal. If the stakes do not justify going further, Ruth will tell you.</p>
+
+    <div class="path-steps reveal" data-delay="2">
+      <div class="path-step">
+        <span class="when">Step 1</span>
+        <h3>The 30-Min Negotiation Triage</h3>
+        <p>Bring the deal creating the most pressure. Map the 4 Games, identify your Knight&rsquo;s Move and get the HIPPO Brief&trade;. If this is not worth continuing, Ruth will say so.</p>
+      </div>
+      <div class="path-step">
+        <span class="when">Step 2</span>
+        <h3>The live-deal build workshop</h3>
+        <p>Use live deals to bake The Procurement Diplomat method into your team, map supplier motives, set targets, trades, limits, and decision rights. Rehearse before they test you. The system behind thousands of 6-figure outcomes.</p>
+      </div>
+      <div class="path-step">
+        <span class="when">Step 3</span>
+        <h3>The debrief that makes it stick</h3>
+        <p>Review what worked, what you traded, and what you got. Carry the method into the next deal. Saving more, every time.</p>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="3" style="margin-top:2.6rem"><a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ============ MEET RUTH ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <div class="ruth-grid">
+      <div class="benefit-media placeholder reveal" style="aspect-ratio:3/4">[Image placeholder]<br>Ruth Shlossman, editorial portrait,<br>working, not posed against a backdrop</div>
+      <div class="reveal" data-delay="1">
+        <span class="k" style="display:block; font-family:var(--mono); font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:1.4rem">Who you&rsquo;re actually talking to</span>
+        <h2>Ruth Shlossman maps the terrain. She does not negotiate the deal for you.</h2>
+        <p class="lede">Ruth is the founder of Castle Negotiations Consulting Group. She has spent 25 years helping people hold their position under pressure. Harvard-trained M.Ed. Over 10,000 professionals, from new buyers to senior executives. Clients have included BAE Systems, Accenture, AlixPartners, KPS Capital Partners and Chart Industries.</p>
+        <p style="max-width:54ch">Across that work she has helped organisations create and protect more than $1 billion in value. Her clients call her the Ted Lasso of negotiating &mdash; a polite way of saying she is warm and funny, and will still find the hole in your position before the supplier does.</p>
+        <div class="debrief" style="margin-top:1.6rem; max-width:54ch">
+          <blockquote>Her training is better than dozens of other courses I have attended. The ROI was rapid, my team&rsquo;s approach changed immediately, and the results followed.</blockquote>
+          <cite><strong>Tony Reynolds</strong> &middot; Procurement &amp; Transformation Consultant</cite>
+        </div>
+        <div style="margin-top:1.6rem"><a class="btn" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW WE QUALIFY ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">How we qualify</p>
+    <h2 class="reveal">We turn work down. Here&rsquo;s who this is for, and who it isn&rsquo;t.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:60ch">Not every negotiation needs outside help, and pretending otherwise wastes your time and ours. Read both columns before you fill in the form.</p>
+
+    <div class="fit-grid reveal" data-delay="2">
+      <div class="fit-card yes">
+        <span class="ft">This is for you if</span>
+        <ul>
+          <li><b>&#10003;</b>You have a supplier negotiation, escalation or renewal in the next 30&ndash;90 days.</li>
+          <li><b>&#10003;</b>Getting it wrong costs real money, real capacity, or your credibility with the executive team.</li>
+          <li><b>&#10003;</b>More than one internal function has an opinion about the outcome.</li>
+          <li><b>&#10003;</b>You can sponsor outside support, or get to the person who can.</li>
+          <li><b>&#10003;</b>You want your team to run the next one without us.</li>
+        </ul>
+      </div>
+      <div class="fit-card no">
+        <span class="ft">This is not for you if</span>
+        <ul>
+          <li><b>&#10005;</b>You want a negotiation course on the training calendar for next year.</li>
+          <li><b>&#10005;</b>You want someone to sit in your seat and negotiate for you.</li>
+          <li><b>&#10005;</b>The contract is already signed. We prevent regret &mdash; we can&rsquo;t reverse it.</li>
+          <li><b>&#10005;</b>You&rsquo;re looking for the lowest price on a training day. This is priced as a commercial intervention.</li>
+          <li><b>&#10005;</b>Nobody on your side is willing to change their position on anything.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal" data-delay="3" style="margin-top:2.4rem"><a class="btn btn--ghost" href="#qualify">See if you qualify <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section style="background:var(--navy-0)">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="reveal">
+        <p class="eyebrow">Objections</p>
+        <h2>The questions everyone asks first</h2>
+        <p class="lede">If yours isn&rsquo;t here, email it. Ruth answers these herself.</p>
+        <a href="mailto:chi@castlenegotiate.com" style="color:var(--gold); text-decoration:none; border-bottom:1px dotted var(--gold); padding-bottom:2px; font-size:0.95rem">chi@castlenegotiate.com</a>
+      </div>
+      <div class="reveal" data-delay="1">
+        <details class="obj-t">
+          <summary>We already have experienced negotiators.</summary>
+          <p class="a">Good. Experience is not the question. The question is whether finance, engineering, operations and legal are aligned around one mandate before the supplier tests it. That&rsquo;s where most experienced teams still lose value, and it&rsquo;s the first thing we look at.</p>
+        </details>
+        <details class="obj-t">
+          <summary>We do not have time for training right now.</summary>
+          <p class="a">This isn&rsquo;t on a training calendar. It starts with the negotiation already on yours. The first step is 30 minutes about your live deal. If your negotiation is in 3 weeks, that&rsquo;s exactly the right time to have this conversation, not the wrong one.</p>
+        </details>
+        <details class="obj-t">
+          <summary>We cannot share confidential supplier information.</summary>
+          <p class="a">You don&rsquo;t need to. We never ask for contracts, quotes, cost models or supplier names on the first call. You describe the shape of the situation. Everything after that happens under whatever confidentiality terms your legal team requires.</p>
+        </details>
+        <details class="obj-t">
+          <summary>How is this different from Scotwork, CIPS or our consulting partner?</summary>
+          <p class="a">Classroom providers teach a method on a fictional case. Big consulting builds a cost model over 6 months. Both are useful. Neither can attend your escalation meeting on the 14th. We work on your live deal, we align your own functions first, and we leave the method behind so you don&rsquo;t need us next quarter.</p>
+        </details>
+        <details class="obj-t">
+          <summary>You will not understand our category.</summary>
+          <p class="a">Correct, and we don&rsquo;t pretend to. You are the category expert. Our work is to pull your commercial, technical and political reality out of your team and turn it into a position. Ruth has done this across metals, packaging, castings, logistics, compressors, electronics and IT, in the US, Europe and Asia.</p>
+        </details>
+        <details class="obj-t">
+          <summary>What does it cost?</summary>
+          <p class="a">The triage call costs nothing. Anything beyond it is scoped in discovery, priced against what&rsquo;s at risk in your deal, not per seat and not per training day. You&rsquo;ll get a number before you commit to anything, and you&rsquo;ll know exactly what it&rsquo;s buying.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL RECAP + FORM ============ -->
+<section class="recap">
+  <svg class="recap-contour" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-40,340 C160,300 220,370 420,330 C620,290 680,360 880,320 C1000,296 1080,310 1240,280"/>
+    <path d="M-40,60 C160,95 230,30 420,58 C610,86 680,25 880,55 C1000,73 1080,50 1240,66"/>
+  </svg>
+  <div class="wrap">
+    <div class="recap-grid">
+      <div class="reveal">
+        <p class="eyebrow">One last thing</p>
+        <h2>The answer you give this supplier sets the price of the next 5 asks.</h2>
+        <p class="lede" style="max-width:50ch">One concession becomes the benchmark. Suppliers talk. Your own stakeholders remember what was allowed last time. The 8% is not the biggest risk in this negotiation. The precedent is.</p>
+        <p style="max-width:50ch">There is no deadline on this page and no limited number of places. There is only the date already in your calendar. Preparation is the only part of this you still control, and it gets cheaper the earlier you start.</p>
+
+        <div class="recap-nums">
+          <div><div class="rn-i">01</div><h4>One position your team can hold</h4><p>In front of the supplier, the CFO and the plant.</p></div>
+          <div><div class="rn-i">02</div><h4>Leverage that does not need a bluff</h4><p>Built from trades, sequencing and what they&rsquo;re protecting.</p></div>
+          <div><div class="rn-i">03</div><h4>A method your buyers keep</h4><p>The same brief, used on every negotiation after this one.</p></div>
+        </div>
+      </div>
+
+      <div class="qual-panel reveal" data-delay="1">
+        <div class="titlebar"><span>30-Min Negotiation Triage</span><span>By qualification</span></div>
+        <div class="body">
+          <div class="qh">Bring the negotiation. Leave with 3 moves.</div>
+          <p class="qp">Tell us the shape of the deal and when it lands. Ruth&rsquo;s team reviews every request by hand and replies within 1 business day.</p>
+
+          <div class="q-success">
+            <div class="qs-tag">Request logged</div>
+            <div class="qs-head"></div>
+            <div class="qs-body"></div>
+            <div class="qs-booking"><div class="tidycal-embed" data-path="castle-negotiations/procurement-triage"></div></div>
+            <div class="qs-resource"><a href="https://www.castlenegotiations.com/shadow-shark-80-off/" target="_blank" rel="noopener" class="q-resource-link">GET THE SHADOW SHARK FIELD KIT</a></div>
+          </div>
+
+          <form class="qf" onsubmit="return handleTriageSubmit(event)" novalidate>
+            <div>
+              <label for="recap-fullName">Full name</label>
+              <input type="text" id="recap-fullName" name="fullName" required placeholder="Jane Ellis" aria-describedby="recap-fullName-error">
+              <div class="q-field-error" id="recap-fullName-error" data-error-for="recap-fullName"></div>
+            </div>
+            <div>
+              <label for="recap-workEmail">Work email</label>
+              <input type="email" id="recap-workEmail" name="workEmail" required placeholder="name@company.com" aria-describedby="recap-workEmail-error">
+              <div class="q-field-error" id="recap-workEmail-error" data-error-for="recap-workEmail"></div>
+            </div>
+            <div>
+              <label for="recap-companyTitle">Company &amp; job title</label>
+              <input type="text" id="recap-companyTitle" name="companyTitle" required placeholder="e.g. Ford Motor Company, Director of Commodity Purchasing" aria-describedby="recap-companyTitle-error">
+              <div class="q-field-error" id="recap-companyTitle-error" data-error-for="recap-companyTitle"></div>
+            </div>
+            <div>
+              <label for="recap-decisionRole">Your role in this decision</label>
+              <select id="recap-decisionRole" name="decisionRole" required aria-describedby="recap-decisionRole-error">
+                <option value="" disabled selected>Select one</option>
+                <option value="can_approve">I can approve external support</option>
+                <option value="can_sponsor">I can sponsor it and bring the approver</option>
+                <option value="lead_need_approval">I lead the negotiation and need approval</option>
+                <option value="gathering_options">I am gathering options for my team</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="q-field-error" id="recap-decisionRole-error" data-error-for="recap-decisionRole"></div>
+            </div>
+            <div class="qf-2col">
+              <div>
+                <label for="recap-decisionTiming">When does this need to be decided?</label>
+                <select id="recap-decisionTiming" name="decisionTiming" required aria-describedby="recap-decisionTiming-error">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="within_30">Within 30 days</option>
+                  <option value="31_60">31&ndash;60 days</option>
+                  <option value="61_90">61&ndash;90 days</option>
+                  <option value="more_90">More than 90 days</option>
+                  <option value="not_sure">Not sure yet</option>
+                </select>
+                <div class="q-field-error" id="recap-decisionTiming-error" data-error-for="recap-decisionTiming"></div>
+              </div>
+              <div>
+                <label for="recap-valueAtRisk">Value at risk</label>
+                <select id="recap-valueAtRisk" name="valueAtRisk" required aria-describedby="recap-valueAtRisk-error">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="under_250k">Under $250K</option>
+                  <option value="250k_499k">$250K&ndash;$499K</option>
+                  <option value="500k_999k">$500K&ndash;$999K</option>
+                  <option value="1m_2_49m">$1M&ndash;$2.49M</option>
+                  <option value="2_5m_4_99m">$2.5M&ndash;$4.99M</option>
+                  <option value="5m_plus">$5M+</option>
+                  <option value="not_sure">Not sure yet</option>
+                </select>
+                <div class="q-field-error" id="recap-valueAtRisk-error" data-error-for="recap-valueAtRisk"></div>
+              </div>
+            </div>
+            <button type="submit">See if you qualify</button>
+            <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;Procurement exists to prevent regret.&rdquo;</p>
+      <p>&copy; Castle Negotiations Consulting Group, Inc. &middot; 5174 McGinnis Ferry Rd, Suite 202, Alpharetta, GA 30005<br>
+      <a href="https://www.castlenegotiate.com/">castlenegotiate.com</a> &middot; <a href="mailto:chi@castlenegotiate.com">chi@castlenegotiate.com</a></p>
+    </div>
+    <div style="display:none; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
+      <a href="doctrine.html">The Doctrine</a><br>
+      <a href="scopingcall.html">Book a scoping call</a><br>
+      <a href="enterprise.html">Enterprise Workshops</a><br>
+      <a href="cohort.html">The Diplomat Cohort</a><br>
+      <a href="triage.html">The Negotiation Triage</a><br>
+      <a href="lexicon.html">The Lexicon</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY CTA ============ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="inner">
+    <span class="msg"><b>Don&rsquo;t leave your most important negotiation to chance &rarr;</b></span>
+    <a href="#qualify" class="btn">See if you qualify</a>
+  </div>
+</div>
+
+<script src="../assets/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+  // ---- Lead qualification scoring ----
+  // TODO: replace with a real lead-capture integration (CRM / marketing
+  // automation webhook — e.g. HubSpot forms API, Kit, or a Zapier/Make
+  // webhook). No backend is wired up yet; see the payload built in
+  // handleTriageSubmit below.
+
+  var RESPONSE_BRIEF_URL = "https://www.castlenegotiations.com/shadow-shark-80-off/";
+
+  // Score >= 50 gets instant booking, score < 50 gets the resource route.
+  var BOOKING_SCORE_THRESHOLD = 50;
+
+  var VALUE_AT_RISK_POINTS = {
+    under_250k: 0, "250k_499k": 10, "500k_999k": 25,
+    "1m_2_49m": 35, "2_5m_4_99m": 45, "5m_plus": 55, not_sure: 5
+  };
+  var TIMING_POINTS = { within_30: 25, "31_60": 20, "61_90": 10, more_90: 0, not_sure: 0 };
+  var ROLE_POINTS = { can_approve: 25, can_sponsor: 25, lead_need_approval: 10, gathering_options: 0, other: 0 };
+  var TITLE_KEYWORDS = ["CPO", "Chief Procurement Officer", "VP", "Vice President", "Director", "Head of", "COO", "CFO", "GM", "General Manager", "Owner", "Strategic Sourcing", "Supply Chain Director", "Purchasing Director", "Commodity Director"];
+  var INDUSTRY_KEYWORDS = ["automotive", "aerospace", "OEM", "manufacturing", "industrial", "Tier 1", "Tier 2", "supplier", "procurement", "purchasing", "sourcing", "supply chain", "engineering"];
+
+  // Common free-mail domains treated as "not a business email" — a judgment
+  // call, easy to trim if it proves too strict for real submissions.
+  var FREE_EMAIL_DOMAINS = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "live.com", "aol.com", "icloud.com", "msn.com", "protonmail.com"];
+
+  function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function matchesKeyword(text, keyword) {
+    if (!text) return false;
+    return new RegExp("\\b" + escapeRe(keyword) + "\\b", "i").test(text);
+  }
+  function containsAny(text, keywords) { return keywords.some(function (k) { return matchesKeyword(text, k); }); }
+  function isBusinessEmail(email) {
+    var at = email.lastIndexOf("@");
+    if (at === -1) return false;
+    return FREE_EMAIL_DOMAINS.indexOf(email.slice(at + 1).toLowerCase()) === -1;
+  }
+
+  function computeScore(data) {
+    var score = 0;
+    score += VALUE_AT_RISK_POINTS[data.valueAtRisk] || 0;
+    score += TIMING_POINTS[data.decisionTiming] || 0;
+    score += ROLE_POINTS[data.decisionRole] || 0;
+    if (containsAny(data.companyTitle, TITLE_KEYWORDS)) score += 15;
+    if (containsAny(data.companyTitle, INDUSTRY_KEYWORDS)) score += 15;
+    return score;
+  }
+
+  // ---- Inline validation ----
+  var FIELD_ERROR_LABELS = {
+    fullName: "Full name", workEmail: "Work email", companyTitle: "Company & job title",
+    decisionRole: "Your role in this decision",
+    decisionTiming: "Decision timing", valueAtRisk: "Value at risk"
+  };
+  function showError(el, message) {
+    var err = el.form.querySelector('.q-field-error[data-error-for="' + el.id + '"]');
+    if (err) { err.textContent = message; err.style.display = "block"; }
+    el.classList.add("q-error");
+    el.setAttribute("aria-invalid", "true");
+  }
+  function clearError(el) {
+    var err = el.form.querySelector('.q-field-error[data-error-for="' + el.id + '"]');
+    if (err) { err.style.display = "none"; }
+    el.classList.remove("q-error");
+    el.removeAttribute("aria-invalid");
+  }
+  function validateField(el) {
+    var label = FIELD_ERROR_LABELS[el.name] || "This field";
+    if (el.validity.valueMissing) { showError(el, label + " is required."); return false; }
+    if (el.type === "email" && el.validity.typeMismatch) { showError(el, "Enter a valid email address."); return false; }
+    if (el.name === "workEmail" && el.value && !isBusinessEmail(el.value)) { showError(el, "Please use your work email address, not a personal inbox."); return false; }
+    clearError(el);
+    return true;
+  }
+  function validateForm(form) {
+    var fields = form.querySelectorAll("input[required], select[required]");
+    var valid = true, firstInvalid = null;
+    fields.forEach(function (el) {
+      if (!validateField(el)) { valid = false; if (!firstInvalid) firstInvalid = el; }
+    });
+    return { valid: valid, firstInvalid: firstInvalid };
+  }
+  document.querySelectorAll(".qf input, .qf select").forEach(function (el) {
+    ["input", "change"].forEach(function (evtName) {
+      el.addEventListener(evtName, function () { if (el.classList.contains("q-error")) validateField(el); });
+    });
+  });
+
+  // ---- Success state copy + routing ----
+  function renderSuccess(route) {
+    var tag, headline, body;
+    if (route === "booking") {
+      tag = "Request logged";
+      headline = "Your Negotiation May Qualify";
+      body = "Your situation looks like a potential fit for a 30-minute Unfair Advantage Triage. Choose a time below. Please do not send supplier documents. We will work from the situation, the pressure, and the decision in front of you.";
+    } else {
+      tag = "Criteria unmet";
+      headline = "If you're dealing with bullying and pressure tactics...";
+      body = "You may not need a live negotiation triage. But if you filled this form, someone may be putting pressure on you. This resource helps you neutralize that.";
+    }
+    document.querySelectorAll(".q-success").forEach(function (block) {
+      var t = block.querySelector(".qs-tag");
+      var h = block.querySelector(".qs-head");
+      var b = block.querySelector(".qs-body");
+      var booking = block.querySelector(".qs-booking");
+      var resource = block.querySelector(".qs-resource");
+      if (t) t.textContent = tag;
+      if (h) h.textContent = headline;
+      if (b) b.textContent = body;
+      if (route === "booking") {
+        if (booking) booking.style.display = "block";
+        if (resource) resource.style.display = "none";
+      } else {
+        if (booking) booking.style.display = "none";
+        if (resource) {
+          resource.style.display = "block";
+          var link = resource.querySelector(".q-resource-link");
+          if (link) {
+            link.href = RESPONSE_BRIEF_URL || "#";
+            link.textContent = "GET THE SHADOW SHARK FIELD KIT";
+          }
+        }
+      }
+    });
+  }
+
+  function getUtms() {
+    var params = new URLSearchParams(window.location.search);
+    var utm = {};
+    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) {
+      if (params.get(k)) utm[k] = params.get(k);
+    });
+    return utm;
+  }
+
+  var hasSubmitted = false;
+
+  window.handleTriageSubmit = function (evt) {
+    evt.preventDefault();
+    var form = evt.target;
+    var result = validateForm(form);
+    if (!result.valid) {
+      if (result.firstInvalid) result.firstInvalid.focus();
+      return false;
+    }
+
+    var fd = new FormData(form);
+    var data = {
+      fullName: (fd.get("fullName") || "").trim(),
+      workEmail: (fd.get("workEmail") || "").trim(),
+      companyTitle: (fd.get("companyTitle") || "").trim(),
+      decisionRole: fd.get("decisionRole") || "",
+      decisionTiming: fd.get("decisionTiming") || "",
+      valueAtRisk: fd.get("valueAtRisk") || ""
+    };
+
+    var score = computeScore(data);
+    var route = score >= BOOKING_SCORE_THRESHOLD ? "booking" : "resource";
+
+    var payload = Object.assign({}, data, {
+      score: score,
+      routingTag: route === "booking" ? "INSTANT_BOOKING" : "RESOURCE_NURTURE",
+      utm: getUtms(),
+      referrer: document.referrer || "",
+      submittedAt: new Date().toISOString(),
+      pageUrl: window.location.href
+    });
+
+    // TODO: POST `payload` to the lead-capture endpoint once it exists.
+    // fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    void payload; // avoid "unused var" until the integration above is wired up
+
+    hasSubmitted = true;
+    renderSuccess(route);
+    document.querySelectorAll(".qf").forEach(function (f) { f.style.display = "none"; });
+    document.querySelectorAll(".q-success").forEach(function (s) { s.style.display = "block"; });
+    updateSticky();
+    return false;
+  };
+
+  // ---- Sticky CTA: appears after scrolling past the hero, hides once submitted ----
+  var sticky = document.getElementById("stickyCta");
+  function updateSticky() {
+    var past = window.scrollY > 900;
+    sticky.style.display = (past && !hasSubmitted) ? "block" : "none";
+  }
+  window.addEventListener("scroll", updateSticky, { passive: true });
+  updateSticky();
+})();
+</script>
+
+<!-- Bigger Pie visual, looping (no scroll dependency): same growing-circle/fading-knives
+     idea as the pie-stage scroll-scrub on cohort.html, but driven by elapsed time so it
+     plays on its own inside the benefit-media box. -->
+<script>
+(function () {
+  "use strict";
+  var group = document.getElementById("triagePieGroup");
+  if (!group) return;
+  var circle = document.getElementById("triagePieCircle");
+  var ghost = document.getElementById("triagePieGhost");
+  var knives = document.getElementById("triagePieKnives");
+  var labels = [
+    document.getElementById("triagePieLabel0"),
+    document.getElementById("triagePieLabel1"),
+    document.getElementById("triagePieLabel2")
+  ];
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var R0 = 90, R2 = 150;
+  var PERIOD = 11000; // ms for one full grow-and-return cycle
+
+  if (reduced) {
+    circle.setAttribute("r", R2);
+    ghost.setAttribute("r", R2);
+    circle.setAttribute("stroke-width", 3.5);
+    knives.style.opacity = 0;
+    labels[0].style.opacity = 0; labels[1].style.opacity = 0; labels[2].style.opacity = 1;
+    return;
+  }
+
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  // Single continuous driver: a smooth 0→1→0 wave with zero velocity only
+  // at the two turning points, so the whole scene (radius, knife fade, label
+  // crossfade) is one unbroken motion — no stages, no holds, no jump cuts.
+  function frame(now) {
+    var phase = (now % PERIOD) / PERIOD;
+    var growth = 0.5 - 0.5 * Math.cos(phase * Math.PI * 2);
+
+    var r = R0 + (R2 - R0) * growth;
+    var knifeOp = 1 - growth;
+
+    circle.setAttribute("r", r);
+    ghost.setAttribute("r", r);
+    circle.setAttribute("stroke-width", 2 + growth * 1.5);
+    knives.style.opacity = knifeOp;
+    labels[0].style.opacity = clamp01(1 - growth * 2);
+    labels[1].style.opacity = 1 - Math.abs(growth - 0.5) * 2;
+    labels[2].style.opacity = clamp01((growth - 0.5) * 2);
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<!-- Knight's Move diagram, looping: the gold L-path (same shape as the
+     cohort.html exhibit) continuously draws in and retracts, instead of the
+     one-shot scroll-triggered draw motion.js uses elsewhere on the site. -->
+<script>
+(function () {
+  "use strict";
+  var path = document.getElementById("triageKnightPath");
+  if (!path) return;
+  var label = document.getElementById("triageKnightLabel");
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+
+  if (reduced) {
+    path.style.strokeDashoffset = 0;
+    label.style.opacity = 1;
+    return;
+  }
+
+  var PERIOD = 5200; // ms for one full draw-and-retract cycle
+
+  function frame(now) {
+    var phase = (now % PERIOD) / PERIOD;
+    var progress = 0.5 - 0.5 * Math.cos(phase * Math.PI * 2); // 0 -> 1 -> 0, no holds
+
+    path.style.strokeDashoffset = len * (1 - progress);
+    label.style.opacity = progress;
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+  /* Four Games stage: fan the planes as --sp goes 0→1 */
+  const stage = document.querySelector(".games-stage");
+  if (!stage) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const planes = Array.from(document.querySelectorAll(".plane"));
+  const readout = document.getElementById("gamesReadout");
+  const gameName = document.getElementById("gameName");
+  const gameQ = document.getElementById("gameQ");
+  const caption = document.getElementById("gamesCaption");
+  const progress = Array.from(document.querySelectorAll(".games-progress i"));
+  const games = [
+    { n: "01", name: "The Commercial Game", c: "#C9A96A", q: "What&rsquo;s actually on the table?", gloss: "<b>Price, terms, risk.</b> The game your team&rsquo;s training covered, and the only one most negotiators ever see." },
+    { n: "02", name: "The Human Game", c: "#D8CBAE", q: "Whose identity, fear, or ego is in play?", gloss: "<b>Identity, fear, ego, recognition.</b> The counterpart who goes quiet isn&rsquo;t agreeing. They&rsquo;re protecting something." },
+    { n: "03", name: "The Political Game", c: "#9FB2CE", q: "Whose career is riding on this outcome?", gloss: "<b>Status, power, career incentive.</b> Half of every stuck negotiation is an unmapped politics problem, often on your own side of the table." },
+    { n: "04", name: "The Systems Game", c: "#7E93B8", q: "What does this precedent make normal tomorrow?", gloss: "<b>Precedent.</b> Whatever your function makes normal today, it will negotiate against tomorrow. The systems game is the longest one." }
+  ];
+  let lastIdx = -1, swapTimer = null;
+
+  function paintReadout(g) {
+    gameName.innerHTML = '<span class="gn" style="color:' + g.c + '">' + g.n + "</span> " + g.name;
+    gameQ.innerHTML = g.q;
+    caption.innerHTML = g.gloss;
+  }
+  function showGame(idx) {
+    const g = games[idx];
+    progress.forEach((bar, i) => {
+      bar.style.background = i <= idx ? "rgba(201,169,106,0.8)" : "rgba(242,235,220,0.15)";
+    });
+    if (reduced) { paintReadout(g); return; }
+    clearTimeout(swapTimer);
+    readout.classList.add("fading");
+    swapTimer = setTimeout(function () {
+      paintReadout(g);
+      readout.classList.remove("fading");
+    }, 200);
+  }
+
+  function gamesFrame() {
+    const sp = parseFloat(getComputedStyle(stage).getPropertyValue("--sp")) || 0;
+    const settle = Math.min(sp / 0.18, 1);
+    const focusIdx = Math.min(Math.floor(sp / 0.25), 3);
+    const rotX = 60 - 8 * settle;
+    const tagX = window.innerWidth <= 760 ? "6%" : "-135%";
+    planes.forEach((pl, i) => {
+      const isFocus = i === focusIdx;
+      // neighbours retreat from the focused board rather than the board lunging
+      // forward, which would collide with the plane beneath it
+      const spread = i > focusIdx ? 24 : i < focusIdx ? -24 : 0;
+      const depth = ((i - 1.5) * 48 + spread) * settle;
+      pl.style.transform = "rotateX(" + rotX + "deg) translateZ(" + depth + "px)";
+      pl.style.opacity = isFocus ? 1 : 0.22 + 0.1 * settle;
+      pl.style.background = isFocus ? "rgba(242,235,220,0.03)" : "transparent";
+      pl.style.borderWidth = isFocus ? "1.5px" : "1px";
+      pl.style.boxShadow = isFocus
+        ? "0 40px 80px -40px rgba(0,0,0,0.9), inset 0 0 60px -22px currentColor"
+        : "none";
+      // keep the number tag square to the reader, whatever the board is doing
+      pl.querySelector(".plane-tag").style.transform =
+        "translate(" + tagX + ", -50%) rotateX(" + -rotX + "deg)";
+    });
+    if (focusIdx !== lastIdx) { lastIdx = focusIdx; showGame(focusIdx); }
+    requestAnimationFrame(gamesFrame);
+  }
+  requestAnimationFrame(gamesFrame);
+})();
+</script>
+
+<!-- Booking calendar: TidyCal embed script, shared by both success-state booking widgets above -->
+<script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
+
+</body>
+</html>

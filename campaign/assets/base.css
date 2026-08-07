@@ -122,6 +122,22 @@ em { font-family: var(--serif); font-style: italic; }
 }
 .is-visible .u-gold::after, .u-gold.is-visible::after { transform: scaleX(1); }
 
+/* below 640px the phrase is allowed to wrap (see above), and the absolutely-
+   positioned ::after bar only spans the first line's box in that case — swap
+   to a per-line background stroke so every wrapped line gets its underline */
+@media (max-width: 639px) {
+  .u-gold::after { content: none; }
+  .u-gold {
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    background-image: linear-gradient(90deg, var(--gold-deep), var(--gold) 55%, var(--gold-deep));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0.14em;
+    padding-bottom: 0.06em;
+  }
+}
+
 /* italic cartographer margin note */
 .margin-note {
   font-family: var(--serif);
