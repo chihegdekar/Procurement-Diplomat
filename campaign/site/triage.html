@@ -49,7 +49,7 @@
     max-width: none;
   }
   .hero-t .proof-line .stars { color: var(--gold); letter-spacing: 0.1em; flex: none; }
-  @media (max-width: 420px) { .hero-t .proof-line { font-size: 0.82rem; gap: 0.5rem; } }
+  @media (max-width: 420px) { .hero-t .proof-line { font-size: 0.82rem; gap: 0.5rem; flex-wrap: wrap; white-space: normal; row-gap: 0.3rem; } }
   .hero-t .figs {
     font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
     color: var(--gold); border: 1px solid rgba(201,169,106,0.45);
@@ -84,7 +84,8 @@
   .qual-panel .qp { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
 
   .qf { display: flex; flex-direction: column; gap: 1rem; }
-  .qf-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  /* align-items:end keeps the two selects on one line when one label wraps to two */
+  .qf-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: end; }
   .qf label {
     display: block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.45rem;
@@ -107,17 +108,153 @@
   .qf button:hover { background: var(--navy-2); }
   .qf .q-limit { font-family: var(--sans); font-size: 0.74rem; color: var(--ink-soft); text-align: center; }
 
+  /* ---- two-step form ---- */
+  /* .qf is display:flex, so the plain [hidden] UA rule loses; restate it */
+  .qf[hidden] { display: none; }
+  .q-steps { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
+  .q-steps .qs-bars { display: flex; gap: 0.35rem; flex: 1 1 auto; min-width: 2.5rem; }
+  .q-steps .qs-bars i { height: 2px; flex: 1; background: rgba(28,34,44,0.16); border-radius: 2px; transition: background 0.35s; }
+  .q-steps .qs-bars i.on { background: var(--gold-deep); }
+  .q-steps .qs-count {
+    flex: none; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .qf button.q-back {
+    flex: none; width: auto; margin: 0; padding: 0; background: none; border: none;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); cursor: pointer; transition: color 0.25s;
+  }
+  .qf button.q-back:hover { background: none; color: var(--gold-deep); }
+
+  /* submit button: label swaps for a Kit-style three-dot spinner while the
+     email is being handed to Kit */
+  .qf button { position: relative; overflow: hidden; }
+  .qf button .q-btn-label { display: block; transition: opacity 0.2s; }
+  .qf button .arrow { display: inline-block; transition: transform 0.3s var(--ease-out); }
+  .qf button:hover .arrow { transform: translateX(4px); }
+  .qf button .q-spin { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: 5px; }
+  .qf button.is-loading { cursor: default; }
+  .qf button.is-loading .q-btn-label { opacity: 0; }
+  .qf button.is-loading .q-spin { display: flex; }
+  .qf button .q-spin i {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--ivory); opacity: 0.35;
+    animation: q-bounce 1.4s infinite ease-in-out both;
+  }
+  .qf button .q-spin i:nth-child(1) { animation-delay: -0.32s; }
+  .qf button .q-spin i:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes q-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .qf button .q-spin i { animation: none; opacity: 0.6; }
+    .qf button .arrow { transition: none; }
+  }
+
   .q-success { display: none; background: #FBF9F4; border: 1px solid rgba(28,34,44,0.14); padding: 1.2rem; border-radius: 2px; }
   .q-success .qs-tag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.55rem; }
   .q-success .qs-head { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: var(--navy-0); margin-bottom: 0.5rem; }
   .q-success .qs-body { font-family: var(--sans); font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
   .q-success .qs-booking { display: none; margin-top: 1.1rem; }
   .q-success .qs-resource { display: none; margin-top: 1.1rem; }
-  .q-success .qs-resource a {
+  .q-success .qs-resource a,
+  .q-success .qs-booking button {
     display: block; width: 100%; box-sizing: border-box; text-align: center;
     background: var(--navy-0); color: var(--ivory); padding: 0.95rem 1.2rem; border-radius: var(--radius);
     font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-decoration: none;
+    border: none; cursor: pointer; transition: background 0.3s;
   }
+  .q-success .qs-booking button:hover { background: var(--navy-2); }
+  .q-success .qs-booking button .arrow { display: inline-block; transition: transform 0.3s var(--ease-out); }
+  .q-success .qs-booking button:hover .arrow { transform: translateX(4px); }
+  .q-success .qs-note {
+    font-family: var(--sans); font-size: 0.76rem; line-height: 1.5; color: var(--ink-soft);
+    text-align: center; margin-top: 0.65rem;
+  }
+  /* booked state: the two facts that matter, set apart from the body copy */
+  .q-success .qs-when {
+    display: none; margin-top: 1.1rem; padding: 0.95rem 1.1rem;
+    background: var(--gold-faint); border-left: 2px solid var(--gold-deep);
+  }
+  .q-success .qs-when .w-date { font-family: var(--serif); font-size: 1.05rem; color: var(--navy-0); }
+  .q-success .qs-when .w-meta { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0.4rem; }
+
+  /* ---- booking modal ----
+     TidyCal's own UI wants ~700px of width before it puts the calendar and the
+     time list side by side. The qualification panel is a 330px sidebar, so the
+     embed lives in an overlay instead of being squeezed into the column. */
+  .tc-modal { position: fixed; inset: 0; z-index: 200; }
+  .tc-modal[hidden] { display: none; }
+  .tc-modal .tc-backdrop {
+    position: absolute; inset: 0; background: rgba(8,14,24,0.82);
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    opacity: 0; transition: opacity 0.35s var(--ease-out);
+  }
+  .tc-modal.is-open .tc-backdrop { opacity: 1; }
+  /* the dialog is capped to the window and the iframe takes what's left, so the
+     embed never grows past the viewport. TidyCal pins its confirm step to the
+     top of its own frame — if the frame overflowed the window, that step would
+     open above the fold for anyone who had scrolled down to reach a later slot. */
+  .tc-modal .tc-scroll {
+    position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(0.75rem, 4vh, 2.75rem) clamp(0.75rem, 4vw, 2rem);
+  }
+  .tc-modal .tc-dialog {
+    position: relative; width: min(900px, 100%); margin: 0 auto;
+    /* a definite height, not just a cap — the frame below sizes off it, and a
+       percentage height resolves against nothing if the parent is content-sized */
+    height: min(880px, 100%); display: flex; flex-direction: column;
+    background: linear-gradient(178deg, var(--ivory) 0%, var(--ivory-2) 100%);
+    border: 1px solid rgba(201,169,106,0.45); border-radius: 2px;
+    box-shadow: 0 40px 90px -20px rgba(0,0,0,0.7), 0 10px 24px -10px rgba(0,0,0,0.5);
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+  .tc-modal .tc-bar, .tc-modal .tc-who { flex: none; }
+  .tc-modal.is-open .tc-dialog { opacity: 1; transform: none; }
+  .tc-modal .tc-bar {
+    background: var(--navy-0); padding: 0.85rem 1.1rem 0.85rem 1.4rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    border-bottom: 1px solid rgba(201,169,106,0.3);
+  }
+  .tc-modal .tc-bar .tc-title {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .tc-modal .tc-close {
+    flex: none; background: none; border: 1px solid rgba(242,235,220,0.25); color: var(--ivory-dim);
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.45rem 0.7rem; border-radius: var(--radius); cursor: pointer;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .tc-modal .tc-close:hover { color: var(--ivory); border-color: var(--gold); }
+  .tc-modal .tc-who {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.06em;
+    color: var(--ink-soft); padding: 0.7rem 1.4rem; border-bottom: 1px solid rgba(28,34,44,0.1);
+  }
+  .tc-modal .tc-who b { color: var(--ink); font-weight: 500; }
+  .tc-modal .tc-frame {
+    position: relative; padding: 0.6rem;
+    flex: 1 1 auto; min-height: 0;
+  }
+  .tc-modal .tc-mount { height: 100%; }
+  .tc-modal .tc-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .tc-modal .tc-loading {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); pointer-events: none; transition: opacity 0.3s;
+  }
+  .tc-modal .tc-frame.is-ready .tc-loading { opacity: 0; }
+  /* phones get the full viewport — a centred card would leave the calendar
+     narrower here than it was in the panel we just took it out of */
+  @media (max-width: 700px) {
+    .tc-modal .tc-scroll { padding: 0; }
+    .tc-modal .tc-dialog { width: 100%; height: 100%; max-height: 100%; border: none; border-radius: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tc-modal .tc-backdrop, .tc-modal .tc-dialog { transition: none; }
+    .tc-modal .tc-dialog { transform: none; }
+    .q-success .qs-booking button .arrow { transition: none; }
+  }
+  html.tc-locked, html.tc-locked body { overflow: hidden; }
 
   /* reusable top-right corner bracket accent, ties evidence callouts to the exhibit motif */
   .brk { position: relative; }
@@ -414,6 +551,17 @@
     .tcard.stat.inline .st-tag { max-width: none; }
   }
 
+  /* grid tracks don't shrink below their content's natural min-width by
+     default, so a non-wrapping child (e.g. the titlebar below) can force
+     the whole track wider than the viewport and bleed past the page
+     padding; give every hero/recap grid child an explicit min-width */
+  .hero-t .wrap > *, .recap-grid > * { min-width: 0; }
+
+  @media (max-width: 480px) {
+    .qual-panel .titlebar { flex-wrap: wrap; row-gap: 0.3rem; }
+    .qual-panel .titlebar span { white-space: normal; }
+  }
+
   /* ================= FOUR GAMES (3D sticky stage) ================= */
   .games-stage { height: 460vh; position: relative; }
   .games-sticky {
@@ -519,27 +667,56 @@
       <div class="titlebar"><span>30-Min Negotiation Triage</span><span>No cost</span></div>
       <div class="body">
         <div class="qh">See if your negotiation qualifies</div>
-        <p class="qp">Fill the form below. If you qualify, you&rsquo;ll get instant access to Ruth&rsquo;s personal calendar.</p>
+        <p class="qp" data-step2="Four questions about the deal itself. Answer them and you&rsquo;ll know straight away if you qualify.">Fill the form below. If you qualify, you&rsquo;ll get instant access to Ruth&rsquo;s personal calendar.</p>
 
         <div class="q-success">
           <div class="qs-tag">Request logged</div>
           <div class="qs-head"></div>
           <div class="qs-body"></div>
-          <div class="qs-booking"><div class="tidycal-embed" data-path="castle-negotiations/procurement-triage"></div></div>
+          <div class="qs-when"><div class="w-date"></div><div class="w-meta"></div></div>
+          <div class="qs-booking">
+            <button type="button" class="q-open-cal">Pick your time <span class="arrow">&rarr;</span></button>
+            <p class="qs-note">Ruth&rsquo;s calendar opens over this page. Your name and email are already filled in.</p>
+          </div>
           <div class="qs-resource"><a href="https://www.castlenegotiations.com/shadow-shark-80-off/" target="_blank" rel="noopener" class="q-resource-link">GET THE SHADOW SHARK FIELD KIT</a></div>
         </div>
 
-        <form class="qf" onsubmit="return handleTriageSubmit(event)" novalidate>
+        <!-- Step 1 goes to Kit (form 9781570 / uid c6538c4221). Kit's own markup and
+             field names are preserved on the form element; the styling is ours so the
+             step reads as one continuous panel. -->
+        <form class="qf qf-step1 formkit-form"
+              action="https://app.kit.com/forms/9781570/subscriptions" method="post"
+              data-sv-form="9781570" data-uid="c6538c4221" data-format="inline" data-version="5"
+              onsubmit="return handleTriageStep1(event)" novalidate>
+          <div class="q-steps">
+            <div class="qs-bars"><i class="on"></i><i></i></div>
+            <span class="qs-count">Step 1 of 2</span>
+          </div>
           <div>
             <label for="hero-fullName">Full name</label>
-            <input type="text" id="hero-fullName" name="fullName" required placeholder="Jane Ellis" aria-describedby="hero-fullName-error">
+            <input type="text" id="hero-fullName" name="fullName" required placeholder="Jane Ellis" autocomplete="name" aria-describedby="hero-fullName-error">
             <div class="q-field-error" id="hero-fullName-error" data-error-for="hero-fullName"></div>
           </div>
           <div>
-            <label for="hero-workEmail">Work email</label>
-            <input type="email" id="hero-workEmail" name="workEmail" required placeholder="name@company.com" aria-describedby="hero-workEmail-error">
+            <label for="hero-workEmail">Email</label>
+            <input type="email" id="hero-workEmail" name="workEmail" required placeholder="name@company.com" autocomplete="email" aria-describedby="hero-workEmail-error">
             <div class="q-field-error" id="hero-workEmail-error" data-error-for="hero-workEmail"></div>
           </div>
+          <button type="submit" class="formkit-submit" data-element="submit">
+            <span class="q-spin" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="q-btn-label">Next <span class="arrow">&rarr;</span></span>
+          </button>
+          <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+        </form>
+
+        <form class="qf qf-step2" onsubmit="return handleTriageSubmit(event)" novalidate hidden>
+          <div class="q-steps">
+            <button type="button" class="q-back">&larr; Back</button>
+            <div class="qs-bars"><i class="on"></i><i class="on"></i></div>
+            <span class="qs-count">Step 2 of 2</span>
+          </div>
+          <input type="hidden" name="fullName">
+          <input type="hidden" name="workEmail">
           <div>
             <label for="hero-companyTitle">Company &amp; job title</label>
             <input type="text" id="hero-companyTitle" name="companyTitle" required placeholder="e.g. Ford Motor Company, Director of Commodity Purchasing" aria-describedby="hero-companyTitle-error">
@@ -585,7 +762,7 @@
               <div class="q-field-error" id="hero-valueAtRisk-error" data-error-for="hero-valueAtRisk"></div>
             </div>
           </div>
-          <button type="submit">See if you qualify</button>
+          <button type="submit"><span class="q-btn-label">See if you qualify</span></button>
           <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
         </form>
       </div>
@@ -699,9 +876,9 @@
     <p class="eyebrow reveal">In their words</p>
     <h2 class="reveal">The people who send their teams back a second time.</h2>
 
-    <div class="tgrid reveal" data-delay="1">
+    <div class="tgrid">
 
-      <div class="tcard photo">
+      <div class="tcard photo reveal">
         <div class="qmark">&ldquo;</div>
         <div class="tq">Hundreds of employees trained. Both sales and procurement functions improved outcomes by a large margin. <strong>ROI in Ruth is extremely high.</strong></div>
         <div class="person">
@@ -710,7 +887,7 @@
         </div>
       </div>
 
-      <div class="tcard stat inline t-span2">
+      <div class="tcard stat inline t-span2 reveal">
         <div>
           <div class="st-tag">Annual savings, no new investment</div>
           <div class="st-num">&euro;200K</div>
@@ -721,7 +898,7 @@
         </div>
       </div>
 
-      <div class="tcard stat inline t-span2">
+      <div class="tcard stat inline t-span2 reveal">
         <div>
           <div class="st-tag">Piece-price value protected</div>
           <div class="st-num">$3.7M</div>
@@ -732,7 +909,7 @@
         </div>
       </div>
 
-      <div class="tcard photo">
+      <div class="tcard photo reveal">
         <div class="qmark">&ldquo;</div>
         <div class="tq">Ruth is a deep expert in negotiating strategy. With difficult people and situations, across a host of geographies. <strong>Highly recommend.</strong></div>
         <div class="person">
@@ -741,19 +918,19 @@
         </div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Cost avoidance</div>
         <div class="tq">&ldquo;We were facing daily overtime and expedites that could have cost <strong>$20,000&ndash;$30,000</strong>. Using these strategies, we pushed out most of the demand and kept the total impact under $10,000.&rdquo;</div>
         <div><div class="name">CYNDI SPEIDEL</div><div class="role">Electrical Components International</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">BAM methodology</div>
         <div class="tq">&ldquo;I used a BAM methodology rather than simply asking for the best price. We did not get all the way to our BAM, but the supplier improved its offer by <strong>$97,000</strong>.&rdquo;</div>
         <div><div class="name">WORKSHOP PARTICIPANT</div><div class="role">Procurement Professional</div></div>
       </div>
 
-      <div class="tcard photo">
+      <div class="tcard photo reveal">
         <div class="qmark">&ldquo;</div>
         <div class="tq">Ruth does an excellent job of distilling the important principles of negotiation into <strong>a package that is enjoyable to learn from.</strong></div>
         <div class="person">
@@ -762,20 +939,20 @@
         </div>
       </div>
 
-      <div class="tcard stat">
+      <div class="tcard stat reveal">
         <div class="st-tag">Contract spend saved</div>
         <div class="st-num">$500K</div>
         <div class="tq">&ldquo;Being confident in my BAM made me more assertive in contract negotiations. After doing the research and showing confidence in the numbers, I have saved more than $500,000 in contract spend.&rdquo;</div>
         <div class="name">WORKSHOP PARTICIPANT <span>/ PROCUREMENT PROFESSIONAL</span></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Testing budget</div>
         <div class="tq">&ldquo;By identifying the issues and opening at BAM, I negotiated more testing vehicles with higher priority. That saved about <strong>$600,000</strong> in testing.&rdquo;</div>
         <div><div class="name">WORKSHOP PARTICIPANT</div><div class="role">Procurement Professional</div></div>
       </div>
 
-      <div class="tcard photo">
+      <div class="tcard photo reveal">
         <div class="qmark">&ldquo;</div>
         <div class="tq">Ruth trained a cross functional, cross generational group. Everyone, from Associate to SVP, uses her tools now. <strong>There is even a waitlist for the next round.</strong></div>
         <div class="person">
@@ -784,21 +961,21 @@
         </div>
       </div>
 
-      <div class="tcard stat">
+      <div class="tcard stat reveal">
         <div class="st-tag">Deadlock closed</div>
         <div class="st-num">$38,461</div>
         <div class="tq">&ldquo;We used the Negotiate Smart training to identify the customer&rsquo;s true interests, settle the RMI issue with Renault, and close a deadlock worth $38,461 to the company.&rdquo;</div>
         <div class="name">KPS WORKSHOP PARTICIPANT <span>/ DELHI, INDIA</span></div>
       </div>
 
-      <div class="tcard stat">
+      <div class="tcard stat reveal">
         <div class="st-tag">Annual productivity gain</div>
         <div class="st-num">$80K/YR</div>
         <div class="tq">&ldquo;We explored a second-source scenario and additional productivity. The result was savings compared with the current supplier, plus an additional $80,000 per year.&rdquo;</div>
         <div class="name">KPS WORKSHOP PARTICIPANT <span>/ SHANGHAI, CHINA</span></div>
       </div>
 
-      <div class="tcard photo">
+      <div class="tcard photo reveal">
         <div class="qmark">&ldquo;</div>
         <div class="tq">Ruth has an <strong>uncanny grasp of the negotiating process.</strong> I am only sorry I did not turn to her earlier in the process.</div>
         <div class="person">
@@ -807,49 +984,49 @@
         </div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Supplier trust</div>
         <div class="tq">&ldquo;I built trust with the supplier and probed the production arrangement. We reduced the sales price <em>from six times to two times</em> the serial-production price, saving <strong>$60,000</strong>.&rdquo;</div>
         <div><div class="name">KPS WORKSHOP PARTICIPANT</div><div class="role">Shanghai, China</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Training toolkit</div>
         <div class="tq">&ldquo;The training gave me <strong>critical tools</strong>: BAM, anchoring, preparation frameworks, probing and listening, and debriefing.&rdquo;</div>
         <div><div class="name">PAUL MCGOLDRICK</div><div class="role">Global Category Manager, Metals, Chart Industries</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Team-wide impact</div>
         <div class="tq">&ldquo;The workshop helped our team go out and re-negotiate with suppliers. We had seasoned negotiators and people brand new to negotiation; <strong>everyone got a lot from it.</strong>&rdquo;</div>
         <div><div class="name">MICHAEL HELLENKAMP</div><div class="role">Sales Director, Beverage Can, Speira GmbH</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">25+ years in logistics</div>
         <div class="tq">&ldquo;This seminar helped me in my current role negotiating with <strong>monopoly suppliers</strong>. Ruth is an impressive and highly experienced negotiator.&rdquo;</div>
         <div><div class="name">ALISA HSU-YOUNG</div><div class="role">Logistics Professional</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Supplier relations</div>
         <div class="tq">&ldquo;Ruth helped me find ways to <strong>take a firmer stance while preserving relationships</strong>. That matters in a development environment where flexibility and long-term supplier relationships are essential.&rdquo;</div>
         <div><div class="name">FRANCISCO ROMERO DIAZ</div><div class="role">Logistics and Trade Compliance Manager, Lufkin</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">Structure &amp; method</div>
         <div class="tq">&ldquo;Ruth&rsquo;s training gave us a strong structure and methodology for approaching and executing negotiations. It was <strong>interactive, practical, and directly applicable.</strong>&rdquo;</div>
         <div><div class="name">ROSS MACPHERSON</div><div class="role">Global Category Manager, Howden Group</div></div>
       </div>
 
-      <div class="tcard plain">
+      <div class="tcard plain reveal">
         <div class="pl-tag">The hard no</div>
         <div class="tq">&ldquo;I learned practical techniques for when a supplier gives you a hard no: <strong>probing questions, recognising emotional triggers</strong>, and staying in control of the situation.&rdquo;</div>
         <div><div class="name">JOAQUIN</div><div class="role">Sales Manager, Key Accounts, Life Fitness</div></div>
       </div>
 
-      <div class="tcard gold brk">
+      <div class="tcard gold brk reveal">
         <div>
           <div class="gl-tag">Capacity negotiation, sole vendor</div>
           <div class="gl-num">20%</div>
@@ -870,7 +1047,7 @@
 <!-- ============ BENEFIT: SEE WHAT YOUR TEAM IS TOO CLOSE TO SEE ============ -->
 <section class="benefit">
   <div class="wrap">
-    <span class="k reveal">30-minute negotiation triage</span>
+    <span class="k reveal">30-Min Negotiation Triage</span>
     <div class="benefit-grid">
       <div class="reveal">
         <h2>See what your team is too close to see</h2>
@@ -1156,27 +1333,53 @@
         <div class="titlebar"><span>30-Min Negotiation Triage</span><span>By qualification</span></div>
         <div class="body">
           <div class="qh">Bring the negotiation. Leave with 3 moves.</div>
-          <p class="qp">Tell us the shape of the deal and when it lands. Ruth&rsquo;s team reviews every request by hand and replies within 1 business day.</p>
+          <p class="qp" data-step2="Four questions about the deal itself. Ruth&rsquo;s team reviews every request by hand and replies within 1 business day.">Tell us the shape of the deal and when it lands. Ruth&rsquo;s team reviews every request by hand and replies within 1 business day.</p>
 
           <div class="q-success">
             <div class="qs-tag">Request logged</div>
             <div class="qs-head"></div>
             <div class="qs-body"></div>
-            <div class="qs-booking"><div class="tidycal-embed" data-path="castle-negotiations/procurement-triage"></div></div>
+            <div class="qs-when"><div class="w-date"></div><div class="w-meta"></div></div>
+            <div class="qs-booking">
+              <button type="button" class="q-open-cal">Pick your time <span class="arrow">&rarr;</span></button>
+              <p class="qs-note">Ruth&rsquo;s calendar opens over this page. Your name and email are already filled in.</p>
+            </div>
             <div class="qs-resource"><a href="https://www.castlenegotiations.com/shadow-shark-80-off/" target="_blank" rel="noopener" class="q-resource-link">GET THE SHADOW SHARK FIELD KIT</a></div>
           </div>
 
-          <form class="qf" onsubmit="return handleTriageSubmit(event)" novalidate>
+          <form class="qf qf-step1 formkit-form"
+                action="https://app.kit.com/forms/9781570/subscriptions" method="post"
+                data-sv-form="9781570" data-uid="c6538c4221" data-format="inline" data-version="5"
+                onsubmit="return handleTriageStep1(event)" novalidate>
+            <div class="q-steps">
+              <div class="qs-bars"><i class="on"></i><i></i></div>
+              <span class="qs-count">Step 1 of 2</span>
+            </div>
             <div>
               <label for="recap-fullName">Full name</label>
-              <input type="text" id="recap-fullName" name="fullName" required placeholder="Jane Ellis" aria-describedby="recap-fullName-error">
+              <input type="text" id="recap-fullName" name="fullName" required placeholder="Jane Ellis" autocomplete="name" aria-describedby="recap-fullName-error">
               <div class="q-field-error" id="recap-fullName-error" data-error-for="recap-fullName"></div>
             </div>
             <div>
-              <label for="recap-workEmail">Work email</label>
-              <input type="email" id="recap-workEmail" name="workEmail" required placeholder="name@company.com" aria-describedby="recap-workEmail-error">
+              <label for="recap-workEmail">Email</label>
+              <input type="email" id="recap-workEmail" name="workEmail" required placeholder="name@company.com" autocomplete="email" aria-describedby="recap-workEmail-error">
               <div class="q-field-error" id="recap-workEmail-error" data-error-for="recap-workEmail"></div>
             </div>
+            <button type="submit" class="formkit-submit" data-element="submit">
+              <span class="q-spin" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="q-btn-label">Next <span class="arrow">&rarr;</span></span>
+            </button>
+            <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+          </form>
+
+          <form class="qf qf-step2" onsubmit="return handleTriageSubmit(event)" novalidate hidden>
+            <div class="q-steps">
+              <button type="button" class="q-back">&larr; Back</button>
+              <div class="qs-bars"><i class="on"></i><i class="on"></i></div>
+              <span class="qs-count">Step 2 of 2</span>
+            </div>
+            <input type="hidden" name="fullName">
+            <input type="hidden" name="workEmail">
             <div>
               <label for="recap-companyTitle">Company &amp; job title</label>
               <input type="text" id="recap-companyTitle" name="companyTitle" required placeholder="e.g. Ford Motor Company, Director of Commodity Purchasing" aria-describedby="recap-companyTitle-error">
@@ -1222,7 +1425,7 @@
                 <div class="q-field-error" id="recap-valueAtRisk-error" data-error-for="recap-valueAtRisk"></div>
               </div>
             </div>
-            <button type="submit">See if you qualify</button>
+            <button type="submit"><span class="q-btn-label">See if you qualify</span></button>
             <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
           </form>
         </div>
@@ -1250,6 +1453,28 @@
     </div>
   </div>
 </footer>
+
+<!-- ============ BOOKING MODAL ============
+     One modal shared by both qualification panels. The calendar iframe is built
+     into .tc-mount on demand rather than sitting in the markup: it used to be
+     inline in both panels, which loaded two iframes on every visit, before we
+     knew who the visitor was and could prefill their name and email. -->
+<div class="tc-modal" id="bookingModal" hidden>
+  <div class="tc-backdrop" data-tc-close></div>
+  <div class="tc-scroll" data-tc-close-outside>
+    <div class="tc-dialog" role="dialog" aria-modal="true" aria-labelledby="tcModalTitle">
+      <div class="tc-bar">
+        <span class="tc-title" id="tcModalTitle">30-Min Negotiation Triage &middot; Ruth Shlossman</span>
+        <button type="button" class="tc-close" data-tc-close>Close &times;</button>
+      </div>
+      <div class="tc-who" hidden>Booking as <b class="tc-who-name"></b> &middot; <b class="tc-who-email"></b></div>
+      <div class="tc-frame">
+        <div class="tc-mount"></div>
+        <div class="tc-loading">Loading Ruth&rsquo;s calendar&hellip;</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============ STICKY CTA ============ -->
 <div class="sticky-cta" id="stickyCta">
@@ -1283,21 +1508,12 @@
   var TITLE_KEYWORDS = ["CPO", "Chief Procurement Officer", "VP", "Vice President", "Director", "Head of", "COO", "CFO", "GM", "General Manager", "Owner", "Strategic Sourcing", "Supply Chain Director", "Purchasing Director", "Commodity Director"];
   var INDUSTRY_KEYWORDS = ["automotive", "aerospace", "OEM", "manufacturing", "industrial", "Tier 1", "Tier 2", "supplier", "procurement", "purchasing", "sourcing", "supply chain", "engineering"];
 
-  // Common free-mail domains treated as "not a business email" — a judgment
-  // call, easy to trim if it proves too strict for real submissions.
-  var FREE_EMAIL_DOMAINS = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "live.com", "aol.com", "icloud.com", "msn.com", "protonmail.com"];
-
   function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
   function matchesKeyword(text, keyword) {
     if (!text) return false;
     return new RegExp("\\b" + escapeRe(keyword) + "\\b", "i").test(text);
   }
   function containsAny(text, keywords) { return keywords.some(function (k) { return matchesKeyword(text, k); }); }
-  function isBusinessEmail(email) {
-    var at = email.lastIndexOf("@");
-    if (at === -1) return false;
-    return FREE_EMAIL_DOMAINS.indexOf(email.slice(at + 1).toLowerCase()) === -1;
-  }
 
   function computeScore(data) {
     var score = 0;
@@ -1311,7 +1527,7 @@
 
   // ---- Inline validation ----
   var FIELD_ERROR_LABELS = {
-    fullName: "Full name", workEmail: "Work email", companyTitle: "Company & job title",
+    fullName: "Full name", workEmail: "Email", companyTitle: "Company & job title",
     decisionRole: "Your role in this decision",
     decisionTiming: "Decision timing", valueAtRisk: "Value at risk"
   };
@@ -1331,7 +1547,6 @@
     var label = FIELD_ERROR_LABELS[el.name] || "This field";
     if (el.validity.valueMissing) { showError(el, label + " is required."); return false; }
     if (el.type === "email" && el.validity.typeMismatch) { showError(el, "Enter a valid email address."); return false; }
-    if (el.name === "workEmail" && el.value && !isBusinessEmail(el.value)) { showError(el, "Please use your work email address, not a personal inbox."); return false; }
     clearError(el);
     return true;
   }
@@ -1354,13 +1569,22 @@
     var tag, headline, body;
     if (route === "booking") {
       tag = "Request logged";
-      headline = "Your Negotiation May Qualify";
-      body = "Your situation looks like a potential fit for a 30-minute Unfair Advantage Triage. Choose a time below. Please do not send supplier documents. We will work from the situation, the pressure, and the decision in front of you.";
+      headline = "Your negotiation looks like a fit";
+      body = "Ruth keeps 30 minutes for live, high-stakes supplier deals. Pick a time that works and you are on her calendar. Please do not send supplier documents. We work from the situation, the pressure, and the decision in front of you.";
     } else {
       tag = "Criteria unmet";
       headline = "If you're dealing with bullying and pressure tactics...";
       body = "You may not need a live negotiation triage. But if you filled this form, someone may be putting pressure on you. This resource helps you neutralize that.";
     }
+    // the success block carries its own tag, headline and body, so the panel's
+    // "See if your negotiation qualifies" intro is now answering a question
+    // nobody is still asking
+    document.querySelectorAll(".qual-panel").forEach(function (panel) {
+      var qh = panel.querySelector(".qh");
+      var qp = panel.querySelector(".qp");
+      if (qh) qh.style.display = "none";
+      if (qp) qp.style.display = "none";
+    });
     document.querySelectorAll(".q-success").forEach(function (block) {
       var t = block.querySelector(".qs-tag");
       var h = block.querySelector(".qs-head");
@@ -1387,6 +1611,165 @@
     });
   }
 
+  // ---- Booking modal + TidyCal embed ----
+  // The iframe is built here rather than through TidyCal's embed.js. That script
+  // only adds iframe-resizer, which grows the frame to its full content height —
+  // taller than the window. TidyCal pins its confirm step to the top of its own
+  // frame, so an overflowing frame opens that step above the fold for anyone who
+  // scrolled down to reach a later slot. A fixed-height frame that scrolls
+  // internally, the way an ordinary browser window does, has no such seam.
+  // ?name= and ?email= prefill TidyCal's contact fields, so the reader confirms
+  // in one click instead of retyping what they gave us on step 1.
+  var TIDYCAL_PATH = "castle-negotiations/procurement-triage";
+  var TIDYCAL_ORIGIN = "https://tidycal.com";
+  var TIDYCAL_URL = TIDYCAL_ORIGIN + "/" + TIDYCAL_PATH;
+  var modal = document.getElementById("bookingModal");
+  var calMounted = false;
+  var lastFocused = null;
+
+  function calendarUrl() {
+    var url = TIDYCAL_URL + "?embed=1";
+    if (triageIdentity.fullName) url += "&name=" + encodeURIComponent(triageIdentity.fullName);
+    if (triageIdentity.workEmail) url += "&email=" + encodeURIComponent(triageIdentity.workEmail);
+    return url;
+  }
+
+  function mountCalendar() {
+    if (calMounted || !modal) return;
+    calMounted = true;
+    var mount = modal.querySelector(".tc-mount");
+    var frame = modal.querySelector(".tc-frame");
+    var loading = modal.querySelector(".tc-loading");
+    if (!mount) return;
+
+    var iframe = document.createElement("iframe");
+    iframe.src = calendarUrl();
+    iframe.title = "Book a 30-Min Negotiation Triage with Ruth Shlossman";
+    iframe.setAttribute("allow", "payment");
+    iframe.addEventListener("load", function () { if (frame) frame.classList.add("is-ready"); });
+    mount.appendChild(iframe);
+
+    // never leave a spinner running forever on a bad connection
+    setTimeout(function () {
+      if (!frame || frame.classList.contains("is-ready") || !loading) return;
+      loading.innerHTML = 'Calendar is slow to load. <a href="' + TIDYCAL_URL + '" target="_blank" rel="noopener" style="color:var(--gold-deep);margin-left:0.4rem">Open it in a new tab &rarr;</a>';
+      loading.style.pointerEvents = "auto";
+    }, 12000);
+  }
+
+  function openBookingModal() {
+    if (!modal) return;
+    lastFocused = document.activeElement;
+    var who = modal.querySelector(".tc-who");
+    if (who && triageIdentity.workEmail) {
+      modal.querySelector(".tc-who-name").textContent = triageIdentity.fullName;
+      modal.querySelector(".tc-who-email").textContent = triageIdentity.workEmail;
+      who.hidden = false;
+    }
+    modal.hidden = false;
+    // reopening after a close should land on the calendar, not wherever they
+    // scrolled to last time
+    var scroller = modal.querySelector(".tc-scroll");
+    if (scroller) scroller.scrollTop = 0;
+    document.documentElement.classList.add("tc-locked");
+    // one frame between display and the class so the transition actually runs
+    requestAnimationFrame(function () { modal.classList.add("is-open"); });
+    mountCalendar();
+    var closeBtn = modal.querySelector(".tc-close");
+    if (closeBtn) closeBtn.focus({ preventScroll: true });
+  }
+
+  function closeBookingModal() {
+    if (!modal || modal.hidden) return;
+    modal.classList.remove("is-open");
+    document.documentElement.classList.remove("tc-locked");
+    // let the fade finish before it leaves the accessibility tree
+    setTimeout(function () { if (!modal.classList.contains("is-open")) modal.hidden = true; }, 320);
+    // the button that opened this is gone once a booking lands, so only return
+    // focus if it's still on the page
+    if (lastFocused && lastFocused.focus && lastFocused.offsetParent) lastFocused.focus({ preventScroll: true });
+  }
+
+  document.querySelectorAll(".q-open-cal").forEach(function (btn) {
+    btn.addEventListener("click", openBookingModal);
+  });
+  if (modal) {
+    modal.addEventListener("click", function (evt) {
+      if (evt.target.closest("[data-tc-close]")) { closeBookingModal(); return; }
+      // clicking the gutter around the dialog counts as clicking the backdrop
+      if (evt.target.hasAttribute("data-tc-close-outside")) closeBookingModal();
+    });
+  }
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape" && modal && !modal.hidden) closeBookingModal();
+  });
+
+  // ---- Booking confirmed ----
+  // The iframe posts { event: "bookingComplete", data } to window.top when the
+  // booking is written. Without this the reader is left staring at TidyCal's
+  // own confirmation inside our modal, and Kit never learns they turned up.
+  function findStartsAt(obj, depth) {
+    if (!obj || typeof obj !== "object" || (depth || 0) > 4) return null;
+    if (typeof obj.starts_at === "string") return obj.starts_at;
+    for (var k in obj) {
+      if (!Object.prototype.hasOwnProperty.call(obj, k)) continue;
+      var hit = findStartsAt(obj[k], (depth || 0) + 1);
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  function renderBooked(startsAt) {
+    // rendered in the reader's own timezone — TidyCal sends UTC, and the one
+    // thing nobody should have to do here is convert a time in their head
+    var whenText = "";
+    var d = startsAt ? new Date(startsAt) : null;
+    if (d && !isNaN(d.getTime())) {
+      whenText = d.toLocaleString(undefined, {
+        weekday: "long", day: "numeric", month: "long",
+        hour: "numeric", minute: "2-digit", timeZoneName: "short"
+      });
+    }
+    document.querySelectorAll(".q-success").forEach(function (block) {
+      var t = block.querySelector(".qs-tag");
+      var h = block.querySelector(".qs-head");
+      var b = block.querySelector(".qs-body");
+      var when = block.querySelector(".qs-when");
+      var booking = block.querySelector(".qs-booking");
+      if (t) t.textContent = "Confirmed";
+      if (h) h.textContent = "You're on Ruth's calendar";
+      if (b) {
+        b.textContent = triageIdentity.workEmail
+          ? "The invite is on its way to " + triageIdentity.workEmail + ". Bring the negotiation putting the most pressure on you right now — no documents needed."
+          : "The invite is on its way to your inbox. Bring the negotiation putting the most pressure on you right now — no documents needed.";
+      }
+      if (when && whenText) {
+        when.querySelector(".w-date").textContent = whenText;
+        when.querySelector(".w-meta").textContent = "30 minutes with Ruth Shlossman";
+        when.style.display = "block";
+      }
+      if (booking) booking.style.display = "none";
+    });
+  }
+
+  window.addEventListener("message", function (evt) {
+    if (evt.origin !== TIDYCAL_ORIGIN) return;
+    var payload = evt.data;
+    if (!payload || payload.event !== "bookingComplete") return;
+    var startsAt = findStartsAt(payload.data);
+    renderBooked(startsAt);
+    // give the reader a beat to register TidyCal's own tick before we pull the
+    // modal away and show our confirmation underneath
+    setTimeout(closeBookingModal, 1600);
+    if (triageIdentity.workEmail) {
+      postToKit(triageIdentity.workEmail, {
+        triage_booked: "Yes",
+        triage_booked_at: startsAt || new Date().toISOString(),
+        triage_routing: "BOOKED"
+      });
+    }
+  });
+
   function getUtms() {
     var params = new URLSearchParams(window.location.search);
     var utm = {};
@@ -1395,6 +1778,141 @@
     });
     return utm;
   }
+
+  // ---- Step 1: name + email to Kit, then reveal step 2 ----
+  // Posted straight to the Kit form endpoint rather than letting Kit's ck.5.js
+  // own the submit: ck.5.js swaps the form out for its own success message,
+  // which would fight the step-2 reveal. Same endpoint and field names, so the
+  // subscriber and any Kit automations on form 9781570 behave identically.
+  var KIT_FORM_ACTION = "https://app.kit.com/forms/9781570/subscriptions";
+  // Kit is a side effect, not the funnel. Never make the reader wait on it.
+  var KIT_MAX_WAIT_MS = 1400;
+  var kitSubmittedEmail = "";
+
+  function setStep(n) {
+    document.querySelectorAll(".qual-panel").forEach(function (panel) {
+      var step1 = panel.querySelector(".qf-step1");
+      var step2 = panel.querySelector(".qf-step2");
+      if (!step1 || !step2) return;
+      // Each step form carries its own progress bar and counter in the markup,
+      // so showing the right form is the whole of the state change.
+      step1.hidden = n !== 1;
+      step2.hidden = n !== 2;
+      var qp = panel.querySelector(".qp");
+      if (qp && qp.dataset.step2) {
+        if (!qp.dataset.step1) qp.dataset.step1 = qp.textContent;
+        qp.textContent = n === 2 ? qp.dataset.step2 : qp.dataset.step1;
+      }
+    });
+  }
+
+  // Both panels stay in lockstep, so whichever one the reader starts in, the
+  // other already carries their name and email. The same pair is handed to
+  // TidyCal later so nobody types it twice.
+  var triageIdentity = { fullName: "", workEmail: "" };
+  function syncIdentity(data) {
+    triageIdentity = { fullName: data.fullName, workEmail: data.workEmail };
+    document.querySelectorAll(".qf").forEach(function (form) {
+      var name = form.querySelector('[name="fullName"]');
+      var email = form.querySelector('[name="workEmail"]');
+      if (name) name.value = data.fullName;
+      if (email) email.value = data.workEmail;
+    });
+  }
+
+  // Every write to Kit goes through here. Same form endpoint both times, and
+  // Kit keys the subscriber on email, so the step-2 post updates the record
+  // step 1 created rather than making a second one.
+  function postToKit(email, fields) {
+    if (!KIT_FORM_ACTION || !email) return Promise.resolve();
+    var fd = new FormData();
+    fd.append("email_address", email);
+    Object.keys(fields).forEach(function (key) {
+      if (fields[key] !== "" && fields[key] != null) fd.append("fields[" + key + "]", fields[key]);
+    });
+    return fetch(KIT_FORM_ACTION, {
+      method: "POST",
+      body: fd,
+      headers: { Accept: "application/json" },
+      mode: "cors",
+      keepalive: true
+    }).catch(function () {
+      // A Kit outage must never block someone from reaching the triage questions.
+    });
+  }
+
+  function firstNameOf(fullName) { return fullName.split(/\s+/)[0] || fullName; }
+
+  // Store the option a human picked, not its machine value — these land in Kit
+  // for Ruth's team to read at a glance.
+  function labelOf(form, name) {
+    var el = form.querySelector('[name="' + name + '"]');
+    if (!el) return "";
+    if (el.selectedOptions && el.selectedOptions.length) return el.selectedOptions[0].textContent.trim();
+    return el.value || "";
+  }
+
+  function sourceLine() {
+    var utm = getUtms();
+    var bits = Object.keys(utm).map(function (k) { return k.replace("utm_", "") + "=" + utm[k]; });
+    if (!bits.length && document.referrer) bits.push("referrer=" + document.referrer);
+    bits.push("page=" + window.location.pathname);
+    return bits.join(" | ");
+  }
+
+  window.handleTriageStep1 = function (evt) {
+    evt.preventDefault();
+    var form = evt.target;
+    var result = validateForm(form);
+    if (!result.valid) {
+      if (result.firstInvalid) result.firstInvalid.focus();
+      return false;
+    }
+
+    var data = {
+      fullName: (form.querySelector('[name="fullName"]').value || "").trim(),
+      workEmail: (form.querySelector('[name="workEmail"]').value || "").trim()
+    };
+    syncIdentity(data);
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.classList.add("is-loading"); btn.disabled = true; }
+
+    var panel = form.closest(".qual-panel");
+    var advanced = false;
+    function advance() {
+      if (advanced) return;
+      advanced = true;
+      if (btn) { btn.classList.remove("is-loading"); btn.disabled = false; }
+      setStep(2);
+      var first = panel && panel.querySelector('.qf-step2 input:not([type="hidden"]), .qf-step2 select');
+      if (first) first.focus({ preventScroll: true });
+    }
+
+    // Back → Next on an unchanged email shouldn't hit Kit twice.
+    var email = data.workEmail.toLowerCase();
+    var pending = kitSubmittedEmail === email ? Promise.resolve() : postToKit(data.workEmail, {
+      first_name: firstNameOf(data.fullName),
+      triage_full_name: data.fullName,
+      triage_source: sourceLine()
+    });
+    kitSubmittedEmail = email;
+
+    pending.then(advance);
+    setTimeout(advance, KIT_MAX_WAIT_MS);
+    return false;
+  };
+
+  document.querySelectorAll(".q-back").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setStep(1);
+      var panel = btn.closest(".qual-panel");
+      var first = panel && panel.querySelector('.qf-step1 input[name="fullName"]');
+      if (first) first.focus({ preventScroll: true });
+    });
+  });
+
+  setStep(1);
 
   var hasSubmitted = false;
 
@@ -1429,15 +1947,31 @@
       pageUrl: window.location.href
     });
 
-    // TODO: POST `payload` to the lead-capture endpoint once it exists.
-    // fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    void payload; // avoid "unused var" until the integration above is wired up
+    // The answers live on the Kit subscriber created at step 1, so the whole
+    // qualification sits on one record Ruth's team can read, segment and export.
+    postToKit(data.workEmail, {
+      first_name: firstNameOf(data.fullName),
+      triage_full_name: data.fullName,
+      triage_company_title: data.companyTitle,
+      triage_decision_role: labelOf(form, "decisionRole"),
+      triage_decision_timing: labelOf(form, "decisionTiming"),
+      triage_value_at_risk: labelOf(form, "valueAtRisk"),
+      triage_score: String(payload.score),
+      triage_routing: payload.routingTag,
+      triage_source: sourceLine()
+    });
 
     hasSubmitted = true;
     renderSuccess(route);
     document.querySelectorAll(".qf").forEach(function (f) { f.style.display = "none"; });
     document.querySelectorAll(".q-success").forEach(function (s) { s.style.display = "block"; });
     updateSticky();
+
+    if (route === "booking") {
+      // The calendar was the reward for filling the form, so it comes to them.
+      // The panel behind carries the same button if they close it.
+      setTimeout(openBookingModal, 500);
+    }
     return false;
   };
 
@@ -1612,8 +2146,6 @@
 })();
 </script>
 
-<!-- Booking calendar: TidyCal embed script, shared by both success-state booking widgets above -->
-<script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
 
 </body>
 </html>
