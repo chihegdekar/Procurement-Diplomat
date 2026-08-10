@@ -90,8 +90,42 @@
     margin: 0.8rem 0 0;
   }
 
+  /* ---- tear-off calendar leaf ---- */
+  /* The date as an object rather than a sentence. Built from type and borders,
+     not an image, so it stays crisp and carries the brand's own palette. */
+  .cal-leaf {
+    display: block; width: 5.4rem;
+    margin-bottom: 1.4rem;
+    border: 1px solid rgba(201,169,106,0.45);
+    border-radius: var(--radius);
+    background: rgba(11,20,34,0.55);
+    position: relative;
+  }
+  .cal-leaf[hidden] { display: none; }
+  /* the two binding rings along the top edge */
+  .cal-leaf::before, .cal-leaf::after {
+    content: ""; position: absolute; top: -0.3rem;
+    width: 0.3rem; height: 0.6rem; border-radius: 2px;
+    background: var(--gold-deep);
+  }
+  .cal-leaf::before { left: 1.2rem; }
+  .cal-leaf::after { right: 1.2rem; }
+  .cl-month {
+    display: block; background: var(--gold);
+    color: var(--navy-0);
+    font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.32rem 0 0.28rem;
+  }
+  .cl-day {
+    display: block; font-family: var(--serif); font-weight: 500;
+    font-size: 2.1rem; line-height: 1; color: var(--ivory);
+    padding: 0.55rem 0 0.6rem;
+  }
+
   .cta {
-    display: inline-block; margin-top: clamp(1.8rem, 4vw, 2.4rem);
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    margin-top: clamp(1.8rem, 4vw, 2.4rem);
     background: var(--gold); color: var(--navy-0);
     padding: 1.05rem 2rem; border-radius: var(--radius);
     font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -101,15 +135,20 @@
   .cta .arrow { display: inline-block; transition: transform 0.3s var(--ease-out); }
   .cta:hover .arrow { transform: translateX(4px); }
   .cta[hidden], .cta-alt[hidden] { display: none; }
+  .cta-icon {
+    width: 1.05rem; height: 1.05rem; flex: none;
+    fill: none; stroke: currentColor; stroke-width: 1.8;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
 
   .cta-note {
     font-family: var(--sans); font-size: 0.8rem; line-height: 1.6;
     color: var(--ivory-dim); margin: 1rem 0 0; max-width: 42ch;
   }
 
-  /* the .ics download covers Apple Calendar, Outlook and everything desktop;
-     the Google link is here because iOS Safari is unreliable about opening a
-     downloaded file, and Google is where most of the rest of them live */
+  /* Google takes the main button and repeats in this row, so nobody scanning
+     for their own calendar finds it missing. Apple is a downloaded .ics; the
+     other two are web deeplinks. */
   .cta-alt {
     display: flex; align-items: center; justify-content: center;
     gap: 0.6rem; flex-wrap: wrap;
@@ -120,6 +159,10 @@
   .cta-alt a { color: var(--ivory-dim); text-decoration: none; border-bottom: 1px solid rgba(242,235,220,0.3); padding-bottom: 1px; transition: color 0.25s, border-color 0.25s; }
   .cta-alt a:hover { color: var(--gold); border-color: var(--gold); }
   .cta-alt .sep { opacity: 0.45; }
+  .cta-alt-label { opacity: 0.7; }
+  /* three links plus separators need a narrower gap than a two-item row, or
+     the middots stop reading as separators and start reading as bullets */
+  @media (max-width: 520px) { .cta-alt { gap: 0.45rem; } }
 
   .appt-to {
     font-family: var(--sans); font-size: 0.85rem; line-height: 1.6;
@@ -203,18 +246,35 @@
     <p class="lede">Thirty minutes with Ruth Shlossman on the negotiation putting the most pressure on you right now.</p>
 
     <div class="appt">
+      <!-- a tear-off calendar leaf: the date as an object, not just a sentence -->
+      <div class="cal-leaf" id="calLeaf" aria-hidden="true" hidden>
+        <span class="cl-month" id="clMonth"></span>
+        <span class="cl-day" id="clDay"></span>
+      </div>
+
       <p class="appt-when" id="apptWhen">Your slot is confirmed</p>
       <p class="appt-meta" id="apptMeta">30 minutes with Ruth Shlossman</p>
 
       <!-- The calendar CTAs need a real start time to exist, so they stay hidden
            until the script has one. Without it the Doctrine link takes the slot,
            so the page never ends on a dead end. -->
-      <a class="cta" id="addToCal" download="negotiation-triage.ics" hidden>Add to my calendar <span class="arrow">&rarr;</span></a>
+      <a class="cta" id="addToCal" href="#" target="_blank" rel="noopener" hidden>
+        <svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <path d="M3 10h18M8 3v4M16 3v4"/>
+        </svg>
+        Add to Google Calendar
+      </a>
+      <!-- The same event, three ways. Google repeats the button on purpose:
+           once someone is scanning this row for their own calendar, the one
+           they use needs to be in the row. -->
       <p class="cta-alt" id="addToCalAlt" hidden>
-        <span>Or add to</span>
-        <a id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
+        <span class="cta-alt-label">Add to</span>
+        <a id="appleLink" href="#" download="negotiation-triage.ics">Apple Calendar</a>
         <span class="sep">&middot;</span>
         <a id="outlookLink" href="#" target="_blank" rel="noopener">Outlook</a>
+        <span class="sep">&middot;</span>
+        <a id="gcalAltLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
       </p>
       <a class="cta" id="doctrineFallback" href="doctrine.html">Read the Doctrine before we speak <span class="arrow">&rarr;</span></a>
       <p class="cta-note" id="ctaNote">Ten minutes. It&rsquo;s the shared language we&rsquo;ll use on the call.</p>
@@ -338,15 +398,37 @@
       return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
     }
 
-    // ---- .ics ----
+    // the tear-off leaf, in the reader's own timezone like everything else here
+    document.getElementById("clMonth").textContent =
+      start.toLocaleString(undefined, { month: "short" }).toUpperCase();
+    document.getElementById("clDay").textContent =
+      start.toLocaleString(undefined, { day: "numeric" });
+    document.getElementById("calLeaf").hidden = false;
+
+    // ---- Google: the button, and again in the row below it ----
+    var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent(TITLE)
+      + "&dates=" + stamp(start) + "/" + stamp(end)
+      + "&details=" + encodeURIComponent(DETAILS);
+    document.getElementById("addToCal").href = googleUrl;
+    document.getElementById("gcalAltLink").href = googleUrl;
+
+    // ---- Outlook: ISO timestamps and its own param names, not the Google pair ----
+    document.getElementById("outlookLink").href =
+      "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent"
+      + "&subject=" + encodeURIComponent(TITLE)
+      + "&startdt=" + encodeURIComponent(start.toISOString())
+      + "&enddt=" + encodeURIComponent(end.toISOString())
+      + "&body=" + encodeURIComponent(DETAILS);
+
+    // ---- Apple: a downloaded .ics is the only way in ----
     // RFC 5545 escaping: backslash first, or it double-escapes what follows.
     function esc(s) {
       return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
     }
-    // Lines cap at 75 *octets*, not characters, and Outlook is the strict one
-    // here. The em dash and middot below are 3 and 2 bytes, so a character
-    // count overruns the limit; Array.from walks whole codepoints so a fold
-    // can never land inside one either.
+    // Lines cap at 75 *octets*, not characters. The em dash and middot below
+    // are 3 and 2 bytes, so a character count overruns the limit; Array.from
+    // walks whole codepoints so a fold can never land inside one either.
     var encoder = window.TextEncoder ? new TextEncoder() : null;
     function byteLen(s) { return encoder ? encoder.encode(s).length : s.length; }
     function fold(line) {
@@ -387,32 +469,17 @@
       "END:VCALENDAR"
     ].join("\r\n");
 
-    var icsLink = document.getElementById("addToCal");
     // a Blob URL rather than a data: URI — Safari blocks navigation to data:
-    var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-    icsLink.href = URL.createObjectURL(blob);
-    icsLink.hidden = false;
+    document.getElementById("appleLink").href =
+      URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
 
-    // ---- web calendars ----
-    var range = stamp(start) + "/" + stamp(end);
-    document.getElementById("gcalLink").href =
-      "https://calendar.google.com/calendar/render?action=TEMPLATE"
-      + "&text=" + encodeURIComponent(TITLE)
-      + "&dates=" + range
-      + "&details=" + encodeURIComponent(DETAILS);
-
-    // Outlook wants ISO timestamps and its own param names, not the Google pair
-    document.getElementById("outlookLink").href =
-      "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent"
-      + "&subject=" + encodeURIComponent(TITLE)
-      + "&startdt=" + encodeURIComponent(start.toISOString())
-      + "&enddt=" + encodeURIComponent(end.toISOString())
-      + "&body=" + encodeURIComponent(DETAILS);
-
+    document.getElementById("addToCal").hidden = false;
     document.getElementById("addToCalAlt").hidden = false;
     document.getElementById("doctrineFallback").hidden = true;
+    // No blanket promise of a reminder: only the Apple .ics carries an alarm.
+    // Google and Outlook apply whatever default the reader already has set.
     document.getElementById("ctaNote").textContent =
-      "A 30-minute hold, with a 15-minute reminder. The video link comes in the TidyCal invite.";
+      "The time and details come pre-filled. The video link is in your TidyCal invite.";
   }
 })();
 </script>
