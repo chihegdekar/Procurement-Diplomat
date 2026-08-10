@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add("js");</script>
+<title>You&rsquo;re booked | 30-Minute Negotiation Triage | Castle Negotiations</title>
+<meta name="description" content="Your 30-Minute Negotiation Triage with Ruth Shlossman is confirmed. Here's what happens next.">
+<!-- a confirmation page has no business in search results -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* ================= CONFIRMATION ================= */
+  .booked {
+    min-height: 100svh;
+    display: grid; align-items: center;
+    padding-block: clamp(5rem, 12vh, 8rem);
+    background:
+      radial-gradient(110% 85% at 25% 0%, rgba(22,38,61,0.92), transparent 62%),
+      var(--navy-0);
+    position: relative; overflow: hidden;
+  }
+  .booked canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.7;
+  }
+  .booked::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20vh;
+    background: linear-gradient(180deg, transparent, var(--navy-1));
+    pointer-events: none;
+  }
+  /* One centred column. Everything below is centred off this, so nothing sets
+     its own alignment — only its own measure. */
+  .booked .wrap {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 46rem;
+  }
+  .booked .wrap > * { margin-inline: auto; }
+
+  .booked h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); max-width: 16ch; }
+  .booked h1 em { color: var(--gold); }
+  .booked .lede { max-width: 46ch; margin-top: 1.3rem; }
+
+  /* the confirmation tick: drawn, not an emoji, so it sits in the type system */
+  .tick {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(201,169,106,0.45);
+    padding: 0.5rem 0.8rem; border-radius: var(--radius);
+    margin-bottom: 1.6rem;
+  }
+  .tick svg { width: 0.95rem; height: 0.95rem; flex: none; }
+  .tick svg path {
+    stroke: var(--gold); stroke-width: 2.4; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 24; stroke-dashoffset: 24;
+    animation: tick-draw 0.7s var(--ease-out) 0.25s forwards;
+  }
+  @keyframes tick-draw { to { stroke-dashoffset: 0; } }
+
+  /* ---- the appointment ---- */
+  /* The date is the one thing they came here to see, so it gets the largest
+     type on the page after the headline and no box around it. */
+  .appt {
+    margin-top: clamp(2.2rem, 5vw, 3rem);
+    padding-top: clamp(2rem, 4vw, 2.6rem);
+    border-top: 1px solid rgba(201,169,106,0.28);
+  }
+  /* Every block in here carries its own measure, so centre them individually.
+     Scoped to .booked so it outranks the margin shorthands set on each block
+     below — those come later in the file and would otherwise reset it to 0. */
+  .booked .appt > * { margin-inline: auto; }
+  .appt-when {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.5rem, 3.4vw, 2.2rem); line-height: 1.25;
+    color: var(--ivory); margin: 0;
+    max-width: 32ch;
+  }
+  .appt-meta {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+    margin: 0.8rem 0 0;
+  }
+
+  .cta {
+    display: inline-block; margin-top: clamp(1.8rem, 4vw, 2.4rem);
+    background: var(--gold); color: var(--navy-0);
+    padding: 1.05rem 2rem; border-radius: var(--radius);
+    font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .cta:hover { background: var(--ivory); }
+  .cta .arrow { display: inline-block; transition: transform 0.3s var(--ease-out); }
+  .cta:hover .arrow { transform: translateX(4px); }
+  .cta[hidden], .cta-alt[hidden] { display: none; }
+
+  .cta-note {
+    font-family: var(--sans); font-size: 0.8rem; line-height: 1.6;
+    color: var(--ivory-dim); margin: 1rem 0 0; max-width: 42ch;
+  }
+
+  /* the .ics download covers Apple Calendar, Outlook and everything desktop;
+     the Google link is here because iOS Safari is unreliable about opening a
+     downloaded file, and Google is where most of the rest of them live */
+  .cta-alt {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.6rem; flex-wrap: wrap;
+    margin: 1rem 0 0;
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .cta-alt a { color: var(--ivory-dim); text-decoration: none; border-bottom: 1px solid rgba(242,235,220,0.3); padding-bottom: 1px; transition: color 0.25s, border-color 0.25s; }
+  .cta-alt a:hover { color: var(--gold); border-color: var(--gold); }
+  .cta-alt .sep { opacity: 0.45; }
+
+  .appt-to {
+    font-family: var(--sans); font-size: 0.85rem; line-height: 1.6;
+    color: var(--ivory-dim); margin: clamp(2rem, 4vw, 2.6rem) 0 0; max-width: 46ch;
+  }
+  .appt-to b { color: var(--ivory); font-weight: 600; word-break: break-word; }
+
+  /* The no-show line. Stated once, as a fact about the calendar rather than a
+     warning about them — a threat on a confirmation page reads as distrust. */
+  .noshow {
+    font-family: var(--sans); font-size: 0.8rem; line-height: 1.65;
+    color: var(--ivory-dim); margin: 1.1rem 0 0; max-width: 46ch;
+    padding-top: 1.1rem; border-top: 1px solid rgba(242,235,220,0.14);
+  }
+  .noshow b { color: var(--ivory); font-weight: 600; }
+
+  /* ---- what happens next ---- */
+  .next { background: var(--navy-1); }
+  .next h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+  .next .steps {
+    display: grid; gap: 1.5rem; margin-top: clamp(2rem, 5vw, 3rem);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { .next .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step {
+    border-top: 1px solid rgba(201,169,106,0.35);
+    padding-top: 1.2rem;
+  }
+  .step .n {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+    color: var(--gold); display: block; margin-bottom: 0.7rem;
+  }
+  .step h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--ivory); }
+  .step p { font-size: 0.92rem; color: var(--ivory-dim); margin: 0; max-width: 34ch; }
+
+  .next .bring {
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+    border: 1px solid rgba(201,169,106,0.3);
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 3vw, 2rem);
+    background: rgba(201,169,106,0.05);
+  }
+  .next .bring .eyebrow { margin-bottom: 1rem; }
+  .next .bring p { color: var(--ivory-dim); margin: 0; }
+  .next .bring p + p { margin-top: 0.9rem; }
+  .next .bring strong { color: var(--ivory); }
+
+  /* ---- meanwhile ---- */
+  .meanwhile { background: var(--navy-0); text-align: center; }
+  .meanwhile h2 { font-size: clamp(1.4rem, 2.8vw, 1.9rem); margin-inline: auto; max-width: 22ch; }
+  .meanwhile p { margin-inline: auto; }
+  .meanwhile .kit-cta {
+    display: inline-block; margin-top: 1.4rem;
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: 0.95rem 1.6rem; border-radius: var(--radius);
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s, color 0.3s;
+  }
+  .meanwhile .kit-cta:hover { background: var(--gold); color: var(--navy-0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tick svg path { animation: none; stroke-dashoffset: 0; }
+    .card .cta .arrow { transition: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+<!-- ============ CONFIRMATION ============ -->
+<header class="booked">
+  <canvas data-terrain aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="tick">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>
+      Booked &middot; Seat held
+    </span>
+    <h1>Your triage is <em class="u-gold">confirmed</em></h1>
+    <p class="lede">Thirty minutes with Ruth Shlossman on the negotiation putting the most pressure on you right now.</p>
+
+    <div class="appt">
+      <p class="appt-when" id="apptWhen">Your slot is confirmed</p>
+      <p class="appt-meta" id="apptMeta">30 minutes with Ruth Shlossman</p>
+
+      <!-- The calendar CTAs need a real start time to exist, so they stay hidden
+           until the script has one. Without it the Doctrine link takes the slot,
+           so the page never ends on a dead end. -->
+      <a class="cta" id="addToCal" download="negotiation-triage.ics" hidden>Add to my calendar <span class="arrow">&rarr;</span></a>
+      <p class="cta-alt" id="addToCalAlt" hidden>
+        <span>Or add to</span>
+        <a id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
+        <span class="sep">&middot;</span>
+        <a id="outlookLink" href="#" target="_blank" rel="noopener">Outlook</a>
+      </p>
+      <a class="cta" id="doctrineFallback" href="doctrine.html">Read the Doctrine before we speak <span class="arrow">&rarr;</span></a>
+      <p class="cta-note" id="ctaNote">Ten minutes. It&rsquo;s the shared language we&rsquo;ll use on the call.</p>
+
+      <p class="appt-to" id="apptTo">The invite is on its way to your inbox. If it hasn&rsquo;t landed in a few minutes, check spam &mdash; then add <b>ruths@castlenegotiate.com</b> to your contacts.</p>
+      <p class="noshow">Ruth keeps four of these open a month. If something moves, <b>reschedule from the invite</b> &mdash; it takes ten seconds and the slot goes to someone else who needs it. We don&rsquo;t re-book a seat that went empty.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ WHAT HAPPENS NEXT ============ -->
+<section class="next">
+  <div class="wrap">
+    <span class="eyebrow">What happens next</span>
+    <h2>Three things, in this order</h2>
+
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Accept the invite</h3>
+        <p>It carries the video link. Accepting it is what stops the slot being offered to anyone else.</p>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>Pick one live negotiation</h3>
+        <p>The one costing you sleep. Single-sourced, mid-increase, stalled &mdash; the harder it is, the more use you&rsquo;ll get from the half hour.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>Turn up on time</h3>
+        <p>Thirty minutes is the whole session. Ruth runs to the clock so you leave with something you can act on the same day.</p>
+      </div>
+    </div>
+
+    <div class="bring">
+      <span class="eyebrow">What to bring</span>
+      <p><strong>Nothing on paper.</strong> No contracts, no spend analysis, no pre-read. Bring the negotiation in your head and the number you&rsquo;re being asked to swallow.</p>
+      <p>If your team has already tried something and it didn&rsquo;t move the supplier, bring that too. Knowing what failed is worth more than a clean brief.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEANWHILE ============ -->
+<section class="meanwhile">
+  <div class="wrap">
+    <h2>While you wait</h2>
+    <p class="lede">The Shadow Shark Field Kit covers the supplier tactic that turns up in almost every increase letter &mdash; and the counter that costs you nothing to run.</p>
+    <a class="kit-cta" href="https://www.castlenegotiations.com/shadow-shark-80-off/" target="_blank" rel="noopener">Get the Shadow Shark Field Kit</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <p class="oathline">&ldquo;Procurement exists to prevent regret.&rdquo;</p>
+      <p>&copy; Castle Negotiations Consulting Group, Inc. &middot; 5174 McGinnis Ferry Rd, Suite 202, Alpharetta, GA 30005<br>
+      <a href="https://www.castlenegotiate.com/">castlenegotiate.com</a> &middot; <a href="mailto:ruths@castlenegotiate.com">ruths@castlenegotiate.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/motion.js"></script>
+<script>
+(function () {
+  // triage.html hands the booking over in the query string: ?at=<ISO>&email=&name=
+  // Everything here degrades to the static copy already in the markup, so someone
+  // landing on a bare URL still gets a sane page rather than empty slots.
+  var params = new URLSearchParams(window.location.search);
+
+  var startsAt = params.get("at");
+  var email = params.get("email");
+  var name = params.get("name");
+
+  var start = startsAt ? new Date(startsAt) : null;
+  if (start && isNaN(start.getTime())) start = null;
+
+  if (start) {
+    // rendered in the reader's own timezone — TidyCal sends UTC, and the one
+    // thing nobody should have to do here is convert a time in their head
+    document.getElementById("apptWhen").textContent = start.toLocaleString(undefined, {
+      weekday: "long", day: "numeric", month: "long",
+      hour: "numeric", minute: "2-digit", timeZoneName: "short"
+    });
+  }
+
+  if (name) {
+    document.getElementById("apptMeta").textContent =
+      "30 minutes with Ruth Shlossman · " + name;
+  }
+
+  if (email) {
+    var to = document.getElementById("apptTo");
+    to.innerHTML = "";
+    to.appendChild(document.createTextNode("The invite is on its way to "));
+    var b = document.createElement("b");
+    b.textContent = email;
+    to.appendChild(b);
+    to.appendChild(document.createTextNode(
+      ". If it hasn’t landed in a few minutes, check spam — then add ruths@castlenegotiate.com to your contacts."
+    ));
+  }
+
+  // ---- Add to calendar ----
+  // A hold in their own calendar, built here from the start time rather than
+  // waiting on the TidyCal email. It deliberately carries no video link: that
+  // lives in TidyCal's invite, and a hold pointing at a dead URL is worse than
+  // a hold that tells them where to look.
+  var DURATION_MIN = 30;
+  var TITLE = "30-Min Negotiation Triage · Ruth Shlossman";
+  var DETAILS = "Your 30-minute Negotiation Triage with Ruth Shlossman of Castle Negotiations.\n\n"
+    + "The video link is in your TidyCal confirmation email — accept that invite too.\n\n"
+    + "Bring the negotiation putting the most pressure on you right now. No documents needed.";
+
+  if (start) {
+    var end = new Date(start.getTime() + DURATION_MIN * 60000);
+
+    // calendar UTC stamp: 20260818T143000Z
+    function stamp(date) {
+      return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    }
+
+    // ---- .ics ----
+    // RFC 5545 escaping: backslash first, or it double-escapes what follows.
+    function esc(s) {
+      return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+    }
+    // Lines cap at 75 *octets*, not characters, and Outlook is the strict one
+    // here. The em dash and middot below are 3 and 2 bytes, so a character
+    // count overruns the limit; Array.from walks whole codepoints so a fold
+    // can never land inside one either.
+    var encoder = window.TextEncoder ? new TextEncoder() : null;
+    function byteLen(s) { return encoder ? encoder.encode(s).length : s.length; }
+    function fold(line) {
+      var chars = Array.from(line);
+      var out = [], cur = "", bytes = 0;
+      for (var i = 0; i < chars.length; i++) {
+        var n = byteLen(chars[i]);
+        if (bytes + n > 74) { out.push(cur); cur = " "; bytes = 1; }
+        cur += chars[i];
+        bytes += n;
+      }
+      out.push(cur);
+      return out.join("\r\n");
+    }
+
+    var uid = "triage-" + stamp(start) + "-" + Math.random().toString(36).slice(2, 10) + "@castlenegotiate.com";
+    var ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Castle Negotiations//Negotiation Triage//EN",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      "UID:" + uid,
+      "DTSTAMP:" + stamp(new Date()),
+      "DTSTART:" + stamp(start),
+      "DTEND:" + stamp(end),
+      fold("SUMMARY:" + esc(TITLE)),
+      fold("DESCRIPTION:" + esc(DETAILS)),
+      fold("ORGANIZER;CN=Castle Negotiations:mailto:ruths@castlenegotiate.com"),
+      "STATUS:CONFIRMED",
+      "BEGIN:VALARM",
+      "TRIGGER:-PT15M",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:Negotiation Triage in 15 minutes",
+      "END:VALARM",
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    var icsLink = document.getElementById("addToCal");
+    // a Blob URL rather than a data: URI — Safari blocks navigation to data:
+    var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    icsLink.href = URL.createObjectURL(blob);
+    icsLink.hidden = false;
+
+    // ---- web calendars ----
+    var range = stamp(start) + "/" + stamp(end);
+    document.getElementById("gcalLink").href =
+      "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent(TITLE)
+      + "&dates=" + range
+      + "&details=" + encodeURIComponent(DETAILS);
+
+    // Outlook wants ISO timestamps and its own param names, not the Google pair
+    document.getElementById("outlookLink").href =
+      "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent"
+      + "&subject=" + encodeURIComponent(TITLE)
+      + "&startdt=" + encodeURIComponent(start.toISOString())
+      + "&enddt=" + encodeURIComponent(end.toISOString())
+      + "&body=" + encodeURIComponent(DETAILS);
+
+    document.getElementById("addToCalAlt").hidden = false;
+    document.getElementById("doctrineFallback").hidden = true;
+    document.getElementById("ctaNote").textContent =
+      "A 30-minute hold, with a 15-minute reminder. The video link comes in the TidyCal invite.";
+  }
+})();
+</script>
+</body>
+</html>

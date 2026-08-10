@@ -1276,7 +1276,7 @@
         <p class="eyebrow">Objections</p>
         <h2>The questions everyone asks first</h2>
         <p class="lede">If yours isn&rsquo;t here, email it. Ruth answers these herself.</p>
-        <a href="mailto:chi@castlenegotiate.com" style="color:var(--gold); text-decoration:none; border-bottom:1px dotted var(--gold); padding-bottom:2px; font-size:0.95rem">chi@castlenegotiate.com</a>
+        <a href="mailto:ruths@castlenegotiate.com" style="color:var(--gold); text-decoration:none; border-bottom:1px dotted var(--gold); padding-bottom:2px; font-size:0.95rem">ruths@castlenegotiate.com</a>
       </div>
       <div class="reveal" data-delay="1">
         <details class="obj-t">
@@ -1441,7 +1441,7 @@
     <div>
       <p class="oathline">&ldquo;Procurement exists to prevent regret.&rdquo;</p>
       <p>&copy; Castle Negotiations Consulting Group, Inc. &middot; 5174 McGinnis Ferry Rd, Suite 202, Alpharetta, GA 30005<br>
-      <a href="https://www.castlenegotiate.com/">castlenegotiate.com</a> &middot; <a href="mailto:chi@castlenegotiate.com">chi@castlenegotiate.com</a></p>
+      <a href="https://www.castlenegotiate.com/">castlenegotiate.com</a> &middot; <a href="mailto:ruths@castlenegotiate.com">ruths@castlenegotiate.com</a></p>
     </div>
     <div style="display:none; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; line-height:2.4">
       <a href="doctrine.html">The Doctrine</a><br>
@@ -1752,22 +1752,52 @@
     });
   }
 
+  // ---- Thank-you page ----
+  // Hitting "Book Event" inside the TidyCal iframe sends the reader to our own
+  // confirmation page rather than leaving them on TidyCal's. The redirect has to
+  // be driven from here, not from TidyCal's own post-booking redirect setting:
+  // that one navigates the iframe, so the thank-you page would render trapped
+  // inside our modal. The booking details ride along in the query string so the
+  // page can name the slot back to them without a second API call.
+  var THANK_YOU_URL = "triage-booked.html";
+
+  function thankYouUrl(startsAt) {
+    var qs = new URLSearchParams();
+    if (startsAt) qs.set("at", startsAt);
+    if (triageIdentity.fullName) qs.set("name", triageIdentity.fullName);
+    if (triageIdentity.workEmail) qs.set("email", triageIdentity.workEmail);
+    // carry the campaign attribution across so the thank-you page's pageview
+    // doesn't land in analytics as untracked direct traffic
+    var utm = getUtms();
+    Object.keys(utm).forEach(function (k) { qs.set(k, utm[k]); });
+    var q = qs.toString();
+    return q ? THANK_YOU_URL + "?" + q : THANK_YOU_URL;
+  }
+
+  var redirecting = false;
+
   window.addEventListener("message", function (evt) {
     if (evt.origin !== TIDYCAL_ORIGIN) return;
     var payload = evt.data;
     if (!payload || payload.event !== "bookingComplete") return;
+    if (redirecting) return;
+    redirecting = true;
     var startsAt = findStartsAt(payload.data);
+    // The panel underneath is repainted anyway: if the redirect is slow, or the
+    // reader hits back, they land on a confirmed state rather than a stale form.
     renderBooked(startsAt);
-    // give the reader a beat to register TidyCal's own tick before we pull the
-    // modal away and show our confirmation underneath
-    setTimeout(closeBookingModal, 1600);
     if (triageIdentity.workEmail) {
+      // keepalive:true on this fetch is what lets it finish after we navigate
       postToKit(triageIdentity.workEmail, {
         triage_booked: "Yes",
         triage_booked_at: startsAt || new Date().toISOString(),
         triage_routing: "BOOKED"
       });
     }
+    // a beat to register TidyCal's own tick before the page changes under them
+    setTimeout(function () {
+      window.location.href = thankYouUrl(startsAt);
+    }, 900);
   });
 
   function getUtms() {
