@@ -1,4 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "campaign"
+  "outputDirectory": "campaign",
+  "redirects": [
+    {
+      "source": "/top-negotiatior-procurement-report",
+      "destination": "/top-negotiator-procurement-report",
+      "permanent": true
+    },
+    {
+      "source": "/top-negotiatior-procurement-report/:path*",
+      "destination": "/top-negotiator-procurement-report/:path*",
+      "permanent": true
+    }
+  ]
 }
