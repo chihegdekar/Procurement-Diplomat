@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Top Negotiator: “This Is The Fastest Way To Restore Leverage Inside Your OEM” | Castle Negotiations</title>
-<meta name="description" content="Veteran buyer exposes the $1.7 million resource starvation crippling your procurement team — and the 30-minute deal triage driving 7-figure savings.">
+<meta name="description" content="Veteran buyer exposes the $1.7 million resource starvation crippling your procurement team, and the 30-minute deal triage driving 7-figure savings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -671,7 +671,7 @@ article ol li{margin-bottom:0.7em;}
           </div>
           <div class="ph-cell">
             <video data-src="/top-negotiatior-procurement-report/media/s2b-paper.mp4" poster="/top-negotiatior-procurement-report/media/s2b-paper.jpg" muted="" loop="" playsinline="" src="/top-negotiatior-procurement-report/media/s2b-paper.mp4"></video>
-            <div class="cyc is-red" data-cyc="A problem lands|They strip out your judgement|They enforce the rule instead|The rule fails — you carry it|The company banks a tiny win|Then the whole thing runs again"><span>The rule fails — you carry it</span></div>
+            <div class="cyc is-red" data-cyc="A problem lands|They strip out your judgement|They enforce the rule instead|The rule fails, you carry it|The company banks a tiny win|Then the whole thing runs again"><span>The rule fails, you carry it</span></div>
           </div>
         </div>
       </figure>
@@ -755,7 +755,7 @@ article ol li{margin-bottom:0.7em;}
       </figure>
 
       <p class="beat">After our VP’s miracle saving, word spread fast.</p>
-      <p class="beat">A purchasing program manager — from a multinational automotive OEM — emailed me at 8am.</p>
+      <p class="beat">A purchasing program manager, from a multinational automotive OEM, emailed me at 8am.</p>
       <p class="beat">“Whatever you did for ____… we need it for 450 global procurement hires. ASAP”</p>
       <p class="beat">This company was also in a gruelling, multi-round negotiation process. Supplier stonewalling. Different departments citing different concerns.</p>
       <p class="beat">One session with my new method, they didn’t cave.</p><p class="beat">They held their ground through 7 brutal rounds of negotiation.</p>
@@ -882,15 +882,15 @@ article ol li{margin-bottom:0.7em;}
             <div class="stack-cell">
               <span class="hd">What fixing it costs you</span>
               <div class="stack-row">
-                <span class="sl">Send ten people to an Ivy League seminar — <b>$47,000</b></span>
+                <span class="sl">Send ten people to an Ivy League seminar: <b>$47,000</b></span>
                 <span class="sbar"><i style="width:1.9%;"></i></span>
               </div>
               <div class="stack-row">
-                <span class="sl">Put four Big 4 consultants on it for six months — <b>$530,000</b></span>
+                <span class="sl">Put four Big 4 consultants on it for six months: <b>$530,000</b></span>
                 <span class="sbar"><i style="width:21%;"></i></span>
               </div>
               <div class="stack-row">
-                <span class="sl">Do nothing and eat 25% on a $10M contract — <b>$2,500,000</b></span>
+                <span class="sl">Do nothing and eat 25% on a $10M contract: <b>$2,500,000</b></span>
                 <span class="sbar"><i style="width:100%;"></i></span>
               </div>
             </div>
@@ -957,7 +957,7 @@ article ol li{margin-bottom:0.7em;}
       <p class="beat">How to get 6-fig savings on your live deal.</p>
       <p class="beat">You’ll want me to train your entire department.</p>
       <p class="beat">But I prove my value first.</p>
-      <p class="beat">Procurement budgets are tight enough as they are right now without asking you to trust a total stranger — regardless of how many OEM leaders are singing her praises.</p>
+      <p class="beat">Procurement budgets are tight enough as they are right now without asking you to trust a total stranger, regardless of how many OEM leaders are singing her praises.</p>
 
       <!-- ============ SECTION 10 ============ -->
       <h2>But here's the catch (and it's a big one)</h2>
@@ -1214,9 +1214,9 @@ article ol li{margin-bottom:0.7em;}
      the cut is the point. */
   document.querySelectorAll('[data-cyc]').forEach(function (el) {
     var lines = el.dataset.cyc.split('|');
-    var span = document.createElement('span');
+    var span = el.querySelector('span') || document.createElement('span');
     span.textContent = lines[0];
-    el.appendChild(span);
+    if (!span.parentNode) { el.appendChild(span); }
     if (still) { return; }
     var i = 0, timer = null;
     new IntersectionObserver(function (entries) {
