@@ -706,7 +706,7 @@
             <span class="q-spin" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="q-btn-label">Next <span class="arrow">&rarr;</span></span>
           </button>
-          <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+          <div class="q-limit">IMPORTANT: This is NOT a sales call. It is a real-time demonstration of value via direct access to Ruth &mdash; which is why it&rsquo;s limited to four OEMs/month on priority basis.</div>
         </form>
 
         <form class="qf qf-step2" onsubmit="return handleTriageSubmit(event)" novalidate hidden>
@@ -763,7 +763,7 @@
             </div>
           </div>
           <button type="submit"><span class="q-btn-label">See if you qualify</span></button>
-          <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+          <div class="q-limit">IMPORTANT: This is NOT a sales call. It is a real-time demonstration of value via direct access to Ruth &mdash; which is why it&rsquo;s limited to four OEMs/month on priority basis.</div>
         </form>
       </div>
     </div>
@@ -1369,7 +1369,7 @@
               <span class="q-spin" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="q-btn-label">Next <span class="arrow">&rarr;</span></span>
             </button>
-            <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+            <div class="q-limit">IMPORTANT: This is NOT a sales call. It is a real-time demonstration of value via direct access to Ruth &mdash; which is why it&rsquo;s limited to four OEMs/month on priority basis.</div>
           </form>
 
           <form class="qf qf-step2" onsubmit="return handleTriageSubmit(event)" novalidate hidden>
@@ -1426,7 +1426,7 @@
               </div>
             </div>
             <button type="submit"><span class="q-btn-label">See if you qualify</span></button>
-            <div class="q-limit">Direct access to Ruth is limited to four OEMs/month on a first-come, first-served basis.</div>
+            <div class="q-limit">IMPORTANT: This is NOT a sales call. It is a real-time demonstration of value via direct access to Ruth &mdash; which is why it&rsquo;s limited to four OEMs/month on priority basis.</div>
           </form>
         </div>
       </div>
@@ -1803,7 +1803,7 @@
   function getUtms() {
     var params = new URLSearchParams(window.location.search);
     var utm = {};
-    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) {
+    ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) {
       if (params.get(k)) utm[k] = params.get(k);
     });
     return utm;

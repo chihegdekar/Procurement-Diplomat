@@ -1274,4 +1274,15 @@ article ol li{margin-bottom:0.7em;}
 })();
 </script>
 
+<script>
+/* forward the ad's UTM params to the triage page so attribution survives the click */
+(function () {
+  var qs = window.location.search;
+  if (!qs) return;
+  document.querySelectorAll('a.cta[href*="triage.html"]').forEach(function (a) {
+    a.href = a.href.split('?')[0] + qs;
+  });
+})();
+</script>
+
 </body></html>
