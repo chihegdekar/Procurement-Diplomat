@@ -38,16 +38,20 @@
     display: grid; gap: clamp(2.5rem, 6vw, 6rem);
     grid-template-columns: 1fr; align-items: center;
   }
-  .hero-e h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); max-width: 21ch; }
+  .eyebrow::before { display: none; }
+  .hero-e .eyebrow { justify-content: center; margin-inline: auto; }
+  .hero-e h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); max-width: 21ch; margin-inline: auto; text-align: center; }
   .hero-e h1 em { color: var(--gold); }
-  .hero-e .lede { max-width: 54ch; margin-top: 1.6rem; }
-  .hero-checks { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.65rem; max-width: 54ch; }
-  .hero-checks li { display: flex; gap: 0.75rem; align-items: baseline; color: var(--ivory); font-size: 1.04rem; }
+  .hero-e .lede { max-width: 54ch; margin-top: 1.6rem; margin-inline: auto; text-align: center; }
+  .hero-checks { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.65rem; max-width: 54ch; margin-inline: auto; }
+  .hero-checks li { display: flex; gap: 0.75rem; align-items: baseline; justify-content: center; color: var(--ivory); font-size: 1.04rem; }
   .hero-checks li b { color: var(--gold); font-family: var(--mono); flex-shrink: 0; }
-  .hero-e .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.6rem; }
+  .hero-e .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.6rem; }
+  .hero-e .g-note { text-align: center; }
   .hero-e .scope-line {
     font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--ivory-dim); margin-top: 2.4rem; max-width: none;
+    text-align: center;
   }
   .hero-e .scope-line b { color: var(--gold); font-weight: 600; }
 
@@ -218,6 +222,8 @@
   }
   .js .roi-row .fill { transform: scaleX(0); transform-origin: left center; transition: transform 1.4s var(--ease-out) 0.25s; }
   .js .roi-row.is-visible .fill { transform: scaleX(1); }
+  .roi-row.fee .fill { background: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
+  .roi-row.fee .amt { color: var(--gold); }
   .roi .honesty {
     font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ivory-dim); margin-top: 2.2rem; line-height: 2;
@@ -492,18 +498,16 @@
 
   <div class="wrap">
     <div>
-      <p class="eyebrow">30-MINUTE NEGOTIATION RISK AUDIT &middot; FOR OEM PROCUREMENT, SOURCING &amp; PURCHASING LEADERS</p>
-      <h1>Find the blind spot in your next procurement negotiation.</h1>
-      <p class="lede">Bring 1 live deal, a supplier renewal, sole-source demand, price increase, or contract you are worried about. In 30 minutes, Ruth Shlossman will show you where your team is exposed before the other side uses it against you.</p>
+      <p class="eyebrow">ATTENTION OEM PROCUREMENT, SOURCING &amp; PURCHASING LEADERS</p>
+      <h1>Get clarity on your <em>looming procurement problem</em> in 30 minutes without judgement or fluff</h1>
+      <p class="lede">Enlist Harvard-trained, Fortune 500 negotiation expert, Ruth Shlossman, to help you solve your biggest headache right now &mdash; we welcome your live deal, supplier renewal, sole-source demand, price increase, or tariff-related chaos</p>
       <ul class="hero-checks">
-        <li class="reveal"><b>&#10003;</b>Where the deal is most likely leaking money, leverage, or both</li>
-        <li class="reveal" data-delay="1"><b>&#10003;</b>What your supplier, stakeholders, or internal team may be protecting</li>
-        <li class="reveal" data-delay="2"><b>&#10003;</b>Which negotiation game your team is missing before they walk in the room</li>
-        <li class="reveal" data-delay="2"><b>&#10003;</b>Whether a Risk Reset, full engagement, or no engagement is the right next move</li>
+        <li class="reveal"><b>&#10003;</b>How to control the agenda without upsetting C-Suite or supplier</li>
+        <li class="reveal" data-delay="1"><b>&#10003;</b>Five ways to get your team negotiating as a synchronized unit</li>
+        <li class="reveal" data-delay="2"><b>&#10003;</b>What you should never say when you receive a price increase letter</li>
       </ul>
-      <p class="lede reveal" data-delay="3" style="margin-top:1.2rem; font-style:italic; opacity:0.85">Nothing is quoted until eight questions are answered. That&rsquo;s what the 30 minutes is for.</p>
       <div class="cta-row">
-        <a class="btn" href="https://tidycal.com/castle-negotiations/scoping-call">BOOK MY FREE RISK AUDIT <span class="arrow">→</span></a>
+        <a class="btn" href="https://tidycal.com/castle-negotiations/scoping-call">BOOK MY FREE 30-MIN AUDIT <span class="arrow">→</span></a>
       </div>
       <p class="g-note"><a href="#guarantee"><span class="kn" aria-hidden="true">♞</span>Any engagement that follows is backed by the No Regret Guarantee™</a></p>
       <p class="scope-line"><b>30 MINUTES</b> &middot; <b>FREE</b> &middot; <b>BRING 1 LIVE DEAL</b></p>
@@ -614,8 +618,8 @@
       <div>
         <p class="eyebrow reveal">Terrain</p>
         <h2 class="reveal">What losing three of the four games looks like by Tuesday.</h2>
-        <p class="reveal" data-delay="1">We find this pattern inside strong procurement functions: the skills are there, the outcomes aren&rsquo;t. The human game, the political game, the systems game &mdash; that&rsquo;s the gap where deals go sideways.</p>
-        <p class="margin-note reveal" data-delay="2">If more than two of these read like last quarter, the problem isn&rsquo;t skill. It&rsquo;s sight.</p>
+        <p class="reveal" data-delay="1">We find this pattern inside strong procurement functions: the skills are there, the outcomes aren&rsquo;t.</p>
+        <p class="margin-note reveal" data-delay="2">If you keep experiencing these, this year will likely look like last quarter.</p>
       </div>
       <ul class="symptoms">
         <li class="reveal"><span class="box">[×]</span><span><strong>The executive bypass.</strong> A stakeholder goes around the team &ldquo;just this once,&rdquo; and the once becomes the norm.</span></li>
@@ -773,14 +777,22 @@
   </div>
 </section>
 
-<!-- ============ RESULTS, DOCUMENTED ============ -->
+<!-- ============ FEE, DRAWN TO SCALE ============ -->
 <section class="roi" id="evidence">
   <div class="wrap">
-    <p class="eyebrow reveal">Outcome · documented in participant debriefs</p>
-    <h2 class="reveal">Prevented Regret, Documented.</h2>
-    <p class="lede reveal" data-delay="1" style="max-width:56ch">Every bar below is one participant&rsquo;s reported outcome after Castle Negotiations training &mdash; in their own written debrief, in their very next negotiation. Each one is a single deal, by a single person, in a single category &mdash; which is the comparison to hold against the fee.</p>
+    <p class="eyebrow reveal">Documented in participant debriefs</p>
+    <h2 class="reveal">The fee, drawn to scale.</h2>
+    <p class="lede reveal" data-delay="1" style="max-width:56ch">The gold bar is the entire engagement fee, at the very top of its range. Every bar under it is one participant&rsquo;s reported outcome after Castle Negotiations training.</p>
 
     <div class="fee-scale">
+      <div class="roi-row fee reveal" style="--w:0.0135">
+        <div class="meta">
+          <span class="amt">$<span class="count" data-to="50" data-suffix="K">50K</span></span>
+          <span class="src">The engagement · top of range</span>
+        </div>
+        <div class="bar"><span class="fill"></span></div>
+        <p class="desc">The full fee for the largest engagement we scope. Most come in well under it.</p>
+      </div>
       <div class="roi-row reveal" data-delay="1" style="--w:1">
         <div class="meta">
           <span class="amt">$<span class="count" data-to="3.7" data-format="float1" data-suffix="M">3.7M</span></span>
@@ -829,7 +841,7 @@
 
     <div class="approver reveal" data-delay="1">
       <span class="k">If this page was forwarded to you</span>
-      <p>You&rsquo;re probably the one who&rsquo;d approve it, so here&rsquo;s the whole thing. The call is free and nobody signs anything on it. If your team wants proof before committing to a programme, a $7,500 half-day Risk Reset takes one live deal apart and ends in a written number; book an engagement within 90 days and that fee comes off it in full. The engagement itself starts at $12,500. One to three days, in-person or virtual, 8 to 30 people, six months of coaching access afterwards. The figures above this paragraph are single deals, by single people, in single categories. And if we&rsquo;re not right for this, Ruth says so on the call and tells you who is.</p>
+      <p>You&rsquo;re likely the one who approves this budget, so here is the short version. <strong>The investment:</strong> $10,000&ndash;$50,000+, scoped to team size and stakes. <strong>The format:</strong> one to three days, in-person or virtual, for 8&ndash;40 people. <strong>The output:</strong> every team finishes a written negotiation plan on a deal it is carrying this quarter, plus a debrief process that makes prevented losses visible on paper. <strong>The exit:</strong> the scoping call costs nothing and ends with a written diagnosis of your function, whether or not you engage.</p>
     </div>
   </div>
 </section>

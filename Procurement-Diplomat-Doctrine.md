@@ -9,6 +9,46 @@ This is the single source of truth for how Procurement Diplomat talks, looks, se
 
 # PART I — THE DOCTRINE
 
+## Who is Ruth Shlossman?
+About Ruth Shlossman, CEO, Castle Negotiations Consulting Group
+Ruth Shlossman is the founder and CEO of Castle Negotiations Consulting Group, Inc. and has spent more than 25 years helping professionals create stronger agreements, navigate difficult conversations, and perform more effectively under pressure. Her clients often refer to her as the Ted Lasso of negotiating. She is hilarious, original, warm, and often a norm-disruptor.
+A Harvard-trained M.Ed., Ruth has worked with more than 10,000 professionals, ranging from new hires to senior executives. Her clients and audiences have included BAE Systems, Accenture, AlixPartners, KPS Capital Partners, Chart Industries, and executive leaders through the Institute for Management Studies.
+Over the course of her career, Ruth has helped organizations create, protect, and capture more than $1 billion in value through stronger agreements, more effective negotiations, better strategic decisions, and improved execution.
+Ruth is widely recognized for identifying emerging trends and challenges that are reshaping the future of negotiation, leadership, and agreement-making. Known for bringing new ideas into practical business conversations long before they become mainstream, her work sits at the intersection of negotiation, leadership, emotional intelligence, decision making, human behavior, and organizational performance.
+While many experts focus primarily on tactics and techniques, Ruth has spent much of her career examining why smart, capable people struggle to execute effectively under real pressure. Her work explores the factors that shape agreements before, during, and after the conversation itself, including assumptions, competing interests, emotional triggers, organizational dynamics, and the quality of the decisions being made.
+While these disciplines are often treated separately, Ruth helps organizations understand how they work together to drive performance. Better agreements lead to stronger execution. Stronger execution leads to fewer costly misunderstandings, less conflict, improved stakeholder alignment, and better business results. Over time, these improvements can dramatically reduce value leakage, strengthen profitability, and contribute directly to the bottom line.
+This perspective has led Ruth to develop a portfolio of innovative programs including Negotiation Risk Reset™, Negotiation Fluency Accelerator™, Negotiation Fluency: How to Set Up Better Agreements From the Start™, No Regrets Agreements™, Agreement Lab™, High Velocity Negotiation Lab™, Managing Hardball Negotiators™, The Win-Win Way for Women™, and her growing library of on-demand negotiation and agreement-making programs.
+In recent years, Ruth's work has expanded beyond negotiation to include leadership, agreement making, values-based decision making, and the human factors that influence how individuals and organizations navigate competing priorities. Her research, writing, and teaching increasingly explore how principles, relationships, accountability, and long-term thinking shape the agreements we make and the outcomes we create.
+Whether working with executives, procurement leaders, entrepreneurs, managers, private equity portfolio companies, or emerging professionals, Ruth's mission remains the same: helping people make better decisions, create stronger agreements, and achieve successful outcomes without sacrificing what matters most.
+She believes that the quality of our careers, organizations, relationships, and lives is often determined by the quality of the agreements we create.
+
+Today, her work explores the intersection of negotiation, agreement-making, leadership, emotional intelligence, decision-making, performance under pressure, and moral development.
+
+Particularly interested in what happens when people face competing values:
+What happens when doing the right thing costs money?
+What happens when loyalty conflicts with performance?
+What happens when fairness conflicts with efficiency?
+What happens when shareholder expectations collide with personal values?
+
+These are not simply negotiation questions.
+They are human questions.
+They are leadership questions.
+They are agreement questions.
+
+And for over 25 years, she's helped people find solutions to:
+Why do smart people make bad agreements?
+Why do leaders know what to do, but fail to do it?
+Why do good people abandon their values under pressure?
+Why do talented teams repeat the same mistakes?
+Why do agreements that look good on paper fall apart in real life?
+Why do some people protect relationships at all costs while others focus on fairness, principles, and results?
+Why do intelligent, well-intentioned people often disagree about what the "right" outcome looks like?
+
+Through executive advisory work, workshops, facilitation, coaching, Agreement Labs, and negotiation development programs, Ruth help professionals think more clearly, communicate more effectively, navigate difficult conversations, manage conflict, and create agreements that hold up under pressure and over time.
+Because the quality of our leadership, relationships, organizations, and lives is ultimately determined by the quality of the agreements we create. And perhaps the most important agreements are the ones we make with ourselves.
+
+
+
 ## Why Procurement Exists
 
 Procurement was never meant to be a purchasing department. It exists to protect the long-term interests of the enterprise against short-term thinking — its own, its suppliers', and its stakeholders'. Every function that forgets this becomes a cost center. Every function that remembers it becomes indispensable.
@@ -16,6 +56,26 @@ Procurement was never meant to be a purchasing department. It exists to protect 
 ## The Procurement Crisis Nobody Talks About
 
 Procurement professionals are trained in process — RFPs, scorecards, contract clauses — and almost never trained in the two things that actually determine outcomes: human behavior and organizational politics. The result is a profession full of technically competent people who get overridden, bypassed, and blamed, because nobody taught them to see the whole board.
+Most people already know more than enough.
+They know they should prepare better.
+They know they should ask more questions.
+They know they should address assumptions.
+They know they should have difficult conversations sooner.
+They know they should push back when something does not feel right.
+
+Yet agreements continue to frustrate us. 
+Expectations become misaligned.
+Conversations get avoided.
+Relationships become strained.
+Teams struggle to hold each other accountable.
+Projects drift off course.
+Organizations repeat the same costly patterns.
+So perhaps the most important question is not:
+"What should we do?"
+
+Perhaps the better question is:
+If we already know what to do, why aren't we doing it?
+That question sits at the center of my work.
 
 ## The Great Lie
 
@@ -437,9 +497,6 @@ A serif or humanist serif for headlines (diplomatic/intelligence-report feel), a
 
 ## Materials & Print
 Embossed paper stock for physical Passports and premium notebooks; letterpress or foil treatments for awards and challenge coins; matte finishes throughout (no glossy corporate brochure stock).
-
-## Presentation / Slide Templates
-Slide backgrounds in charcoal or ivory only. Diagrams should look like intelligence briefing exhibits (annotated maps, stakeholder webs, redacted-document motifs used sparingly for visual interest) rather than standard corporate bar charts.
 
 ## Website Direction
 Homepage structure should follow the sales narrative arc (Part IV): enemy named before product shown. Visual tone: dossier/briefing-room, not SaaS landing page. Avoid stock photography of handshakes and boardrooms; prefer map/terrain imagery, chess geometry, and editorial-style photography of real practitioners.

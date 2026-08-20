@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Shadow Shark Field Kit — Castle Negotiations</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:    '#001f3f',
+          navyDark:'#00162d',
+          navyMid: '#002a54',
+          slate:   '#708090',
+          gold:    '#D4AF37',
+          goldLight:'#e8cc65',
+          goldDim: '#a88b25',
+          cream:   '#f5f0e8',
+          offwhite:'#eaeaea',
+        },
+        fontFamily: {
+          bebas:    ['Bebas Neue', 'sans-serif'],
+          dm:       ['DM Sans', 'sans-serif'],
+          cormorant:['Cormorant Garamond', 'serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  body { background-color: #001f3f; color: #eaeaea; }
+
+  /* ── gold shimmer on h-tags ── */
+  .gold-text {
+    background: linear-gradient(90deg, #D4AF37 0%, #f5e27a 50%, #D4AF37 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* shimmer removed — doctrine aesthetic is calm, not loud */
+  }
+
+  /* ── timer digits ── */
+  .timer-digit {
+    background: linear-gradient(180deg, #002a54 0%, #001428 100%);
+    border: 1px solid #D4AF37;
+    border-radius: 6px;
+    min-width: 62px;
+    text-align: center;
+    padding: 8px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #D4AF37;
+    letter-spacing: 2px;
+    line-height: 1;
+    box-shadow: 0 0 20px rgba(212,175,55,0.15);
+  }
+  .timer-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #708090;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  /* ── gold divider ── */
+  .gold-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    margin: 0 auto;
+  }
+
+  /* ── logo placeholder tiles ── */
+  .logo-tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 24px;
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s;
+  }
+  .logo-tile:hover { filter: grayscale(0.4) opacity(0.85); }
+  .logo-tile span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: #eaeaea;
+  }
+
+  /* ── stack item ── */
+  .stack-item {
+    border-left: 3px solid #D4AF37;
+    background: rgba(255,255,255,0.03);
+    border-radius: 0 8px 8px 0;
+    transition: background 0.2s;
+  }
+  .stack-item:hover { background: rgba(212,175,55,0.05); }
+
+  /* ── CTA pulse ── */
+  @keyframes cta-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
+    50%       { box-shadow: 0 0 0 18px rgba(212,175,55,0); }
+  }
+  .cta-pulse { animation: cta-pulse 2.2s ease-in-out infinite; }
+
+  /* ── guarantee seal ── */
+  .guarantee-seal {
+    border: 2px solid #D4AF37;
+    border-radius: 50%;
+    width: 110px; height: 110px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: radial-gradient(circle, #002a54, #001428);
+    box-shadow: 0 0 30px rgba(212,175,55,0.2);
+    flex-shrink: 0;
+  }
+
+  /* ── urgency banner scroll ── */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 22s linear infinite; white-space: nowrap; display: inline-block; }
+
+  /* ── section fade-in ── */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── proof highlight ── */
+  .proof-stat {
+    border: 1px solid rgba(212,175,55,0.3);
+    background: rgba(212,175,55,0.04);
+    border-radius: 8px;
+  }
+
+  /* ── strikethrough price ── */
+  .price-strike { text-decoration: line-through; color: #708090; }
+
+  /* ── shark graphic ── */
+  .shark-fin {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 180px; height: 180px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  /* ── hard-coded color overrides (CDN JIT scan misses custom tokens) ── */
+  body                        { background-color: #001f3f; color: #eaeaea; }
+  .bg-navy                    { background-color: #001f3f !important; }
+  .bg-navyDark                { background-color: #00162d !important; }
+  .bg-navyMid                 { background-color: #002a54 !important; }
+  .bg-gold                    { background-color: #D4AF37 !important; }
+  .bg-goldLight               { background-color: #e8cc65; }
+  .text-navy                  { color: #001f3f !important; }
+  .text-navyDark              { color: #00162d !important; }
+  .text-navyMid               { color: #002a54 !important; }
+  .text-gold                  { color: #D4AF37 !important; }
+  .text-slate                 { color: #708090 !important; }
+  .text-cream                 { color: #f5f0e8 !important; }
+  .text-offwhite              { color: #eaeaea !important; }
+  .border-gold                { border-color: #D4AF37 !important; }
+  .border-navyDark            { border-color: #00162d !important; }
+
+  /* Tailwind opacity modifiers on bg-gold (the !important override above kills bg-opacity) */
+  .bg-gold.bg-opacity-10  { background-color: rgba(212,175,55,0.10) !important; }
+  .bg-gold.bg-opacity-20  { background-color: rgba(212,175,55,0.20) !important; }
+
+  /* Tailwind opacity modifiers on border-gold */
+  .border-gold.border-opacity-10  { border-color: rgba(212,175,55,0.10) !important; }
+  .border-gold.border-opacity-15  { border-color: rgba(212,175,55,0.15) !important; }
+  .border-gold.border-opacity-20  { border-color: rgba(212,175,55,0.20) !important; }
+  .border-gold.border-opacity-30  { border-color: rgba(212,175,55,0.30) !important; }
+
+  /* CTA buttons — self-contained, zero reliance on JIT */
+  .btn-cta {
+    display: inline-block;
+    width: 100%;
+    background-color: #D4AF37;
+    color: #00162d !important;
+    -webkit-text-fill-color: #00162d !important; /* override gold-text if inherited */
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
+    font-size: 1.75rem;
+    border-radius: 0.75rem;
+    padding: 1.4rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-cta:hover { background-color: #e8cc65; }
+  @media (min-width: 768px) { .btn-cta { font-size: 2rem; } }
+
+  /* price-strike utility */
+  .price-strike { text-decoration: line-through; color: #708090; }
+
+  /* ── image placeholders ── */
+  .img-placeholder {
+    width: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  /* When no src — show the dashed box */
+  .img-placeholder img[src=""] ,
+  .img-placeholder img:not([src]) {
+    display: none;
+  }
+  .img-placeholder:has(img[src=""]) .img-inner,
+  .img-placeholder:not(:has(img[src]:not([src=""]))) .img-inner {
+    display: flex;
+  }
+  /* fallback for browsers without :has — always show inner, img hides if empty */
+  .img-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background: linear-gradient(135deg, #002a54 0%, #001428 100%);
+    border: 2px dashed rgba(212,175,55,0.35);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(212,175,55,0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  /* When a real src is provided, hide the inner overlay and show the image */
+  .img-placeholder img[src]:not([src=""]) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .img-placeholder img[src]:not([src=""]) + .img-inner { display: none; }
+  .img-inner svg { opacity: 0.4; }
+  .img-inner .img-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: rgba(212,175,55,0.5);
+  }
+  .img-inner .img-dims {
+    font-size: 0.65rem;
+    color: rgba(112,128,144,0.7);
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 0 12px;
+  }
+  /* ── attack → correction reframe demo ── */
+  .reframe-demo { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .reframe-block { border-radius: 10px; padding: 16px 20px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; line-height: 1.5; }
+  .reframe-attack { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #708090; }
+  .reframe-fix { background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.35); color: #f5f0e8; box-shadow: 0 0 24px rgba(212,175,55,0.10); opacity: 0; transform: translateY(12px); }
+  .fade-section.visible .reframe-fix { animation: reframeReveal 0.75s ease 0.45s forwards; }
+  @keyframes reframeReveal { to { opacity: 1; transform: translateY(0); } }
+  .reframe-arrow { text-align: center; color: #D4AF37; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; margin: 10px 0 8px; }
+  .reframe-tag { display: block; font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: #708090; }
+  .reframe-tag-gold { color: #D4AF37; }
+</style>
+</head>
+
+<body class="font-dm antialiased">
+
+<!-- ══════════════════════════════════════════════════════
+     BRIEFING BAR  (static — no marquee, no urgency)
+════════════════════════════════════════════════════════ -->
+<div class="bg-navyDark border-b border-gold border-opacity-20 py-2.5">
+  <p class="text-center font-dm text-slate text-[0.65rem] md:text-xs tracking-[0.25em] uppercase">
+    Castle Negotiations &nbsp;·&nbsp; Private Briefing &nbsp;·&nbsp; The Shadow Shark Field Kit
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     THIS-PAGE-ONLY PRICE BADGE  ·  private access
+════════════════════════════════════════════════════════ -->
+<div class="bg-navyDark border-b border-gold border-opacity-20 py-8">
+  <div class="max-w-2xl mx-auto px-4 text-center">
+    <p class="font-dm text-gold text-xs tracking-[0.25em] uppercase mb-4">Inside Access Only — Not To Be Shared</p>
+    <div class="inline-flex items-center gap-4 border border-gold border-opacity-30 rounded-full px-7 py-3 proof-stat">
+      <span class="font-dm text-slate text-xs tracking-widest uppercase">Your Private Price</span>
+      <span class="font-bebas text-gold text-3xl leading-none">$97</span>
+      <span class="price-strike font-dm text-slate text-sm">$495</span>
+    </div>
+    <p class="font-cormorant italic text-slate text-sm mt-5 max-w-xl mx-auto leading-relaxed">
+      You're seeing this because you were handed a private link. This $97 rate isn't listed
+      anywhere else, and it isn't meant to be forwarded. Once you leave this page, the kit is
+      <span class="price-strike text-slate">$495</span> at regular checkout — the same price everyone else pays.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     HEADLINE & SUBHEADLINE
+════════════════════════════════════════════════════════ -->
+<section class="max-w-4xl mx-auto px-4 pt-16 pb-8 text-center fade-section">
+  <p class="font-dm text-gold text-xs tracking-[0.2em] uppercase mb-6">
+    One Addition to Consider Before You Go
+  </p>
+
+  <h1 class="font-bebas leading-none tracking-wide mb-6">
+    <span class="block text-5xl md:text-7xl text-offwhite">You Were Trained to Run the Process.</span>
+    <span class="block text-5xl md:text-7xl gold-text">Nobody Trained You</span>
+    <span class="block text-5xl md:text-7xl text-offwhite">for the People Who Weaponise It.</span>
+  </h1>
+
+  <div class="gold-divider w-48 my-8"></div>
+
+  <p class="font-cormorant italic text-xl md:text-2xl text-cream max-w-3xl mx-auto leading-relaxed">
+    You didn't spend fifteen years mastering procurement to be bypassed, blamed,
+    and reduced to a rubber stamp. That isn't a law of the profession — it's
+    <em>Commercial Myopia</em> at work in the people around you. What you were
+    never handed is the language to correct it, in the room, without burning
+    a single relationship.
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     THE SHADOW SHARK REVEAL
+════════════════════════════════════════════════════════ -->
+<section class="max-w-4xl mx-auto px-4 py-12 fade-section">
+  <div class="relative bg-navyMid rounded-2xl p-8 md:p-12 border border-gold border-opacity-20 overflow-hidden">
+
+    <!-- decorative fin -->
+    <svg class="shark-fin" viewBox="0 0 200 200" fill="none">
+      <path d="M180 190 L20 190 L100 20 Z" fill="#D4AF37"/>
+    </svg>
+
+    <span class="inline-block font-bebas tracking-widest text-gold text-sm bg-gold bg-opacity-10 border border-gold border-opacity-30 rounded px-3 py-1 mb-6">
+      The Tactic Nobody Named for You
+    </span>
+
+    <h2 class="font-bebas text-4xl md:text-5xl gold-text mb-6 leading-tight">
+      Meet the Shadow Shark:<br/>
+      <span class="text-offwhite">The Move You Feel But Can't Name</span>
+    </h2>
+
+    <p class="font-dm text-offwhite text-base md:text-lg leading-relaxed mb-5">
+      A <strong class="text-gold">Shadow Shark</strong> is a counterpart — a C-suite exec, a maverick business unit
+      head, an aggressive supplier — who manipulates through false urgency, status, ego, or politics.
+      Instead of defending their bad deal or bad behaviour, they <em>pivot to attack your character,
+      your process, or your mindset.</em>
+    </p>
+
+    <div class="bg-navyDark rounded-xl p-6 border-l-4 border-gold my-8">
+      <p class="font-dm text-slate text-sm uppercase tracking-wider mb-3">You recognise this language immediately:</p>
+      <ul class="space-y-3">
+        <li class="font-cormorant italic text-xl text-cream">"You need to take more risks — procurement always slows everything down."</li>
+        <li class="font-cormorant italic text-xl text-cream">"Why are you always so negative? Can't you be a team player?"</li>
+        <li class="font-cormorant italic text-xl text-cream">"That's just your opinion. The VP already signed off on this."</li>
+        <li class="font-cormorant italic text-xl text-cream">"We have other pressing budget requirements. You need to see the big picture."</li>
+      </ul>
+
+ <!-- attack → correction demo -->
+ <div class="reframe-demo mt-8">
+ <p class="font-dm text-slate text-xs uppercase tracking-wider mb-4 text-center">Watch one of them get corrected</p>
+ <div class="reframe-block reframe-attack">
+ <span class="reframe-tag">The Shadow Shark says</span>
+ "Why are you always so negative? Can't you just be a team player?"
+ </div>
+ <div class="reframe-arrow">↓&nbsp;&nbsp;A KNIGHT'S MOVE&nbsp;&nbsp;↓</div>
+ <div class="reframe-block reframe-fix">
+ <span class="reframe-tag reframe-tag-gold">Your scripted correction</span>
+ "I'm the most invested person in this room in the deal actually working — which is exactly why I'm pressure-testing it now, while a fix still costs us nothing."
+ </div>
+ </div>
+    </div>
+
+    <p class="font-dm text-offwhite text-base md:text-lg leading-relaxed mb-5">
+      Notice what just happened: <strong class="text-gold">they made YOU the issue</strong> to deflect from the 
+      fact that they bypassed process, signed a terrible contract, or are demanding 
+      a 20% price hike with zero leverage to back it up.
+    </p>
+
+    <!-- IMAGE 2: Tense negotiation / solo professional holding their ground · 900×420px -->
+    <div class="img-placeholder my-8" style="height:240px;">
+      <img src="https://www.castlenegotiations.com/wp-content/uploads/2026/06/Gemini_Generated_Image_8chr8o8chr8o8chr-clean.png" alt="Shadow Shark negotiation moment" />
+      <div class="img-inner">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div class="img-label">Image 2 — Shadow Shark Moment</div>
+        <div class="img-dims">Tense negotiation or solo professional holding their ground · 900 × 420px</div>
+      </div>
+    </div>
+
+    <p class="font-dm text-offwhite text-base md:text-lg leading-relaxed">
+      Most procurement directors — even the most experienced — freeze, 
+      back-pedal, or over-apologise in this moment. They've been trained 
+      to be agreeable, thorough, process-correct. The Shadow Shark knows this 
+      and exploits it <em>every single time.</em>
+    </p>
+
+    <div class="gold-divider w-full mt-10"></div>
+
+    <p class="font-dm text-cream text-lg font-semibold mt-8 text-center">
+      The <span class="text-gold">Shadow Shark Field Kit</span> gives you the scripts, the Driver Map,
+      and the Knight's Moves to correct the premise, hold your ground, and protect the deal
+      long after the politics have moved on — without burning a single relationship.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     TRUSTED-BY PROOF BANNER
+════════════════════════════════════════════════════════ -->
+<section class="max-w-5xl mx-auto px-4 py-12 fade-section">
+  <p class="text-center font-dm text-slate text-xs tracking-[0.2em] uppercase mb-8">
+    The Negotiate Smart™ System has been deployed inside elite teams at
+  </p>
+  <div class="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
+    <div class="logo-tile"><span>NASA</span></div>
+    <div class="logo-tile"><span>TaylorMade</span></div>
+    <div class="logo-tile"><span>Howden</span></div>
+    <div class="logo-tile"><span>ArcelorMittal</span></div>
+    <div class="logo-tile"><span>Tyco</span></div>
+    <div class="logo-tile"><span>Verizon</span></div>
+    <div class="logo-tile"><span>Chevron</span></div>
+    <div class="logo-tile"><span>Campbell's</span></div>
+    <div class="logo-tile col-span-1 md:col-span-1"><span>Gillette</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     ROI PROOF STATS
+════════════════════════════════════════════════════════ -->
+<section class="max-w-5xl mx-auto px-4 py-8 fade-section">
+  <p class="text-center font-dm text-gold text-xs tracking-[0.2em] uppercase mb-8">
+    Prevented Regret — In Numbers
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <div class="proof-stat p-6 rounded-xl text-center">
+      <div class="font-bebas text-5xl gold-text">$3.7M</div>
+      <p class="font-dm text-cream text-sm mt-2 leading-snug">In piece-price savings — automotive lead, 7 rounds of negotiation, landed 1.5% <em>better</em> than his Best-Achievable-Market target</p>
+    </div>
+
+    <div class="proof-stat p-6 rounded-xl text-center">
+      <div class="font-bebas text-5xl gold-text">€800K+</div>
+      <p class="font-dm text-cream text-sm mt-2 leading-snug">Saved when sole-source supplier tried to <em>double</em> the price or close the production site — VP Procurement, DexKo Global</p>
+    </div>
+
+    <div class="proof-stat p-6 rounded-xl text-center">
+      <div class="font-bebas text-5xl gold-text">3×</div>
+      <p class="font-dm text-cream text-sm mt-2 leading-snug">Deal size tripled — B2B Sales Manager turned a $250K sale into a $750K deal using the same Negotiate Smart™ framework</p>
+    </div>
+
+  </div>
+
+  <div class="mt-6 bg-navyDark border border-gold border-opacity-20 rounded-xl p-6">
+    <p class="font-cormorant italic text-xl text-cream text-center leading-relaxed">
+      "Graduates tell us this training was instrumental in turning around some of the most 
+      difficult stakeholders and in getting much better terms from sole-source vendors."
+    </p>
+    <p class="text-center font-dm text-slate text-xs mt-3 tracking-wide uppercase">
+      — Advanced Procurement Negotiations Training Participant
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     THE REASON WHY (80% DISCOUNT)
+════════════════════════════════════════════════════════ -->
+<section class="max-w-4xl mx-auto px-4 py-10 fade-section">
+  <div class="bg-navyMid border border-gold border-opacity-30 rounded-2xl p-8 md:p-10">
+    <div class="mb-6">
+      <h3 class="font-bebas text-3xl text-gold tracking-wide mb-1">Why This Kit Exists — and Why It's Priced to Travel</h3>
+      <p class="font-dm text-slate text-sm uppercase tracking-wider">From Ruth Shlossman — The Cartographer, Castle Negotiations</p>
+    </div>
+
+    <!-- IMAGE 3: Ruth Shlossman portrait · professional headshot · 400×400px -->
+    <div class="flex flex-col md:flex-row gap-6 mb-6">
+      <div class="img-placeholder flex-shrink-0" style="height:200px; width:100%; max-width:200px; min-width:160px; margin: 0 auto;">
+        <img src="https://www.castlenegotiations.com/wp-content/uploads/2026/06/d87a8ab1-a1ef-44dc-96f8-3d8badc90d29.png" alt="Ruth Shlossman" />
+        <div class="img-inner">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div class="img-label">Image 3 — Ruth's Photo</div>
+          <div class="img-dims">400 × 400px</div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <p class="font-dm text-offwhite text-base leading-relaxed mb-4">
+          The global procurement landscape is, frankly, <strong class="text-gold">volatile and unpredictable right now.</strong> 
+          Price-gouging is back. Supply chains are fragile. AI tools are being 
+          pushed on you by executives who've been told software can replace 
+          your judgment. And internally, you're fighting harder than ever to be 
+          heard, respected, and involved <em>before</em> the deal is already done.
+        </p>
+        <p class="font-dm text-offwhite text-base leading-relaxed mb-4">
+          Ruth built this kit because she has spent decades watching capable
+          procurement professionals lose ground — not for lack of technical skill,
+          but because nobody ever handed them the <strong class="text-gold">language</strong>
+          to hold the room, map what each stakeholder is really protecting, and protect the deal.
+        </p>
+        <p class="font-dm text-cream text-base leading-relaxed font-medium">
+          Pricing it at $97 is deliberate. It puts the doctrine in as many hands as
+          possible — before the next wave of supplier pressure and internal politics
+          turns into regret nobody logged.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="max-w-4xl mx-auto px-4 py-10 fade-section">
+
+  <h2 class="font-bebas text-4xl md:text-5xl text-center text-offwhite tracking-wide mb-3">
+    Everything Inside the Kit
+  </h2>
+  <p class="font-cormorant italic text-xl text-center text-slate mb-10">
+    Open the brief. Read the script. Use it in this afternoon's meeting.
+  </p>
+
+  <div class="space-y-4">
+
+    <!-- Item 1 -->
+    <div class="stack-item p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-bebas text-gold text-sm tracking-widest bg-gold bg-opacity-10 border border-gold border-opacity-20 rounded px-2 py-0.5">Component 01</span>
+        </div>
+        <h3 class="font-bebas text-2xl text-offwhite tracking-wide mb-1">The Shadow Shark Field Guide™</h3>
+        <p class="font-dm text-slate text-sm leading-relaxed">
+          A step-by-step response guide for when someone in the C-suite,
+          a business unit, or a supplier tries to make <em>you</em> the issue.
+          Includes word-for-word scripts to correct their premise, question their
+          assertions, and reframe the conversation — without raising your voice or
+          burning the relationship.
+        </p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <div class="font-dm text-slate text-xs price-strike"></div>
+        <div class="font-bebas text-gold text-2xl">$495 value</div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="stack-item p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-bebas text-gold text-sm tracking-widest bg-gold bg-opacity-10 border border-gold border-opacity-20 rounded px-2 py-0.5">Component 02</span>
+        </div>
+        <h3 class="font-bebas text-2xl text-offwhite tracking-wide mb-1">"Yes, If…" Script Library</h3>
+        <p class="font-dm text-slate text-sm leading-relaxed">
+          30+ done-for-you scripts using the "Yes, If" framework — the technique 
+          that helped one participant prevent $20K in concessions while staying 
+          cooperative, and secure a multi-million-dollar contract award. 
+          Covers supplier hardball, C-suite budget cuts, stakeholder bypass, 
+          and last-minute scope changes.
+        </p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <div class="font-bebas text-gold text-2xl">$497 value</div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="stack-item p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-bebas text-gold text-sm tracking-widest bg-gold bg-opacity-10 border border-gold border-opacity-20 rounded px-2 py-0.5">Component 03</span>
+        </div>
+        <h3 class="font-bebas text-2xl text-offwhite tracking-wide mb-1">The Composure Protocol (Non-Verbal Control)</h3>
+        <p class="font-dm text-slate text-sm leading-relaxed">
+          The physiological control protocol Ruth teaches senior buyers to stop
+          broadcasting their triggers. Covers jaw tension, breathing resets,
+          silence as leverage, lean-forward connection, and the exact
+          listening filters that let you stay the calmest person in a room
+          designed to rattle you.
+        </p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <div class="font-bebas text-gold text-2xl">$297 value</div>
+      </div>
+    </div>
+
+    <!-- Item 4 — Bonus -->
+    <div class="stack-item p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative overflow-hidden">
+      <div class="absolute top-3 right-3 font-bebas text-xs bg-gold px-2 py-0.5 rounded tracking-widest" style="color:#00162d;">BONUS</div>
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-bebas text-gold text-sm tracking-widest bg-gold bg-opacity-10 border border-gold border-opacity-20 rounded px-2 py-0.5">Component 04</span>
+        </div>
+        <h3 class="font-bebas text-2xl text-offwhite tracking-wide mb-1">Trigger Identification & Circle-of-Influence Matrix</h3>
+        <p class="font-dm text-slate text-sm leading-relaxed">
+          The one-page triage tool that tells you — before the meeting starts — 
+          whether you're dealing with a genuine misalignment, a Shadow Shark, or a 
+          genuine narcissist (and when to disengage entirely). Includes the 
+          "Circle of Influence" decision tree so you spend zero emotional 
+          energy on people who cannot be moved.
+        </p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <div class="font-bebas text-gold text-2xl">$206 value</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- IMAGE 4: Kit product mockup · PDF flat-lay or 3D document fan · 900×400px -->
+  <div class="img-placeholder mt-8" style="height:220px;">
+    <img src="https://www.castlenegotiations.com/wp-content/uploads/2026/06/Gemini_Generated_Image_37zj6w37zj6w37zj-1-e1780657627257.png" alt="Shadow Shark Kit product mockup" />
+    <div class="img-inner">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <div class="img-label">Image 4 — Kit Product Mockup</div>
+      <div class="img-dims">PDF flat-lay or 3D document fan on dark surface · 900 × 400px</div>
+    </div>
+  </div>
+  <!-- Total vs Today -->
+  <div class="mt-8 bg-navyDark rounded-2xl border border-gold border-opacity-30 p-8 text-center">
+    <p class="font-dm text-slate text-sm uppercase tracking-widest mb-2">Total Real-World Value</p>
+    <div class="font-bebas text-5xl md:text-6xl price-strike mb-1">$1,495</div>
+    <p class="font-dm text-slate text-xs mb-6">Regular Price After Today: <span class="price-strike">$495</span></p>
+    <div class="gold-divider w-32 mb-6 mx-auto"></div>
+    <p class="font-dm text-slate text-sm uppercase tracking-widest mb-2">Your Price on This Page</p>
+    <div class="font-bebas text-7xl md:text-8xl gold-text leading-none mb-2">$97</div>
+    <p class="font-cormorant italic text-slate text-base">One payment. Instant download. 100% guarantee.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     PRIMARY CTA
+════════════════════════════════════════════════════════ -->
+<section class="max-w-2xl mx-auto px-4 py-6 text-center fade-section">
+  <a href="https://cncg.kit.com/products/the-shadow-shark-defense-internal-power-kit?step=checkout" class="btn-cta">
+    Add the Shadow Shark Field Kit — $97
+  </a>
+  <p class="font-dm text-slate text-xs mt-4">
+    Secure checkout &nbsp;·&nbsp; Instant PDF delivery &nbsp;·&nbsp; 100% satisfaction guarantee
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     TESTIMONIAL PULL QUOTES
+════════════════════════════════════════════════════════ -->
+<section class="max-w-5xl mx-auto px-4 py-12 fade-section">
+  <h3 class="font-bebas text-3xl text-center text-offwhite tracking-wide mb-8">
+    What Procurement Leaders Say After Working With Ruth
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "Her training is better than dozens of other courses I've attended. The ROI was rapid — 
+        my team's approach changed immediately, and the results followed."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Head of Supply Chain, Dunes Point Capital</p>
+    </div>
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "Hundreds of employees trained — both sales and procurement improved outcomes 
+        by a large margin. ROI is extremely high."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Founder & CEO, ESA (ex-Impossible Foods)</p>
+    </div>
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "After the training, we did more preparation before negotiations and now do more 
+        analysis. We've improved our negotiation efficiency and achieved more cost savings."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Workshop Participant — KPS Shanghai</p>
+    </div>
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "I just returned from Japan following a very successful negotiation with a 
+        historically very difficult vendor — by applying my newly learned skills."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Procurement Workshop Graduate</p>
+    </div>
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "I felt that Ruth's seminar was very valuable. She helped me think of ways 
+        to take a firmer stance and still preserve relationships."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Logistics & Trade Compliance Manager, Lufkin</p>
+    </div>
+
+    <div class="bg-navyMid border border-gold border-opacity-15 rounded-xl p-6">
+      <p class="font-cormorant italic text-lg text-cream leading-relaxed mb-4">
+        "Even though I have been in business over 40 years, I turned to Ruth for a 
+        particularly troubling negotiation. She understood the central issues immediately. 
+        I wish I had turned to her earlier."
+      </p>
+      <p class="font-dm text-slate text-xs uppercase tracking-wider">Motivational Speaker, 40+ Years in Business</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     RISK REVERSAL
+════════════════════════════════════════════════════════ -->
+<section class="max-w-3xl mx-auto px-4 py-10 fade-section">
+  <div class="bg-navyMid border border-gold border-opacity-30 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+
+    <div class="guarantee-seal flex-shrink-0">
+      <div class="font-bebas text-gold text-xs tracking-widest leading-tight text-center">100%</div>
+      <div class="font-bebas text-gold text-xs tracking-widest leading-tight text-center">Money</div>
+      <div class="font-bebas text-gold text-xs tracking-widest leading-tight text-center">Back</div>
+    </div>
+
+    <div class="flex-1">
+      <h3 class="font-bebas text-3xl text-offwhite tracking-wide mb-3">
+        Unconditional 100% Satisfaction Guarantee
+      </h3>
+      <p class="font-dm text-slate text-sm leading-relaxed mb-5">
+        Download the entire kit. Read the Shadow Shark Field Guide. Use the "Yes, If"
+        scripts in a real negotiation. If you don't feel measurably more prepared,
+        more in control, and better equipped to handle whatever the C-suite or your
+        suppliers put in front of you — email us and your $97 comes straight back.
+        No questions. No hoops. No "14-day window" small print.
+        <strong class="text-cream"> You walk in more prepared, or you don't pay.</strong>
+      </p>
+      <!-- IMAGE 5: Ruth candid workshop photo or handwritten signature · 500×220px -->
+      <div class="img-placeholder" style="height:140px;">
+        <img src="https://www.castlenegotiations.com/wp-content/uploads/2023/11/background-1.jpg" alt="Ruth Shlossman workshop" />
+        <div class="img-inner">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div class="img-label">Image 5 — Ruth in Workshop / Signature</div>
+          <div class="img-dims">Candid training photo or handwritten signature · 500 × 220px</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FINAL CTA + RECAP
+════════════════════════════════════════════════════════ -->
+<section class="max-w-4xl mx-auto px-4 py-10 fade-section" id="checkout">
+
+  <div class="bg-navyDark border border-gold border-opacity-30 rounded-2xl p-8 md:p-12 text-center">
+
+    <h2 class="font-bebas text-4xl md:text-5xl gold-text tracking-wide mb-4">
+      Walk In as the Calmest Person in the Room
+    </h2>
+
+    <p class="font-cormorant italic text-xl text-cream max-w-2xl mx-auto leading-relaxed mb-8">
+      You've already put in the years. You know the process. You know the numbers.
+      What you need now is the <em>language</em> to hold the room, correct the
+      Shadow Sharks, and protect deals that hold — long after the politics
+      have moved on.
+    </p>
+
+    <!-- Mini stack recap -->
+    <div class="bg-navyMid rounded-xl p-6 mb-8 text-left max-w-lg mx-auto">
+      <p class="font-dm text-slate text-xs uppercase tracking-widest mb-4">What you're getting:</p>
+      <ul class="space-y-2">
+        <li class="flex items-center gap-3 font-dm text-cream text-sm">
+          <span class="text-gold font-bold">✓</span> Shadow Shark Field Guide™ <span class="text-slate ml-auto text-xs">($495 value)</span>
+        </li>
+        <li class="flex items-center gap-3 font-dm text-cream text-sm">
+          <span class="text-gold font-bold">✓</span> "Yes, If…" Script Library <span class="text-slate ml-auto text-xs">($497 value)</span>
+        </li>
+        <li class="flex items-center gap-3 font-dm text-cream text-sm">
+          <span class="text-gold font-bold">✓</span> Non-Verbal Poker Face Guide <span class="text-slate ml-auto text-xs">($297 value)</span>
+        </li>
+        <li class="flex items-center gap-3 font-dm text-cream text-sm">
+          <span class="text-gold font-bold">✓</span> Trigger Matrix + Circle-of-Influence Tool <span class="text-slate ml-auto text-xs">($206 value)</span>
+        </li>
+        <li class="flex items-center gap-3 font-dm text-cream text-sm font-semibold border-t border-gold border-opacity-20 pt-3 mt-1">
+          <span class="text-gold font-bold">✓</span> 100% Money-Back Guarantee <span class="text-slate ml-auto text-xs">priceless</span>
+        </li>
+      </ul>
+      <div class="gold-divider w-full mt-4 mb-3"></div>
+      <div class="flex items-center justify-between">
+        <span class="font-dm text-slate text-sm price-strike">Total Value: $1,495</span>
+        <span class="font-bebas text-gold text-2xl">Your Price: $97</span>
+      </div>
+    </div>
+
+    <a href="https://cncg.kit.com/products/the-shadow-shark-defense-internal-power-kit?step=checkout" class="btn-cta" style="max-width:600px;">
+      Add the Shadow Shark Field Kit — $97
+    </a>
+
+    <p class="font-dm text-slate text-xs mt-2">
+      Immediate download &nbsp;·&nbsp; One-time payment &nbsp;·&nbsp; No recurring charges
+    </p>
+
+    <div class="mt-10 pt-8 border-t border-gold border-opacity-10">
+      <a href="#" class="font-dm text-slate text-xs hover:text-offwhite transition-colors underline underline-offset-2">
+        No thanks — I'll pass for now and pay full price later if I change my mind.
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="border-t border-gold border-opacity-10 py-8 mt-8">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <p class="font-bebas text-gold tracking-widest text-lg mb-2">Castle Negotiations</p>
+    <p class="font-cormorant italic text-slate text-sm">
+      Commercial Stewardship, applied to procurement — field-tested, psychology-aware, regret-preventing.
+    </p>
+    <p class="font-dm text-slate text-xs mt-4">
+      © Castle Negotiations. All rights reserved. &nbsp;|&nbsp; 
+      <a href="#" class="hover:text-offwhite transition-colors">Privacy Policy</a> &nbsp;|&nbsp; 
+      <a href="#" class="hover:text-offwhite transition-colors">Terms</a>
+    </p>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+// (Countdown removed — replaced with a static, private this-page-only price badge)
+
+// ─── Scroll-triggered fade-in ────────────────────────────
+(function() {
+  const sections = document.querySelectorAll('.fade-section');
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  sections.forEach(function(el) { observer.observe(el); });
+
+  // First section visible immediately
+  if (sections[0]) sections[0].classList.add('visible');
+})();
+</script>
+
+</body>
+</html>
