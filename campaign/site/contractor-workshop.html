@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Live Contractor Margin Workshop | Castle Negotiations</title>
+<meta name="description" content="A live workshop for contractors: how to hold your price, protect your margin, and stop giving away the job in the negotiation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&amp;family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CASTLE NEGOTIATIONS — LIVE CONTRACTOR WORKSHOP
+   Hero only. Layout ported 1:1 from the reference webinar page;
+   palette and type are Castle's Briefing Room system:
+   matte navy · aged ivory · muted gold. No orange, no Fraunces.
+   ============================================================ */
+
+:root{
+  --navy-0:#0B1422;
+  --navy-1:#0F1B2D;
+  --navy-2:#16263D;
+  --paper:#FFFFFF;
+  --ivory:#F2EBDC;
+  --ivory-2:#E9E0CC;
+  --ivory-3:#FBF7EE;
+  --ink:#1C222C;
+  --ink-soft:#4A5262;
+  --rule:rgba(28,34,44,0.14);
+
+  --gold:#C9A96A;
+  --gold-deep:#A8874B;
+  --steel:#7E93B8;
+
+  --serif:"Newsreader","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+
+  --pad:clamp(1rem,4vw,2rem);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg,video{max-width:100%;display:block;}
+a{color:inherit;}
+::selection{background:var(--gold);color:var(--navy-0);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+
+/* ---------- top status bar ---------- */
+.statusbar{
+  background:var(--navy-0);
+  color:var(--ivory);
+  padding:0.75rem var(--pad);
+  border-bottom:1px solid rgba(201,169,106,0.28);
+}
+.statusbar .inner{
+  max-width:80rem;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:0.55rem 1.1rem;
+  font-family:var(--sans);
+  font-size:clamp(0.68rem,1.7vw,0.86rem);
+  font-weight:700;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  line-height:1.3;
+  text-align:center;
+}
+.statusbar .live{
+  display:inline-flex;align-items:center;gap:0.42rem;
+  color:var(--gold);
+}
+.statusbar .dot{
+  width:0.5em;height:0.5em;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
+.statusbar .label{color:rgba(242,235,220,0.62);}
+.statusbar .value{color:var(--ivory);}
+.statusbar .divider{
+  color:rgba(242,235,220,0.28);
+  padding:0 0.2rem;
+}
+.statusbar .clock{
+  font-family:var(--mono);
+  font-weight:600;
+  color:var(--gold);
+  letter-spacing:0.06em;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:640px){
+  .statusbar .divider{display:none;}
+  .statusbar .inner{flex-direction:column;gap:0.35rem;}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  max-width:56rem;
+  margin:0 auto;
+  padding:clamp(2.2rem,6vw,4rem) var(--pad) clamp(2rem,5vw,3.4rem);
+  text-align:center;
+}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:clamp(0.7rem,1.9vw,0.86rem);
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  margin:0 0 0.9rem;
+}
+h1{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2.1rem,6.4vw,4.1rem);
+  line-height:1.06;
+  letter-spacing:-0.015em;
+  color:var(--navy-0);
+  margin:0 0 1.3rem;
+  text-wrap:balance;
+}
+h1 .accent{color:var(--gold-deep);}
+
+.dek{
+  font-family:var(--serif);
+  font-size:clamp(1.08rem,2.5vw,1.42rem);
+  line-height:1.5;
+  color:var(--ink);
+  max-width:44ch;
+  margin:0 auto 2rem;
+  text-wrap:pretty;
+}
+.dek b{font-weight:600;color:var(--navy-0);}
+.dek .accent{color:var(--gold-deep);font-weight:600;}
+
+.watch-prompt{
+  font-family:var(--sans);
+  font-size:clamp(0.74rem,1.9vw,0.9rem);
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  margin:0 0 0.85rem;
+}
+.watch-prompt .arrow{
+  display:inline-block;
+  animation:nudge 1.8s ease-in-out infinite;
+}
+@keyframes nudge{0%,100%{transform:translateY(0);}50%{transform:translateY(3px);}}
+
+/* ---------- video placeholder ---------- */
+.player{
+  position:relative;
+  max-width:44rem;
+  margin:0 auto;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border:1px solid rgba(201,169,106,0.3);
+  border-radius:4px;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(201,169,106,0.10) 0 10px,
+      rgba(201,169,106,0.02) 10px 20px),
+    var(--navy-0);
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  gap:1rem;padding:1.6rem;text-align:center;
+  box-shadow:0 18px 40px -22px rgba(11,20,34,0.55);
+}
+/* drop the real file in and it fills the frame:
+   <video src="../assets/video/workshop-vsl.mp4" poster="…" controls playsinline></video> */
+.player video,.player img,.player iframe{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;border:0;
+}
+.player .slug{
+  font-family:var(--mono);font-size:0.6rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--navy-0);background:var(--gold);
+  padding:0.24rem 0.66rem;border-radius:2px;
+}
+.player .play{
+  width:clamp(3.2rem,9vw,4.2rem);
+  height:clamp(3.2rem,9vw,4.2rem);
+  border-radius:50%;
+  border:2px solid var(--gold);
+  display:grid;place-items:center;
+  color:var(--gold);
+  font-size:clamp(1rem,3vw,1.3rem);
+  padding-left:0.18em;
+}
+.player .note{
+  font-family:var(--sans);font-size:0.85rem;line-height:1.45;
+  color:rgba(242,235,220,0.7);max-width:34ch;
+}
+
+/* ---------- countdown under the player ---------- */
+.countdown{
+  max-width:44rem;margin:clamp(2rem,5vw,3rem) auto 0;
+  text-align:center;
+}
+.countdown h2{
+  font-family:var(--sans);
+  font-size:clamp(0.9rem,2.4vw,1.15rem);
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  margin:0 0 1.1rem;
+}
+.countdown .units{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(0.5rem,2vw,1rem);
+}
+.countdown .unit{
+  background:var(--navy-0);
+  border:1px solid rgba(201,169,106,0.28);
+  border-radius:4px;
+  padding:clamp(0.7rem,2.4vw,1.1rem) 0.4rem;
+}
+.countdown .num{
+  display:block;
+  font-family:var(--mono);
+  font-size:clamp(1.5rem,6vw,2.5rem);
+  font-weight:600;
+  line-height:1;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.countdown .cap{
+  display:block;margin-top:0.45rem;
+  font-family:var(--sans);
+  font-size:clamp(0.58rem,1.6vw,0.72rem);
+  font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(242,235,220,0.6);
+}
+
+/* ============================================================
+   BODY SECTIONS
+   ============================================================ */
+
+.wrap{max-width:44rem;margin:0 auto;padding:0 var(--pad);}
+section{padding:clamp(2.6rem,6vw,4.2rem) 0;}
+section.tint{background:var(--ivory-3);border-block:1px solid var(--rule);}
+section.dark{background:var(--navy-0);color:var(--ivory);}
+section.dark h2{color:var(--ivory);}
+section.dark .lede,section.dark p{color:rgba(242,235,220,0.86);}
+
+h2{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(1.65rem,4.4vw,2.6rem);
+  line-height:1.12;
+  letter-spacing:-0.012em;
+  color:var(--navy-0);
+  margin:0 0 1.4rem;
+  text-wrap:balance;
+}
+h3{
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:clamp(1rem,2.4vw,1.2rem);
+  letter-spacing:0.01em;
+  color:var(--navy-0);
+  margin:0 0 0.5rem;
+}
+section p{margin:0 0 1.05em;}
+.beat{margin:0 0 0.85em;}
+.lede{font-family:var(--serif);font-size:clamp(1.06rem,2.3vw,1.28rem);line-height:1.55;}
+em.accent,.accent-text{color:var(--gold-deep);font-weight:600;font-style:normal;}
+strong{font-weight:700;color:var(--navy-0);}
+section.dark strong{color:var(--ivory);}
+
+/* --- pain / tactic list: the things going wrong --- */
+.consequences{
+  list-style:none;margin:1.4rem 0 1.6rem;padding:0;
+  display:grid;gap:0.7rem;
+}
+.consequences li{
+  position:relative;
+  padding:0.75rem 0.95rem 0.75rem 2.5rem;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--gold);
+  border-radius:3px;
+  font-size:1rem;line-height:1.5;
+}
+.consequences li::before{
+  content:"✕";
+  position:absolute;left:0.95rem;top:0.78rem;
+  color:var(--gold-deep);font-weight:700;font-size:0.88rem;
+}
+section.dark .consequences li{
+  background:var(--navy-1);
+  border-color:rgba(201,169,106,0.22);
+  border-left-color:var(--gold);
+  color:rgba(242,235,220,0.9);
+}
+
+/* --- numbered curiosity bullets ("You'll Discover") --- */
+.discover{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem;}
+.discover li{
+  position:relative;
+  padding:1.15rem 1.2rem 1.15rem 3.6rem;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  box-shadow:0 10px 26px -22px rgba(11,20,34,0.5);
+  font-size:1.02rem;line-height:1.55;
+}
+.discover li::before{
+  counter-increment:disc;
+  content:counter(disc,decimal-leading-zero);
+  position:absolute;left:1.15rem;top:1.15rem;
+  font-family:var(--mono);font-size:0.78rem;font-weight:600;
+  letter-spacing:0.06em;
+  color:var(--gold-deep);
+}
+.discover{counter-reset:disc;}
+
+/* --- "What you'll walk away with" — gold check list --- */
+.walkaway{list-style:none;margin:0;padding:0;display:grid;gap:1rem;}
+.walkaway li{
+  position:relative;padding-left:2.4rem;
+  font-size:1.02rem;line-height:1.55;
+}
+.walkaway li::before{
+  content:"✓";
+  position:absolute;left:0;top:-0.05em;
+  width:1.6rem;height:1.6rem;border-radius:50%;
+  background:var(--gold);color:var(--navy-0);
+  display:grid;place-items:center;
+  font-size:0.85rem;font-weight:800;
+}
+
+/* --- testimonials --- */
+.quotes{
+  display:grid;gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));
+  margin-top:1.6rem;
+}
+.quote{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-top:3px solid var(--gold);
+  border-radius:4px;
+  padding:1.25rem 1.3rem;
+  display:flex;flex-direction:column;gap:0.85rem;
+}
+.quote blockquote{
+  margin:0;
+  font-family:var(--serif);
+  font-size:1.06rem;line-height:1.48;
+  color:var(--ink);
+}
+.quote .attr{
+  font-family:var(--sans);
+  font-size:0.82rem;line-height:1.4;
+  font-weight:600;
+  color:var(--ink-soft);
+  margin-top:auto;
+}
+.quote .attr .name{display:block;color:var(--navy-0);}
+.quotes-wide{max-width:64rem;margin-inline:auto;}
+
+/* --- logo + quote wall (ported from triage.html) --- */
+.proof-wall{
+  position:relative;overflow:hidden;
+  background:var(--navy-2);
+  border-top:1px solid rgba(201,169,106,0.16);
+  border-bottom:1px solid rgba(201,169,106,0.16);
+  padding-block:clamp(1.8rem,4vw,2.6rem);
+}
+.proof-wall::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(126,147,184,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,147,184,0.09) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+  -webkit-mask-image:radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+}
+.proof-wall .wrap{position:relative;z-index:1;max-width:66rem;}
+.proof-wall .label{
+  text-align:center;margin:0;
+  font-family:var(--mono);font-size:0.64rem;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--ivory);opacity:0.7;
+}
+.proof-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:1.6rem;margin-top:1.5rem;
+}
+@media(max-width:980px){.proof-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.proof-grid{grid-template-columns:repeat(2,1fr);}}
+.proof-cell{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:0.75rem;
+}
+.proof-cell img{
+  height:34px;width:auto;object-fit:contain;
+  filter:grayscale(1);opacity:0.55;
+}
+.proof-cell .pq{
+  font-family:var(--serif);font-style:italic;
+  font-size:0.86rem;line-height:1.5;
+  color:rgba(242,235,220,0.72);margin:0;
+}
+.proof-cell .pq b{color:var(--ivory);font-weight:500;font-style:normal;}
+.proof-cell .pq span{display:block;margin-top:0.3rem;font-style:normal;opacity:0.75;}
+
+/* --- media placeholders --- */
+.media{
+  position:relative;overflow:hidden;
+  margin:1.8rem 0;
+  aspect-ratio:16/9;
+  border:1px solid rgba(201,169,106,0.3);
+  border-radius:4px;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(201,169,106,0.12) 0 10px,
+      rgba(201,169,106,0.03) 10px 20px),
+    var(--ivory-2);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:0.65rem;padding:1.3rem;text-align:center;
+}
+.media video,.media img,.media iframe{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;border:0;
+}
+.media .slug{
+  font-family:var(--mono);font-size:0.6rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--navy-0);background:var(--gold);
+  padding:0.22rem 0.6rem;border-radius:2px;
+}
+.media .note{
+  font-family:var(--sans);font-size:0.82rem;line-height:1.4;
+  color:var(--ink-soft);max-width:36ch;margin:0;
+}
+.media--portrait{aspect-ratio:4/5;max-width:20rem;}
+.media--square{aspect-ratio:1/1;}
+.media--split{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  aspect-ratio:auto;padding:0;background:var(--rule);border:none;
+}
+.media--split > .media{margin:0;border-radius:0;border:none;}
+@media(max-width:640px){.media--split{grid-template-columns:1fr;}}
+
+/* --- instructor block --- */
+.instructor{
+  display:grid;gap:clamp(1.2rem,3vw,2rem);
+  grid-template-columns:minmax(0,1fr);
+  align-items:start;
+}
+@media(min-width:720px){
+  .instructor{grid-template-columns:15rem minmax(0,1fr);}
+}
+.instructor .media{margin:0;}
+.instructor .credential{
+  font-family:var(--mono);font-size:0.72rem;font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.6rem;
+}
+
+/* --- two choices --- */
+.choices{
+  display:grid;gap:1.1rem;
+  grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+  margin-top:1.6rem;
+}
+.choice{
+  border:1px solid var(--rule);
+  border-radius:4px;
+  padding:1.4rem 1.4rem 1.5rem;
+  background:var(--paper);
+}
+.choice .tag{
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 0.75rem;
+}
+.choice p{margin:0 0 0.6em;font-size:0.99rem;}
+.choice p:last-child{margin-bottom:0;}
+.choice--keep{opacity:0.82;}
+.choice--learn{
+  border-color:var(--gold);
+  border-width:2px;
+  background:var(--ivory-3);
+  box-shadow:0 14px 34px -26px rgba(11,20,34,0.6);
+}
+.choice--learn .tag{color:var(--gold-deep);}
+/* the cards keep light surfaces even inside a dark section, so they have to
+   re-assert dark text — otherwise they inherit the section's ivory and vanish */
+section.dark .choice,
+section.dark .choice p,
+section.dark .choice strong{color:var(--ink);}
+section.dark .choice strong{color:var(--navy-0);}
+section.dark .choice--keep{
+  background:var(--navy-1);
+  border-color:rgba(201,169,106,0.2);
+  opacity:1;
+}
+section.dark .choice--keep,
+section.dark .choice--keep p{color:rgba(242,235,220,0.72);}
+section.dark .choice--keep .tag{color:rgba(242,235,220,0.45);}
+
+/* --- price + CTA --- */
+.pricebox{
+  text-align:center;
+  border:2px solid var(--gold);
+  border-radius:5px;
+  background:var(--ivory-3);
+  padding:clamp(1.4rem,4vw,2rem);
+  margin:1.8rem 0;
+}
+.pricebox .strike{
+  font-family:var(--sans);font-size:0.95rem;font-weight:600;
+  color:var(--ink-soft);margin:0 0 0.35rem;
+}
+.pricebox .strike s{text-decoration-thickness:2px;}
+.pricebox .amount{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.6rem,9vw,4rem);line-height:1;
+  color:var(--navy-0);margin:0 0 0.3rem;
+}
+.pricebox .terms{
+  font-family:var(--sans);font-size:0.86rem;
+  color:var(--ink-soft);margin:0.9rem 0 0;
+}
+.cta{
+  display:block;width:100%;
+  text-align:center;text-decoration:none;
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1.02rem,2.8vw,1.35rem);
+  letter-spacing:0.01em;
+  color:var(--navy-0);
+  background:var(--gold);
+  border:2px solid var(--gold-deep);
+  border-radius:4px;
+  padding:1.05rem 1.4rem;
+  box-shadow:0 6px 0 -2px rgba(168,135,75,0.35);
+  transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.cta u{text-underline-offset:4px;text-decoration-thickness:2px;}
+.cta:hover{background:#D8BC80;transform:translateY(-2px);box-shadow:0 9px 0 -2px rgba(168,135,75,0.35);}
+.cta:active{transform:translateY(1px);box-shadow:0 4px 0 -2px rgba(168,135,75,0.35);}
+.cta-block{margin:2rem 0 0;}
+.cta-note{
+  font-family:var(--sans);font-size:0.82rem;text-align:center;
+  color:var(--ink-soft);margin:0.8rem 0 0;
+}
+section.dark .cta-note{color:rgba(242,235,220,0.6);}
+
+/* --- P.S. --- */
+.ps{
+  border-left:3px solid var(--gold);
+  padding-left:1.2rem;
+}
+.ps .ps-label{
+  font-family:var(--mono);font-size:0.75rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.7rem;
+}
+
+/* --- footer --- */
+.pagefoot{
+  background:var(--navy-0);color:rgba(242,235,220,0.55);
+  padding:2rem var(--pad) 7rem;
+  text-align:center;font-size:0.82rem;
+}
+.pagefoot .wordmark{
+  font-family:var(--serif);font-size:1.2rem;color:var(--ivory);
+  display:inline-flex;align-items:center;gap:0.5rem;
+  text-decoration:none;margin-bottom:0.7rem;
+}
+.pagefoot .knight{color:var(--gold);font-size:1.3em;}
+
+/* --- sticky CTA --- */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:90;
+  background:color-mix(in srgb,var(--navy-1) 82%,transparent);
+  backdrop-filter:blur(6px);
+  border-top:1px solid rgba(201,169,106,0.28);
+  padding:0.8rem var(--pad);
+}
+.sticky-cta .inner{max-width:34rem;margin:0 auto;}
+.sticky-cta .cta{padding:0.85rem 1.2rem;box-shadow:none;font-size:clamp(0.95rem,2.6vw,1.1rem);}
+body{padding-bottom:0;}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP STATUS BAR ============ -->
+<div class="statusbar">
+  <div class="inner">
+    <span class="live"><span class="dot"></span>Live</span>
+    <span><span class="label">Workshop date:</span> <span class="value">Tuesday, September 8 @ 12:00 PM EDT</span></span>
+    <span class="divider">|</span>
+    <span><span class="label">Starts in:</span> <span class="clock" data-clock="">08d : 16h : 14m : 04s</span></span>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+
+  <p class="eyebrow">For contractors who bid, quote and negotiate their own work</p>
+
+  <h1>The Harder You Chase The Job, <span class="accent">The Less You Keep</span></h1>
+
+  <p class="dek">
+    We've helped negotiate&nbsp;<b>$1bn+ of contracts</b> — including a <b>sole-source price increase turned into an $800,000 saving</b> — and trained buyers at the biggest companies sitting on the opposite side of your table.
+    In the <span class="accent">Fortune 50 Negotiation Workshop</span>, you'll learn how to hold your price without losing the job.
+  </p>
+
+  <p class="watch-prompt"><span class="arrow">▼</span> Click below to watch first! <span class="arrow">▼</span></p>
+
+  <!-- ---- VIDEO PLACEHOLDER ----
+       Replace the inner contents with the real player, e.g.
+       <video src="../assets/video/workshop-vsl.mp4" poster="../assets/video/workshop-vsl.jpg" controls playsinline></video>
+       The .player frame already holds the 16:9 ratio. -->
+  <div class="player">
+    <span class="slug">Video placeholder</span>
+    <div class="play" aria-hidden="true">▶</div>
+    <p class="note">Drop the workshop VSL in here — the frame is already sized 16:9.</p>
+  </div>
+
+  <!-- ---- CTA under the VSL ---- -->
+  <!-- TODO: point href at the real checkout URL -->
+  <div class="cta-block" style="max-width:44rem;margin-inline:auto;">
+    <a class="cta" href="#secure"><u>Secure Your Spot Now — $47</u> →</a>
+    <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
+  </div>
+
+  <!-- ---- COUNTDOWN ---- -->
+  <div class="countdown">
+    <h2>Live workshop starts in:</h2>
+    <div class="units">
+      <div class="unit"><span class="num" data-unit="days">08</span><span class="cap">Days</span></div>
+      <div class="unit"><span class="num" data-unit="hours">16</span><span class="cap">Hours</span></div>
+      <div class="unit"><span class="num" data-unit="minutes">14</span><span class="cap">Minutes</span></div>
+      <div class="unit"><span class="num" data-unit="seconds">04</span><span class="cap">Seconds</span></div>
+    </div>
+  </div>
+
+</header>
+
+<!-- ============ LOGO + QUOTE WALL (ported from triage.html) ============ -->
+<section class="proof-wall">
+  <div class="wrap">
+    <p class="label">Trusted by procurement teams at</p>
+    <div class="proof-grid">
+      <div class="proof-cell">
+        <img src="../assets/logos/dexko-global.png" alt="DexKo Global">
+        <p class="pq"><b>&ldquo;Secured a price increase below 50%, saving approximately $800K.&rdquo;</b><span>VP Procurement, engineered components</span></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/fca.png" alt="FCA (Fiat Chrysler Automobiles)">
+        <p class="pq"><b>&ldquo;$3.7M in piece-price value after 7 negotiation rounds.&rdquo;</b><span>Automotive Procurement Lead</span></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/chart-industries.png" alt="Chart Industries">
+        <p class="pq"><b>&ldquo;Critical tools: BAM, anchoring, preparation, probing, listening.&rdquo;</b><span>Global Category Manager, Metals</span></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/nasa.png" alt="NASA">
+        <p class="pq"><b>&ldquo;Invaluable tools I will be using in every negotiation henceforth.&rdquo;</b><span>Procurement Lead</span></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/speira.png" alt="Speira" style="opacity:0.8">
+        <p class="pq"><b>&ldquo;Really helped our team go out and re-negotiate with suppliers.&rdquo;</b><span>Sales Director, metals</span></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/arcelormittal.png" alt="ArcelorMittal" style="opacity:0.95">
+        <p class="pq"><b>&ldquo;Valuable tools I&rsquo;ll be using in an upcoming freight negotiation.&rdquo;</b><span>Workshop Participant</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. THE MOST EXPENSIVE MOMENT ============ -->
+<section>
+  <div class="wrap">
+    <h2>The Most Expensive Moment In A Business</h2>
+
+    <p class="beat lede">You're good at what you do.</p>
+    <p class="beat">You've built a real business.</p>
+    <p class="beat">You've earned the right to go after bigger contracts.</p>
+    <p class="beat">But here's what nobody tells you:</p>
+
+    <!-- ---- MEDIA: the two sides of the table ---- -->
+    <div class="media media--split">
+      <div class="media">
+        <span class="slug">Image / video A</span>
+        <p class="note">The contractor — on site, in the truck, quoting from the tailgate.</p>
+      </div>
+      <div class="media">
+        <span class="slug">Image / video B</span>
+        <p class="note">The buyer — boardroom, spreadsheet open, doing this all day every day.</p>
+      </div>
+    </div>
+
+    <p class="beat"><strong>The people buying your work negotiate for a living.</strong></p>
+    <p class="beat">You don't.</p>
+    <p class="beat">And that's costing you thousands of dollars every single time you sit down to close a deal.</p>
+
+    <p class="beat">It's not your pricing.</p>
+    <p class="beat">It's not your estimating.</p>
+    <p class="beat">It's not even your competition.</p>
+    <p class="beat"><em class="accent">It's the negotiation game you don't know you're playing.</em></p>
+
+    <p class="beat">And if you don't learn the rules, you're headed toward a future where:</p>
+
+    <ul class="consequences">
+      <li>You're working harder but making less</li>
+      <li>You're justifying your price to people who don't understand your work</li>
+      <li>You're competing with contractors who are objectively worse than you</li>
+      <li>You're forced to choose between your standards and your survival</li>
+    </ul>
+
+    <p class="lede"><strong>That ends today.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 2. YOU'LL DISCOVER ============ -->
+<section class="tint">
+  <div class="wrap">
+    <h2>In the Fortune 50 Negotiation Secrets Workshop, You'll Discover:</h2>
+
+    <ol class="discover">
+      <li><strong>Why you keep losing margin even when you're the best contractor in the room</strong> — and the specific procurement tactics buyers use to make you feel like you have to drop your price (even when you don't)</li>
+
+      <li><strong>The exact moment in every negotiation where contractors give away thousands of dollars without realizing it</strong> — and the simple shift in language that protects your margin without burning bridges or sounding aggressive</li>
+
+      <li><strong>How to calculate your opening price so confidently that you'll never second-guess yourself again</strong> — using the same tool Fortune 50 procurement teams use to anchor negotiations in their favour (the BAM Calculator, and you're getting it in this workshop)</li>
+
+      <li><strong>The psychology behind why buyers say "you're too expensive"</strong> — and the counter-strategy that gets them to stop comparing you to your cheapest competitor and start seeing the value you actually bring</li>
+    </ol>
+
+    <!-- ---- MEDIA: the BAM Calculator ---- -->
+    <div class="media">
+      <span class="slug">Screen recording</span>
+      <p class="note">The BAM Calculator in use — enter the inputs, watch the opening price land.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. TESTIMONIALS ============ -->
+<section>
+  <div class="wrap quotes-wide">
+    <h2 style="text-align:center;">Here's What Others Are Saying:</h2>
+
+    <div class="quotes">
+      <figure class="quote">
+        <blockquote>"After 7 rounds of negotiation, I sourced above my BAM by 1.5%. This was worth $3.7M in piece price."</blockquote>
+        <figcaption class="attr"><span class="name">Automotive Procurement Lead</span>FCA (Fiat Chrysler Automobiles)</figcaption>
+      </figure>
+
+      <figure class="quote">
+        <blockquote>"Secured a price increase below 50%, saving approximately $800K."</blockquote>
+        <figcaption class="attr"><span class="name">Bernd Holzinger</span>VP Procurement, DexKo Global</figcaption>
+      </figure>
+
+      <figure class="quote">
+        <blockquote>"Invaluable tools I will be using in every single negotiation I enter from now on."</blockquote>
+        <figcaption class="attr"><span class="name">Procurement Lead</span>NASA</figcaption>
+      </figure>
+
+      <figure class="quote">
+        <blockquote>"After Ruth's coaching session, I was no longer nervous about negotiating. I went from nervous to confident."</blockquote>
+        <figcaption class="attr"><span class="name">Ezra Wanetik</span></figcaption>
+      </figure>
+
+      <figure class="quote">
+        <blockquote>"Tripled a sales deal, turning a 250K sale into a 750K deal."</blockquote>
+        <figcaption class="attr"><span class="name">Kent</span>B2B Sales Manager</figcaption>
+      </figure>
+
+      <figure class="quote">
+        <blockquote>"I was surprised by how much I learned from this course. I consider myself a seasoned negotiator. The instructor confirmed what I knew, and also showed me new ways to turn a 'no' into a 'yes.'"</blockquote>
+        <figcaption class="attr"><span class="name">Steve</span>General Manager</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. LEVELLING THE PLAYING FIELD ============ -->
+<section class="dark">
+  <div class="wrap">
+    <h2>This Isn't About Becoming Aggressive.<br>It's About Levelling the Playing Field.</h2>
+
+    <p class="beat">You don't need to be a salesperson.</p>
+    <p class="beat">You don't need to be pushy.</p>
+    <p class="beat">You don't need to compromise your quality or burn bridges.</p>
+    <p class="beat lede"><strong>You just need to know what the other side knows.</strong></p>
+
+    <p class="beat">Because right now, procurement professionals are using a playbook that's been refined over 25 years.</p>
+    <p class="beat">They know how to:</p>
+
+    <ul class="consequences">
+      <li>Anchor you low</li>
+      <li>Create false urgency</li>
+      <li>Pit you against competitors who don't even exist</li>
+      <li>Make you feel like your price is unreasonable when it's not</li>
+    </ul>
+
+    <p class="beat">And they do it without you even realizing it's happening.</p>
+    <p class="lede"><em class="accent">That stops when you know the game.</em></p>
+  </div>
+</section>
+
+<!-- ============ 5. WHAT YOU'LL WALK AWAY WITH ============ -->
+<section>
+  <div class="wrap">
+    <h2>What You'll Walk Away With:</h2>
+
+    <ul class="walkaway">
+      <li><strong>The BAM Calculator</strong> — so you can calculate your opening price with confidence and never leave money on the table again</li>
+      <li><strong>The exact procurement tactics buyers use to shrink your margin</strong> — so you can recognize them in real time and counter them without hesitation</li>
+      <li><strong>A systematic method to build relationships so strong that your clients fight FOR you</strong> — even when their finance department is pushing them toward your cheaper competitor</li>
+      <li><strong>Peace of mind</strong> — knowing you'll never have to be in a race to the bottom again</li>
+    </ul>
+
+    <!-- ---- MEDIA: what's in the box ---- -->
+    <div class="media">
+      <span class="slug">Image</span>
+      <p class="note">What's included — workshop replay, BAM Calculator, tactic cards laid out flat.</p>
+    </div>
+
+    <p class="beat">And here's the best part:</p>
+    <p class="beat">This doesn't require you to buy better materials, hire more people, or change a single thing about the quality of your work.</p>
+    <p class="beat">It's just about knowing <strong>what to say, when to say it,</strong> and how to protect your margin without making the buyer feel like they're getting ripped off.</p>
+  </div>
+</section>
+
+<!-- ============ 6. THE INSTRUCTOR ============ -->
+<section class="tint">
+  <div class="wrap" style="max-width:52rem;">
+    <h2>This Workshop Is Led by Dr. Chiraag (Chi) Hegdekar</h2>
+
+    <div class="instructor">
+      <!-- ---- MEDIA: headshot ---- -->
+      <div class="media media--portrait">
+        <span class="slug">Headshot</span>
+        <p class="note">Dr. Chi Hegdekar — portrait, 4:5.</p>
+      </div>
+
+      <div>
+        <p class="credential">Managing Partner · Castle Negotiations Consulting Group</p>
+        <p class="beat">Dr. Chi Hegdekar is the Managing Partner of Castle Negotiations Consulting Group — the firm behind the methodology that's helped Fortune 50 companies secure <strong>over $1 billion in value</strong>.</p>
+        <p class="beat">Chi isn't a theorist.</p>
+        <p class="beat">He's an entrepreneur, buyer strategist, and negotiation facilitator who's spent years in real-world commercial negotiations — structuring partnerships, launching products, and helping businesses grow through better commercial conversations.</p>
+        <p class="beat">He holds a doctorate in medicine alongside degrees in computer science, cloud computing, and healthcare management.</p>
+        <p class="beat">That rare combination of analytical thinking, human behavior, technology, and commercial strategy allows him to approach negotiation from multiple angles — balancing logic, psychology, communication, and business outcomes.</p>
+      </div>
+    </div>
+
+    <div class="instructor" style="margin-top:clamp(1.6rem,4vw,2.4rem);">
+      <!-- ---- MEDIA: Ruth ---- -->
+      <div class="media media--portrait">
+        <span class="slug">Headshot</span>
+        <p class="note">Ruth Shlossman — portrait, 4:5.</p>
+      </div>
+
+      <div>
+        <p class="credential">Founder · Harvard-trained · 25 years</p>
+        <p class="beat">And he's backed by <strong>Ruth Shlossman</strong> — the Harvard-trained founder of Castle Negotiations who's spent 25 years training procurement teams at companies like BAE Systems, Accenture, and Chart Industries.</p>
+        <p class="lede"><em class="accent">This is the real deal.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. WHY THIS MATTERS RIGHT NOW ============ -->
+<section>
+  <div class="wrap">
+    <h2>Why This Matters Right Now</h2>
+
+    <p class="beat">If you're trying to move into bigger commercial contracts, you're stepping into a game with completely different rules.</p>
+    <p class="beat">The stakes are higher.</p>
+    <p class="beat">The buyers are more sophisticated.</p>
+    <p class="beat">And the margin for error is smaller.</p>
+    <p class="beat"><strong>One bad negotiation can cost you tens of thousands of dollars.</strong></p>
+    <p class="beat">Or worse — it can lock you into a contract that looks good on paper but bleeds you dry over the next six months.</p>
+    <p class="lede"><em class="accent">You can't afford to wing it anymore.</em></p>
+  </div>
+</section>
+
+<!-- ============ 8. IMAGINE ============ -->
+<section class="tint">
+  <div class="wrap">
+    <h2>Imagine What Changes When You Know What They Know</h2>
+
+    <!-- ---- MEDIA: the moment across the table ---- -->
+    <div class="media">
+      <span class="slug">Video</span>
+      <p class="note">Across the table — the buyer pushes, the contractor doesn't flinch.</p>
+    </div>
+
+    <p class="beat">Imagine sitting across from a procurement manager who's trying to get you to drop your price.</p>
+    <p class="beat">And instead of feeling defensive or scrambling to justify yourself...</p>
+    <p class="beat">You recognize exactly what they're doing.</p>
+    <p class="beat">You stay calm.</p>
+    <p class="beat">You use the counter-strategy.</p>
+    <p class="beat">And you protect your margin without burning the relationship.</p>
+
+    <p class="beat">Imagine the peace of mind of knowing:</p>
+
+    <ul class="walkaway">
+      <li>You'll never have to justify your price to someone who doesn't understand your work</li>
+      <li>You'll never lose a deal to a competitor who's objectively worse than you</li>
+      <li>You'll never wake up at 4am doing the math in your head, wondering if you're going to make it</li>
+    </ul>
+
+    <p class="lede" style="margin-top:1.6rem;"><strong>That's what this workshop gives you.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 9. WHAT HAPPENS NEXT + OFFER ============ -->
+<section id="secure">
+  <div class="wrap">
+    <h2>Here's What Happens Next</h2>
+
+    <p class="beat">Click the button below to secure your spot in the Fortune 50 Negotiation Secrets Workshop for just <strong>$47</strong>.</p>
+    <p class="beat">You'll get the BAM Calculator and everything you need to start protecting your margin in your very next negotiation — plus the replay, which goes to attendees only.</p>
+
+    <div class="pricebox">
+      <p class="strike">This is the same training Fortune 50 companies pay <s>$50,000+</s> for.</p>
+      <p class="amount">$47</p>
+      <p class="strike" style="margin:0;">You're getting it for forty-seven dollars.</p>
+      <!-- TODO: point href at the real checkout URL -->
+      <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $47</u> →</a></div>
+      <p class="terms">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. TWO CHOICES ============ -->
+<section class="dark">
+  <div class="wrap">
+    <h2>You Have Two Choices</h2>
+
+    <div class="choices">
+      <div class="choice choice--keep">
+        <p class="tag">Choice #1</p>
+        <p>Keep doing what you're doing.</p>
+        <p>Keep hoping the next deal will be different.</p>
+        <p>Keep losing margin to buyers who are better trained than you.</p>
+        <p>Keep working harder for less.</p>
+      </div>
+
+      <div class="choice choice--learn">
+        <p class="tag">Choice #2</p>
+        <p>Learn the playbook.</p>
+        <p>Level the playing field.</p>
+        <p>Walk into your next negotiation knowing exactly what the other side is going to do — and exactly how to counter it.</p>
+      </div>
+    </div>
+
+    <p class="beat" style="margin-top:1.8rem;">The choice is yours.</p>
+    <p class="beat">But if you're serious about protecting your margin, building a sustainable business, and never being in a race to the bottom again...</p>
+    <p class="lede"><em class="accent">This is where it starts.</em></p>
+
+    <!-- TODO: point href at the real checkout URL -->
+    <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $47</u> →</a></div>
+    <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only</p>
+  </div>
+</section>
+
+<!-- ============ 11. P.S. ============ -->
+<section>
+  <div class="wrap">
+    <div class="ps">
+      <p class="ps-label">P.S.</p>
+      <p class="beat">This isn't theory.</p>
+      <p class="beat">This is the exact methodology that's been used to save <strong>$3.7M in a single negotiation</strong>.</p>
+      <p class="beat"><strong>$800K</strong> in a sole-source deal with no competition.</p>
+      <p class="beat">Trained <strong>450 professionals</strong> just this quarter.</p>
+      <p class="beat lede"><em class="accent">Now it's your turn.</em></p>
+      <p class="beat">Click the button. Secure your spot. And finally learn what the other side already knows.</p>
+    </div>
+
+    <!-- TODO: point href at the real checkout URL -->
+    <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $47</u> →</a></div>
+    <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pagefoot">
+  <a class="wordmark" href="#top"><span class="knight">♞</span> <span>Castle Negotiations</span></a>
+  <p>© 2026 Castle Negotiations Consulting Group. All rights reserved.</p>
+</footer>
+
+<!-- ============ STICKY CTA ============ -->
+<div class="sticky-cta">
+  <div class="inner">
+    <!-- TODO: point href at the real checkout URL -->
+    <a class="cta" href="#secure"><u>Secure Your Spot — $47</u> →</a>
+  </div>
+</div>
+
+<script>
+/* Countdown to Tue 8 September 2026, 12:00 PM EDT (UTC-4) = 16:00 UTC.
+   Written as an explicit UTC instant so it reads the same in every timezone. */
+(function(){
+  var target = Date.parse('2026-09-08T16:00:00Z');
+  var clock  = document.querySelector('[data-clock]');
+  var units  = {
+    days:    document.querySelector('[data-unit="days"]'),
+    hours:   document.querySelector('[data-unit="hours"]'),
+    minutes: document.querySelector('[data-unit="minutes"]'),
+    seconds: document.querySelector('[data-unit="seconds"]')
+  };
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function tick(){
+    var left = Math.max(0, target - Date.now());
+    var s = Math.floor(left/1000);
+    var d = Math.floor(s/86400), h = Math.floor(s%86400/3600),
+        m = Math.floor(s%3600/60), sec = s%60;
+
+    units.days.textContent    = pad(d);
+    units.hours.textContent   = pad(h);
+    units.minutes.textContent = pad(m);
+    units.seconds.textContent = pad(sec);
+    clock.textContent = pad(d)+'d : '+pad(h)+'h : '+pad(m)+'m : '+pad(sec)+'s';
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+
+</body></html>
