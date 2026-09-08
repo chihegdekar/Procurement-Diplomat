@@ -383,6 +383,11 @@ section.dark .consequences li{
 }
 .quote .attr .name{display:block;color:var(--navy-0);}
 .quotes-wide{max-width:64rem;margin-inline:auto;}
+.quote .who{display:flex;align-items:center;gap:0.75rem;margin-top:auto;}
+.quote .who img{
+  width:44px;height:44px;flex:none;border-radius:50%;
+  object-fit:cover;border:2px solid var(--gold);
+}
 
 /* --- logo + quote wall (ported from triage.html) --- */
 .proof-wall{
@@ -428,7 +433,6 @@ section.dark .consequences li{
   color:rgba(242,235,220,0.72);margin:0;
 }
 .proof-cell .pq b{color:var(--ivory);font-weight:500;font-style:normal;}
-.proof-cell .pq span{display:block;margin-top:0.3rem;font-style:normal;opacity:0.75;}
 
 /* --- media placeholders --- */
 .media{
@@ -609,6 +613,187 @@ section.dark .cta-note{color:rgba(242,235,220,0.6);}
 .sticky-cta .inner{max-width:34rem;margin:0 auto;}
 .sticky-cta .cta{padding:0.85rem 1.2rem;box-shadow:none;font-size:clamp(0.95rem,2.6vw,1.1rem);}
 body{padding-bottom:0;}
+
+/* ============================================================
+   TWO-STEP ORDER FORM (modal)
+   Step 1 captures the lead; step 2 takes the card in-page via
+   Stripe's Payment Element. Order bumps sit directly above the
+   pay button, where the decision is already being made.
+   ============================================================ */
+.co-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(11,20,34,0.72);
+  backdrop-filter:blur(3px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(0.75rem,4vw,2.5rem) var(--pad);
+  overflow-y:auto;
+  opacity:0;transition:opacity 0.18s ease;
+}
+.co-overlay.is-open{opacity:1;}
+.co-overlay[hidden]{display:none;}
+body.co-locked{overflow:hidden;}
+
+.co-modal{
+  position:relative;
+  width:100%;max-width:34rem;
+  margin:auto;
+  background:var(--paper);
+  border:1px solid rgba(201,169,106,0.4);
+  border-radius:6px;
+  box-shadow:0 30px 70px -30px rgba(11,20,34,0.8);
+  transform:translateY(8px);
+  transition:transform 0.18s ease;
+}
+.co-overlay.is-open .co-modal{transform:none;}
+
+.co-close{
+  position:absolute;top:-0.7rem;right:-0.7rem;z-index:2;
+  width:2.1rem;height:2.1rem;border-radius:50%;
+  background:var(--navy-0);color:var(--ivory);
+  border:1px solid rgba(201,169,106,0.5);
+  font-size:1.1rem;line-height:1;cursor:pointer;
+  display:grid;place-items:center;padding:0;
+}
+.co-close:hover{background:var(--navy-2);color:var(--gold);}
+
+/* ---- step tabs ---- */
+.co-tabs{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:3px solid var(--ivory-2);
+}
+.co-tab{
+  text-align:center;padding:1rem 0.6rem 0.85rem;
+  position:relative;
+  border-bottom:3px solid transparent;margin-bottom:-3px;
+  color:var(--ink-soft);
+}
+.co-tab b{
+  display:block;font-family:var(--sans);font-weight:800;
+  font-size:clamp(0.95rem,2.6vw,1.12rem);
+  letter-spacing:0.01em;color:inherit;
+}
+.co-tab span{
+  display:block;font-size:0.8rem;margin-top:0.1rem;
+  color:inherit;opacity:0.8;
+}
+.co-tab.is-active{color:var(--navy-0);border-bottom-color:var(--gold-deep);}
+/* the little pointer under the live tab, as on the reference form */
+.co-tab.is-active::after{
+  content:"";position:absolute;left:50%;bottom:-3px;
+  transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:var(--gold-deep);
+}
+.co-tab.is-done{color:var(--gold-deep);}
+
+.co-body{padding:clamp(1.1rem,4vw,1.6rem);}
+.co-step[hidden]{display:none;}
+
+/* ---- fields ---- */
+.co-field{margin:0 0 0.75rem;}
+.co-field input{
+  width:100%;
+  font-family:var(--sans);font-size:1rem;
+  color:var(--ink);background:var(--paper);
+  border:1px solid rgba(28,34,44,0.28);
+  border-radius:4px;
+  padding:0.85rem 0.95rem;
+}
+.co-field input::placeholder{color:rgba(74,82,98,0.6);}
+.co-field input:focus{outline:none;border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(201,169,106,0.22);}
+.co-field input[aria-invalid="true"]{border-color:#B3402F;}
+
+.co-submit{
+  display:block;width:100%;cursor:pointer;
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1rem,2.7vw,1.2rem);
+  color:var(--navy-0);background:var(--gold);
+  border:2px solid var(--gold-deep);border-radius:4px;
+  padding:1rem 1.2rem;margin-top:0.35rem;
+  transition:background 0.2s ease,transform 0.2s ease;
+}
+.co-submit:hover:not(:disabled){background:#D8BC80;transform:translateY(-1px);}
+.co-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.co-privacy{
+  font-family:var(--sans);font-size:0.8rem;text-align:center;
+  color:var(--ink-soft);margin:0.75rem 0 0;
+}
+.co-error{
+  font-family:var(--sans);font-size:0.88rem;
+  color:#8E2F22;background:#FBEDEA;
+  border:1px solid rgba(142,47,34,0.25);border-radius:4px;
+  padding:0.6rem 0.75rem;margin:0 0 0.85rem;
+}
+.co-error[hidden]{display:none;}
+
+/* ---- order summary + bumps ---- */
+.co-summary{
+  border:1px solid var(--rule);border-radius:4px;
+  background:var(--ivory-3);
+  padding:0.9rem 1rem;margin:0 0 1rem;
+}
+.co-line{
+  display:flex;justify-content:space-between;gap:1rem;
+  font-family:var(--sans);font-size:0.95rem;
+  padding:0.3rem 0;
+}
+.co-line .co-amt{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.co-line.co-total{
+  border-top:1px solid var(--rule);margin-top:0.45rem;padding-top:0.6rem;
+  font-weight:800;font-size:1.08rem;color:var(--navy-0);
+}
+.co-line[hidden]{display:none;}
+
+.co-bump{
+  display:block;cursor:pointer;
+  border:2px dashed var(--gold-deep);border-radius:4px;
+  background:var(--ivory-3);
+  padding:0.9rem 1rem;margin:0 0 0.8rem;
+  transition:background 0.15s ease,border-color 0.15s ease;
+}
+.co-bump:hover{background:#F6EFDF;}
+.co-bump.is-on{background:#F3E8CE;border-style:solid;}
+.co-bump-head{
+  display:flex;align-items:flex-start;gap:0.6rem;
+  font-family:var(--sans);font-weight:800;
+  font-size:0.98rem;line-height:1.35;color:var(--navy-0);
+}
+.co-bump-head input{
+  flex:none;width:1.15rem;height:1.15rem;margin:0.12rem 0 0;
+  accent-color:var(--gold-deep);cursor:pointer;
+}
+.co-bump p{
+  margin:0.45rem 0 0 1.75rem;
+  font-size:0.88rem;line-height:1.5;color:var(--ink-soft);
+}
+.co-bump .co-bump-price{color:var(--gold-deep);}
+
+.co-pay-label{
+  font-family:var(--sans);font-size:0.72rem;font-weight:800;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:1.2rem 0 0.6rem;
+}
+#co-payment-element{min-height:5rem;}
+.co-secure{
+  font-family:var(--sans);font-size:0.78rem;text-align:center;
+  color:var(--ink-soft);margin:0.75rem 0 0;
+}
+.co-back{
+  display:block;margin:0.6rem auto 0;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.85rem;
+  color:var(--ink-soft);text-decoration:underline;
+}
+.co-spinner{
+  display:inline-block;width:0.95em;height:0.95em;
+  margin-right:0.45em;vertical-align:-0.1em;
+  border:2px solid rgba(11,20,34,0.28);border-top-color:var(--navy-0);
+  border-radius:50%;animation:co-spin 0.7s linear infinite;
+}
+@keyframes co-spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){
+  .co-overlay,.co-modal{transition:none;}
+  .co-spinner{animation-duration:2s;}
+}
 </style>
 </head>
 <body>
@@ -647,7 +832,6 @@ body{padding-bottom:0;}
   </div>
 
   <!-- ---- CTA under the VSL ---- -->
-  <!-- TODO: point href at the real checkout URL -->
   <div class="cta-block" style="max-width:44rem;margin-inline:auto;">
     <a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a>
     <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
@@ -673,27 +857,27 @@ body{padding-bottom:0;}
     <div class="proof-grid">
       <div class="proof-cell">
         <img src="../assets/logos/dexko-global.png" alt="DexKo Global">
-        <p class="pq"><b>“Secured a price increase below 50%, saving approximately $800K.”</b><span>VP Procurement, engineered components</span></p>
+        <p class="pq"><b>“Secured a price increase below 50%, saving approximately $800K.”</b></p>
       </div>
       <div class="proof-cell">
         <img src="../assets/logos/fca.png" alt="FCA (Fiat Chrysler Automobiles)">
-        <p class="pq"><b>“$3.7M in piece-price value after 7 negotiation rounds.”</b><span>Automotive Procurement Lead</span></p>
+        <p class="pq"><b>“$3.7M in piece-price value after 7 negotiation rounds.”</b></p>
       </div>
       <div class="proof-cell">
         <img src="../assets/logos/chart-industries.png" alt="Chart Industries">
-        <p class="pq"><b>“Critical tools: BAM, anchoring, preparation, probing, listening.”</b><span>Global Category Manager, Metals</span></p>
+        <p class="pq"><b>“Critical tools: BAM, anchoring, preparation, probing, listening.”</b></p>
       </div>
       <div class="proof-cell">
         <img src="../assets/logos/nasa.png" alt="NASA">
-        <p class="pq"><b>“Invaluable tools I will be using in every negotiation henceforth.”</b><span>Procurement Lead</span></p>
+        <p class="pq"><b>“Invaluable tools I will be using in every negotiation henceforth.”</b></p>
       </div>
       <div class="proof-cell">
         <img src="../assets/logos/speira.png" alt="Speira" style="opacity:0.8">
-        <p class="pq"><b>“Really helped our team go out and re-negotiate with suppliers.”</b><span>Sales Director, metals</span></p>
+        <p class="pq"><b>“Really helped our team go out and re-negotiate with suppliers.”</b></p>
       </div>
       <div class="proof-cell">
         <img src="../assets/logos/arcelormittal.png" alt="ArcelorMittal" style="opacity:0.95">
-        <p class="pq"><b>“Valuable tools I’ll be using in an upcoming freight negotiation.”</b><span>Workshop Participant</span></p>
+        <p class="pq"><b>“Valuable tools I’ll be using in an upcoming freight negotiation.”</b></p>
       </div>
     </div>
   </div>
@@ -764,33 +948,43 @@ body{padding-bottom:0;}
 
     <div class="quotes">
       <figure class="quote">
-        <blockquote>"After 7 rounds of negotiation, I sourced above my BAM by 1.5%. This was worth $3.7M in piece price."</blockquote>
-        <figcaption class="attr"><span class="name">Automotive Procurement Lead</span>FCA (Fiat Chrysler Automobiles)</figcaption>
+        <blockquote>"Hundreds of employees trained… both sales and procurement functions improved outcomes by a large margin. ROI in Ruth is extremely high."</blockquote>
+        <figcaption class="who">
+          <img src="../assets/testimonials/DAVID-PECK.png" alt="David Peck">
+          <span class="attr" style="margin-top:0;"><span class="name">David Peck</span>Head of Supply Chain, Dunes Point Capital</span>
+        </figcaption>
       </figure>
 
       <figure class="quote">
-        <blockquote>"Secured a price increase below 50%, saving approximately $800K."</blockquote>
-        <figcaption class="attr"><span class="name">Bernd Holzinger</span>VP Procurement, DexKo Global</figcaption>
+        <blockquote>"Ruth is a deep expert in negotiating strategy… with difficult people and situations… across a host of geographies. Highly recommend!"</blockquote>
+        <figcaption class="who">
+          <img src="../assets/testimonials/TOM-JACOBSON.png" alt="Tom Jacobson">
+          <span class="attr" style="margin-top:0;"><span class="name">Tom Jacobson</span>Founder of Mindvantage</span>
+        </figcaption>
       </figure>
 
       <figure class="quote">
-        <blockquote>"Invaluable tools I will be using in every single negotiation I enter from now on."</blockquote>
-        <figcaption class="attr"><span class="name">Procurement Lead</span>NASA</figcaption>
+        <blockquote>"Ruth does an excellent job of distilling the important principles of negotiation into a package that is enjoyable to learn from."</blockquote>
+        <figcaption class="who">
+          <img src="../assets/testimonials/BRETT-MEYER.png" alt="Brett Meyer">
+          <span class="attr" style="margin-top:0;"><span class="name">Brett Meyer</span>Partner at AlexPartners</span>
+        </figcaption>
       </figure>
 
       <figure class="quote">
-        <blockquote>"After Ruth's coaching session, I was no longer nervous about negotiating. I went from nervous to confident."</blockquote>
-        <figcaption class="attr"><span class="name">Ezra Wanetik</span></figcaption>
+        <blockquote>"Ruth trained a cross-functional, cross-generational group… Everyone—from Associate to SVP—uses her tools now. There's even a waitlist for the next round."</blockquote>
+        <figcaption class="who">
+          <img src="../assets/testimonials/STEPHANIE-LIND.png" alt="Stephanie Lind">
+          <span class="attr" style="margin-top:0;"><span class="name">Stephanie Lind</span>Founder &amp; CEO, ESA (ex-Impossible Foods)</span>
+        </figcaption>
       </figure>
 
       <figure class="quote">
-        <blockquote>"Tripled a sales deal, turning a 250K sale into a 750K deal."</blockquote>
-        <figcaption class="attr"><span class="name">Kent</span>B2B Sales Manager</figcaption>
-      </figure>
-
-      <figure class="quote">
-        <blockquote>"I was surprised by how much I learned from this course. I consider myself a seasoned negotiator. The instructor confirmed what I knew, and also showed me new ways to turn a 'no' into a 'yes.'"</blockquote>
-        <figcaption class="attr"><span class="name">Steve</span>General Manager</figcaption>
+        <blockquote>"Ruth has an uncanny grasp of the negotiating process. I am only sorry I did not turn to her earlier in the process."</blockquote>
+        <figcaption class="who">
+          <img src="../assets/testimonials/MICHAEL-ROSE.png" alt="Michael Rose">
+          <span class="attr" style="margin-top:0;"><span class="name">Michael Rose</span>Author &amp; Speaker at Bipolar Wellness Foundation</span>
+        </figcaption>
       </figure>
     </div>
   </div>
@@ -940,8 +1134,7 @@ body{padding-bottom:0;}
       <p class="strike">This is the same training Fortune 50 companies pay <s>$50,000+</s> for.</p>
       <p class="amount">$97</p>
       <p class="strike" style="margin:0;">You're getting it for ninety-seven dollars.</p>
-      <!-- TODO: point href at the real checkout URL -->
-      <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
+          <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
       <p class="terms">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
     </div>
   </div>
@@ -973,8 +1166,7 @@ body{padding-bottom:0;}
     <p class="beat">But if you're serious about protecting your margin, building a sustainable business, and never being in a race to the bottom again...</p>
     <p class="lede"><em class="accent">This is where it starts.</em></p>
 
-    <!-- TODO: point href at the real checkout URL -->
-    <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
+      <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
     <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only</p>
   </div>
 </section>
@@ -992,8 +1184,7 @@ body{padding-bottom:0;}
       <p class="beat">Click the button. Secure your spot. And finally learn what the other side already knows.</p>
     </div>
 
-    <!-- TODO: point href at the real checkout URL -->
-    <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
+      <div class="cta-block"><a class="cta" href="#secure"><u>Secure Your Spot Now — $97</u> →</a></div>
     <p class="cta-note">Live Tuesday, September 8 @ 12:00 PM EDT · Replay for attendees only · Seats are limited</p>
   </div>
 </section>
@@ -1007,8 +1198,7 @@ body{padding-bottom:0;}
 <!-- ============ STICKY CTA ============ -->
 <div class="sticky-cta">
   <div class="inner">
-    <!-- TODO: point href at the real checkout URL -->
-    <a class="cta" href="#secure"><u>Secure Your Spot — $97</u> →</a>
+      <a class="cta" href="#secure"><u>Secure Your Spot — $97</u> →</a>
   </div>
 </div>
 
@@ -1043,5 +1233,335 @@ body{padding-bottom:0;}
 })();
 </script>
 
+<!-- ============ TWO-STEP ORDER FORM ============ -->
+<div class="co-overlay" id="co-overlay" hidden>
+  <div class="co-modal" role="dialog" aria-modal="true" aria-labelledby="co-tab-1">
+    <button type="button" class="co-close" id="co-close" aria-label="Close">✕</button>
+
+    <div class="co-tabs">
+      <div class="co-tab is-active" id="co-tab-1" data-tab="1">
+        <b>Your Info</b><span>Contact Details</span>
+      </div>
+      <div class="co-tab" id="co-tab-2" data-tab="2">
+        <b>Billing Info</b><span>Billing Details</span>
+      </div>
+    </div>
+
+    <div class="co-body">
+      <p class="co-error" id="co-error" role="alert" hidden></p>
+
+      <!-- ---- STEP 1 · contact details ---- -->
+      <form class="co-step" id="co-step-1" novalidate>
+        <div class="co-field">
+          <input type="text" id="co-name" name="name" placeholder="Full Name..."
+                 autocomplete="name" required>
+        </div>
+        <div class="co-field">
+          <input type="email" id="co-email" name="email" placeholder="Email Address..."
+                 autocomplete="email" inputmode="email" required>
+        </div>
+        <button type="submit" class="co-submit" id="co-next">Go To Step #2 →</button>
+        <p class="co-privacy">We respect your privacy &amp; information.</p>
+      </form>
+
+      <!-- ---- STEP 2 · billing details ---- -->
+      <form class="co-step" id="co-step-2" novalidate hidden>
+        <div class="co-summary">
+          <div class="co-line">
+            <span>Fortune 50 Negotiation Secrets Workshop</span>
+            <span class="co-amt">$97</span>
+          </div>
+          <div class="co-line" id="co-line-video_library" hidden>
+            <span>Aggressive Negotiators video library</span>
+            <span class="co-amt">$27</span>
+          </div>
+          <div class="co-line" id="co-line-bully_guide" hidden>
+            <span>Neutralize a Negotiation Bully guide</span>
+            <span class="co-amt">$17</span>
+          </div>
+          <div class="co-line co-total">
+            <span>Total due today</span>
+            <span class="co-amt" id="co-total">$97</span>
+          </div>
+        </div>
+
+        <label class="co-bump" id="co-bump-video_library">
+          <span class="co-bump-head">
+            <input type="checkbox" data-bump="video_library">
+            <span>Yes — add the Aggressive Negotiators video library for
+              <span class="co-bump-price">just $27</span></span>
+          </span>
+          <p>The workshop teaches you to hold your price. This shows you the hardball
+             tactics on video — as they're being run — so you spot them in the room
+             instead of afterwards. Yours to keep, watch any time.</p>
+        </label>
+
+        <label class="co-bump" id="co-bump-bully_guide">
+          <span class="co-bump-head">
+            <input type="checkbox" data-bump="bully_guide">
+            <span>Yes — add "How Do I Neutralize a Negotiation Bully?" for
+              <span class="co-bump-price">just $17</span></span>
+          </span>
+          <p>The written playbook for the counterpart who shouts, stonewalls and
+             pushes. Why they do it, how to stop it before it starts, and the exact
+             words to use when it happens anyway.</p>
+        </label>
+
+        <p class="co-pay-label">Payment details</p>
+        <div id="co-payment-element"></div>
+
+        <button type="submit" class="co-submit" id="co-pay">
+          Complete Order — <span id="co-pay-total">$97</span>
+        </button>
+        <p class="co-secure">🔒 Secure payment. Your card is processed by Stripe —
+           Castle never sees your card number.</p>
+        <button type="button" class="co-back" id="co-back">← Back to your details</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+/* ============================================================
+   Two-step order form.
+
+   Step 1 posts the contact details to /api/lead so the person is
+   in Kit before they ever reach the card field — an abandoned
+   billing step still leaves a lead worth following up.
+
+   Step 2 uses Stripe's deferred-intent flow: the Payment Element
+   is mounted against a running total, and the PaymentIntent is
+   only created on submit, priced by the server. The browser sends
+   which bumps were ticked, never an amount.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var OTO_URL = '/site/workshop-oto.html';
+  var PRICES  = { workshop: 9700, video_library: 2700, bully_guide: 1700 };
+
+  var overlay  = document.getElementById('co-overlay');
+  var step1    = document.getElementById('co-step-1');
+  var step2    = document.getElementById('co-step-2');
+  var tab1     = document.getElementById('co-tab-1');
+  var tab2     = document.getElementById('co-tab-2');
+  var errorBox = document.getElementById('co-error');
+  var nextBtn  = document.getElementById('co-next');
+  var payBtn   = document.getElementById('co-pay');
+
+  var stripe, elements, paymentElement, mounted = false;
+  var lead = { name: '', email: '' };
+  var lastFocus = null;
+
+  function money(cents) { return '$' + (cents / 100).toFixed(cents % 100 ? 2 : 0); }
+
+  function selectedBumps() {
+    return Array.prototype.slice
+      .call(step2.querySelectorAll('input[data-bump]:checked'))
+      .map(function (el) { return el.getAttribute('data-bump'); });
+  }
+
+  function total() {
+    return selectedBumps().reduce(function (sum, key) {
+      return sum + PRICES[key];
+    }, PRICES.workshop);
+  }
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.hidden = !message;
+    if (message) errorBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function busy(button, isBusy, label) {
+    button.disabled = isBusy;
+    if (isBusy) {
+      button.dataset.label = button.innerHTML;
+      button.innerHTML = '<span class="co-spinner"></span>' + label;
+    } else if (button.dataset.label) {
+      button.innerHTML = button.dataset.label;
+    }
+  }
+
+  /* ---- open / close ---- */
+  function open() {
+    lastFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.classList.add('co-locked');
+    requestAnimationFrame(function () { overlay.classList.add('is-open'); });
+    (step2.hidden ? document.getElementById('co-name') : payBtn).focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('co-locked');
+    setTimeout(function () { overlay.hidden = true; }, 180);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  // Every CTA on the page opens the form. The href stays as the in-page
+  // anchor so the buttons still do something sane if this script fails.
+  Array.prototype.forEach.call(document.querySelectorAll('a.cta'), function (cta) {
+    cta.addEventListener('click', function (event) {
+      event.preventDefault();
+      open();
+    });
+  });
+
+  document.getElementById('co-close').addEventListener('click', close);
+  overlay.addEventListener('mousedown', function (event) {
+    if (event.target === overlay) close();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !overlay.hidden) close();
+  });
+
+  /* ---- step 1 → step 2 ---- */
+  step1.addEventListener('submit', function (event) {
+    event.preventDefault();
+    showError('');
+
+    var name  = document.getElementById('co-name');
+    var email = document.getElementById('co-email');
+
+    name.setAttribute('aria-invalid', name.value.trim() ? 'false' : 'true');
+    var emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
+    email.setAttribute('aria-invalid', emailOk ? 'false' : 'true');
+
+    if (!name.value.trim()) { showError('Please enter your name.'); name.focus(); return; }
+    if (!emailOk) { showError('Please enter a valid email address.'); email.focus(); return; }
+
+    lead = {
+      name: name.value.trim(),
+      email: email.value.trim().toLowerCase()
+    };
+
+    busy(nextBtn, true, 'Saving…');
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.publishableKey) throw new Error('Payment is not configured yet.');
+        mountPayment(data.publishableKey);
+        goToStep2();
+      })
+      .catch(function (err) {
+        showError(err.message || 'Something went wrong. Please try again.');
+      })
+      .then(function () { busy(nextBtn, false); });
+  });
+
+  function goToStep2() {
+    step1.hidden = true;
+    step2.hidden = false;
+    tab1.classList.remove('is-active');
+    tab1.classList.add('is-done');
+    tab2.classList.add('is-active');
+    overlay.scrollTop = 0;
+  }
+
+  document.getElementById('co-back').addEventListener('click', function () {
+    step2.hidden = true;
+    step1.hidden = false;
+    tab2.classList.remove('is-active');
+    tab1.classList.remove('is-done');
+    tab1.classList.add('is-active');
+    showError('');
+  });
+
+  /* ---- payment element ---- */
+  function mountPayment(publishableKey) {
+    if (mounted) return;
+    stripe = Stripe(publishableKey);
+
+    elements = stripe.elements({
+      mode: 'payment',
+      amount: total(),
+      currency: 'usd',
+      paymentMethodCreation: 'manual',
+      appearance: {
+        theme: 'stripe',
+        variables: {
+          colorPrimary: '#A8874B',
+          colorText: '#1C222C',
+          colorDanger: '#8E2F22',
+          fontFamily: 'Archivo, "Helvetica Neue", Arial, sans-serif',
+          borderRadius: '4px'
+        }
+      }
+    });
+
+    paymentElement = elements.create('payment', {
+      defaultValues: { billingDetails: { name: lead.name, email: lead.email } }
+    });
+    paymentElement.mount('#co-payment-element');
+    mounted = true;
+  }
+
+  /* ---- bumps: repaint the summary and re-price the Element ---- */
+  Array.prototype.forEach.call(step2.querySelectorAll('input[data-bump]'), function (box) {
+    box.addEventListener('change', function () {
+      var key = box.getAttribute('data-bump');
+      document.getElementById('co-line-' + key).hidden = !box.checked;
+      document.getElementById('co-bump-' + key).classList.toggle('is-on', box.checked);
+
+      var amount = total();
+      document.getElementById('co-total').textContent = money(amount);
+      document.getElementById('co-pay-total').textContent = money(amount);
+      if (elements) elements.update({ amount: amount });
+    });
+  });
+
+  /* ---- step 2: take the payment ---- */
+  step2.addEventListener('submit', function (event) {
+    event.preventDefault();
+    showError('');
+    busy(payBtn, true, 'Processing…');
+
+    elements.submit()
+      .then(function (result) {
+        if (result.error) throw new Error(result.error.message);
+        return fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: lead.name,
+            email: lead.email,
+            bumps: selectedBumps()
+          })
+        });
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.error) throw new Error(data.error);
+
+        // Built before confirming so card types that bounce through a bank
+        // page land back on the same order.
+        var back = window.location.origin + OTO_URL +
+                   '?pi=' + encodeURIComponent(data.paymentIntentId) +
+                   '&cs=' + encodeURIComponent(data.clientSecret);
+
+        return stripe.confirmPayment({
+          elements: elements,
+          clientSecret: data.clientSecret,
+          confirmParams: { return_url: back },
+          redirect: 'if_required'
+        }).then(function (result) {
+          if (result.error) throw new Error(result.error.message);
+          window.location.href = back;
+        });
+      })
+      .catch(function (err) {
+        showError(err.message || 'Your payment could not be completed.');
+        busy(payBtn, false);
+      });
+  });
+})();
+</script>
 
 </body></html>
