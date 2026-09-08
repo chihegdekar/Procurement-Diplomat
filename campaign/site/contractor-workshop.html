@@ -538,6 +538,15 @@ section.dark .consequences li{
 .media--duo{aspect-ratio:3/2;max-width:24rem;background:var(--ivory-2);}
 .media--wide{aspect-ratio:2.13/1;background:var(--ivory-2);}
 .media--wide img{object-fit:contain;}
+.media .ribbon{
+  position:absolute;top:1.35rem;right:-3.4rem;z-index:3;
+  width:12.5rem;padding:0.45rem 0;
+  transform:rotate(45deg);transform-origin:center;
+  background:var(--gold);color:var(--navy-0);
+  font-family:var(--sans);font-weight:800;font-size:0.72rem;
+  letter-spacing:0.08em;text-transform:uppercase;text-align:center;
+  box-shadow:0 2px 10px rgba(11,20,34,0.35);
+}
 .media--square{aspect-ratio:1/1;}
 .media--split{
   display:grid;grid-template-columns:1fr 1fr;gap:2px;
@@ -1008,6 +1017,7 @@ body.co-locked{overflow:hidden;}
     <!-- ---- MEDIA: the BAM Calculator ---- -->
     <div class="media">
       <video src="../assets/workshop/bam-calculator-demo.mp4" poster="../assets/workshop/bam-calculator-poster.jpg" autoplay loop muted playsinline></video>
+      <span class="ribbon">Free — Included</span>
     </div>
   </div>
 </section>
