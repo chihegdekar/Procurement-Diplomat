@@ -535,6 +535,9 @@ section.dark .consequences li{
   color:var(--ink-soft);max-width:36ch;margin:0;
 }
 .media--portrait{aspect-ratio:4/5;max-width:20rem;}
+.media--duo{aspect-ratio:3/2;max-width:24rem;background:var(--ivory-2);}
+.media--wide{aspect-ratio:2.13/1;background:var(--ivory-2);}
+.media--wide img{object-fit:contain;}
 .media--square{aspect-ratio:1/1;}
 .media--split{
   display:grid;grid-template-columns:1fr 1fr;gap:2px;
@@ -965,12 +968,10 @@ body.co-locked{overflow:hidden;}
     <!-- ---- MEDIA: the two sides of the table ---- -->
     <div class="media media--split">
       <div class="media">
-        <span class="slug">Image / video A</span>
-        <p class="note">The contractor — on site, in the truck, quoting from the tailgate.</p>
+        <img src="../assets/workshop/contractor-onsite.webp" alt="Contractor on site, checking his phone between quotes">
       </div>
       <div class="media">
-        <span class="slug">Image / video B</span>
-        <p class="note">The buyer — boardroom, spreadsheet open, doing this all day every day.</p>
+        <img src="../assets/workshop/buyer-desk.webp" alt="Procurement buyer at a desk full of spreadsheets and contracts">
       </div>
     </div>
 
@@ -1006,8 +1007,7 @@ body.co-locked{overflow:hidden;}
 
     <!-- ---- MEDIA: the BAM Calculator ---- -->
     <div class="media">
-      <span class="slug">Screen recording</span>
-      <p class="note">The BAM Calculator in use — enter the inputs, watch the opening price land.</p>
+      <video src="../assets/workshop/bam-calculator-demo.mp4" poster="../assets/workshop/bam-calculator-poster.jpg" controls playsinline muted></video>
     </div>
   </div>
 </section>
@@ -1256,9 +1256,8 @@ body.co-locked{overflow:hidden;}
     </ul>
 
     <!-- ---- MEDIA: what's in the box ---- -->
-    <div class="media">
-      <span class="slug">Image</span>
-      <p class="note">What's included — workshop replay, BAM Calculator, tactic cards laid out flat.</p>
+    <div class="media media--wide">
+      <img src="../assets/workshop/whats-included.webp" alt="What's included: negotiation tactic cards, the BAM Calculator, and the workshop replay">
     </div>
 
     <p class="beat">And here's the best part:</p>
@@ -1267,16 +1266,15 @@ body.co-locked{overflow:hidden;}
   </div>
 </section>
 
-<!-- ============ 6. THE INSTRUCTOR ============ -->
+<!-- ============ 6. THE INSTRUCTORS ============ -->
 <section class="tint">
   <div class="wrap" style="max-width:52rem;">
     <h2>This Workshop Is Led by Dr. Chiraag (Chi) Hegdekar</h2>
 
     <div class="instructor">
-      <!-- ---- MEDIA: headshot ---- -->
-      <div class="media media--portrait">
-        <span class="slug">Headshot</span>
-        <p class="note">Dr. Chi Hegdekar — portrait, 4:5.</p>
+      <!-- ---- MEDIA: Chi & Ruth ---- -->
+      <div class="media media--duo">
+        <img src="../assets/workshop/chi-and-ruth.png" alt="Dr. Chi Hegdekar and Ruth Shlossman">
       </div>
 
       <div>
@@ -1286,18 +1284,7 @@ body.co-locked{overflow:hidden;}
         <p class="beat">He's an entrepreneur, buyer strategist, and negotiation facilitator who's spent years in real-world commercial negotiations — structuring partnerships, launching products, and helping businesses grow through better commercial conversations.</p>
         <p class="beat">He holds a doctorate in medicine alongside degrees in computer science, cloud computing, and healthcare management.</p>
         <p class="beat">That rare combination of analytical thinking, human behavior, technology, and commercial strategy allows him to approach negotiation from multiple angles — balancing logic, psychology, communication, and business outcomes.</p>
-      </div>
-    </div>
-
-    <div class="instructor" style="margin-top:clamp(1.6rem,4vw,2.4rem);">
-      <!-- ---- MEDIA: Ruth ---- -->
-      <div class="media media--portrait">
-        <span class="slug">Headshot</span>
-        <p class="note">Ruth Shlossman — portrait, 4:5.</p>
-      </div>
-
-      <div>
-        <p class="credential">Founder · Harvard-trained · 25 years</p>
+        <p class="credential" style="margin-top:1.4rem;">Founder · Harvard-trained · 25 years</p>
         <p class="beat">And he's backed by <strong>Ruth Shlossman</strong> — the Harvard-trained founder of Castle Negotiations who's spent 25 years training procurement teams at companies like BAE Systems, Accenture, and Chart Industries.</p>
         <p class="lede"><em class="accent">This is the real deal.</em></p>
       </div>
@@ -1327,8 +1314,7 @@ body.co-locked{overflow:hidden;}
 
     <!-- ---- MEDIA: the moment across the table ---- -->
     <div class="media">
-      <span class="slug">Video</span>
-      <p class="note">Across the table — the buyer pushes, the contractor doesn't flinch.</p>
+      <img src="../assets/workshop/calm-business-owner.webp" alt="Business owner, calm and arms crossed, while a video call of stressed colleagues plays behind him">
     </div>
 
     <p class="beat">Imagine sitting across from a procurement manager who's trying to get you to drop your price.</p>
