@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>One From Ruth | Castle Negotiations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&amp;family=Archivo:wght@400;600;700;800&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-0:#0B1422; --navy-1:#0F1B2D;
+  --paper:#FFFFFF; --ivory:#F2EBDC; --ivory-3:#FBF7EE;
+  --ink:#1C222C; --ink-soft:#4A5262; --rule:rgba(28,34,44,0.14);
+  --gold:#C9A96A; --gold-deep:#A8874B; --gold-faint:#F6EEDD;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,monospace;
+  --pad:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:1.0625rem;line-height:1.62;-webkit-font-smoothing:antialiased;}
+a{color:var(--gold-deep);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+
+.topbar{background:var(--navy-0);color:var(--ivory);padding:0.9rem var(--pad);
+  text-align:center;border-bottom:1px solid rgba(201,169,106,0.28);}
+.topbar .wordmark{font-family:var(--serif);font-size:1.15rem;color:var(--ivory);
+  text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;}
+.topbar .knight{color:var(--gold);font-size:1.25em;}
+
+.confirmed{background:var(--ivory-3);border-bottom:1px solid var(--rule);
+  padding:0.85rem var(--pad);text-align:center;
+  font-size:0.9rem;font-weight:700;color:var(--navy-0);}
+.confirmed .tick{color:var(--gold-deep);}
+
+.wrap{max-width:44rem;margin:0 auto;padding:clamp(2rem,6vw,3.4rem) var(--pad);}
+.eyebrow{font-size:0.8rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.8rem;}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
+  line-height:1.1;color:var(--navy-0);margin:0 0 1rem;text-wrap:balance;}
+.dek{font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.3rem);
+  color:var(--ink);margin:0 0 2rem;text-wrap:pretty;}
+
+.perks{list-style:none;margin:0 0 2rem;padding:0;display:grid;gap:0.7rem;}
+.perks li{position:relative;padding-left:1.6rem;font-size:0.98rem;color:var(--ink);}
+.perks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--gold-deep);font-weight:700;}
+
+.btn{display:block;width:100%;text-align:center;text-decoration:none;cursor:pointer;
+  font-family:var(--sans);font-weight:800;font-size:clamp(1rem,2.7vw,1.2rem);
+  color:var(--navy-0);background:var(--gold);border:2px solid var(--gold-deep);
+  border-radius:4px;padding:1rem 1.3rem;}
+.btn:hover:not(:disabled){background:#D8BC80;}
+.btn:disabled{opacity:0.6;cursor:not-allowed;}
+.decline{display:block;margin:1.1rem auto 0;background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.9rem;color:var(--ink-soft);text-decoration:underline;
+  text-align:center;}
+.note{font-size:0.82rem;color:var(--ink-soft);text-align:center;margin:0.8rem 0 0;}
+.state{color:var(--ink-soft);}
+
+/* ---- application form ---- */
+.apply{display:grid;gap:1.15rem;margin:0 0 0.4rem;
+  border:1px solid var(--rule);border-radius:6px;background:var(--ivory-3);
+  padding:clamp(1.1rem,4vw,1.7rem);}
+.apply .fld label{display:block;font-family:var(--mono);font-size:0.64rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 0.4rem;}
+.apply select{width:100%;box-sizing:border-box;background:var(--paper);
+  border:1px solid rgba(28,34,44,0.3);border-radius:4px;padding:0.7rem 0.6rem;
+  font-family:var(--sans);font-size:0.98rem;color:var(--ink);}
+.apply select:focus{outline:none;border-color:var(--gold-deep);}
+.apply select.err{border-color:#A65546;}
+.apply .ferr{display:none;font-size:0.74rem;color:#A65546;margin-top:0.35rem;}
+.apply button{width:100%;background:var(--navy-0);color:var(--ivory);border:none;
+  border-radius:4px;padding:1rem 1.2rem;cursor:pointer;
+  font-family:var(--sans);font-weight:800;font-size:1.02rem;}
+.apply button:hover:not(:disabled){background:#16263D;}
+.apply button:disabled{opacity:0.6;cursor:default;}
+
+[hidden]{display:none !important;}
+
+.foot{background:var(--navy-0);color:rgba(242,235,220,0.55);
+  padding:2rem var(--pad);text-align:center;font-size:0.82rem;margin-top:2rem;}
+
+/* ---- TidyCal modal ---- */
+.tc-modal{position:fixed;inset:0;z-index:200;}
+.tc-modal[hidden]{display:none;}
+.tc-modal .tc-backdrop{position:absolute;inset:0;background:rgba(8,14,24,0.82);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  opacity:0;transition:opacity 0.3s ease;}
+.tc-modal.is-open .tc-backdrop{opacity:1;}
+.tc-modal .tc-scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(0.75rem,4vh,2.75rem) clamp(0.75rem,4vw,2rem);}
+.tc-modal .tc-dialog{position:relative;width:min(900px,100%);margin:0 auto;
+  height:min(880px,100%);display:flex;flex-direction:column;
+  background:var(--ivory-3);border:1px solid rgba(201,169,106,0.45);border-radius:2px;
+  box-shadow:0 40px 90px -20px rgba(0,0,0,0.7);
+  opacity:0;transform:translateY(14px);transition:opacity 0.35s ease,transform 0.4s ease;}
+.tc-modal.is-open .tc-dialog{opacity:1;transform:none;}
+.tc-modal .tc-bar{flex:none;background:var(--navy-0);padding:0.85rem 1.1rem 0.85rem 1.4rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  border-bottom:1px solid rgba(201,169,106,0.3);}
+.tc-modal .tc-title{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--gold);}
+.tc-modal .tc-close{flex:none;background:none;border:1px solid rgba(242,235,220,0.25);
+  color:rgba(242,235,220,0.7);font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;
+  text-transform:uppercase;padding:0.45rem 0.7rem;border-radius:4px;cursor:pointer;}
+.tc-modal .tc-close:hover{color:var(--ivory);border-color:var(--gold);}
+.tc-modal .tc-frame{position:relative;padding:0.6rem;flex:1 1 auto;min-height:0;}
+.tc-modal .tc-mount{height:100%;}
+.tc-modal .tc-frame iframe{display:block;width:100%;height:100%;border:0;}
+.tc-modal .tc-loading{position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--ink-soft);pointer-events:none;transition:opacity 0.3s;}
+.tc-modal .tc-frame.is-ready .tc-loading{opacity:0;}
+@media (max-width:700px){
+  .tc-modal .tc-scroll{padding:0;}
+  .tc-modal .tc-dialog{width:100%;height:100%;border:none;border-radius:0;}
+}
+@media (prefers-reduced-motion:reduce){
+  .tc-modal .tc-backdrop,.tc-modal .tc-dialog{transition:none;}
+  .tc-modal .tc-dialog{transform:none;}
+}
+html.tc-locked,html.tc-locked body{overflow:hidden;}
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1560415991582955');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark" href="/"><span class="knight">&#9822;</span> <span>Castle Negotiations</span></a>
+</div>
+
+<div class="confirmed" id="confirmed" hidden>
+  <span class="tick">&#10003;</span> <span id="confirmed-text">Payment confirmed. Your order is secured.</span>
+</div>
+
+<main class="wrap">
+  <p class="state" id="loading">Confirming your order&hellip;</p>
+
+  <!-- ============ THE OFFER: apply for a live triage with Ruth ============ -->
+  <div id="offer" hidden>
+    <p class="eyebrow">A thank-you from Ruth</p>
+    <h1>One more thing<span id="fname-wrap">, <span id="fname"></span></span>. This one is on the house.</h1>
+    <p class="dek">You just went all in on the workshop. As a thank-you, Ruth is opening
+      a handful of 30-minute live triage calls this month. You bring the real deal on
+      your desk. She works it with you, live. No pitch. Nothing to pay.</p>
+
+    <ul class="perks">
+      <li>30 minutes, one to one with Ruth Shlossman</li>
+      <li>Bring the negotiation putting the most pressure on you right now</li>
+      <li>Walk out with a plan for your opening number, your trades, and your walk-away</li>
+      <li>No cost, and no sales pitch. Ruth takes only a few of these a month</li>
+    </ul>
+
+    <form class="apply" id="apply" novalidate>
+      <div class="fld">
+        <label for="q-rev">Your company's yearly revenue</label>
+        <select id="q-rev" name="rev" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="under_2m">Under $2M</option>
+          <option value="2_10m">$2M to $10M</option>
+          <option value="10_50m">$10M to $50M</option>
+          <option value="50_250m">$50M to $250M</option>
+          <option value="250m_plus">$250M or more</option>
+        </select>
+        <div class="ferr" data-for="q-rev">Pick one so Ruth can see the fit.</div>
+      </div>
+
+      <div class="fld">
+        <label for="q-role">Your part in the big deals</label>
+        <select id="q-role" name="role" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="run">I run them. I'm across the table on our biggest negotiations</option>
+          <option value="lead">I lead them with a small team</option>
+          <option value="direct">I set direction, someone on my team runs them</option>
+          <option value="hands_off">I'm not usually in the room</option>
+        </select>
+        <div class="ferr" data-for="q-role">Pick one so Ruth can see the fit.</div>
+      </div>
+
+      <div class="fld">
+        <label for="q-freq">How often you're in a high-value negotiation ($250K or more on the table)</label>
+        <select id="q-freq" name="freq" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="weeks">Most weeks</option>
+          <option value="months">Most months</option>
+          <option value="few_year">A few times a year</option>
+          <option value="rare">Rarely</option>
+        </select>
+        <div class="ferr" data-for="q-freq">Pick one so Ruth can see the fit.</div>
+      </div>
+
+      <div class="fld">
+        <label for="q-deal">The deal on your desk right now</label>
+        <select id="q-deal" name="deal" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="under_100k">Under $100K at stake</option>
+          <option value="100_500k">$100K to $500K at stake</option>
+          <option value="500k_2m">$500K to $2M at stake</option>
+          <option value="2m_plus">$2M or more at stake</option>
+          <option value="none">Nothing live right now</option>
+        </select>
+        <div class="ferr" data-for="q-deal">Pick one so Ruth can see the fit.</div>
+      </div>
+
+      <button type="submit" id="apply-btn">See if a session is open for you</button>
+      <p class="note">Takes 20 seconds. Ruth reads every answer herself.</p>
+    </form>
+
+    <button class="decline" id="skip" type="button">No thanks, take me to my workshop access &rarr;</button>
+  </div>
+
+  <!-- ============ QUALIFIED ============ -->
+  <div id="result-yes" hidden>
+    <p class="eyebrow">You're in</p>
+    <h1>Ruth built this for owners like you.</h1>
+    <p class="dek">Pick a time and you're on her calendar. Come with the deal, the
+      pressure, and the decision in front of you. Leave the supplier documents at home,
+      Ruth works from the situation, not the paperwork.</p>
+    <button class="btn" id="open-cal" type="button">Pick your time &rarr;</button>
+    <button class="decline" id="skip2" type="button">Maybe later, take me to my access &rarr;</button>
+  </div>
+
+  <!-- ============ NOT A FIT ============ -->
+  <div id="result-no" hidden>
+    <p class="eyebrow">Noted</p>
+    <h1>Keep this door open.</h1>
+    <p class="dek">Ruth keeps the live calls for owners in the middle of a high-value
+      deal right now. You have the workshop and the tools. Put them to work on the next
+      one, and reply to any email from Ruth when the big deal lands. The offer stands.</p>
+    <button class="btn" id="go-access-no" type="button">Go to your workshop access &rarr;</button>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>&copy; 2026 Castle Negotiations Consulting Group. All rights reserved.</p>
+</footer>
+
+<!-- ============ TIDYCAL MODAL ============ -->
+<div class="tc-modal" id="bookingModal" hidden>
+  <div class="tc-backdrop" data-tc-close-outside></div>
+  <div class="tc-scroll" data-tc-close-outside>
+    <div class="tc-dialog" role="dialog" aria-modal="true" aria-label="Book your live triage with Ruth">
+      <div class="tc-bar">
+        <span class="tc-title">Live Triage &middot; Ruth Shlossman</span>
+        <button type="button" class="tc-close" data-tc-close>Close</button>
+      </div>
+      <div class="tc-frame">
+        <div class="tc-loading">Loading Ruth's calendar&hellip;</div>
+        <div class="tc-mount"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     SCORING
+     Balance: keep the form to 4 selects (low friction), gate on
+     company size + deal value + how central the owner is + how often
+     they negotiate big. Tune the numbers or QUALIFY_THRESHOLD to open
+     or tighten the door.
+     ------------------------------------------------------------------ */
+  var QUALIFY_THRESHOLD = 65;
+
+  var REV_POINTS  = { under_2m: 0,  '2_10m': 14, '10_50m': 30, '50_250m': 35, '250m_plus': 30 };
+  var ROLE_POINTS = { run: 35, lead: 26, direct: 12, hands_off: 0 };
+  var FREQ_POINTS = { weeks: 25, months: 18, few_year: 8, rare: 0 };
+  var DEAL_POINTS = { under_100k: 0, '100_500k': 12, '500k_2m': 20, '2m_plus': 25, none: 6 };
+
+  function computeScore(d) {
+    return (REV_POINTS[d.rev]  || 0)
+         + (ROLE_POINTS[d.role] || 0)
+         + (FREQ_POINTS[d.freq] || 0)
+         + (DEAL_POINTS[d.deal] || 0);
+  }
+
+  /* ---- order lookup ---- */
+  var params = new URLSearchParams(window.location.search);
+  var pi = params.get('pi');
+  var cs = params.get('cs') || params.get('payment_intent_client_secret');
+
+  var accessUrl = '/site/workshop-access.html?pi=' + encodeURIComponent(pi || '') +
+                  '&cs=' + encodeURIComponent(cs || '');
+
+  var identity = { name: '', email: '' };
+
+  var loading   = document.getElementById('loading');
+  var offer     = document.getElementById('offer');
+  var resultYes = document.getElementById('result-yes');
+  var resultNo  = document.getElementById('result-no');
+
+  function toAccess() { window.location.href = accessUrl; }
+
+  // No order reference at all: nothing to confirm, send them to their access.
+  if (!pi || !cs) { toAccess(); return; }
+
+  document.getElementById('skip').addEventListener('click', toAccess);
+  document.getElementById('skip2').addEventListener('click', toAccess);
+  document.getElementById('go-access-no').addEventListener('click', toAccess);
+
+  fetch('/api/order?pi=' + encodeURIComponent(pi) + '&cs=' + encodeURIComponent(cs))
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('lookup')); })
+    .then(function (order) {
+      identity.name = (order.name || '').trim();
+      identity.email = (order.email || '').trim();
+
+      var first = identity.name.split(/\s+/)[0];
+      if (first) {
+        document.getElementById('fname').textContent = first;
+      } else {
+        document.getElementById('fname-wrap').hidden = true;
+      }
+
+      if (order.total) {
+        document.getElementById('confirmed-text').textContent =
+          'Payment confirmed — $' + (order.total / 100).toFixed(2) + '. Your order is secured.';
+        document.getElementById('confirmed').hidden = false;
+      }
+
+      loading.hidden = true;
+      offer.hidden = false;
+    })
+    .catch(toAccess);
+
+  /* ---- application submit ---- */
+  var form = document.getElementById('apply');
+  var applyBtn = document.getElementById('apply-btn');
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    var fields = ['q-rev', 'q-role', 'q-freq', 'q-deal'];
+    var ok = true;
+    fields.forEach(function (id) {
+      var el = document.getElementById(id);
+      var err = form.querySelector('.ferr[data-for="' + id + '"]');
+      if (!el.value) {
+        ok = false;
+        el.classList.add('err');
+        if (err) err.style.display = 'block';
+      } else {
+        el.classList.remove('err');
+        if (err) err.style.display = 'none';
+      }
+    });
+    if (!ok) return;
+
+    var data = {
+      rev:  document.getElementById('q-rev').value,
+      role: document.getElementById('q-role').value,
+      freq: document.getElementById('q-freq').value,
+      deal: document.getElementById('q-deal').value
+    };
+    var score = computeScore(data);
+    var qualified = score >= QUALIFY_THRESHOLD;
+
+    if (window.fbq) {
+      fbq('trackCustom', 'TriageApplication', { score: score, qualified: qualified });
+    }
+
+    applyBtn.disabled = true;
+    offer.hidden = true;
+    if (qualified) {
+      resultYes.hidden = false;
+    } else {
+      resultNo.hidden = false;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ------------------------------------------------------------------
+     TIDYCAL
+     Existing Castle triage booking type. If Ruth spins up a dedicated
+     "workshop appreciation" booking, swap TIDYCAL_PATH.
+     ------------------------------------------------------------------ */
+  var TIDYCAL_ORIGIN = 'https://tidycal.com';
+  var TIDYCAL_PATH   = 'castle-negotiations/procurement-triage';
+  var TIDYCAL_URL    = TIDYCAL_ORIGIN + '/' + TIDYCAL_PATH;
+
+  var modal = document.getElementById('bookingModal');
+  var calMounted = false;
+
+  function calendarUrl() {
+    var url = TIDYCAL_URL + '?embed=1';
+    if (identity.name)  url += '&name=' + encodeURIComponent(identity.name);
+    if (identity.email) url += '&email=' + encodeURIComponent(identity.email);
+    return url;
+  }
+
+  function mountCalendar() {
+    if (calMounted) return;
+    calMounted = true;
+    var mount = modal.querySelector('.tc-mount');
+    var frame = modal.querySelector('.tc-frame');
+    var loadingEl = modal.querySelector('.tc-loading');
+    var iframe = document.createElement('iframe');
+    iframe.src = calendarUrl();
+    iframe.title = 'Book a live triage with Ruth Shlossman';
+    iframe.setAttribute('allow', 'payment');
+    iframe.addEventListener('load', function () { if (frame) frame.classList.add('is-ready'); });
+    mount.appendChild(iframe);
+    setTimeout(function () {
+      if (!frame || frame.classList.contains('is-ready') || !loadingEl) return;
+      loadingEl.innerHTML = 'Calendar is slow to load. <a href="' + TIDYCAL_URL +
+        '" target="_blank" rel="noopener" style="color:var(--gold-deep);margin-left:0.4rem">Open in a new tab &rarr;</a>';
+      loadingEl.style.pointerEvents = 'auto';
+    }, 12000);
+  }
+
+  function openCal() {
+    modal.hidden = false;
+    document.documentElement.classList.add('tc-locked');
+    requestAnimationFrame(function () { modal.classList.add('is-open'); });
+    mountCalendar();
+    var c = modal.querySelector('.tc-close');
+    if (c) c.focus({ preventScroll: true });
+  }
+  function closeCal() {
+    modal.classList.remove('is-open');
+    document.documentElement.classList.remove('tc-locked');
+    setTimeout(function () { if (!modal.classList.contains('is-open')) modal.hidden = true; }, 300);
+  }
+
+  document.getElementById('open-cal').addEventListener('click', openCal);
+  modal.addEventListener('click', function (evt) {
+    if (evt.target.closest('[data-tc-close]') || evt.target.hasAttribute('data-tc-close-outside')) closeCal();
+  });
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape' && !modal.hidden) closeCal();
+  });
+
+  /* ---- booking confirmed: hand them on to their workshop access ---- */
+  var redirecting = false;
+  window.addEventListener('message', function (evt) {
+    if (evt.origin !== TIDYCAL_ORIGIN) return;
+    var payload = evt.data;
+    if (!payload || payload.event !== 'bookingComplete' || redirecting) return;
+    redirecting = true;
+    if (window.fbq) fbq('track', 'Schedule');
+    var d = modal.querySelector('.tc-dialog');
+    if (d) {
+      d.innerHTML = '<div style="padding:2.4rem 1.6rem;text-align:center;font-family:var(--serif);' +
+        'font-size:1.15rem;color:var(--navy-0);">You’re on Ruth’s calendar. ' +
+        'The invite is on its way to your inbox.<br><br>Taking you to your workshop access…</div>';
+    }
+    setTimeout(toAccess, 1400);
+  });
+})();
+</script>
+
+</body></html>

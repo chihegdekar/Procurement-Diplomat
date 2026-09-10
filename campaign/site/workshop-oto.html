@@ -242,6 +242,10 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
 
   var accessUrl = '/site/workshop-access.html?pi=' + encodeURIComponent(pi || '') +
                   '&cs=' + encodeURIComponent(cs || '');
+  // After this OTO, everyone flows to the second OTO (Ruth's live triage offer),
+  // which then hands them on to their access.
+  var nextUrl = '/site/workshop-oto-2.html?pi=' + encodeURIComponent(pi || '') +
+                '&cs=' + encodeURIComponent(cs || '');
 
   var loading     = document.getElementById('loading');
   var passthrough = document.getElementById('passthrough');
@@ -249,12 +253,13 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
   var errorBox    = document.getElementById('offer-error');
 
   function toAccess() { window.location.href = accessUrl; }
+  function toNext() { window.location.href = nextUrl; }
 
   // No order reference at all — nothing to confirm, nothing to upsell.
   if (!pi || !cs) { toAccess(); return; }
 
-  document.getElementById('go-access').href = accessUrl;
-  document.getElementById('decline').addEventListener('click', toAccess);
+  document.getElementById('go-access').href = nextUrl;
+  document.getElementById('decline').addEventListener('click', toNext);
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, function (c) {
@@ -306,7 +311,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       if (n) n.hidden = true;
     });
     var decline = document.getElementById('decline');
-    decline.textContent = 'Continue to your workshop access →';
+    decline.textContent = 'Continue →';
   }
 
   fetch('/api/order?pi=' + encodeURIComponent(pi) + '&cs=' + encodeURIComponent(cs))
