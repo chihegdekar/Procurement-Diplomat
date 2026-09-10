@@ -33,7 +33,7 @@ export const CATALOGUE = {
   bully_guide: {
     key: 'bully_guide',
     label: 'How Do I Neutralize a Negotiation Bully? — Field Guide',
-    amount: 1700,
+    amount: 700,
     product: 'prod_VCHF7s4D6NF7FT',
     price: 'price_1UBshFGTG8HDPA446gjZzykK',
     tag: 'Workshop: Bump - Bully Guide',
@@ -71,13 +71,13 @@ export const KIT = {
   sequences: {
     access: 2883347,        // everyone who buys
     video_library: 2883348, // $27 bump
-    bully_guide: 2883349,   // $17 bump
+    bully_guide: 2883349,   // $7 bump
     yes_if: 2828038,        // OTO — "Yes, If Library access"
   },
 };
 
 /* Where the bonuses actually live. The bully guide sits behind an
-   unguessable path rather than a login — proportionate for a $17 asset,
+   unguessable path rather than a login — proportionate for a $7 asset,
    and it keeps the delivery to one click. */
 export const DELIVERY = {
   video_library: {
