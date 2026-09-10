@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>One More Thing | Castle Negotiations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&amp;family=Archivo:wght@400;600;700;800&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-0:#0B1422; --navy-1:#0F1B2D;
+  --paper:#FFFFFF; --ivory:#F2EBDC; --ivory-3:#FBF7EE;
+  --ink:#1C222C; --ink-soft:#4A5262; --rule:rgba(28,34,44,0.14);
+  --gold:#C9A96A; --gold-deep:#A8874B;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,monospace;
+  --pad:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:1.0625rem;line-height:1.62;-webkit-font-smoothing:antialiased;}
+a{color:var(--gold-deep);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+
+.topbar{background:var(--navy-0);color:var(--ivory);padding:0.9rem var(--pad);
+  text-align:center;border-bottom:1px solid rgba(201,169,106,0.28);}
+.topbar .wordmark{font-family:var(--serif);font-size:1.15rem;color:var(--ivory);
+  text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;}
+.topbar .knight{color:var(--gold);font-size:1.25em;}
+
+.confirmed{background:var(--ivory-3);border-bottom:1px solid var(--rule);
+  padding:0.85rem var(--pad);text-align:center;
+  font-size:0.9rem;font-weight:700;color:var(--navy-0);}
+.confirmed .tick{color:var(--gold-deep);}
+
+.wrap{max-width:44rem;margin:0 auto;padding:clamp(2rem,6vw,3.4rem) var(--pad);}
+.eyebrow{font-size:0.8rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.8rem;}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
+  line-height:1.1;color:var(--navy-0);margin:0 0 1rem;text-wrap:balance;}
+.dek{font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.3rem);
+  color:var(--ink);margin:0 0 2rem;text-wrap:pretty;}
+
+.btn{display:block;width:100%;text-align:center;text-decoration:none;cursor:pointer;
+  font-family:var(--sans);font-weight:800;font-size:clamp(1rem,2.7vw,1.2rem);
+  color:var(--navy-0);background:var(--gold);border:2px solid var(--gold-deep);
+  border-radius:4px;padding:1rem 1.3rem;}
+.btn:hover:not(:disabled){background:#D8BC80;}
+.btn:disabled{opacity:0.6;cursor:not-allowed;}
+.decline{display:block;margin:1.1rem auto 0;background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.9rem;color:var(--ink-soft);text-decoration:underline;
+  text-align:center;}
+.note{font-size:0.82rem;color:var(--ink-soft);text-align:center;margin:0.8rem 0 0;}
+.state{color:var(--ink-soft);}
+
+.price-line{font-family:var(--serif);font-size:clamp(1.05rem,2.6vw,1.25rem);
+  font-weight:700;color:var(--navy-0);margin:1.8rem 0 0.2rem;}
+.price-line s{color:var(--ink-soft);font-weight:400;}
+.scarcity{border:1px solid var(--gold-deep);background:var(--ivory-3);border-radius:4px;
+  padding:0.85rem 1.05rem;margin:0 0 1.3rem;font-size:0.92rem;font-weight:600;
+  color:var(--navy-0);line-height:1.5;}
+.scarcity b{color:var(--gold-deep);text-transform:uppercase;letter-spacing:0.04em;
+  font-size:0.8rem;display:block;margin-bottom:0.2rem;}
+.guarantee{font-size:0.84rem;color:var(--ink-soft);text-align:center;margin:0.95rem 0 0;}
+
+[hidden]{display:none !important;}
+
+.foot{background:var(--navy-0);color:rgba(242,235,220,0.55);
+  padding:2rem var(--pad);text-align:center;font-size:0.82rem;margin-top:2rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark" href="/"><span class="knight">♞</span> <span>Castle Negotiations</span></a>
+</div>
+
+<div class="confirmed" id="confirmed" hidden>
+  <span class="tick">✓</span> <span id="confirmed-text">Payment confirmed. Your order is secured.</span>
+</div>
+
+<main class="wrap">
+  <p class="state" id="loading">Confirming your order…</p>
+
+  <!-- Shown when there is no live one-time offer configured: straight through
+       to access, so nobody ever lands on an empty upsell. -->
+  <div id="passthrough" hidden>
+    <p class="eyebrow">Order complete</p>
+    <h1 id="passthrough-headline">Thank you — you're in.</h1>
+    <p class="dek">Your access is ready. Everything you bought is waiting on the next page,
+       and a copy is on its way to your inbox.</p>
+    <a class="btn" id="go-access" href="#">Go to your access →</a>
+  </div>
+
+  <!-- The one-time offer. Fill the copy in, set OTO.live = true, and this
+       replaces the pass-through above. The card is already on file from the
+       first purchase, so accepting is a single click. -->
+  <div id="offer" hidden>
+    <p class="eyebrow">One time only · you won't see this page again</p>
+    <h1 id="offer-headline"></h1>
+    <p class="dek" id="offer-dek"></p>
+    <div id="offer-body"></div>
+
+    <p class="price-line" id="offer-price">One-time <strong>$149</strong>, added straight to the order you just placed.</p>
+
+    <p class="scarcity" id="offer-scarcity">
+      <b>Read this before you click away</b>
+      This is the only place Yes, If is offered alongside the workshop. Hit back,
+      refresh, or close this tab and the offer closes with it — buy it later on its
+      own and it's the full price.
+    </p>
+
+    <p class="state" id="offer-error" role="alert" hidden></p>
+    <button class="btn" id="accept" type="button"></button>
+    <p class="note">One click. We'll use the card you just paid with — no re-entering details.</p>
+    <p class="guarantee" id="offer-guarantee">
+      Watch the first lessons. If they're not sharpening your deals, reply within
+      30 days for a full refund of the $149 — your workshop access stays yours.
+    </p>
+    <button class="decline" id="decline" type="button">No thanks, take me to my access →</button>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>© 2026 Castle Negotiations Consulting Group. All rights reserved.</p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     THE ONE-TIME OFFER
+
+     Set `live: true` and fill in the copy + `key` to switch this
+     page on. `key` must match an entry in the OTO catalogue in
+     api/_lib.js, which is where the price actually lives — this
+     page never states an amount the server hasn't agreed to.
+     ============================================================ */
+  var OTO = {
+    live: true,
+    key: 'yes_if',
+    headline: 'Add the library you go back to after the workshop',
+    dek: 'The workshop gets you ready for one negotiation. Yes, If is the on-demand ' +
+         'library you keep for the rest. 18 short video lessons on preparing, asking ' +
+         'better questions, and building leverage before you sit down. About 90 minutes, ' +
+         'plus the worksheets. Yours the moment you add it.',
+    body:
+      '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
+        '<strong>What you’ll pick up</strong></p>' +
+      '<ul style="margin:0 0 1.4rem;padding-left:1.15rem;">' +
+        '<li>Prepare for high-stakes negotiations with more clarity and less guesswork</li>' +
+        '<li>Ask strategic questions that surface hidden interests and openings</li>' +
+        '<li>Build leverage before the negotiation starts</li>' +
+        '<li>Spot and cut negotiation risk before it costs you time, money, or a relationship</li>' +
+      '</ul>' +
+      '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
+        '<strong>What’s inside</strong></p>' +
+      '<ul style="margin:0;padding-left:1.15rem;">' +
+        '<li>18 on-demand video lessons, about 90 minutes end to end</li>' +
+        '<li>Worksheets and implementation tools with every module</li>' +
+        '<li>Immediate access the second you add it. Watch any time, keep it for good.</li>' +
+      '</ul>',
+    buttonLabel: 'Yes — add Yes, If for $149'
+  };
+
+  var params = new URLSearchParams(window.location.search);
+  var pi = params.get('pi');
+  var cs = params.get('cs') || params.get('payment_intent_client_secret');
+
+  var accessUrl = '/site/workshop-access.html?pi=' + encodeURIComponent(pi || '') +
+                  '&cs=' + encodeURIComponent(cs || '');
+
+  var loading     = document.getElementById('loading');
+  var passthrough = document.getElementById('passthrough');
+  var offer       = document.getElementById('offer');
+  var errorBox    = document.getElementById('offer-error');
+
+  function toAccess() { window.location.href = accessUrl; }
+
+  // No order reference at all — nothing to confirm, nothing to upsell.
+  if (!pi || !cs) { toAccess(); return; }
+
+  document.getElementById('go-access').href = accessUrl;
+  document.getElementById('decline').addEventListener('click', toAccess);
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* Charge cleared — swap the pitch for the buyer's access and turn the
+     decline link into "continue to the workshop". */
+  function showDelivered(delivery) {
+    document.querySelector('#offer .eyebrow').textContent = 'Added to your order';
+    document.getElementById('offer-headline').textContent = "You've got Yes, If.";
+    document.getElementById('offer-dek').textContent =
+      'It’s below. Save the link — this page won’t come back. Your workshop access is one more click.';
+
+    var body = document.getElementById('offer-body');
+    body.innerHTML = '';
+
+    if (delivery && delivery.url && delivery.url.indexOf('REPLACE_WITH') !== 0) {
+      var html =
+        '<div style="border:1px dashed var(--gold-deep);border-radius:4px;' +
+        'padding:0.9rem 1rem;margin:0 0 1.2rem;font-family:var(--mono);font-size:0.95rem;">';
+      if (delivery.password) {
+        html += '<div style="font-family:var(--sans);font-size:0.75rem;font-weight:700;' +
+          'letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0.3rem;">' +
+          'Password</div><b style="color:var(--navy-0);letter-spacing:0.06em;">' +
+          escapeHtml(delivery.password) + '</b>';
+      }
+      html += '</div>' +
+        '<a class="btn" href="' + escapeHtml(delivery.url) + '" target="_blank" rel="noopener">' +
+        'Open the Yes, If library →</a>';
+      body.innerHTML = html;
+    } else {
+      body.innerHTML = '<p class="state">Your access isn’t ready to show here yet — ' +
+        'reply to your confirmation email from Ruth and we’ll send it straight over.</p>';
+    }
+
+    document.getElementById('accept').hidden = true;
+    document.querySelector('#offer .note').hidden = true;
+    ['offer-price', 'offer-scarcity', 'offer-guarantee'].forEach(function (id) {
+      var n = document.getElementById(id);
+      if (n) n.hidden = true;
+    });
+    var decline = document.getElementById('decline');
+    decline.textContent = 'Continue to your workshop access →';
+  }
+
+  fetch('/api/order?pi=' + encodeURIComponent(pi) + '&cs=' + encodeURIComponent(cs))
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('lookup')); })
+    .then(function (order) {
+      var firstName = (order.name || '').trim().split(/\s+/)[0];
+
+      document.getElementById('confirmed-text').textContent =
+        'Payment confirmed — $' + (order.total / 100).toFixed(2) + '. Your order is secured.';
+      document.getElementById('confirmed').hidden = false;
+
+      loading.hidden = true;
+
+      if (!OTO.live || !OTO.key) {
+        if (firstName) {
+          document.getElementById('passthrough-headline').textContent =
+            'Thank you, ' + firstName + " — you're in.";
+        }
+        passthrough.hidden = false;
+        return;
+      }
+
+      document.getElementById('offer-headline').textContent = OTO.headline;
+      document.getElementById('offer-dek').textContent = OTO.dek;
+      document.getElementById('offer-body').innerHTML = OTO.body;
+
+      var accept = document.getElementById('accept');
+      accept.textContent = OTO.buttonLabel;
+      accept.addEventListener('click', function () {
+        accept.disabled = true;
+        accept.textContent = 'Processing…';
+        errorBox.hidden = true;
+
+        fetch('/api/upsell', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pi: pi, cs: cs, offer: OTO.key })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.error) throw new Error(data.error);
+            showDelivered(data.delivery);
+          })
+          .catch(function (err) {
+            errorBox.textContent = err.message ||
+              'That charge did not go through. Your original order is safe.';
+            errorBox.hidden = false;
+            accept.disabled = false;
+            accept.textContent = OTO.buttonLabel;
+          });
+      });
+
+      offer.hidden = false;
+    })
+    .catch(toAccess);
+})();
+</script>
+
+</body></html>
