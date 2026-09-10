@@ -193,26 +193,42 @@ h1 .accent{color:var(--gold-deep);}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;border:0;
 }
+.player .fake-bar{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  height:6px;background:rgba(242,235,220,0.16);
+  pointer-events:none;opacity:0;transition:opacity 0.25s ease;
+}
+.player.is-playing .fake-bar,.player.is-paused .fake-bar{opacity:1;}
+.player .fake-bar i{
+  display:block;height:100%;width:0;background:var(--gold);
+  transition:width 0.3s linear;
+}
 .player .slug{
   font-family:var(--mono);font-size:0.6rem;font-weight:600;
   letter-spacing:0.2em;text-transform:uppercase;
   color:var(--navy-0);background:var(--gold);
   padding:0.24rem 0.66rem;border-radius:2px;
 }
-.player .play{
-  width:clamp(3.2rem,9vw,4.2rem);
-  height:clamp(3.2rem,9vw,4.2rem);
-  border-radius:50%;
-  border:2px solid var(--gold);
+.player .play-overlay{
+  position:absolute;inset:0;z-index:2;
   display:grid;place-items:center;
-  color:var(--gold);
-  font-size:clamp(1rem,3vw,1.3rem);
-  padding-left:0.18em;
+  border:0;padding:0;margin:0;cursor:pointer;
+  background:rgba(11,20,34,0.32);
+  transition:background 0.2s ease;
 }
-.player .note{
-  font-family:var(--sans);font-size:0.85rem;line-height:1.45;
-  color:rgba(242,235,220,0.7);max-width:34ch;
+.player .play-overlay:hover{background:rgba(11,20,34,0.18);}
+.player .play-overlay::after{
+  content:"";
+  width:clamp(5rem,18vw,8.5rem);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:#e11d1d
+    no-repeat center/34% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='%23fff'/%3E%3C/svg%3E");
+  box-shadow:0 12px 40px -6px rgba(225,29,29,0.6);
+  transition:transform 0.2s ease,background-color 0.2s ease;
 }
+.player .play-overlay:hover::after{transform:scale(1.06);background-color:#f02525;}
+.player.is-playing .play-overlay{display:none;}
 
 /* ---------- countdown under the player ---------- */
 .countdown{
@@ -907,11 +923,39 @@ body.co-locked{overflow:hidden;}
        Replace the inner contents with the real player, e.g.
        <video src="../assets/video/workshop-vsl.mp4" poster="../assets/video/workshop-vsl.jpg" controls playsinline></video>
        The .player frame already holds the 16:9 ratio. -->
-  <div class="player">
-    <span class="slug">Video placeholder</span>
-    <div class="play" aria-hidden="true">▶</div>
-    <p class="note">Drop the workshop VSL in here — the frame is already sized 16:9.</p>
+  <div class="player" id="vsl-player">
+    <video src="../assets/video/workshop-vsl.mp4" poster="../assets/video/workshop-vsl.webp" playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video>
+    <button type="button" class="play-overlay" aria-label="Play video"></button>
+    <div class="fake-bar" aria-hidden="true"><i></i></div>
   </div>
+  <script>
+  (function(){
+    var p=document.getElementById('vsl-player');
+    var v=p.querySelector('video');
+    var fill=p.querySelector('.fake-bar i');
+    // artificial progress: displayed = (real fraction)^0.5, so it races ahead early
+    // and visibly slows as it nears the right edge — feels closer to the end than it is.
+    function paint(){
+      var d=v.duration;
+      if(d && isFinite(d)){
+        var x=Math.min(1,Math.max(0,v.currentTime/d));
+        fill.style.width=(Math.pow(x,0.5)*100).toFixed(2)+'%';
+      }
+    }
+    p.querySelector('.play-overlay').addEventListener('click',function(){ v.play(); });
+    // click the video itself to pause / resume — but no scrubber or other controls
+    v.addEventListener('click',function(){ v.paused ? v.play() : v.pause(); });
+    v.addEventListener('contextmenu',function(e){ e.preventDefault(); });
+    v.addEventListener('timeupdate',paint);
+    v.addEventListener('play',function(){ p.classList.add('is-playing'); p.classList.remove('is-paused'); });
+    v.addEventListener('pause',function(){ p.classList.remove('is-playing'); p.classList.add('is-paused'); });
+    v.addEventListener('ended',function(){
+      fill.style.width='100%';
+      p.classList.remove('is-playing','is-paused');
+      v.load();
+    });
+  })();
+  </script>
 
   <!-- ---- CTA under the VSL ---- -->
   <div class="cta-block" style="max-width:44rem;margin-inline:auto;">
