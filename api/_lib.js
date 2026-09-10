@@ -25,7 +25,7 @@ export const CATALOGUE = {
   video_library: {
     key: 'video_library',
     label: 'Recognising & Neutralizing Aggressive Negotiators — Video Library',
-    amount: 2700,
+    amount: 4700,
     product: 'prod_VCHFRsQKspOrkF',
     price: 'price_1UBshCGTG8HDPA449buElMny',
     tag: 'Workshop: Bump - Video Library',
@@ -70,7 +70,7 @@ export const KIT = {
   },
   sequences: {
     access: 2883347,        // everyone who buys
-    video_library: 2883348, // $27 bump
+    video_library: 2883348, // $47 bump
     bully_guide: 2883349,   // $7 bump
     yes_if: 2828038,        // OTO — "Yes, If Library access"
   },
