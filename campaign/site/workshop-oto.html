@@ -69,6 +69,53 @@ h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
 
 .foot{background:var(--navy-0);color:rgba(242,235,220,0.55);
   padding:2rem var(--pad);text-align:center;font-size:0.82rem;margin-top:2rem;}
+
+/* ---- one-time offer: attention treatment ---- */
+#offer:not([hidden]){
+  border:3px solid var(--gold-deep);border-radius:8px;
+  padding:clamp(1.1rem,4vw,1.9rem);
+  background:linear-gradient(180deg,#FFFDF8,#FBF3E4);
+  animation:oto-glow 1.6s ease-in-out infinite alternate;
+}
+#offer.is-delivered{animation:none;border-color:var(--gold-deep);}
+
+.oto-flag{
+  display:block;text-align:center;background:#D8352A;color:#fff;
+  font-family:var(--sans);font-weight:800;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.55rem 0.8rem;border-radius:3px;margin:0 0 1rem;
+  animation:oto-blink 1.1s steps(1,end) infinite;
+}
+.ruth-line{
+  font-family:var(--sans);font-size:0.9rem;font-weight:700;
+  color:var(--gold-deep);text-transform:uppercase;letter-spacing:0.06em;
+  line-height:1.5;margin:0 0 1.4rem;
+}
+.ruth-line strong{color:var(--navy-0);}
+
+#accept{
+  font-size:clamp(1.05rem,3vw,1.35rem);
+  animation:oto-pulse 1.4s ease-in-out infinite;
+}
+#offer.is-delivered #accept{animation:none;}
+
+@keyframes oto-glow{
+  from{box-shadow:0 0 0 rgba(216,53,42,0);}
+  to{box-shadow:0 0 22px rgba(216,53,42,0.45);}
+}
+@keyframes oto-blink{
+  0%,60%{opacity:1;}
+  61%,100%{opacity:0.45;}
+}
+@keyframes oto-pulse{
+  0%{box-shadow:0 0 0 0 rgba(201,169,106,0.7);}
+  70%{box-shadow:0 0 0 16px rgba(201,169,106,0);}
+  100%{box-shadow:0 0 0 0 rgba(201,169,106,0);}
+}
+@media (prefers-reduced-motion:reduce){
+  #offer:not([hidden]),.oto-flag,#accept{animation:none !important;}
+  #offer:not([hidden]){box-shadow:0 0 18px rgba(216,53,42,0.35);}
+}
 </style>
 
 <!-- Meta Pixel Code -->
@@ -116,8 +163,9 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
        replaces the pass-through above. The card is already on file from the
        first purchase, so accepting is a single click. -->
   <div id="offer" hidden>
-    <p class="eyebrow">One time only · you won't see this page again</p>
+    <p class="eyebrow oto-flag" id="oto-flag">One-time offer · this page does not come back</p>
     <h1 id="offer-headline"></h1>
+    <p class="ruth-line">Recorded and taught by <strong>Ruth Shlossman</strong>, who built the method your workshop runs on.</p>
     <p class="dek" id="offer-dek"></p>
     <div id="offer-body"></div>
 
@@ -125,18 +173,17 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
 
     <p class="scarcity" id="offer-scarcity">
       <b>Read this before you click away</b>
-      This is the only page where 'Yes, If' is available alongside your workshop at
-      this price. If you leave this page, you can still get the library later, but it
-      will be at the full price.
+      Ruth opens 'Yes, If' at this price on this page only, for people who just booked
+      the workshop. Leave, and it goes back to full price on its own.
     </p>
 
     <p class="state" id="offer-error" role="alert" hidden></p>
     <button class="btn" id="accept" type="button"></button>
     <p class="note">1 click. We'll use the card you just paid with. No need to enter your details again.</p>
     <p class="guarantee" id="offer-guarantee">
-      Watch the first lessons. If they are not helping you feel more prepared for
-      your next negotiation, reply within 30 days for a full refund of the $149.
-      Your workshop access stays yours.
+      Watch the first lessons. If you do not walk into your next negotiation more
+      prepared, reply within 30 days and Ruth refunds the $149. Your workshop access
+      stays yours.
     </p>
     <button class="decline" id="decline" type="button">No thanks, take me to my workshop access →</button>
   </div>
@@ -162,27 +209,29 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
     live: true,
     key: 'yes_if',
     headline: 'The negotiation library for every “Can you move on that?”',
-    dek: 'The workshop gets you ready for the deal in front of you. \'Yes, If\' gives ' +
-         'you the words, questions, and worksheets to use when they push on price, ' +
-         'ask for more, or try to dictate the terms.',
+    dek: 'The workshop gets you ready for the deal in front of you. \'Yes, If\' is the ' +
+         'library Ruth Shlossman recorded for the deals after it. She takes you ' +
+         'through the words, the questions, and the worksheets for when they push on ' +
+         'price, ask for more, or try to set the terms.',
     body:
       '<p style="font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.3rem);margin:0 0 2rem;">' +
-        '18 short lessons that help you protect margin, hold the line, and keep the ' +
-        'relationship intact. About 90 minutes in total. Yours the moment you add it.</p>' +
+        'Ruth breaks it into 18 short lessons on protecting margin, holding the line, ' +
+        'and keeping the relationship intact. About 90 minutes start to finish. ' +
+        'Yours the moment you add it.</p>' +
       '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
         '<strong>What you\'ll pick up</strong></p>' +
       '<ul style="margin:0 0 1.4rem;padding-left:1.15rem;">' +
         '<li>Know what to say when they ask for a discount, better terms, or more for the same price</li>' +
-        '<li>Ask the questions that show what they really need before you give anything away</li>' +
-        '<li>Build leverage before the meeting, so you are not walking in feeling against a wall</li>' +
+        '<li>Ask the questions that surface what they need before you give anything away</li>' +
+        '<li>Build leverage before the meeting, so you walk in with room to move</li>' +
         '<li>Protect price, margin, cash flow, and scope without turning the deal into a fight</li>' +
       '</ul>' +
       '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
         '<strong>What\'s inside</strong></p>' +
       '<ul style="margin:0;padding-left:1.15rem;">' +
-        '<li>18 on-demand video lessons, about 90 minutes from start to finish</li>' +
-        '<li>Simple worksheets and tools to prepare, trade, and respond when they push back</li>' +
-        '<li>Immediate access. Watch when you need it and keep it for good</li>' +
+        '<li>18 on-demand video lessons Ruth recorded, about 90 minutes start to finish</li>' +
+        '<li>Worksheets and tools to prepare, trade, and respond when they push back</li>' +
+        '<li>Access opens now. Watch when you need it and keep it for good</li>' +
       '</ul>',
     buttonLabel: 'Yes. Add Yes, If for $149'
   };
@@ -216,7 +265,11 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
   /* Charge cleared — swap the pitch for the buyer's access and turn the
      decline link into "continue to the workshop". */
   function showDelivered(delivery) {
-    document.querySelector('#offer .eyebrow').textContent = 'Added to your order';
+    var flag = document.getElementById('oto-flag');
+    if (flag) { flag.textContent = 'Added to your order'; flag.classList.remove('oto-flag'); }
+    document.getElementById('offer').classList.add('is-delivered');
+    var ruthLine = document.querySelector('#offer .ruth-line');
+    if (ruthLine) ruthLine.hidden = true;
     document.getElementById('offer-headline').textContent = "You've got Yes, If.";
     var body = document.getElementById('offer-body');
     body.innerHTML = '';
