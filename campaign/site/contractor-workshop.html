@@ -842,18 +842,47 @@ body.co-locked{overflow:hidden;}
 .co-line[hidden]{display:none;}
 
 .co-bump{
-  display:block;cursor:pointer;
+  position:relative;display:block;cursor:pointer;
   border:2px dashed var(--gold-deep);border-radius:4px;
   background:var(--ivory-3);
-  padding:0.9rem 1rem;margin:0 0 0.8rem;
+  padding:0.9rem 1rem;margin:1.15rem 0 0.9rem;
   transition:background 0.15s ease,border-color 0.15s ease;
 }
+.co-bump:not(.is-on){animation:bump-glow 1.5s ease-in-out infinite alternate;}
 .co-bump:hover{background:#F6EFDF;}
-.co-bump.is-on{background:#F3E8CE;border-style:solid;}
+.co-bump.is-on{background:#F3E8CE;border-style:solid;animation:none;}
+.co-bump-tag{
+  position:absolute;top:-0.7rem;right:0.8rem;
+  background:#D8352A;color:#fff;
+  font-family:var(--sans);font-weight:800;
+  font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.28rem 0.55rem;border-radius:999px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.18);
+}
+#co-bump-bully_guide .co-bump-tag{background:var(--gold-deep);}
+.co-bump-arrows{
+  flex:none;align-self:center;
+  color:#D8352A;font-weight:800;font-size:0.95rem;letter-spacing:-0.04em;
+  animation:bump-arrows 0.9s steps(1,end) infinite;
+}
+.co-bump.is-on .co-bump-arrows{animation:none;opacity:0.25;}
 .co-bump-head{
   display:flex;align-items:flex-start;gap:0.6rem;
   font-family:var(--sans);font-weight:800;
   font-size:0.98rem;line-height:1.35;color:var(--navy-0);
+}
+.co-bump-head s{color:var(--ink-soft);font-weight:400;}
+@keyframes bump-glow{
+  from{border-color:var(--gold-deep);box-shadow:0 0 0 rgba(216,53,42,0);}
+  to{border-color:#D8352A;box-shadow:0 0 12px rgba(216,53,42,0.35);}
+}
+@keyframes bump-arrows{
+  0%,50%{opacity:1;transform:translateX(0);}
+  51%,100%{opacity:0.3;transform:translateX(-3px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .co-bump:not(.is-on),.co-bump-arrows{animation:none !important;}
+  .co-bump:not(.is-on){border-color:#D8352A;}
 }
 .co-bump-head input{
   flex:none;width:1.15rem;height:1.15rem;margin:0.12rem 0 0;
@@ -1567,27 +1596,37 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
         </div>
 
         <label class="co-bump" id="co-bump-video_library">
+          <span class="co-bump-tag">Recommended add-on</span>
           <span class="co-bump-head">
+            <span class="co-bump-arrows" aria-hidden="true">▸▸▸</span>
             <input type="checkbox" data-bump="video_library">
             <span>Yes, add the Aggressive Negotiators video library for
-              <span class="co-bump-price">just $47</span></span>
+              <s>$97</s> <span class="co-bump-price">just $47</span></span>
           </span>
-          <p>The workshop teaches you to hold your price. This shows you the hardball
-             tactics on video, as a buyer runs them, so you catch them in the room
-             instead of a week later. Yours to keep, watch any time.</p>
+          <p>A $3,000 negotiation course, compressed into 15 short videos you can
+             watch on a lunch run. The buyer's hardball moves as they play out, and
+             the words that stop each one. Threats and strong emotions. The red
+             herring. The shadow negotiator who is never in the room. The aggressive
+             offer you meet with silence.</p>
+          <p>Under 15 minutes end to end. Built for owners who do not have a spare
+             afternoon. Watch it before your next negotiation and walk in knowing the
+             move before they make it.</p>
           <img class="co-bump-img" src="../assets/workshop/Bully%20Video%20Vault%20Screenshot.webp"
                alt="Inside the Aggressive Negotiators video library" loading="lazy">
         </label>
 
         <label class="co-bump" id="co-bump-bully_guide">
+          <span class="co-bump-tag">No-brainer</span>
           <span class="co-bump-head">
+            <span class="co-bump-arrows" aria-hidden="true">▸▸▸</span>
             <input type="checkbox" data-bump="bully_guide">
             <span>Yes, add "How Do I Neutralize a Negotiation Bully?" for
-              <span class="co-bump-price">just $7</span></span>
+              <s>$27</s> <span class="co-bump-price">just $7</span></span>
           </span>
-          <p>The written playbook for the buyer who shouts, stonewalls, and pushes.
-             Why they do it, how to shut it down before it starts, and the words to
-             use when it happens anyway.</p>
+          <p>The field guide for the buyer who shouts, stonewalls, and keeps pushing.
+             Why they do it, how to shut it down before it starts, and the lines to
+             use when it happens anyway. Keep it in the folder you take to every
+             negotiation.</p>
           <img class="co-bump-img" src="../assets/workshop/Bully%20document.webp"
                alt="Inside the Neutralize a Negotiation Bully guide" loading="lazy">
         </label>
