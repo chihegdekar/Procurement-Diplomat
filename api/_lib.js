@@ -54,7 +54,7 @@ export const OTO_CATALOGUE = {
     // upsell.js charges on `amount` alone; this ID is for Stripe reporting only.
     product: 'REPLACE_WITH_STRIPE_PRODUCT_ID',
     tag: 'Workshop: OTO - Yes If',
-    sequence: 0, // set to a Kit sequence ID once the delivery email exists
+    sequence: 2828038, // Kit "Yes, If Library access" — carries the delivery email
   },
 };
 
@@ -66,11 +66,13 @@ export const KIT = {
     video_library: 23093331,
     bully_guide: 23093332,
     abandoned: 23093333,
+    yes_if: 23280212,       // OTO purchasers (created 10 Sep 2026)
   },
   sequences: {
     access: 2883347,        // everyone who buys
     video_library: 2883348, // $27 bump
     bully_guide: 2883349,   // $17 bump
+    yes_if: 2828038,        // OTO — "Yes, If Library access"
   },
 };
 
@@ -85,6 +87,9 @@ export const DELIVERY = {
   bully_guide: {
     url: '/assets/downloads/75cfc7b961145ba7bedfe4f3/Neutralize_a_Negotiation_Bully.docx',
   },
+  // Optional. Delivery for Yes, If runs through the Kit sequence email
+  // (2828038). Fill these to also show an instant link on the OTO page;
+  // leave them as-is and the page just points the buyer at that email.
   yes_if: {
     url: 'REPLACE_WITH_YES_IF_VIDEO_LIBRARY_URL',
     password: 'REPLACE_WITH_YES_IF_PASSWORD',

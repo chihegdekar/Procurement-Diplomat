@@ -150,26 +150,37 @@ automatically and lift mobile conversion.
 
 ---
 
-## The one-time offer (deliberately blank for now)
+## The one-time offer — "Yes, If" library ($149)
 
-Chi is building this out later. Until then `workshop-oto.html` confirms the
-payment and shows a "Go to your access" button — a clean step, not an empty
-page. Nothing needs doing to launch.
+Live as of 10 Sep 2026. After paying for the workshop the buyer lands on
+`workshop-oto.html` and can add the **Yes, If** on-demand library for a
+one-time **$149**, charged in one click to the card saved at checkout — no
+second card entry.
 
-### Switching it on later
+| Piece | Value |
+|---|---|
+| Catalogue key | `yes_if` in `OTO_CATALOGUE` (`api/_lib.js`) |
+| Price | `14900` cents — server-side, single source of truth |
+| Kit tag | `Workshop: OTO - Yes If` — `23280212` |
+| Kit sequence (delivery email) | `Yes, If Library access` — `2828038` |
+| Stripe product ID | **still `REPLACE_WITH_STRIPE_PRODUCT_ID`** — cosmetic, the charge works without it; fill for clean reporting |
 
-1. Create the product in Stripe.
-2. Add an entry to `OTO_CATALOGUE` in `api/_lib.js` (a commented example is
-   already there) with the product ID and amount in cents.
-3. In `campaign/site/workshop-oto.html`, fill in the `OTO` object at the top
-   of the script — `live: true`, the `key` matching your catalogue entry, and
-   the copy.
+On a successful charge `api/upsell.js` tags the buyer, drops them into
+sequence 2828038 (which carries the access email), and the OTO page shows a
+"your library email is on its way" confirmation before the last click through
+to workshop access.
 
-Until then the page confirms the order and moves people to their access, so
-nobody ever lands on an empty upsell. The card is already saved at checkout,
-so accepting will be one click with no re-entry.
+**Optional — instant on-page link.** `DELIVERY.yes_if` in `api/_lib.js` holds
+`REPLACE_WITH_*` placeholders. Fill the library URL + password and the OTO
+page also shows an "Open the Yes, If library →" button straight after
+purchase. Leave them and delivery is email-only.
 
 `api/upsell.js` refuses to charge anything not defined in `OTO_CATALOGUE`.
+
+### To retire or swap the OTO
+
+Set `OTO.live = false` in `campaign/site/workshop-oto.html` and the page goes
+back to a clean "go to your access" step. Nobody lands on an empty upsell.
 
 ---
 

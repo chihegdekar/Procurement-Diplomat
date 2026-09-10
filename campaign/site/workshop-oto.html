@@ -197,13 +197,16 @@ h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
   function showDelivered(delivery) {
     document.querySelector('#offer .eyebrow').textContent = 'Added to your order';
     document.getElementById('offer-headline').textContent = "You've got Yes, If.";
-    document.getElementById('offer-dek').textContent =
-      'It’s below. Save the link — this page won’t come back. Your workshop access is one more click.';
-
     var body = document.getElementById('offer-body');
     body.innerHTML = '';
 
-    if (delivery && delivery.url && delivery.url.indexOf('REPLACE_WITH') !== 0) {
+    var hasInstantLink = delivery && delivery.url && delivery.url.indexOf('REPLACE_WITH') !== 0;
+
+    document.getElementById('offer-dek').textContent = hasInstantLink
+      ? 'Open it below — this page won’t come back. Your workshop access is one more click.'
+      : 'Your library access is on its way to your inbox from Ruth. Your workshop access is one more click.';
+
+    if (hasInstantLink) {
       var html =
         '<div style="border:1px dashed var(--gold-deep);border-radius:4px;' +
         'padding:0.9rem 1rem;margin:0 0 1.2rem;font-family:var(--mono);font-size:0.95rem;">';
@@ -218,8 +221,8 @@ h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
         'Open the Yes, If library →</a>';
       body.innerHTML = html;
     } else {
-      body.innerHTML = '<p class="state">Your access isn’t ready to show here yet — ' +
-        'reply to your confirmation email from Ruth and we’ll send it straight over.</p>';
+      body.innerHTML = '<p class="state">Watch your inbox for an email from Ruth with your ' +
+        '18 lessons and worksheets. It’s on its way now.</p>';
     }
 
     document.getElementById('accept').hidden = true;
