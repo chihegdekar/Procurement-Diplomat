@@ -893,6 +893,24 @@ body.co-locked{overflow:hidden;}
   .co-spinner{animation-duration:2s;}
 }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1560415991582955');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -1715,6 +1733,7 @@ body.co-locked{overflow:hidden;}
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (!data.publishableKey) throw new Error('Payment is not configured yet.');
+        if (window.fbq) fbq('track', 'Lead');
         mountPayment(data.publishableKey);
         goToStep2();
       })
@@ -1790,6 +1809,7 @@ body.co-locked{overflow:hidden;}
     event.preventDefault();
     showError('');
     busy(payBtn, true, 'Processing…');
+    if (window.fbq) fbq('track', 'InitiateCheckout');
 
     elements.submit()
       .then(function (result) {
@@ -1800,7 +1820,9 @@ body.co-locked{overflow:hidden;}
           body: JSON.stringify({
             name: lead.name,
             email: lead.email,
-            bumps: selectedBumps()
+            bumps: selectedBumps(),
+            // TEMP — remove with the comp code in api/checkout.js before launch.
+            comp: new URLSearchParams(window.location.search).get('comp') || ''
           })
         });
       })
