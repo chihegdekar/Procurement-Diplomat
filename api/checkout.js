@@ -19,7 +19,7 @@ import {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
 
-  const { email, name, bumps, comp } = req.body || {};
+  const { email, name, bumps } = req.body || {};
   if (!isEmail(email)) return json(res, 400, { error: 'A valid email address is required.' });
 
   const cleanEmail = String(email).trim().toLowerCase();
@@ -27,17 +27,6 @@ export default async function handler(req, res) {
 
   // Priced here, never from the browser.
   const order = buildOrder(bumps);
-
-  /* -----------------------------------------------------------------
-     TEMP TEST COMP CODE — REMOVE BEFORE LAUNCH.
-     Lets us run the real live funnel end to end (PaymentIntent, OTO,
-     webhook, Kit tags, pixel Purchase) for the Stripe minimum of
-     $0.50 instead of the full price. Append ?comp=CASTLE-TEST-2026
-     to the workshop URL, then check out as normal.
-     ----------------------------------------------------------------- */
-  const COMP_CODE = 'CASTLE-TEST-2026';
-  const isComp = typeof comp === 'string' && comp.trim() === COMP_CODE;
-  const chargeAmount = isComp ? 50 : order.amount;
 
   try {
     /* One customer per email, reused on repeat purchases — this is what makes
@@ -53,7 +42,7 @@ export default async function handler(req, res) {
         });
 
     const intent = await stripeRequest('POST', '/payment_intents', {
-      amount: chargeAmount,
+      amount: order.amount,
       currency: 'usd',
       customer: customer.id,
       receipt_email: cleanEmail,
@@ -66,15 +55,14 @@ export default async function handler(req, res) {
         name: cleanName,
         bumps: order.bumps.join(','),
         items: order.items.map((i) => i.key).join(','),
-        order_total: String(chargeAmount),
-        comp: isComp ? 'true' : '',
+        order_total: String(order.amount),
       },
     });
 
     return json(res, 200, {
       clientSecret: intent.client_secret,
       paymentIntentId: intent.id,
-      amount: chargeAmount,
+      amount: order.amount,
       items: order.items.map((i) => ({ key: i.key, label: i.label, amount: i.amount })),
     });
   } catch (err) {

@@ -52,15 +52,10 @@ export default async function handler(req, res) {
       .trim()
       .toLowerCase();
 
-    /* TEMP — REMOVE BEFORE LAUNCH. If the original order used the test comp
-       code, charge the Stripe minimum for the upsell too. See api/checkout.js. */
-    const isComp = original.metadata?.comp === 'true';
-    const upsellAmount = isComp ? 50 : product.amount;
-
     /* off_session + confirm means no redirect and no second card entry. If the
        bank demands authentication we surface that rather than silently failing. */
     const charge = await stripeRequest('POST', '/payment_intents', {
-      amount: upsellAmount,
+      amount: product.amount,
       currency: 'usd',
       customer,
       payment_method: paymentMethod,

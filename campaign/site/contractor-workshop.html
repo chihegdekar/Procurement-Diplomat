@@ -1821,9 +1821,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
           body: JSON.stringify({
             name: lead.name,
             email: lead.email,
-            bumps: selectedBumps(),
-            // TEMP — remove with the comp code in api/checkout.js before launch.
-            comp: new URLSearchParams(window.location.search).get('comp') || ''
+            bumps: selectedBumps()
           })
         });
       })
