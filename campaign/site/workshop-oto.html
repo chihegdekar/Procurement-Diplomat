@@ -125,19 +125,20 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
 
     <p class="scarcity" id="offer-scarcity">
       <b>Read this before you click away</b>
-      This is the only place Yes, If is offered alongside the workshop. Hit back,
-      refresh, or close this tab and the offer closes with it — buy it later on its
-      own and it's the full price.
+      This is the only page where 'Yes, If' is available alongside your workshop at
+      this price. If you leave this page, you can still get the library later, but it
+      will be at the full price.
     </p>
 
     <p class="state" id="offer-error" role="alert" hidden></p>
     <button class="btn" id="accept" type="button"></button>
-    <p class="note">One click. We'll use the card you just paid with — no re-entering details.</p>
+    <p class="note">1 click. We'll use the card you just paid with. No need to enter your details again.</p>
     <p class="guarantee" id="offer-guarantee">
-      Watch the first lessons. If they're not sharpening your deals, reply within
-      30 days for a full refund of the $149 — your workshop access stays yours.
+      Watch the first lessons. If they are not helping you feel more prepared for
+      your next negotiation, reply within 30 days for a full refund of the $149.
+      Your workshop access stays yours.
     </p>
-    <button class="decline" id="decline" type="button">No thanks, take me to my access →</button>
+    <button class="decline" id="decline" type="button">No thanks, take me to my workshop access →</button>
   </div>
 </main>
 
@@ -160,28 +161,30 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
   var OTO = {
     live: true,
     key: 'yes_if',
-    headline: 'Add the library you go back to after the workshop',
-    dek: 'The workshop gets you ready for one negotiation. Yes, If is the on-demand ' +
-         'library you keep for the rest. 18 short video lessons on preparing, asking ' +
-         'better questions, and building leverage before you sit down. About 90 minutes, ' +
-         'plus the worksheets. Yours the moment you add it.',
+    headline: 'The negotiation library for every “Can you move on that?”',
+    dek: 'The workshop gets you ready for the deal in front of you. \'Yes, If\' gives ' +
+         'you the words, questions, and worksheets to use when they push on price, ' +
+         'ask for more, or try to dictate the terms.',
     body:
+      '<p style="font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.3rem);margin:0 0 2rem;">' +
+        '18 short lessons that help you protect margin, hold the line, and keep the ' +
+        'relationship intact. About 90 minutes in total. Yours the moment you add it.</p>' +
       '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
-        '<strong>What you’ll pick up</strong></p>' +
+        '<strong>What you\'ll pick up</strong></p>' +
       '<ul style="margin:0 0 1.4rem;padding-left:1.15rem;">' +
-        '<li>Prepare for high-stakes negotiations with more clarity and less guesswork</li>' +
-        '<li>Ask strategic questions that surface hidden interests and openings</li>' +
-        '<li>Build leverage before the negotiation starts</li>' +
-        '<li>Spot and cut negotiation risk before it costs you time, money, or a relationship</li>' +
+        '<li>Know what to say when they ask for a discount, better terms, or more for the same price</li>' +
+        '<li>Ask the questions that show what they really need before you give anything away</li>' +
+        '<li>Build leverage before the meeting, so you are not walking in feeling against a wall</li>' +
+        '<li>Protect price, margin, cash flow, and scope without turning the deal into a fight</li>' +
       '</ul>' +
       '<p style="font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;">' +
-        '<strong>What’s inside</strong></p>' +
+        '<strong>What\'s inside</strong></p>' +
       '<ul style="margin:0;padding-left:1.15rem;">' +
-        '<li>18 on-demand video lessons, about 90 minutes end to end</li>' +
-        '<li>Worksheets and implementation tools with every module</li>' +
-        '<li>Immediate access the second you add it. Watch any time, keep it for good.</li>' +
+        '<li>18 on-demand video lessons, about 90 minutes from start to finish</li>' +
+        '<li>Simple worksheets and tools to prepare, trade, and respond when they push back</li>' +
+        '<li>Immediate access. Watch when you need it and keep it for good</li>' +
       '</ul>',
-    buttonLabel: 'Yes — add Yes, If for $149'
+    buttonLabel: 'Yes. Add Yes, If for $149'
   };
 
   var params = new URLSearchParams(window.location.search);
