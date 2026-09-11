@@ -930,6 +930,16 @@ body.co-locked{overflow:hidden;}
 }
 </style>
 
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7C200CY4K3"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7C200CY4K3');
+</script>
+<!-- End Google Analytics -->
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -1007,6 +1017,28 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       fill.style.width='100%';
       p.classList.remove('is-playing','is-paused');
       v.load();
+    });
+
+    // ---- video engagement tracking (Meta Pixel custom events) ----
+    var hasStarted=false;
+    var milestonesFired={25:false,50:false,75:false,100:false};
+    function track(eventName){
+      if(window.fbq) fbq('trackCustom', eventName, {content_name:'VSL - Contractor Workshop'});
+      if(window.gtag) gtag('event', eventName, {video_title:'VSL - Contractor Workshop'});
+    }
+    v.addEventListener('play',function(){
+      if(!hasStarted){ hasStarted=true; track('VideoStart'); }
+    });
+    v.addEventListener('timeupdate',function(){
+      var d=v.duration;
+      if(!d || !isFinite(d)) return;
+      var pct=(v.currentTime/d)*100;
+      [25,50,75,100].forEach(function(m){
+        if(pct>=m && !milestonesFired[m]){
+          milestonesFired[m]=true;
+          track('VideoProgress'+m);
+        }
+      });
     });
   })();
   </script>
