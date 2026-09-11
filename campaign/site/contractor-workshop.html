@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&amp;family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="../assets/video/workshop-vsl.webp" fetchpriority="high">
 <style>
 /* ============================================================
    CASTLE NEGOTIATIONS — LIVE CONTRACTOR WORKSHOP
@@ -1034,27 +1035,27 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
     <p class="label">Trusted by procurement teams at</p>
     <div class="proof-grid">
       <div class="proof-cell">
-        <img src="../assets/logos/dexko-global.png" alt="DexKo Global">
+        <img src="../assets/logos/dexko-global.webp" alt="DexKo Global" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“Secured a price increase below 50%, saving approximately $800K.”</b></p>
       </div>
       <div class="proof-cell">
-        <img src="../assets/logos/fca.png" alt="FCA (Fiat Chrysler Automobiles)">
+        <img src="../assets/logos/fca.webp" alt="FCA (Fiat Chrysler Automobiles)" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“$3.7M in piece-price value after 7 negotiation rounds.”</b></p>
       </div>
       <div class="proof-cell">
-        <img src="../assets/logos/chart-industries.png" alt="Chart Industries">
+        <img src="../assets/logos/chart-industries.webp" alt="Chart Industries" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“Critical tools: BAM, anchoring, preparation, probing, listening.”</b></p>
       </div>
       <div class="proof-cell">
-        <img src="../assets/logos/nasa.png" alt="NASA">
+        <img src="../assets/logos/nasa.webp" alt="NASA" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“Invaluable tools I will be using in every negotiation henceforth.”</b></p>
       </div>
       <div class="proof-cell">
-        <img src="../assets/logos/speira.png" alt="Speira" style="opacity:0.8">
+        <img src="../assets/logos/speira.webp" alt="Speira" style="opacity:0.8" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“Really helped our team go out and re-negotiate with suppliers.”</b></p>
       </div>
       <div class="proof-cell">
-        <img src="../assets/logos/arcelormittal.png" alt="ArcelorMittal" style="opacity:0.95">
+        <img src="../assets/logos/arcelormittal.webp" alt="ArcelorMittal" style="opacity:0.95" width="120" height="34" loading="lazy" decoding="async">
         <p class="pq"><b>“Valuable tools I’ll be using in an upcoming freight negotiation.”</b></p>
       </div>
     </div>
@@ -1072,10 +1073,10 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
     <!-- ---- MEDIA: the two sides of the table ---- -->
     <div class="media media--split">
       <div class="media">
-        <img src="../assets/workshop/contractor-onsite.webp" alt="Contractor on site, checking his phone between quotes">
+        <img src="../assets/workshop/contractor-onsite.webp" alt="Contractor on site, checking his phone between quotes" loading="lazy" decoding="async">
       </div>
       <div class="media">
-        <img src="../assets/workshop/buyer-desk.webp" alt="Procurement buyer at a desk full of spreadsheets and contracts">
+        <img src="../assets/workshop/buyer-desk.webp" alt="Procurement buyer at a desk full of spreadsheets and contracts" loading="lazy" decoding="async">
       </div>
     </div>
 
@@ -1111,11 +1112,27 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
 
     <!-- ---- MEDIA: the BAM Calculator ---- -->
     <div class="media">
-      <video src="../assets/workshop/bam-calculator-demo.mp4" poster="../assets/workshop/bam-calculator-poster.jpg" autoplay loop muted playsinline></video>
+      <video data-src="../assets/workshop/bam-calculator-demo.mp4" poster="../assets/workshop/bam-calculator-poster.jpg" loop muted playsinline preload="none"></video>
       <span class="badge">Free BAM Calculator</span>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var v = document.querySelector('.media video[data-src]');
+  if(!v) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        v.src = v.getAttribute('data-src');
+        v.play().catch(function(){});
+        io.unobserve(v);
+      }
+    });
+  }, {rootMargin:'200px'});
+  io.observe(v);
+})();
+</script>
 
 <!-- ============ 3. TESTIMONIALS WALL ============ -->
 <section>
@@ -1128,7 +1145,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       <figure class="quote">
         <blockquote>"Hundreds of employees trained… <mark>both sales and procurement functions improved outcomes by a large margin.</mark> ROI in Ruth is extremely high."</blockquote>
         <figcaption class="who">
-          <img src="../assets/testimonials/DAVID-PECK.png" alt="David Peck">
+          <img src="../assets/testimonials/DAVID-PECK.webp" alt="David Peck" width="44" height="44" loading="lazy" decoding="async">
           <span class="attr" style="margin-top:0;"><span class="name">David Peck</span>Head of Supply Chain, Dunes Point Capital</span>
         </figcaption>
       </figure>
@@ -1144,7 +1161,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       <figure class="quote">
         <blockquote>"Ruth trained a cross-functional, cross-generational group in conflict management. <mark>Everyone — from Associate to SVP — uses her tools now.</mark> There's even a waitlist for the next round."</blockquote>
         <figcaption class="who">
-          <img src="../assets/testimonials/STEPHANIE-LIND.png" alt="Stephanie Lind">
+          <img src="../assets/testimonials/STEPHANIE-LIND.webp" alt="Stephanie Lind" width="44" height="44" loading="lazy" decoding="async">
           <span class="attr" style="margin-top:0;"><span class="name">Stephanie Lind</span>Founder &amp; CEO, ESA (ex-Impossible Foods)</span>
         </figcaption>
       </figure>
@@ -1152,7 +1169,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       <figure class="quote">
         <blockquote>"Ruth has an uncanny grasp of the negotiating process. <mark>Even after 40 years in business,</mark> I turned to her for a particularly troubling negotiation. She understood the central issues immediately. I wish I had turned to her earlier."</blockquote>
         <figcaption class="who">
-          <img src="../assets/testimonials/MICHAEL-ROSE.png" alt="Michael Rose">
+          <img src="../assets/testimonials/MICHAEL-ROSE.webp" alt="Michael Rose" width="44" height="44" loading="lazy" decoding="async">
           <span class="attr" style="margin-top:0;"><span class="name">Michael Rose, M.A.</span>Motivational Speaker &amp; Author, 40+ years in business</span>
         </figcaption>
       </figure>
@@ -1160,7 +1177,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       <figure class="quote">
         <blockquote>"Ruth does an excellent job of distilling the important principles of negotiation into a package that is enjoyable to learn from. <mark>I have hired Ruth as a 3rd party to train clients my firm is working for</mark> because she does such a good job."</blockquote>
         <figcaption class="who">
-          <img src="../assets/testimonials/BRETT-MEYER.png" alt="Brett Meyer">
+          <img src="../assets/testimonials/BRETT-MEYER.webp" alt="Brett Meyer" width="44" height="44" loading="lazy" decoding="async">
           <span class="attr" style="margin-top:0;"><span class="name">Brett Meyer</span>Partner at AlixPartners</span>
         </figcaption>
       </figure>
@@ -1168,7 +1185,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
       <figure class="quote">
         <blockquote>"Ruth is a deep expert in negotiating strategy — what's truly special is her ability to <mark>effortlessly customize her material on the fly</mark> to the specific, often difficult, people and situations in front of her."</blockquote>
         <figcaption class="who">
-          <img src="../assets/testimonials/TOM-JACOBSON.png" alt="Tom Jacobson">
+          <img src="../assets/testimonials/TOM-JACOBSON.webp" alt="Tom Jacobson" width="44" height="44" loading="lazy" decoding="async">
           <span class="attr" style="margin-top:0;"><span class="name">Tom Jacobson</span>Managing Director, Accenture</span>
         </figcaption>
       </figure>
@@ -1352,7 +1369,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
   <div class="wrap">
     <!-- ---- MEDIA: what's in the box ---- -->
     <div class="media media--wide">
-      <img src="../assets/workshop/whats-included.webp" alt="What's included: negotiation tactic cards, the BAM Calculator, and the workshop replay">
+      <img src="../assets/workshop/whats-included.webp" alt="What's included: negotiation tactic cards, the BAM Calculator, and the workshop replay" loading="lazy" decoding="async">
     </div>
 
     <h2>What You'll Walk Away With:</h2>
@@ -1379,7 +1396,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
     <div class="instructor">
       <!-- ---- MEDIA: Chi & Ruth ---- -->
       <div class="media media--duo">
-        <img src="../assets/workshop/chi-and-ruth.png" alt="Dr. Chi Hegdekar and Ruth Shlossman">
+        <img src="../assets/workshop/chi-and-ruth.webp" alt="Dr. Chi Hegdekar and Ruth Shlossman" loading="lazy" decoding="async">
       </div>
 
       <div>
@@ -1416,7 +1433,7 @@ src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
 
     <!-- ---- MEDIA: the moment across the table ---- -->
     <div class="media">
-      <img src="../assets/workshop/calm-business-owner.webp" alt="Business owner, calm and arms crossed, while a video call of stressed colleagues plays behind him">
+      <img src="../assets/workshop/calm-business-owner.webp" alt="Business owner, calm and arms crossed, while a video call of stressed colleagues plays behind him" loading="lazy" decoding="async">
     </div>
 
     <p class="beat">Picture the buyer working to talk your price down.</p>
