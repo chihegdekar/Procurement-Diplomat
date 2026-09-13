@@ -231,6 +231,9 @@ h1 .accent{color:var(--gold-deep);}
   transition:transform 0.2s ease,background-color 0.2s ease;
 }
 .player .play-overlay:hover::after{transform:scale(1.06);background-color:#f02525;}
+@media(max-width:640px){
+  .player .play-overlay::after{width:3.75rem;}
+}
 .player.is-playing .play-overlay{display:none;}
 
 /* ---------- countdown under the player ---------- */
