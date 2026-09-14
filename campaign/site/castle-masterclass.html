@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $250K → $750K Profit-Maximizer Formula | Castle Negotiations</title>
+<meta name="description" content="A free live masterclass with Ruth Shlossman: turn your first (or next) $250K quote into $750K. The 4 steps behind more than $1 billion in negotiated deals.">
+<meta property="og:title" content="The $250K → $750K Profit-Maximizer Formula — Free Live Masterclass">
+<meta property="og:description" content="Turn your first (or next) $250K quote into $750K. Free live masterclass with Ruth Shlossman, Castle Negotiations.">
+<meta property="og:image" content="../assets/masterclass/promo-tile.webp">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="image" href="../assets/masterclass/ruth-hero.png" fetchpriority="high">
+
+<style>
+/* ============================================================
+   CASTLE NEGOTIATIONS — THE $250K → $750K MASTERCLASS
+
+   Direct-response layout ported beat-for-beat from the
+   reference masterclass page, rebuilt in Castle's palette.
+
+   COLOUR MAP off the reference:
+     reference red   -> Castle brick red  (CTAs, doom stat,
+                        numerals, arrows, MUST, rules)
+     reference cyan  -> Castle muted gold (FORMULA, promise,
+                        proof box, checkmarks)
+     reference navy  -> Castle matte navy
+
+   LAYER STACK (hero and every dark band):
+     0  photographic ground (money, grayscale, sunk)
+     1  navy wash / gradient
+     2  diagonal weave
+     3  radial glow
+     4  figure  (own drop shadow)
+     5  panel   (solid, bordered, cast shadow)
+     6  type
+   ============================================================ */
+
+:root{
+  /* --- navy --- */
+  --navy-0:#0B1422;
+  --navy-1:#0F1B2D;
+  --navy-2:#16263D;
+  --navy-3:#1D3151;
+
+  /* --- light --- */
+  --paper:#FFFFFF;
+  --ivory:#F2EBDC;
+  --ivory-2:#E9E0CC;
+  --ivory-3:#FBF7EE;
+
+  --ink:#1C222C;
+  --ink-soft:#4A5262;
+  --rule:rgba(28,34,44,0.14);
+
+  /* --- gold (was cyan in the reference) --- */
+  --gold:#C9A96A;
+  --gold-lite:#DCC08A;
+  --gold-deep:#A8874B;
+  --gold-ink:#8A6A2E;
+
+  /* --- brick red (was red in the reference) --- */
+  --red:#B53F2E;
+  --red-lite:#CD5641;
+  --red-deep:#8A2C1E;
+  --red-ink:#A13525;
+
+  --steel:#7E93B8;
+
+  --serif:"Newsreader","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+
+  --pad:clamp(1rem,4vw,2rem);
+  --wrap:68rem;
+
+  /* shared sizes for the elements that straddle section seams */
+  --laptop-w:clamp(16rem,48vw,31rem);
+  --laptop-half:calc(var(--laptop-w) * 0.3733);   /* 1200x896 source */
+  --avatar:clamp(5.5rem,13vw,8.5rem);
+  --cta-half:clamp(1.65rem,3.4vw,2.45rem);        /* half a CTA button */
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--ivory-3);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%;height:auto;display:block;}
+a{color:inherit;}
+::selection{background:var(--gold);color:var(--navy-0);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad);}
+
+/* ============================================================
+   BEAT 1 — PRE-HEADER BAR
+   ============================================================ */
+.promobar{
+  display:block;
+  background:var(--red);
+  color:#fff;
+  text-decoration:none;
+  padding:0.6rem var(--pad);
+  text-align:center;
+  font-size:clamp(0.66rem,1.55vw,0.84rem);
+  font-weight:700;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  line-height:1.4;
+  transition:background 0.18s ease;
+}
+.promobar:hover{background:var(--red-lite);}
+.promobar u{text-underline-offset:2px;font-weight:800;}
+
+/* ============================================================
+   BEAT 2–4 — HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:var(--navy-1);
+  padding:clamp(1.5rem,3.6vw,2.6rem) 0 0;
+  box-shadow:0 10px 26px rgba(0,0,0,0.3);
+}
+.hero > .layer{position:absolute;inset:0;pointer-events:none;}
+/* layer 0 — photographic ground */
+.hero .l-photo{
+  background:url("../assets/masterclass/money-bg.webp") center/cover no-repeat;
+  opacity:0.14;
+  filter:grayscale(1) contrast(1.2);
+  z-index:0;
+}
+/* layer 1 — navy wash + edge vignette */
+.hero .l-wash{
+  background:
+    radial-gradient(120% 100% at 50% 40%, rgba(15,27,45,0.42) 0%, rgba(11,20,34,0.9) 78%),
+    linear-gradient(180deg, rgba(15,27,45,0.5) 0%, rgba(11,20,34,0.72) 100%);
+  z-index:1;
+}
+/* layer 2 — diagonal weave */
+.hero .l-weave{
+  background-image:repeating-linear-gradient(135deg,
+    rgba(255,255,255,0.03) 0 1px, transparent 1px 9px);
+  z-index:2;
+}
+.hero .wrap{position:relative;z-index:6;max-width:72rem;}
+
+/* --- BEAT 2 — format + authority stamp --- */
+.hero-stamp{text-align:center;margin-bottom:clamp(0.9rem,2.2vw,1.5rem);}
+.hero-stamp .line1{
+  margin:0;
+  font-size:clamp(1.25rem,3.7vw,2.9rem);
+  font-weight:900;
+  letter-spacing:0.01em;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:1.08;
+  text-shadow:0 2px 14px rgba(0,0,0,0.5);
+}
+.hero-stamp .line1 em{font-style:normal;color:var(--gold);}
+.hero-stamp .line2{
+  margin:0.3rem 0 0;
+  font-size:clamp(0.85rem,2.1vw,1.62rem);
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(242,235,220,0.8);
+  line-height:1.2;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,0.74fr) minmax(0,1.26fr);
+  gap:clamp(0.5rem,1.8vw,1.4rem);
+  align-items:end;
+}
+
+/* --- layer 3+4 — glow and figure --- */
+.hero-figure{position:relative;align-self:end;min-width:0;}
+.hero-figure .l-glow{
+  position:absolute;
+  left:52%;bottom:-6%;
+  transform:translateX(-50%);
+  width:165%;aspect-ratio:1/1;
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,
+    rgba(245,228,186,0.70) 0%,
+    rgba(228,199,142,0.50) 24%,
+    rgba(201,169,106,0.30) 44%,
+    rgba(201,169,106,0.12) 60%,
+    rgba(201,169,106,0) 76%);
+  filter:blur(10px);
+  z-index:3;
+  pointer-events:none;
+}
+.hero-figure img{
+  position:relative;
+  z-index:4;
+  width:158%;
+  max-width:none;
+  margin-left:-44%;
+  filter:drop-shadow(0 26px 46px rgba(0,0,0,0.6));
+}
+
+/* --- layer 5 — BEAT 3 headline panel --- */
+.hero-card{
+  position:relative;
+  z-index:5;
+  background:var(--navy-0);
+  border:1px solid rgba(201,169,106,0.42);
+  padding:clamp(1.1rem,2.6vw,1.9rem) clamp(1rem,2.6vw,2.1rem) clamp(1.3rem,3vw,2rem);
+  text-align:center;
+  margin-bottom:clamp(1.4rem,3.4vw,2.4rem);
+  box-shadow:0 22px 50px rgba(0,0,0,0.45);
+}
+.hero-card .kicker{
+  margin:0;
+  font-size:clamp(0.92rem,2.3vw,1.75rem);
+  font-weight:800;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  line-height:1;
+}
+
+/* the outlined figure box, with the dollar sign built into it */
+.figwrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  max-width:100%;
+  margin:clamp(0.35rem,1vw,0.6rem) auto 0;
+  color:var(--gold);
+}
+.figwrap .dollar{
+  font-size:clamp(2.4rem,7.4vw,5.6rem);
+  font-weight:900;
+  line-height:0.8;
+  margin-right:-0.14em;
+  position:relative;
+  z-index:2;
+}
+.figbox{
+  border:3px solid currentColor;
+  padding:0.16em 0.4em 0.1em 0.46em;
+}
+.figbox .big{
+  margin:0;
+  font-weight:900;
+  font-size:clamp(2.1rem,6.4vw,4.9rem);
+  line-height:1;
+  letter-spacing:-0.03em;
+  color:#fff;
+  white-space:nowrap;
+}
+.figbox .big .arrow{color:var(--gold);font-weight:700;padding:0 0.04em;}
+
+.hero-card .big-sub{
+  margin:clamp(0.3rem,0.9vw,0.5rem) 0 0;
+  font-weight:800;
+  font-size:clamp(1.15rem,3.5vw,3.2rem);
+  line-height:1.02;
+  letter-spacing:0.005em;
+  color:#fff;
+  text-transform:uppercase;
+}
+.hero-card .formula{
+  display:inline-block;
+  margin-top:clamp(0.3rem,0.9vw,0.5rem);
+  background:var(--gold);
+  color:var(--navy-0);
+  font-weight:900;
+  font-size:clamp(1.3rem,4.1vw,3.6rem);
+  line-height:1;
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+  padding:0.24em 0.5em 0.28em;
+}
+
+/* BEAT 3 — the promise, sized to carry the hero */
+.hero-card .promise{
+  margin:clamp(0.9rem,2.2vw,1.5rem) 0 0;
+  font-weight:800;
+  font-size:clamp(0.98rem,2.35vw,1.62rem);
+  line-height:1.24;
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+  color:var(--gold-lite);
+}
+.hero-card .promise b{
+  display:block;
+  color:#fff;
+  font-weight:900;
+  font-size:1.17em;
+}
+.hero-card .when{
+  margin:clamp(0.75rem,1.9vw,1.2rem) 0 0;
+  font-family:var(--serif);
+  font-size:clamp(0.98rem,2.3vw,1.72rem);
+  line-height:1.26;
+  color:rgba(242,235,220,0.92);
+}
+.hero-card .when b{font-weight:600;color:#fff;}
+
+/* ============================================================
+   CTA BUTTON — brick red, the reference's red
+   ============================================================ */
+.cta{
+  display:block;
+  width:fit-content;
+  max-width:100%;
+  margin-inline:auto;
+  text-decoration:none;
+  background:linear-gradient(180deg,var(--red-lite) 0%,var(--red) 50%,var(--red-deep) 100%);
+  color:#fff;
+  border-radius:4px;
+  padding:0.68rem clamp(1.1rem,3.2vw,2.4rem) 0.6rem;
+  text-align:center;
+  box-shadow:0 5px 0 rgba(78,24,16,0.85), 0 12px 26px rgba(0,0,0,0.26);
+  transition:transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+}
+.cta:hover{transform:translateY(-2px);filter:saturate(1.06) brightness(1.05);
+  box-shadow:0 7px 0 rgba(78,24,16,0.85), 0 16px 30px rgba(0,0,0,0.3);}
+.cta:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(78,24,16,0.85);}
+.cta .lead{
+  display:block;
+  font-weight:800;
+  font-size:clamp(0.95rem,2.4vw,1.85rem);
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+  line-height:1.15;
+  text-shadow:0 1px 2px rgba(0,0,0,0.25);
+}
+.cta .sub{
+  display:block;
+  margin-top:0.28rem;
+  font-size:clamp(0.6rem,1.15vw,0.84rem);
+  font-weight:500;
+  font-style:italic;
+  letter-spacing:0.01em;
+  color:rgba(255,255,255,0.82);
+  line-height:1.3;
+}
+.cta-hero{margin-top:clamp(0.9rem,2.2vw,1.5rem);}
+
+/* ============================================================
+   BEAT 5 — TESTIMONIALS BAR  (lifted from contractor-workshop)
+   ============================================================ */
+.proof-wall{
+  position:relative;overflow:hidden;
+  background:var(--navy-2);
+  padding-block:clamp(1.8rem,4vw,2.6rem);
+  box-shadow:inset 0 14px 22px -14px rgba(0,0,0,0.55),
+             inset 0 -14px 22px -14px rgba(0,0,0,0.55);
+}
+.proof-wall::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(126,147,184,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,147,184,0.09) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+  -webkit-mask-image:radial-gradient(90% 140% at 50% 50%, black 25%, transparent 92%);
+}
+.proof-wall .wrap{position:relative;z-index:1;max-width:66rem;}
+.proof-wall .label{
+  text-align:center;margin:0;
+  font-family:var(--mono);font-size:0.64rem;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--ivory);opacity:0.7;
+}
+.proof-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:1.6rem;margin-top:1.5rem;
+}
+@media(max-width:980px){.proof-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.proof-grid{grid-template-columns:repeat(2,1fr);}}
+.proof-cell{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:0.75rem;
+}
+.proof-cell img{
+  height:34px;width:auto;object-fit:contain;
+  filter:grayscale(1);opacity:0.55;
+}
+.proof-cell .pq{
+  font-family:var(--serif);font-style:italic;
+  font-size:0.86rem;line-height:1.5;
+  color:rgba(242,235,220,0.72);margin:0;
+}
+.proof-cell .pq b{color:var(--ivory);font-weight:500;font-style:normal;}
+
+/* ============================================================
+   BANDS — light and dark, each a real layer stack.
+   No overflow:hidden: elements deliberately straddle the seams.
+   ============================================================ */
+.band{position:relative;}
+.band > .layer{position:absolute;inset:0;pointer-events:none;}
+/* flow-root so a straddling child's negative margin moves the CHILD
+   up through the seam instead of collapsing out and moving the band */
+.band > .wrap{position:relative;z-index:6;display:flow-root;}
+
+.band-light{
+  --band-pad:clamp(2.2rem,5vw,3.4rem);
+  background:var(--ivory-3);
+  padding-block:var(--band-pad);
+}
+.band-light .l-weave{
+  background-image:repeating-linear-gradient(135deg,
+    rgba(28,34,44,0.035) 0 1px, transparent 1px 11px);
+  z-index:1;
+}
+
+.band-dark{
+  --band-pad:clamp(2.4rem,5.6vw,3.8rem);
+  background:var(--navy-1);
+  padding-block:var(--band-pad);
+}
+.band-dark .l-photo{
+  background:url("../assets/masterclass/money-bg.webp") center/cover no-repeat;
+  opacity:0.16;
+  filter:grayscale(1) contrast(1.1);
+  z-index:0;
+}
+.band-dark .l-wash{
+  background:linear-gradient(180deg,
+    rgba(15,27,45,0.62) 0%, rgba(15,27,45,0.86) 40%, rgba(11,20,34,0.94) 100%);
+  z-index:1;
+}
+.band-dark .l-weave{
+  background-image:repeating-linear-gradient(135deg,
+    rgba(255,255,255,0.025) 0 1px, transparent 1px 9px);
+  z-index:2;
+}
+
+/* --- seam modifiers --- */
+.band--doom{
+  /* room for the laptop's top half to hang into this band */
+  padding-bottom:calc(var(--laptop-half) + clamp(1.8rem,4vw,3rem));
+}
+.band--learn{padding-top:0;padding-bottom:0;}
+.band--mega{
+  /* room for the learn CTA above and Ruth's avatar below */
+  padding-top:clamp(3.4rem,7vw,5rem);
+  padding-bottom:calc(var(--avatar) / 2 + clamp(1.8rem,4vw,3rem));
+}
+.band--origin{padding-top:0;}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card{
+  background:var(--paper);
+  box-shadow:0 1px 2px rgba(11,20,34,0.07),
+             0 6px 16px rgba(11,20,34,0.08),
+             0 22px 46px rgba(11,20,34,0.09);
+  padding:clamp(1.6rem,4vw,3rem) clamp(1.2rem,4vw,3rem);
+  text-align:center;
+}
+
+/* --- BEAT 6 --- */
+.doom-open{
+  margin:0 auto;
+  max-width:44rem;
+  font-size:clamp(0.98rem,2.1vw,1.55rem);
+  line-height:1.4;
+  color:var(--navy-2);
+}
+.doom-hit{
+  margin:clamp(0.5rem,1.4vw,0.85rem) auto 0;
+  font-weight:800;
+  font-size:clamp(1.14rem,3.05vw,2.2rem);
+  line-height:1.16;
+  letter-spacing:-0.015em;
+  color:var(--red-ink);
+}
+
+.why{
+  display:flex;align-items:center;gap:clamp(0.9rem,3vw,1.8rem);
+  margin:clamp(1.1rem,2.8vw,1.8rem) auto;
+  max-width:34rem;
+}
+.why::before,.why::after{content:"";flex:1;height:2px;background:var(--navy-2);opacity:0.85;}
+.why span{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.4rem,3.4vw,2.6rem);
+  color:var(--navy-1);
+  line-height:1;
+}
+
+.doom-small{
+  margin:0 auto;
+  max-width:36rem;
+  font-size:clamp(0.88rem,1.9vw,1.35rem);
+  line-height:1.45;
+  color:var(--ink-soft);
+}
+.doom-small mark{
+  background:linear-gradient(180deg,transparent 58%,rgba(201,169,106,0.55) 58%);
+  color:var(--navy-0);
+  font-weight:700;
+  font-style:italic;
+}
+.doom-because{
+  margin:clamp(0.7rem,1.8vw,1.1rem) auto 0;
+  max-width:44rem;
+  font-weight:700;
+  font-size:clamp(1.02rem,2.6vw,2.1rem);
+  line-height:1.24;
+  color:var(--navy-1);
+}
+.doom-credentials{
+  margin:clamp(0.9rem,2.4vw,1.5rem) auto 0;
+  max-width:42rem;
+  font-size:clamp(0.86rem,1.85vw,1.3rem);
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+.doom-credentials b{color:var(--navy-1);font-weight:700;}
+.doom-credentials mark{
+  background:linear-gradient(180deg,transparent 62%,rgba(201,169,106,0.5) 62%);
+  color:var(--navy-0);
+  font-weight:700;
+}
+
+/* gold panel, white keyline, gold outer rule, white type */
+.doom-box{
+  margin:clamp(1rem,2.6vw,1.6rem) auto 0;
+  max-width:42rem;
+  background:var(--gold-deep);
+  border:3px solid #fff;
+  outline:3px solid var(--gold);
+  outline-offset:0;
+  padding:clamp(0.9rem,2.3vw,1.4rem) clamp(1rem,3vw,1.8rem);
+  font-weight:800;
+  font-size:clamp(1rem,2.5vw,2.05rem);
+  line-height:1.24;
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,0.22);
+}
+.doom-close{
+  margin:clamp(1rem,2.6vw,1.6rem) auto 0;
+  max-width:40rem;
+  font-size:clamp(0.98rem,2.35vw,1.85rem);
+  line-height:1.3;
+  color:var(--navy-1);
+}
+.doom-close b{font-weight:800;}
+
+.arrows{
+  /* clear the CTA that overlaps up onto the card's bottom edge */
+  margin:clamp(0.8rem,2.2vw,1.3rem) 0 var(--cta-half);
+  display:flex;justify-content:center;gap:clamp(0.7rem,2vw,1.2rem);
+  color:var(--red);
+  font-size:clamp(1.3rem,3vw,2.1rem);
+  line-height:1;
+}
+.arrows span{animation:bob 1.5s ease-in-out infinite;}
+.arrows span:nth-child(2){animation-delay:0.12s;}
+.arrows span:nth-child(3){animation-delay:0.24s;}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:0.7;}50%{transform:translateY(5px);opacity:1;}}
+@media(prefers-reduced-motion:reduce){.arrows span{animation:none;opacity:0.9;}}
+
+/* sits on the bottom edge of the white card above it */
+.cta-after-card{
+  position:relative;
+  z-index:7;
+  margin-top:calc(var(--cta-half) * -1);
+}
+
+/* ============================================================
+   BEAT 10–12 — LEARN
+   ============================================================ */
+/* straddles the seam with the band above */
+.laptop{
+  width:var(--laptop-w);
+  margin:calc(var(--laptop-half) * -1) auto clamp(1.5rem,3.6vw,2.4rem);
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,0.6));
+}
+
+.learn-head{
+  margin:0 0 clamp(1.6rem,3.6vw,2.4rem);
+  text-align:center;
+  font-weight:800;
+  font-size:clamp(1.35rem,3.6vw,3rem);
+  line-height:1.16;
+  letter-spacing:-0.015em;
+  color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,0.45);
+}
+
+.bullets{
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:clamp(1.7rem,3.4vw,2.3rem);
+  max-width:38rem;
+  margin-inline:auto;
+}
+.bullet{
+  position:relative;
+  width:100%;
+  background:var(--paper);
+  border-bottom:5px solid var(--red);
+  border-radius:2px;
+  padding:clamp(1.9rem,4vw,2.4rem) clamp(1.1rem,3vw,1.9rem) clamp(1.1rem,2.6vw,1.5rem);
+  text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,0.34);
+}
+.bullet .num{
+  position:absolute;
+  top:clamp(-1.35rem,-2.6vw,-1rem);left:50%;transform:translateX(-50%);
+  width:clamp(2.2rem,4.6vw,2.8rem);height:clamp(2.2rem,4.6vw,2.8rem);
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid var(--navy-1);
+  display:grid;place-items:center;
+  font-weight:800;
+  font-size:clamp(0.8rem,1.7vw,1.05rem);
+  color:#fff;
+  box-shadow:0 6px 14px rgba(0,0,0,0.35);
+}
+.bullet p{
+  margin:0;
+  font-size:clamp(0.88rem,1.9vw,1.35rem);
+  line-height:1.42;
+  color:var(--navy-1);
+}
+.bullet p b{font-weight:800;color:var(--navy-0);}
+
+/* sits on the seam with the band below */
+.cta-straddle{
+  position:relative;
+  z-index:8;
+  margin-top:clamp(1.8rem,4vw,2.8rem);
+  transform:translateY(50%);
+}
+
+/* ============================================================
+   BEAT 13 — MEGA PROOF
+   ============================================================ */
+.mega-line{
+  margin:0 auto;
+  max-width:44rem;
+  font-weight:700;
+  font-size:clamp(1.02rem,2.5vw,2.05rem);
+  line-height:1.28;
+  color:var(--navy-1);
+}
+.mega-line b{color:var(--red-ink);font-weight:800;}
+.mega-rule{
+  border:0;border-top:4px solid var(--red);
+  margin:clamp(1.1rem,2.8vw,1.8rem) auto;
+  max-width:38rem;
+}
+.mega-hit{
+  margin:0 auto;
+  max-width:42rem;
+  font-weight:800;
+  font-size:clamp(1.14rem,2.95vw,2.45rem);
+  line-height:1.2;
+  color:var(--red-ink);
+}
+.mega-sub{
+  margin:clamp(1.1rem,2.8vw,1.7rem) auto 0;
+  max-width:38rem;
+  font-size:clamp(0.88rem,1.9vw,1.35rem);
+  line-height:1.45;
+  color:var(--ink-soft);
+}
+.mega-sub b{color:var(--navy-1);font-weight:700;}
+
+.artifact{
+  position:relative;
+  margin:clamp(1.6rem,3.6vw,2.4rem) auto 0;
+  width:fit-content;
+  padding-right:clamp(1.4rem,4.4vw,3.1rem);
+}
+.artifact img{
+  width:clamp(11rem,34vw,18rem);
+  border:1px solid var(--rule);
+  box-shadow:0 20px 42px rgba(11,20,34,0.3);
+}
+/* the arrow lands slightly over the cover */
+.artifact .pointer{
+  position:absolute;
+  top:4%;right:0;
+  width:clamp(2.6rem,7.6vw,4.9rem);
+  color:var(--red);
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+  pointer-events:none;
+  z-index:2;
+}
+
+/* ============================================================
+   BEAT 14–15 — ORIGIN + SELF SELECTION
+   ============================================================ */
+/* straddles the seam with the band above */
+.avatar{
+  width:var(--avatar);
+  height:var(--avatar);
+  border-radius:50%;
+  object-fit:cover;
+  object-position:50% 12%;
+  margin:calc(var(--avatar) / -2) auto clamp(0.7rem,1.8vw,1.1rem);
+  border:4px solid var(--gold);
+  background:var(--paper);
+  box-shadow:0 14px 30px rgba(0,0,0,0.42);
+}
+.byline{text-align:center;margin:0 0 clamp(1.3rem,3vw,2rem);}
+.byline .nm{
+  display:block;
+  font-weight:800;
+  font-size:clamp(0.92rem,2vw,1.35rem);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:#fff;
+}
+.byline .cred{
+  display:block;margin-top:0.28rem;
+  font-family:var(--mono);
+  font-size:clamp(0.62rem,1.3vw,0.85rem);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+.origin-open{
+  margin:0 auto;
+  max-width:42rem;
+  text-align:center;
+  font-size:clamp(0.98rem,2.1vw,1.55rem);
+  line-height:1.4;
+  color:rgba(242,235,220,0.9);
+}
+.origin-hit{
+  margin:clamp(0.8rem,2.2vw,1.3rem) auto 0;
+  max-width:40rem;
+  text-align:center;
+  font-weight:800;
+  font-size:clamp(1.35rem,3.6vw,3rem);
+  line-height:1.16;
+  letter-spacing:-0.015em;
+  color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,0.45);
+}
+.origin-body{
+  margin:clamp(1.1rem,2.8vw,1.7rem) auto 0;
+  max-width:42rem;
+  text-align:center;
+  font-size:clamp(0.86rem,1.85vw,1.3rem);
+  line-height:1.55;
+  color:rgba(242,235,220,0.72);
+}
+
+.receipt{
+  margin:clamp(1.6rem,3.6vw,2.4rem) auto 0;
+  max-width:36rem;
+  background:var(--paper);
+  border-radius:3px;
+  padding:0.5rem;
+  box-shadow:0 2px 5px rgba(0,0,0,0.2), 0 16px 34px rgba(0,0,0,0.34);
+}
+.receipt-img{position:relative;}
+.receipt-img img{width:100%;}
+/* ring drawn over the closing line of the recommendation */
+.receipt-img .ring{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  color:var(--red);
+  pointer-events:none;
+}
+
+.select-card{
+  margin:clamp(2rem,4.6vw,3.2rem) auto 0;
+  max-width:42rem;
+  background:var(--paper);
+  border-radius:2px;
+  padding:clamp(1.5rem,3.6vw,2.4rem) clamp(1.2rem,3.4vw,2.4rem);
+  text-align:center;
+  box-shadow:0 2px 5px rgba(0,0,0,0.2), 0 20px 44px rgba(0,0,0,0.38);
+}
+.select-card h3{
+  margin:0 0 clamp(1.1rem,2.6vw,1.6rem);
+  font-weight:800;
+  font-size:clamp(1.1rem,2.75vw,2.3rem);
+  line-height:1.22;
+  color:var(--navy-1);
+}
+.select-card h3 em{
+  font-style:normal;
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  padding:0.08em 0.3em 0.12em;
+  font-weight:900;
+  letter-spacing:0.02em;
+}
+.select-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:clamp(0.8rem,2vw,1.15rem);
+}
+.select-list li{
+  display:flex;gap:0.75rem;
+  align-items:flex-start;
+  text-align:left;
+  font-size:clamp(0.88rem,1.95vw,1.45rem);
+  line-height:1.42;
+  color:var(--navy-2);
+  width:100%;max-width:32rem;margin-inline:auto;
+}
+.select-list li::before{
+  content:"✓";
+  flex:none;
+  color:var(--gold-deep);
+  font-weight:800;
+  font-size:1.05em;
+  line-height:1.4;
+}
+.select-list li > span{flex:1;min-width:0;}
+.select-list li i{font-style:italic;color:var(--ink-soft);}
+
+.cta-final{margin-top:clamp(1.8rem,4vw,2.8rem);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{
+  background:var(--navy-0);
+  padding:clamp(1.5rem,4vw,2.2rem) var(--pad);
+  text-align:center;
+}
+.foot p{
+  margin:0;
+  font-family:var(--mono);
+  font-size:clamp(0.56rem,1.2vw,0.72rem);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  line-height:1.9;
+  color:rgba(242,235,220,0.42);
+}
+.foot a{text-decoration:none;}
+.foot a:hover{color:var(--gold);}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr;gap:0;}
+  .hero-card{order:1;margin-bottom:0;}
+  .hero-figure{order:2;margin-top:clamp(1.2rem,4vw,1.8rem);}
+  .hero-figure img{width:100%;max-width:21rem;margin-left:auto;margin-right:auto;}
+  .hero-figure .l-glow{width:125%;}
+  .figbox .big{font-size:clamp(1.9rem,9.2vw,2.9rem);}
+  .figwrap .dollar{font-size:clamp(2.1rem,10.4vw,3.3rem);}
+  .artifact{padding-right:clamp(1.2rem,7vw,2.2rem);}
+}
+@media(max-width:420px){
+  .figbox .big{font-size:8.9vw;}
+  .figwrap .dollar{font-size:10.1vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ BEAT 1 — PRE-HEADER BAR ============ -->
+<a class="promobar" href="#claim">
+  <u>Click here</u> to get the BAM Calculator that set the opening price on a $750K deal
+</a>
+
+<!-- ============ BEAT 2–4 — HERO ============ -->
+<header class="hero">
+  <div class="layer l-photo"></div>
+  <div class="layer l-wash"></div>
+  <div class="layer l-weave"></div>
+
+  <div class="wrap">
+
+    <!-- BEAT 2 — format + authority stamp -->
+    <div class="hero-stamp">
+      <p class="line1">Brand New <em>Live Masterclass</em></p>
+      <p class="line2">By Ruth Shlossman, Castle Negotiations</p>
+    </div>
+
+    <div class="hero-grid">
+
+      <div class="hero-figure">
+        <div class="l-glow"></div>
+        <img src="../assets/masterclass/ruth-hero.png"
+             alt="Ruth Shlossman, senior negotiation consultant and CEO of Castle Negotiations"
+             width="965" height="961" fetchpriority="high" decoding="async">
+      </div>
+
+      <!-- BEAT 3 — headline -->
+      <div class="hero-card">
+        <p class="kicker">The</p>
+
+        <div class="figwrap">
+          <span class="dollar">$</span>
+          <div class="figbox">
+            <p class="big">250K<span class="arrow">→</span>$750K</p>
+          </div>
+        </div>
+
+        <p class="big-sub">Profit-Maximizer</p>
+        <span class="formula">Formula</span>
+
+        <p class="promise">Turn your first (or next)<b>$250K quote into $750K</b></p>
+
+        <p class="when">The Next <b>Live Masterclass</b><br>Starts On September 25th…</p>
+
+        <!-- BEAT 4 — CTA 1 -->
+        <a class="cta cta-hero" href="#claim">
+          <span class="lead">Claim Your Free Spot Now!</span>
+          <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ============ BEAT 5 — TESTIMONIALS BAR ============ -->
+<section class="proof-wall">
+  <div class="wrap">
+    <p class="label">Trusted by business professionals at</p>
+    <div class="proof-grid">
+      <div class="proof-cell">
+        <img src="../assets/logos/dexko-global.webp" alt="DexKo Global" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“Secured a price increase below 50%, saving approximately $800K.”</b></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/fca.webp" alt="FCA (Fiat Chrysler Automobiles)" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“$3.7M in piece-price value after 7 negotiation rounds.”</b></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/chart-industries.webp" alt="Chart Industries" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“Critical tools: BAM, anchoring, preparation, probing, listening.”</b></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/nasa.webp" alt="NASA" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“Invaluable tools I will be using in every negotiation henceforth.”</b></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/speira.webp" alt="Speira" style="opacity:0.8" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“Really helped our team go out and re-negotiate with suppliers.”</b></p>
+      </div>
+      <div class="proof-cell">
+        <img src="../assets/logos/arcelormittal.webp" alt="ArcelorMittal" style="opacity:0.95" width="120" height="34" loading="lazy" decoding="async">
+        <p class="pq"><b>“Valuable tools I’ll be using in an upcoming freight negotiation.”</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEAT 6 — DOOM → WHY → ABSOLUTION ============ -->
+<section class="band band-light band--doom">
+  <div class="layer l-weave"></div>
+  <div class="wrap">
+    <div class="card">
+
+      <p class="doom-open">In 2025 more owners than ever signed the biggest contracts of their career.</p>
+      <p class="doom-hit">But 80% of them lost TENS OF THOUSANDS in margin.</p>
+
+      <div class="why"><span>Why?</span></div>
+
+      <p class="doom-small">It’s probably <mark>not</mark> because you’re discounting.</p>
+
+      <p class="doom-because">It’s more likely because you have no negotiation process, and the trained buyer sitting opposite you does</p>
+
+      <p class="doom-credentials">I have trained more than <mark>10,000 professionals</mark> in over 25 years, in deals from <mark>$20K to $3.7 MILLION</mark>, on both sides of the table.</p>
+
+      <p class="doom-box">And more than $1 BILLION in deals has been negotiated using these same 4 steps</p>
+
+      <p class="doom-close">And I’m going to teach you exactly how I do it in this<br><b>FREE online masterclass.</b></p>
+
+      <p class="arrows"><span>↓</span><span>↓</span><span>↓</span></p>
+
+    </div>
+
+    <a class="cta cta-after-card" href="#claim">
+      <span class="lead">Claim Your Free Spot Now!</span>
+      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ BEAT 10–12 — WHAT YOU'LL LEARN ============ -->
+<section class="band band-dark band--learn">
+  <div class="layer l-photo"></div>
+  <div class="layer l-wash"></div>
+  <div class="layer l-weave"></div>
+
+  <div class="wrap">
+
+    <!-- BEAT 10 — straddles the seam above -->
+    <img class="laptop" src="../assets/masterclass/laptop-mockup.png"
+         alt="A Castle Negotiations live masterclass session on screen, mid-workshop"
+         width="1200" height="896" loading="lazy" decoding="async">
+
+    <!-- BEAT 11 — bullets -->
+    <h2 class="learn-head">In This Masterclass You Will Learn:</h2>
+
+    <div class="bullets">
+
+      <div class="bullet">
+        <span class="num">01</span>
+        <p>The first (and most important) thing you must do after you’ve priced the job but <b>BEFORE you get in the room.</b></p>
+      </div>
+
+      <div class="bullet">
+        <span class="num">02</span>
+        <p>My personal <b>BAM calculator</b>, the exact tool behind the number at the top of this page. Plug in your deal and it hands you your opening price.</p>
+      </div>
+
+      <div class="bullet">
+        <span class="num">03</span>
+        <p>The <b>BIGGEST mistake business owners make</b> when a buyer pushes on price, that costs them thousands in margin and wins them the wrong deals.</p>
+      </div>
+
+      <div class="bullet">
+        <span class="num">04</span>
+        <p>My secret <b>“concession pattern”</b> that will flip a deal 180 degrees in minutes… if you’re brave enough to use it!</p>
+      </div>
+
+    </div>
+
+    <!-- BEAT 12 — sits on the seam below -->
+    <a class="cta cta-straddle" href="#claim">
+      <span class="lead">Claim Your Free Spot Now!</span>
+      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ BEAT 13 — MEGA PROOF + ARTIFACT ============ -->
+<section class="band band-light band--mega">
+  <div class="layer l-weave"></div>
+  <div class="wrap">
+    <div class="card">
+
+      <p class="mega-line">One of my clients was told to double his price or lose his supplier. He settled below 50% and kept <b>800,000 EURO</b>.</p>
+
+      <hr class="mega-rule">
+
+      <p class="mega-hit">Another came in 1.5% above his own number. Worth $3,700,000 on one contract.</p>
+
+      <hr class="mega-rule">
+
+      <p class="mega-sub">It’s safe to say that I have cracked the code to negotiating high value contracts <b>(and I even wrote the book on it)</b></p>
+
+      <div class="artifact">
+        <img src="../assets/masterclass/book-front.png"
+             alt="Negotiate With Ease by Ruth Shlossman — book cover"
+             width="960" height="1374" loading="lazy" decoding="async">
+        <svg class="pointer" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+          <path d="M110 12 C116 66 51 131 20 170" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M25.6 143.8 L20 170 L44.4 158.8" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEAT 14–15 — ORIGIN + SELF SELECTION ============ -->
+<section class="band band-dark band--origin">
+  <div class="layer l-photo"></div>
+  <div class="layer l-wash"></div>
+  <div class="layer l-weave"></div>
+
+  <div class="wrap">
+
+    <!-- straddles the seam above -->
+    <img class="avatar" src="../assets/masterclass/promo-tile.webp"
+         alt="Ruth Shlossman" width="1024" height="1024" loading="lazy" decoding="async">
+    <p class="byline">
+      <span class="nm">Ruth Shlossman</span>
+      <span class="cred">Harvard trained · M.Ed.</span>
+    </p>
+
+    <p class="origin-open">Join me and find out the exact system I use to close 7 figure commercial deals.</p>
+
+    <h2 class="origin-hit">I will be teaching very specific strategies not known anywhere else.</h2>
+
+    <p class="origin-body">I didn’t learn this from a textbook. I learned it in the room, training the buyers who sit across the table from you. I just figured out what works and what doesn’t by doing the deals, over and over again, for 25 years.</p>
+
+    <div class="receipt">
+      <div class="receipt-img">
+        <img src="../assets/masterclass/michael-rose-testimonial.webp"
+             alt="LinkedIn recommendation from Michael Rose, M.A., Motivational Speaker at Bipolar Wellness Foundation: “I am only sorry I did not turn to her earlier in the process.”"
+             width="1490" height="324" loading="lazy" decoding="async">
+        <!-- hand-drawn ring around "I am only sorry I ddi not turn to her earlier" -->
+        <svg class="ring" viewBox="0 0 1490 324" preserveAspectRatio="none" fill="none" aria-hidden="true">
+          <path d="M460 275
+                   C458 260 600 251 741 251
+                   C882 251 1025 260 1023 275
+                   C1021 291 882 301 741 301
+                   C600 301 462 291 460 276
+                   C459 266 522 257 612 253"
+                stroke="currentColor" stroke-width="8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- BEAT 15 — self selection box -->
+    <div class="select-card">
+      <h3>This Masterclass is a <em>MUST</em> attend if…</h3>
+      <ul class="select-list">
+        <li><span>You don’t have time to waste trying to figure it out yourself.</span></li>
+        <li><span>You think you’re just not a natural at negotiating, and perhaps you’re too far into your career to learn. <i>(Spoiler alert: you’re not and you’re not)</i></span></li>
+        <li><span>You’re ready to stop being the easiest supplier to squeeze.</span></li>
+      </ul>
+    </div>
+
+    <!-- BEAT 16 — CTA 4 -->
+    <a class="cta cta-final" id="claim" href="#claim">
+      <span class="lead">Claim Your Free Spot Now!</span>
+      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <p>Copyright 2026 © Castle Negotiations</p>
+  <p>
+    <a href="#">Terms &amp; Conditions</a> |
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Earnings Disclaimer</a>
+  </p>
+</footer>
+
+</body>
+</html>
