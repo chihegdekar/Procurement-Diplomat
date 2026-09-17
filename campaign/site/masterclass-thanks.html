@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>You're In | Castle Negotiations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&amp;family=Archivo:wght@400;600;700;800&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code — Castle Negotiations Pixel.
+     This page IS the conversion: reaching it means a seat was booked. The
+     CompleteRegistration event fires further down, once, with a dedup ID. -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1560415991582955');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+:root{
+  --navy-0:#0B1422; --navy-1:#0F1B2D; --navy-2:#16263D;
+  --paper:#FFFFFF; --ivory:#F2EBDC; --ivory-3:#FBF7EE;
+  --ink:#1C222C; --ink-soft:#4A5262; --rule:rgba(28,34,44,0.14);
+  --gold:#C9A96A; --gold-deep:#A8874B;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,monospace;
+  --pad:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:1.0625rem;line-height:1.62;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:var(--gold-deep);}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+
+.topbar{background:var(--navy-0);color:var(--ivory);padding:0.9rem var(--pad);
+  text-align:center;border-bottom:1px solid rgba(201,169,106,0.28);}
+.topbar .wordmark{font-family:var(--serif);font-size:1.15rem;color:var(--ivory);
+  text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;}
+.topbar .knight{color:var(--gold);font-size:1.25em;}
+
+.confirmed{background:var(--ivory-3);border-bottom:1px solid var(--rule);
+  padding:0.85rem var(--pad);text-align:center;
+  font-size:0.9rem;font-weight:700;color:var(--navy-0);}
+.confirmed .tick{color:var(--gold-deep);}
+
+.wrap{max-width:44rem;margin:0 auto;padding:clamp(2rem,6vw,3.4rem) var(--pad);}
+.eyebrow{font-size:0.8rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.8rem;}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
+  line-height:1.1;color:var(--navy-0);margin:0 0 1rem;text-wrap:balance;}
+.dek{font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.3rem);
+  color:var(--ink);margin:0 0 2rem;text-wrap:pretty;}
+
+.card{border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:4px;
+  background:var(--ivory-3);padding:clamp(1.1rem,3.5vw,1.5rem);margin:0 0 1.2rem;}
+.card h2{font-family:var(--sans);font-weight:800;font-size:1.08rem;
+  color:var(--navy-0);margin:0 0 0.5rem;}
+.card p{margin:0 0 0.9rem;font-size:0.98rem;color:var(--ink-soft);}
+.card p:last-child{margin-bottom:0;}
+.card .when{font-family:var(--sans);font-weight:700;color:var(--navy-0);}
+.card--main{border-left-color:var(--navy-0);background:var(--paper);
+  box-shadow:0 1px 2px rgba(11,20,34,0.06),0 8px 22px rgba(11,20,34,0.08);}
+
+/* Add to calendar. Two routes rather than a picker: Google covers most
+   people, the .ics covers Apple Calendar and Outlook. */
+.cal{display:flex;flex-wrap:wrap;gap:0.6rem;margin:0 0 1.1rem;}
+.cal-btn{
+  display:inline-flex;align-items:center;gap:0.45rem;
+  font-family:var(--sans);font-weight:700;font-size:0.88rem;
+  text-decoration:none;color:var(--navy-0);
+  background:var(--paper);
+  border:1px solid var(--gold-deep);border-radius:4px;
+  padding:0.6rem 0.9rem;line-height:1.2;
+  transition:background 0.15s ease,transform 0.15s ease;
+}
+.cal-btn:hover{background:var(--ivory-3);transform:translateY(-1px);}
+.cal-btn span{font-size:1.05em;}
+
+.steps{margin:0;padding:0 0 0 1.15rem;font-size:0.98rem;color:var(--ink-soft);}
+.steps li{margin:0 0 0.5rem;}
+.steps li:last-child{margin-bottom:0;}
+.steps b{color:var(--navy-0);}
+
+.btn{display:block;width:100%;text-align:center;text-decoration:none;cursor:pointer;
+  font-family:var(--sans);font-weight:800;font-size:clamp(1rem,2.7vw,1.2rem);
+  color:var(--navy-0);background:var(--gold);border:2px solid var(--gold-deep);
+  border-radius:4px;padding:1rem 1.3rem;}
+.btn:hover:not(:disabled){background:#D8BC80;}
+.btn:disabled{opacity:0.6;cursor:not-allowed;}
+.btn--inline{display:inline-block;width:auto;font-size:1rem;padding:0.8rem 1.4rem;}
+
+.passbox{display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;
+  font-family:var(--mono);font-size:0.95rem;
+  background:var(--paper);border:1px dashed var(--gold-deep);border-radius:4px;
+  padding:0.6rem 0.85rem;margin:0 0 0.9rem;}
+.passbox b{color:var(--navy-0);letter-spacing:0.06em;}
+.passbox .lbl{font-family:var(--sans);font-size:0.75rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);}
+.copy{background:none;border:1px solid var(--rule);border-radius:3px;cursor:pointer;
+  font-family:var(--sans);font-size:0.75rem;font-weight:700;padding:0.25rem 0.6rem;
+  color:var(--ink-soft);}
+.copy:hover{border-color:var(--gold-deep);color:var(--navy-0);}
+
+.divider{display:flex;align-items:center;gap:1rem;margin:2rem 0 1.2rem;
+  font-size:0.72rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ink-soft);}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--rule);}
+
+.state{font-family:var(--sans);color:var(--ink-soft);font-size:0.9rem;}
+[hidden]{display:none !important;}
+
+.foot{background:var(--navy-0);color:rgba(242,235,220,0.55);
+  padding:2rem var(--pad);text-align:center;font-size:0.82rem;margin-top:2rem;}
+
+/* ============================================================
+   THE ONE-TIME OFFER
+   Same block for everyone. The only thing that changes is how
+   they pay: one click on a saved card, or a card field.
+   ============================================================ */
+#offer{margin-top:2.6rem;}
+#offer:not([hidden]){
+  border:3px solid var(--gold-deep);border-radius:8px;
+  padding:clamp(1.1rem,4vw,1.9rem);
+  background:linear-gradient(180deg,#FFFDF8,#FBF3E4);
+  animation:oto-glow 1.6s ease-in-out infinite alternate;
+}
+#offer.is-delivered,#offer.is-declined{animation:none;}
+#offer h2{font-family:var(--serif);font-weight:700;
+  font-size:clamp(1.55rem,4.2vw,2.35rem);line-height:1.12;
+  color:var(--navy-0);margin:0 0 1rem;text-wrap:balance;}
+.oto-flag{
+  display:block;text-align:center;background:#D8352A;color:#fff;
+  font-family:var(--sans);font-weight:800;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.55rem 0.8rem;border-radius:3px;margin:0 0 1rem;
+  animation:oto-blink 1.1s steps(1,end) infinite;
+}
+/* Product shot of the library itself, straight under the offer flag. */
+.oto-shot{
+  width:100%;height:auto;
+  border:1px solid var(--rule);border-radius:4px;
+  margin:0 0 1.3rem;
+  box-shadow:0 2px 6px rgba(11,20,34,0.1),0 14px 30px rgba(11,20,34,0.14);
+  background:var(--paper);
+}
+.ruth-line{font-family:var(--sans);font-size:0.9rem;font-weight:700;
+  color:var(--gold-deep);text-transform:uppercase;letter-spacing:0.06em;
+  line-height:1.5;margin:0 0 1.4rem;}
+.ruth-line strong{color:var(--navy-0);}
+#offer ul{margin:0 0 1.4rem;padding-left:1.15rem;}
+#offer .sub{font-family:var(--serif);font-size:1.05rem;margin:0 0 .5rem;}
+.price-line{font-family:var(--serif);font-size:clamp(1.05rem,2.6vw,1.25rem);
+  font-weight:700;color:var(--navy-0);margin:1.8rem 0 0.2rem;}
+/* The anchor price. Muted and lighter so the $149 is what the eye lands on. */
+.price-line s{color:var(--ink-soft);font-weight:400;margin-right:0.15em;}
+.price-line strong{font-size:1.15em;}
+.scarcity{border:1px solid var(--gold-deep);background:var(--ivory-3);border-radius:4px;
+  padding:0.85rem 1.05rem;margin:0.9rem 0 1.3rem;font-size:0.92rem;font-weight:600;
+  color:var(--navy-0);line-height:1.5;}
+.scarcity b{color:var(--gold-deep);text-transform:uppercase;letter-spacing:0.04em;
+  font-size:0.8rem;display:block;margin-bottom:0.2rem;}
+.guarantee{font-size:0.84rem;color:var(--ink-soft);text-align:center;margin:0.95rem 0 0;}
+.note{font-size:0.82rem;color:var(--ink-soft);text-align:center;margin:0.8rem 0 0;}
+.decline{display:block;margin:1.1rem auto 0;background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.9rem;color:var(--ink-soft);text-decoration:underline;
+  text-align:center;}
+#accept:not(:disabled){animation:oto-pulse 1.4s ease-in-out infinite;}
+#offer.is-delivered #accept{animation:none;}
+
+/* card entry, for anyone without a card on file */
+.pay-label{font-family:var(--sans);font-size:0.72rem;font-weight:800;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:1.4rem 0 0.6rem;}
+#oto-payment-element{min-height:5rem;}
+.oto-field{margin:0 0 0.9rem;}
+.oto-field label{display:block;font-size:0.8rem;font-weight:700;
+  color:var(--ink-soft);margin:0 0 0.3rem;}
+.oto-field input{width:100%;font-family:var(--sans);font-size:1rem;
+  color:var(--ink);background:var(--paper);
+  border:1px solid rgba(28,34,44,0.28);border-radius:4px;padding:0.85rem 0.95rem;}
+.oto-field input:focus{outline:none;border-color:var(--gold-deep);
+  box-shadow:0 0 0 3px rgba(201,169,106,0.22);}
+.err{font-family:var(--sans);font-size:0.88rem;
+  color:#8E2F22;background:#FBEDEA;
+  border:1px solid rgba(142,47,34,0.25);border-radius:4px;
+  padding:0.6rem 0.75rem;margin:0 0 0.85rem;}
+.spinner{display:inline-block;width:0.95em;height:0.95em;
+  margin-right:0.45em;vertical-align:-0.1em;
+  border:2px solid rgba(11,20,34,0.28);border-top-color:var(--navy-0);
+  border-radius:50%;animation:spin 0.7s linear infinite;}
+
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes oto-glow{
+  from{box-shadow:0 0 0 rgba(216,53,42,0);}
+  to{box-shadow:0 0 22px rgba(216,53,42,0.45);}
+}
+@keyframes oto-blink{0%,60%{opacity:1;}61%,100%{opacity:0.45;}}
+@keyframes oto-pulse{
+  0%{box-shadow:0 0 0 0 rgba(201,169,106,0.7);}
+  70%{box-shadow:0 0 0 16px rgba(201,169,106,0);}
+  100%{box-shadow:0 0 0 0 rgba(201,169,106,0);}
+}
+@media (prefers-reduced-motion:reduce){
+  #offer:not([hidden]),.oto-flag,#accept{animation:none !important;}
+  #offer:not([hidden]){box-shadow:0 0 18px rgba(216,53,42,0.35);}
+  .spinner{animation-duration:2s;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark" href="/"><span class="knight">♞</span> <span>Castle Negotiations</span></a>
+</div>
+
+<div class="confirmed" id="confirmed">
+  <span class="tick">✓</span> <span id="confirmed-text">Your seat is confirmed.</span>
+</div>
+
+<main class="wrap">
+
+  <!-- Kept deliberately short. The seat is confirmed in one line so the offer
+       below gets the page, and the joining detail sits under it. -->
+  <h1 id="headline">You're in. One more thing...</h1>
+  <p class="dek" id="dek">Your joining link is on its way to your inbox.</p>
+
+  <!-- ============ THE ONE-TIME OFFER ============ -->
+  <div id="offer" hidden>
+    <p class="oto-flag" id="oto-flag">One time offer · this page does not come back</p>
+
+    <img class="oto-shot" id="oto-shot"
+         src="../assets/masterclass/yes-if-library.webp"
+         alt="Inside the Yes, If library — the 18-lesson curriculum and video list"
+         width="2910" height="1766" loading="lazy" decoding="async">
+
+    <h2 id="offer-headline">The complete library for every “can you move on that?”</h2>
+
+    <p class="ruth-line"><strong>Ruth Shlossman</strong> built the method your
+       masterclass runs on. She recorded this library herself.</p>
+
+    <div id="offer-pitch">
+      <p class="dek">On Thursday we build your opening price and work the deal you
+         bring. That fixes one negotiation. “Yes, If” is the library Ruth recorded
+         for all the ones after it. The words, the questions, the worksheets for
+         when a buyer pushes on price, asks for more, or tries to set the terms.</p>
+
+      <p class="dek">18 short lessons on holding your price without wrecking the
+         relationship. 90 minutes in total. It's the closest thing there is to
+         having a process, which 80% of businesses don't have, and the buyer
+         opposite you does.</p>
+
+      <p class="sub"><strong>What you'll pick up</strong></p>
+      <ul>
+        <li>What to say when a buyer asks for a discount, better terms, or more scope at the same price</li>
+        <li>The questions that show you what a buyer actually wants, before you give anything away</li>
+        <li>How to walk in with leverage you built the day before</li>
+        <li>How to hold price, margin and scope and still have them want to work with you</li>
+      </ul>
+
+      <p class="sub"><strong>What's inside</strong></p>
+      <ul>
+        <li>18 video lessons Ruth recorded, about 90 minutes in total</li>
+        <li>Worksheets to prepare, trade, and respond when a buyer pushes back</li>
+        <li>Access opens now. Watch it when you need it, keep it for good</li>
+      </ul>
+
+      <p class="price-line" id="offer-price">One time <s>$279</s> <strong>$149</strong>.</p>
+
+      <p class="scarcity">
+        <b>Read this before you click away</b>
+        Ruth only offers “Yes, If” at this price on this one page, right after you
+        book the masterclass. Close the tab and you pay full price for it later.
+      </p>
+    </div>
+
+    <div id="offer-delivered" hidden></div>
+
+    <p class="err" id="offer-error" role="alert" hidden></p>
+
+    <!-- Card entry. Only built for someone with no card on file. -->
+    <form id="oto-form" hidden>
+      <div class="oto-field" id="oto-email-field" hidden>
+        <label for="oto-email">Email for your receipt and access</label>
+        <input type="email" id="oto-email" autocomplete="email" inputmode="email"
+               placeholder="you@company.com">
+      </div>
+      <p class="pay-label">Payment details</p>
+      <div id="oto-payment-element"></div>
+    </form>
+
+    <button class="btn" id="accept" type="button">Yes. Add Yes, If for $149</button>
+    <p class="note" id="offer-note">One click, on the card you just used. Nothing to re-enter.</p>
+    <p class="guarantee" id="offer-guarantee">
+      Watch the first lessons. If you are not better prepared for your next
+      negotiation, email Ruth within 30 days and she returns the $149. Your
+      masterclass seat stays yours.
+    </p>
+    <button class="decline" id="decline" type="button">No thanks, I'm set for the masterclass</button>
+  </div>
+
+  <!-- Everything below the offer. Still on the page, just not competing with
+       it: the seat is already confirmed above, and the joining link is in
+       their inbox either way. -->
+  <p class="divider">Your masterclass</p>
+
+  <div class="card card--main">
+    <h2>The $250K → $750K Negotiation Formula</h2>
+    <p class="when" id="when"></p>
+    <p>Your joining link and calendar invite are in your confirmation email.
+       Put it in the diary now, because the replay goes to attendees only.</p>
+
+    <div class="cal">
+      <a class="cal-btn" id="cal-google" href="#" target="_blank" rel="noopener">
+        <span aria-hidden="true">📅</span> Add to Google Calendar</a>
+      <a class="cal-btn" id="cal-ics" href="#" download="castle-masterclass.ics">
+        <span aria-hidden="true">🗓️</span> Apple / Outlook (.ics)</a>
+    </div>
+
+    <ol class="steps">
+      <li><b>Check your inbox</b> for the email from Ruth with your link.
+          If it isn't there in a few minutes, look in spam and promotions.</li>
+      <li><b>Bring one live deal.</b> Not a hypothetical. A real quote or
+          contract you're negotiating now, or about to. We'll build your
+          opening price on it with the BAM Calculator.</li>
+    </ol>
+  </div>
+
+  <!-- Add-ons, injected only when this person actually paid for them. -->
+  <div id="extras" hidden>
+    <p class="divider">Your add-ons</p>
+    <div id="items"></div>
+    <p class="state" id="receipt"></p>
+  </div>
+
+  <!-- Shown if an add-on was bought but we can't read the order back. -->
+  <p class="state" id="fallback" hidden>
+    You added something to your order — the access details are in a separate
+    email on their way to you now. If it doesn't arrive, just reply to Ruth's
+    confirmation email and we'll sort it out.
+  </p>
+
+</main>
+
+<footer class="foot">
+  <p>© 2026 Castle Negotiations Consulting Group. All rights reserved.</p>
+</footer>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+/* ============================================================
+   Masterclass thank-you page — and the one-time offer.
+
+   This page is BOTH. Everyone who lands here has a seat, so the
+   thank-you is the default state and is never replaced. The
+   'Yes, If' offer sits underneath it for everyone.
+
+   The only thing that differs is how the offer gets paid for:
+
+     bought an order bump  -> their card is saved from checkout,
+                              so it really is one click
+                              (POST /api/upsell)
+     registered for free   -> no card exists to charge, so they
+                              get the same offer at the same
+                              price through a card field
+                              (POST /api/checkout with an offer)
+
+   Both routes end at the same Kit tag and delivery sequence.
+
+   There is deliberately no "we couldn't find your order" screen:
+   reaching this page at all means the signup went through, so a
+   failed lookup only downgrades the add-on block to "it's in
+   your email".
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* The one place the masterclass date lives on this page. Keep it in step
+     with the landing page hero and the Kit access email (sequence 2883347).
+
+     UTC drives the calendar file: 11:00 EDT is 15:00 UTC. If the date moves,
+     change all four of these together. */
+  var WHEN       = 'Thursday, October 1 · 11:00 AM EDT';
+  var WHEN_PROSE = 'Thursday, October 1 at 11:00 AM EDT';
+  var CAL = {
+    title: 'The $250K → $750K Negotiation Formula — Castle Negotiations',
+    startUTC: '20261001T150000Z',       // 11:00 AM EDT
+    endUTC:   '20261001T163000Z',       // 90 minutes
+    /* Real newlines. The .ics writer converts them to the escaped form the
+       spec wants; Google takes them as-is. */
+    details: 'Your live masterclass with Ruth Shlossman.\n\n' +
+             'Bring one live deal — a real quote or contract you are ' +
+             'negotiating now, or about to. We build your opening price on ' +
+             'it with the BAM Calculator.\n\n' +
+             'Your joining link is in your confirmation email from Ruth.',
+    location: 'Online'
+  };
+
+  var OFFER = {
+    live: true,
+    key: 'yes_if',            // must match OTO_CATALOGUE in api/_lib.js
+    amount: 14900,            // display + Element sizing only; server re-prices
+    funnel: 'castle-masterclass',
+    label: 'Yes. Add Yes, If for $149'
+  };
+
+  document.getElementById('when').textContent = WHEN;
+
+  /* ---------- add to calendar ----------------------------------------------
+     Google takes a URL. Apple and Outlook want a real .ics file, built here as
+     a blob so there is nothing to host and nothing to keep in sync. */
+  (function calendarLinks() {
+    var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+            '&text='     + encodeURIComponent(CAL.title) +
+            '&dates='    + CAL.startUTC + '/' + CAL.endUTC +
+            '&details='  + encodeURIComponent(CAL.details) +
+            '&location=' + encodeURIComponent(CAL.location);
+    document.getElementById('cal-google').href = g;
+
+    /* CRLF line endings and escaped commas are required by the iCalendar
+       spec — Outlook in particular rejects the file without them. */
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Castle Negotiations//Masterclass//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:castle-masterclass-' + CAL.startUTC + '@castlenegotiations.com',
+      'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''),
+      'DTSTART:' + CAL.startUTC,
+      'DTEND:' + CAL.endUTC,
+      'SUMMARY:' + esc(CAL.title),
+      'DESCRIPTION:' + esc(CAL.details),
+      'LOCATION:' + esc(CAL.location),
+      'BEGIN:VALARM',
+      'TRIGGER:-PT30M',
+      'ACTION:DISPLAY',
+      'DESCRIPTION:Castle masterclass starts in 30 minutes',
+      'END:VALARM',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    /* Order matters: backslashes first, or the escape characters added below
+       get escaped in turn and the reader shows a literal "\n". */
+    function esc(v) {
+      return String(v)
+        .replace(/\\/g, '\\\\')
+        .replace(/[;,]/g, function (c) { return '\\' + c; })
+        .replace(/\r?\n/g, '\\n');
+    }
+
+    try {
+      document.getElementById('cal-ics').href = URL.createObjectURL(
+        new Blob([ics], { type: 'text/calendar;charset=utf-8' })
+      );
+    } catch (err) {
+      // No blob support — fall back to a data URI rather than a dead link.
+      document.getElementById('cal-ics').href =
+        'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    }
+  })();
+
+  var params = new URLSearchParams(window.location.search);
+  var justPaidOffer = params.get('oto') === 'done';
+
+  /* Stripe appends its own param names when a card bounces through a bank
+     page. After an OFFER redirect those describe the offer payment, not the
+     signup order — so the signup order is read from storage instead. */
+  var pi = params.get('pi');
+  var cs = params.get('cs');
+  if (!justPaidOffer) {
+    pi = pi || params.get('payment_intent');
+    cs = cs || params.get('payment_intent_client_secret');
+  }
+
+  var signup = {};
+  try { signup = JSON.parse(sessionStorage.getItem('castle_signup') || '{}') || {}; }
+  catch (err) { signup = {}; }
+
+  var stored = {};
+  try { stored = JSON.parse(sessionStorage.getItem('castle_order') || '{}') || {}; }
+  catch (err) { stored = {}; }
+
+  if (pi && cs) {
+    try { sessionStorage.setItem('castle_order', JSON.stringify({ pi: pi, cs: cs })); }
+    catch (err) { /* private browsing */ }
+  } else if (stored.pi && stored.cs) {
+    pi = stored.pi; cs = stored.cs;      // survived an offer redirect
+  }
+
+  var offerEl   = document.getElementById('offer');
+  var acceptBtn = document.getElementById('accept');
+  var errorBox  = document.getElementById('offer-error');
+  var otoForm   = document.getElementById('oto-form');
+  var noteEl    = document.getElementById('offer-note');
+
+  var stripe, elements, mounted = false;
+  var buyer = { name: signup.name || '', email: signup.email || '' };
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function showError(message) {
+    errorBox.textContent = message || '';
+    errorBox.hidden = !message;
+  }
+
+  function busy(isBusy, label) {
+    acceptBtn.disabled = isBusy;
+    if (isBusy) acceptBtn.innerHTML = '<span class="spinner"></span>' + label;
+    else acceptBtn.textContent = OFFER.label;
+  }
+
+  function greet(name, email) {
+    var first = String(name || '').trim().split(/\s+/)[0];
+    document.getElementById('headline').textContent =
+      first ? "You're in, " + first + '. One more thing...' : "You're in. One more thing...";
+    /* The date reads as prose here, but as a stamp in the block further down. */
+    document.getElementById('dek').textContent =
+      WHEN_PROSE + '. Your joining link is on its way to ' +
+      (email || 'your inbox') +
+      '. But there’s also one page Ruth only shows people at this exact moment...';
+  }
+
+  greet(buyer.name, buyer.email);
+
+  /* ---------- the conversion Meta optimises against ----------------------
+     Reaching this page means a seat is booked, so this is the success event
+     for the ad campaigns. It fires on every arrival — free signup or add-on
+     buyer alike — and carries an event ID so a refresh, a back-button, or a
+     card bouncing through a bank page can't count the same person twice.
+
+     Set the ad set's conversion event to CompleteRegistration to match. */
+  (function fireConversion() {
+    var id = signup.eventId;
+    if (!id) {
+      // Direct hit or a new tab: mint one and keep it for this tab's reloads.
+      try { id = sessionStorage.getItem('castle_reg_event'); } catch (err) { id = null; }
+      if (!id) {
+        id = 'mcreg_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+        try { sessionStorage.setItem('castle_reg_event', id); } catch (err) { /* ignore */ }
+      }
+    }
+    if (window.fbq) {
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'Castle Masterclass — 24 Sep',
+        status: 'registered'
+      }, { eventID: id });
+    }
+  })();
+
+  /* ---------- add-on delivery (only for people who bought one) ---------- */
+  function renderExtras(order) {
+    var items = document.getElementById('items');
+    var rendered = 0;
+
+    order.items.forEach(function (item) {
+      var card = el('div', 'card');
+
+      if (item.key === 'video_library' && item.delivery) {
+        card.appendChild(el('h2', null, 'Recognising & Neutralizing Aggressive Negotiators'));
+        card.appendChild(el('p', null,
+          'Your video library. The page asks for a password — it is below.'));
+
+        var pass = el('div', 'passbox');
+        pass.appendChild(el('span', 'lbl', 'Password'));
+        pass.appendChild(el('b', null, item.delivery.password));
+        var copy = el('button', 'copy', 'Copy');
+        copy.type = 'button';
+        copy.addEventListener('click', function () {
+          navigator.clipboard.writeText(item.delivery.password).then(function () {
+            copy.textContent = 'Copied';
+            setTimeout(function () { copy.textContent = 'Copy'; }, 1600);
+          });
+        });
+        pass.appendChild(copy);
+        card.appendChild(pass);
+
+        var watch = el('a', 'btn btn--inline', 'Watch the library →');
+        watch.href = item.delivery.url;
+        watch.target = '_blank'; watch.rel = 'noopener';
+        card.appendChild(watch);
+
+      } else if (item.key === 'bully_guide' && item.delivery) {
+        card.appendChild(el('h2', null, 'How Do I Neutralize a Negotiation Bully?'));
+        card.appendChild(el('p', null,
+          'Your field guide. Save it somewhere you can find it before your ' +
+          'next hard conversation.'));
+        var dl = el('a', 'btn btn--inline', 'Download the guide →');
+        dl.href = item.delivery.url;
+        card.appendChild(dl);
+
+      } else { return; }
+
+      items.appendChild(card);
+      rendered++;
+    });
+
+    if (!rendered) return false;
+
+    document.getElementById('receipt').textContent =
+      'Paid: $' + (order.total / 100).toFixed(2) + ' · Receipt sent by Stripe.';
+    document.getElementById('extras').hidden = false;
+    document.getElementById('confirmed-text').textContent =
+      'Your seat is confirmed, and your add-ons are ready below.';
+    return true;
+  }
+
+  /* ---------- the offer, once it has been bought ---------- */
+  function showDelivered(delivery) {
+    offerEl.classList.add('is-delivered');
+
+    var flag = document.getElementById('oto-flag');
+    flag.textContent = 'Added — you have Yes, If';
+    flag.classList.remove('oto-flag');
+    flag.style.cssText = 'display:block;text-align:center;background:var(--gold-deep);' +
+      'color:#fff;font-weight:800;font-size:0.78rem;letter-spacing:0.12em;' +
+      'text-transform:uppercase;padding:0.55rem 0.8rem;border-radius:3px;margin:0 0 1rem;';
+
+    document.getElementById('offer-headline').textContent = "You've got Yes, If.";
+    document.querySelector('#offer .ruth-line').hidden = true;
+    document.getElementById('offer-pitch').hidden = true;
+    document.getElementById('oto-shot').hidden = true;   // sales shot, not needed once bought
+    document.getElementById('offer-guarantee').hidden = true;
+    otoForm.hidden = true;
+    acceptBtn.hidden = true;
+    noteEl.hidden = true;
+    showError('');
+
+    var box = document.getElementById('offer-delivered');
+    var live = delivery && delivery.url && delivery.url.indexOf('REPLACE_WITH') !== 0;
+
+    if (live) {
+      box.appendChild(el('p', 'dek', 'Open it below — this page won’t come back.'));
+      if (delivery.password) {
+        var pass = el('div', 'passbox');
+        pass.appendChild(el('span', 'lbl', 'Password'));
+        pass.appendChild(el('b', null, delivery.password));
+        box.appendChild(pass);
+      }
+      var open = el('a', 'btn', 'Open the Yes, If library →');
+      open.href = delivery.url; open.target = '_blank'; open.rel = 'noopener';
+      box.appendChild(open);
+    } else {
+      box.appendChild(el('p', 'dek',
+        'Watch your inbox for an email from Ruth with your 18 lessons and ' +
+        'worksheets. It’s on its way now.'));
+    }
+    box.hidden = false;
+
+    document.getElementById('decline').textContent = 'Done';
+  }
+
+  /* ---------- card entry, for anyone with no card on file ---------- */
+  function mountCardField() {
+    if (mounted || !window.Stripe) return;
+
+    fetch('/api/config')
+      .then(function (r) { return r.json(); })
+      .then(function (cfg) {
+        if (!cfg.publishableKey) throw new Error('not configured');
+        stripe = Stripe(cfg.publishableKey);
+        elements = stripe.elements({
+          mode: 'payment',
+          amount: OFFER.amount,
+          currency: 'usd',
+          paymentMethodCreation: 'manual',
+          appearance: {
+            theme: 'stripe',
+            variables: {
+              colorPrimary: '#A8874B', colorText: '#1C222C', colorDanger: '#8E2F22',
+              fontFamily: 'Archivo, "Helvetica Neue", Arial, sans-serif',
+              borderRadius: '4px'
+            }
+          }
+        });
+        elements.create('payment', {
+          defaultValues: { billingDetails: { name: buyer.name, email: buyer.email } }
+        }).mount('#oto-payment-element');
+        mounted = true;
+      })
+      .catch(function () {
+        // No key, no card field — never leave a dead button on the page.
+        offerEl.hidden = true;
+      });
+  }
+
+  /* Switch the offer into card-entry mode. */
+  function useCardEntry() {
+    otoForm.hidden = false;
+    noteEl.textContent = 'Secure payment by Stripe. Castle never sees your card number.';
+    document.getElementById('oto-email-field').hidden = !!buyer.email;
+    if (!buyer.email) document.getElementById('oto-email').value = '';
+    mountCardField();
+
+    acceptBtn.onclick = function () {
+      showError('');
+
+      if (!buyer.email) {
+        var typed = document.getElementById('oto-email').value.trim().toLowerCase();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(typed)) {
+          showError('Please enter a valid email address so we can send your access.');
+          return;
+        }
+        buyer.email = typed;
+      }
+      if (!mounted || !elements) {
+        showError('The payment form is still loading. Give it a second and try again.');
+        return;
+      }
+
+      busy(true, 'Processing…');
+
+      elements.submit()
+        .then(function (result) {
+          if (result.error) throw new Error(result.error.message);
+          return fetch('/api/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: buyer.name,
+              email: buyer.email,
+              funnel: OFFER.funnel,
+              offer: OFFER.key
+            })
+          });
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.error) throw new Error(data.error);
+
+          var back = window.location.origin + window.location.pathname + '?oto=done';
+
+          return stripe.confirmPayment({
+            elements: elements,
+            clientSecret: data.clientSecret,
+            confirmParams: { return_url: back },
+            redirect: 'if_required'
+          }).then(function (result) {
+            if (result.error) throw new Error(result.error.message);
+            track(data.amount || OFFER.amount, data.paymentIntentId);
+            showDelivered(null);   // delivery arrives by email
+          });
+        })
+        .catch(function (err) {
+          showError(err.message || 'That charge did not go through.');
+          busy(false);
+        });
+    };
+  }
+
+  /* Switch the offer into one-click mode. */
+  function useOneClick() {
+    noteEl.textContent = 'One click, on the card you just used. Nothing to re-enter.';
+
+    acceptBtn.onclick = function () {
+      showError('');
+      busy(true, 'Processing…');
+
+      fetch('/api/upsell', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pi: pi, cs: cs, offer: OFFER.key })
+      })
+        .then(function (r) {
+          return r.json().then(function (d) { return { status: r.status, data: d }; });
+        })
+        .then(function (res) {
+          /* No saved card after all — fall back to typing one in rather than
+             dead-ending someone who wants to buy. */
+          if (res.status === 409) {
+            busy(false);
+            useCardEntry();
+            showError('We could not use your saved card. Please enter one below.');
+            return;
+          }
+          if (res.data.error) throw new Error(res.data.error);
+          track(res.data.amount || OFFER.amount, res.data.paymentIntentId);
+          showDelivered(res.data.delivery);
+        })
+        .catch(function (err) {
+          showError(err.message || 'That charge did not go through. Your seat is safe.');
+          busy(false);
+        });
+    };
+  }
+
+  function track(amount, id) {
+    if (window.fbq) {
+      fbq('track', 'Purchase',
+        { value: amount / 100, currency: 'USD' },
+        { eventID: 'mcoto_' + (id || Date.now()) });
+    }
+  }
+
+  document.getElementById('decline').addEventListener('click', function () {
+    offerEl.classList.add('is-declined');
+    offerEl.hidden = true;
+  });
+
+  /* ---------- boot ---------- */
+  acceptBtn.textContent = OFFER.label;
+
+  if (justPaidOffer) {
+    // Came back through a bank page after buying the offer.
+    showDelivered(null);
+    offerEl.hidden = false;
+  }
+
+  if (pi && cs) {
+    fetch('/api/order?pi=' + encodeURIComponent(pi) + '&cs=' + encodeURIComponent(cs))
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('lookup')); })
+      .then(function (order) {
+        buyer.name = order.name || buyer.name;
+        buyer.email = order.email || buyer.email;
+        greet(buyer.name, buyer.email);
+        if (!renderExtras(order)) document.getElementById('fallback').hidden = false;
+      })
+      .catch(function () {
+        document.getElementById('fallback').hidden = false;
+      })
+      .then(function () {
+        if (!OFFER.live || justPaidOffer) return;
+        useOneClick();           // they paid once, so a card is on file
+        offerEl.hidden = false;
+      });
+  } else if (OFFER.live && !justPaidOffer) {
+    useCardEntry();              // free registrant — no card to charge
+    offerEl.hidden = false;
+  }
+})();
+</script>
+
+</body></html>
