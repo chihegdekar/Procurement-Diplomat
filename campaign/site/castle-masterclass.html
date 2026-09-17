@@ -389,30 +389,11 @@ a{color:inherit;}
   white-space:nowrap;
 }
 
-/* the price, stated once above the fold so the $27 isn't only on a button */
-.price-line{
-  margin:clamp(0.6rem,1.6vw,1rem) 0 0;
-  font-family:var(--sans);
-  font-size:clamp(0.9rem,2.1vw,1.4rem);
-  line-height:1.3;
-  color:rgba(242,235,220,0.85);
-}
-.price-line s{color:rgba(242,235,220,0.5);font-weight:500;}
-.price-line b{
-  color:var(--gold);
-  font-weight:900;
-  font-size:1.35em;
-  letter-spacing:-0.01em;
-  margin-inline:0.12em;
-}
-.price-line span{
-  display:block;
-  margin-top:0.15rem;
-  font-family:var(--mono);
-  font-size:clamp(0.58rem,1.25vw,0.76rem);
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:rgba(242,235,220,0.6);
+/* the price it goes back up to, struck through in every CTA's sub-line */
+.cta .sub s{
+  color:rgba(255,255,255,0.7);
+  text-decoration-thickness:0.08em;
+  text-underline-offset:0;
 }
 
 /* ============================================================
@@ -1202,12 +1183,10 @@ body.co-locked{overflow:hidden;}
 
         <p class="when">The Next <b>Live Masterclass</b><br>Starts Thursday, 1st October, 11am…</p>
 
-        <p class="price-line"><s>$47</s> <b>$27</b> <span>while the clock is running</span></p>
-
         <!-- BEAT 4 — CTA 1 -->
         <a class="cta cta-hero" href="#claim">
           <span class="lead">Claim Your $27 Spot Now!</span>
-          <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
+          <span class="sub">Hurry — sale price goes back up to <s>$47</s> in <b class="cd">60:00</b></span>
         </a>
       </div>
 
@@ -1275,7 +1254,7 @@ body.co-locked{overflow:hidden;}
 
     <a class="cta cta-after-card" href="#claim">
       <span class="lead">Claim Your $27 Spot Now!</span>
-      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
+      <span class="sub">Hurry — sale price goes back up to <s>$47</s> in <b class="cd">60:00</b></span>
     </a>
   </div>
 </section>
@@ -1323,7 +1302,7 @@ body.co-locked{overflow:hidden;}
     <!-- BEAT 12 — sits on the seam below -->
     <a class="cta cta-straddle" href="#claim">
       <span class="lead">Claim Your $27 Spot Now!</span>
-      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
+      <span class="sub">Hurry — sale price goes back up to <s>$47</s> in <b class="cd">60:00</b></span>
     </a>
 
   </div>
@@ -1413,7 +1392,7 @@ body.co-locked{overflow:hidden;}
     <!-- BEAT 16 — CTA 4 -->
     <a class="cta cta-final" id="claim" href="#claim">
       <span class="lead">Claim Your $27 Spot Now!</span>
-      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
+      <span class="sub">Hurry — sale price goes back up to <s>$47</s> in <b class="cd">60:00</b></span>
     </a>
 
   </div>
