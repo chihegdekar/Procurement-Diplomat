@@ -370,13 +370,18 @@ h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
 
    The only thing that differs is how the offer gets paid for:
 
-     bought an order bump  -> their card is saved from checkout,
+     paid at signup        -> their card is saved from checkout,
                               so it really is one click
                               (POST /api/upsell)
-     registered for free   -> no card exists to charge, so they
-                              get the same offer at the same
-                              price through a card field
+                              Since the seat went to $27 on
+                              17 Sep 2026 this is everyone.
+     no card on file       -> the same offer at the same price
+                              through a card field
                               (POST /api/checkout with an offer)
+                              Kept for anyone arriving without a
+                              usable order — an older free
+                              registrant, or a saved card Stripe
+                              refuses (409).
 
    Both routes end at the same Kit tag and delivery sequence.
 
@@ -562,7 +567,7 @@ h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,5.4vw,3rem);
     }
     if (window.fbq) {
       fbq('track', 'CompleteRegistration', {
-        content_name: 'Castle Masterclass — 24 Sep',
+        content_name: 'Castle Masterclass — 1 Oct',
         status: 'registered'
       }, { eventID: id });
     }

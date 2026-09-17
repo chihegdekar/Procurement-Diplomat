@@ -15,9 +15,7 @@ import {
   stripeRequest,
   OTO_CATALOGUE,
   DELIVERY,
-  KIT,
-  tagSubscriber,
-  addToSequence,
+  fulfilOffer,
 } from './_lib.js';
 
 export default async function handler(req, res) {
@@ -64,7 +62,8 @@ export default async function handler(req, res) {
       receipt_email: email || undefined,
       description: product.label,
       metadata: {
-        funnel: 'contractor-workshop',
+        // Inherited so an upsell is always attributed to the page it came from.
+        funnel: original.metadata?.funnel || 'contractor-workshop',
         stage: 'oto',
         offer: product.key,
         email,
@@ -79,13 +78,11 @@ export default async function handler(req, res) {
       });
     }
 
-    // Best-effort: the charge is what matters, tagging can be repaired later.
+    /* Best-effort: the charge is what matters, and the webhook fulfils this
+       same offer independently, so a failure here self-heals. */
     if (email) {
       try {
-        if (product.tag && KIT.tags[product.key]) {
-          await tagSubscriber(KIT.tags[product.key], email);
-        }
-        if (product.sequence) await addToSequence(product.sequence, email);
+        await fulfilOffer({ offer: product, email, name: original.metadata?.name });
       } catch (err) {
         console.error('[upsell] Kit write failed:', err.message);
       }

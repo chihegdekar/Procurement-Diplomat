@@ -13,20 +13,56 @@ import {
   json,
   isEmail,
   buildOrder,
+  getFunnel,
   stripeRequest,
+  OTO_CATALOGUE,
 } from './_lib.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
 
-  const { email, name, bumps } = req.body || {};
+  const { email, name, business, title, bumps, funnel: funnelKey, offer: offerKey } = req.body || {};
   if (!isEmail(email)) return json(res, 400, { error: 'A valid email address is required.' });
 
   const cleanEmail = String(email).trim().toLowerCase();
   const cleanName = String(name || '').trim();
 
-  // Priced here, never from the browser.
-  const order = buildOrder(bumps);
+  /* ---- a one-time offer bought with a fresh card ----------------------------
+     Someone who registered free has no saved card, so they cannot be charged
+     in one click. They get the same offer at the same price through the normal
+     Payment Element instead. Priced from OTO_CATALOGUE, never from the
+     browser, and refused outright if the offer is not defined. */
+  let order;
+  if (offerKey) {
+    const funnel = getFunnel(funnelKey);
+    if (!funnel) return json(res, 400, { error: 'Unknown checkout form.' });
+
+    const product = OTO_CATALOGUE[offerKey];
+    if (!product || !product.amount) {
+      console.error('[checkout] unconfigured offer requested:', offerKey);
+      return json(res, 400, { error: 'This offer is not available.' });
+    }
+
+    order = {
+      funnel,
+      bumps: [],
+      items: [product],
+      amount: product.amount,
+      offer: product,
+    };
+  } else {
+    // Priced here, never from the browser.
+    order = buildOrder(funnelKey, bumps);
+    if (!order) return json(res, 400, { error: 'Unknown checkout form.' });
+  }
+
+  /* A free funnel with nothing added has nothing to charge. Stripe rejects a
+     zero PaymentIntent anyway; failing here says why. */
+  if (order.amount <= 0) {
+    return json(res, 400, {
+      error: 'There is nothing to pay for. Please use the free signup instead.',
+    });
+  }
 
   try {
     /* One customer per email, reused on repeat purchases — this is what makes
@@ -50,12 +86,18 @@ export default async function handler(req, res) {
       setup_future_usage: 'off_session',
       automatic_payment_methods: { enabled: true },
       metadata: {
-        funnel: 'contractor-workshop',
+        funnel: order.funnel.key,
         email: cleanEmail,
         name: cleanName,
         bumps: order.bumps.join(','),
         items: order.items.map((i) => i.key).join(','),
         order_total: String(order.amount),
+        // Carried so the webhook can write them to Kit after payment clears.
+        business: String(business || '').trim().slice(0, 200),
+        title: String(title || '').trim().slice(0, 200),
+        /* Stamped so the webhook fulfils this as an offer rather than as a
+           signup — it must not re-run the workshop welcome. */
+        ...(order.offer ? { stage: 'oto', offer: order.offer.key } : {}),
       },
     });
 

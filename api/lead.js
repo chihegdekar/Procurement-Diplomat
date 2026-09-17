@@ -10,12 +10,15 @@
    is recoverable; losing a sale is not.
    ============================================================ */
 
-import { json, isEmail, upsertSubscriber, tagSubscriber, KIT } from './_lib.js';
+import { json, isEmail, upsertSubscriber, tagSubscriber, KIT, getFunnel, profileFields } from './_lib.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
 
-  const { email, name } = req.body || {};
+  const { email, name, business, title, funnel: funnelKey } = req.body || {};
+
+  const funnel = getFunnel(funnelKey);
+  if (!funnel) return json(res, 400, { error: 'Unknown signup form.' });
 
   if (!isEmail(email)) return json(res, 400, { error: 'A valid email address is required.' });
   if (!name || !String(name).trim()) return json(res, 400, { error: 'Your name is required.' });
@@ -29,9 +32,14 @@ export default async function handler(req, res) {
 
   let captured = false;
   try {
-    await upsertSubscriber({ email: cleanEmail, firstName });
-    await tagSubscriber(KIT.tags.lead, cleanEmail);
-    await tagSubscriber(KIT.tags.abandoned, cleanEmail); // cleared on payment
+    await upsertSubscriber({
+      email: cleanEmail,
+      firstName,
+      fields: profileFields({ business, title }),
+    });
+    await tagSubscriber(KIT.tags[funnel.leadTag], cleanEmail);
+    // Cleared by fulfilSignup once they actually finish.
+    await tagSubscriber(KIT.tags[funnel.abandonedTag], cleanEmail);
     captured = true;
   } catch (err) {
     console.error('[lead] Kit capture failed:', err.message);

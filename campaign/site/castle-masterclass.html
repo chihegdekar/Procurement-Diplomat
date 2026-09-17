@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The $250K → $750K Profit-Maximizer Formula | Castle Negotiations</title>
-<meta name="description" content="A free live masterclass with Ruth Shlossman: turn your first (or next) $250K quote into $750K. The 4 steps behind more than $1 billion in negotiated deals.">
-<meta property="og:title" content="The $250K → $750K Profit-Maximizer Formula — Free Live Masterclass">
-<meta property="og:description" content="Turn your first (or next) $250K quote into $750K. Free live masterclass with Ruth Shlossman, Castle Negotiations.">
+<meta name="description" content="A $27 live masterclass with Ruth Shlossman: turn your first (or next) $250K quote into $750K. The 4 steps behind more than $1 billion in negotiated deals.">
+<meta property="og:title" content="The $250K → $750K Profit-Maximizer Formula — $27 Live Masterclass">
+<meta property="og:description" content="Turn your first (or next) $250K quote into $750K. A $27 live masterclass with Ruth Shlossman, Castle Negotiations.">
 <meta property="og:image" content="../assets/masterclass/promo-tile.webp">
 <meta property="og:type" content="website">
 
@@ -15,6 +15,26 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" href="../assets/masterclass/ruth-hero.webp" fetchpriority="high">
+
+<!-- Meta Pixel Code — Castle Negotiations Pixel.
+     The order form fires Lead (step 1) and InitiateCheckout (step 2) off this;
+     the Purchase and CompleteRegistration events live on the thanks page. -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1560415991582955');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1560415991582955&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 <style>
 /* ============================================================
@@ -357,6 +377,43 @@ a{color:inherit;}
   line-height:1.3;
 }
 .cta-hero{margin-top:clamp(0.9rem,2.2vw,1.5rem);}
+
+/* the running clock inside every CTA's sub-line */
+.cta .sub .cd{
+  font-family:var(--mono);
+  font-weight:600;
+  font-style:normal;
+  color:#fff;
+  letter-spacing:0.02em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+
+/* the price, stated once above the fold so the $27 isn't only on a button */
+.price-line{
+  margin:clamp(0.6rem,1.6vw,1rem) 0 0;
+  font-family:var(--sans);
+  font-size:clamp(0.9rem,2.1vw,1.4rem);
+  line-height:1.3;
+  color:rgba(242,235,220,0.85);
+}
+.price-line s{color:rgba(242,235,220,0.5);font-weight:500;}
+.price-line b{
+  color:var(--gold);
+  font-weight:900;
+  font-size:1.35em;
+  letter-spacing:-0.01em;
+  margin-inline:0.12em;
+}
+.price-line span{
+  display:block;
+  margin-top:0.15rem;
+  font-family:var(--mono);
+  font-size:clamp(0.58rem,1.25vw,0.76rem);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(242,235,220,0.6);
+}
 
 /* ============================================================
    BEAT 5 — TESTIMONIALS BAR  (lifted from contractor-workshop)
@@ -874,6 +931,227 @@ a{color:inherit;}
   .figbox .big{font-size:8.9vw;}
   .figwrap .dollar{font-size:10.1vw;}
 }
+
+/* ============================================================
+   TWO-STEP ORDER FORM (modal)
+   Lifted from contractor-workshop.html so the two funnels look
+   and behave identically. Step 1 captures the lead into Kit;
+   step 2 takes the card in-page via Stripe's Payment Element,
+   with the order bumps sitting directly above the pay button.
+   ============================================================ */
+.co-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(11,20,34,0.72);
+  backdrop-filter:blur(3px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(0.75rem,4vw,2.5rem) var(--pad);
+  overflow-y:auto;
+  opacity:0;transition:opacity 0.18s ease;
+}
+.co-overlay.is-open{opacity:1;}
+.co-overlay[hidden]{display:none;}
+body.co-locked{overflow:hidden;}
+
+.co-modal{
+  position:relative;
+  width:100%;max-width:34rem;
+  margin:auto;
+  background:var(--paper);
+  border:1px solid rgba(201,169,106,0.4);
+  border-radius:6px;
+  box-shadow:0 30px 70px -30px rgba(11,20,34,0.8);
+  transform:translateY(8px);
+  transition:transform 0.18s ease;
+}
+.co-overlay.is-open .co-modal{transform:none;}
+
+.co-close{
+  position:absolute;top:-0.7rem;right:-0.7rem;z-index:2;
+  width:2.1rem;height:2.1rem;border-radius:50%;
+  background:var(--navy-0);color:var(--ivory);
+  border:1px solid rgba(201,169,106,0.5);
+  font-size:1.1rem;line-height:1;cursor:pointer;
+  display:grid;place-items:center;padding:0;
+}
+.co-close:hover{background:var(--navy-2);color:var(--gold);}
+
+/* ---- step tabs ---- */
+.co-tabs{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:3px solid var(--ivory-2);
+}
+.co-tab{
+  text-align:center;padding:1rem 0.6rem 0.85rem;
+  position:relative;
+  border-bottom:3px solid transparent;margin-bottom:-3px;
+  color:var(--ink-soft);
+}
+.co-tab b{
+  display:block;font-family:var(--sans);font-weight:800;
+  font-size:clamp(0.95rem,2.6vw,1.12rem);
+  letter-spacing:0.01em;color:inherit;
+}
+.co-tab span{
+  display:block;font-size:0.8rem;margin-top:0.1rem;
+  color:inherit;opacity:0.8;
+}
+.co-tab.is-active{color:var(--navy-0);border-bottom-color:var(--gold-deep);}
+.co-tab.is-active::after{
+  content:"";position:absolute;left:50%;bottom:-3px;
+  transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:var(--gold-deep);
+}
+.co-tab.is-done{color:var(--gold-deep);}
+
+.co-body{padding:clamp(1.1rem,4vw,1.6rem);}
+.co-step[hidden]{display:none;}
+
+/* ---- fields ---- */
+.co-field{margin:0 0 0.75rem;}
+.co-field input{
+  width:100%;
+  font-family:var(--sans);font-size:1rem;
+  color:var(--ink);background:var(--paper);
+  border:1px solid rgba(28,34,44,0.28);
+  border-radius:4px;
+  padding:0.85rem 0.95rem;
+}
+.co-field input::placeholder{color:rgba(74,82,98,0.6);}
+.co-field input:focus{outline:none;border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(201,169,106,0.22);}
+.co-field input[aria-invalid="true"]{border-color:#B3402F;}
+/* the optional field says so, rather than leaving people guessing */
+.co-optional{
+  display:block;margin:-0.45rem 0 0.75rem 0.1rem;
+  font-family:var(--sans);font-size:0.74rem;
+  color:var(--ink-soft);
+}
+
+.co-submit{
+  display:block;width:100%;cursor:pointer;
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1rem,2.7vw,1.2rem);
+  color:var(--navy-0);background:var(--gold);
+  border:2px solid var(--gold-deep);border-radius:4px;
+  padding:1rem 1.2rem;margin-top:0.35rem;
+  transition:background 0.2s ease,transform 0.2s ease;
+}
+.co-submit:hover:not(:disabled){background:#D8BC80;transform:translateY(-1px);}
+.co-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.co-privacy{
+  font-family:var(--sans);font-size:0.8rem;text-align:center;
+  color:var(--ink-soft);margin:0.75rem 0 0;
+}
+.co-error{
+  font-family:var(--sans);font-size:0.88rem;
+  color:#8E2F22;background:#FBEDEA;
+  border:1px solid rgba(142,47,34,0.25);border-radius:4px;
+  padding:0.6rem 0.75rem;margin:0 0 0.85rem;
+}
+.co-error[hidden]{display:none;}
+
+/* ---- order summary + bumps ---- */
+.co-summary{
+  border:1px solid var(--rule);border-radius:4px;
+  background:var(--ivory-3);
+  padding:0.9rem 1rem;margin:0 0 1rem;
+}
+.co-line{
+  display:flex;justify-content:space-between;gap:1rem;
+  font-family:var(--sans);font-size:0.95rem;
+  padding:0.3rem 0;
+}
+.co-line .co-amt{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.co-line.co-total{
+  border-top:1px solid var(--rule);margin-top:0.45rem;padding-top:0.6rem;
+  font-weight:800;font-size:1.08rem;color:var(--navy-0);
+}
+.co-line[hidden]{display:none;}
+
+.co-bump{
+  position:relative;display:block;cursor:pointer;
+  border:2px dashed var(--gold-deep);border-radius:4px;
+  background:var(--ivory-3);
+  padding:0.9rem 1rem;margin:1.15rem 0 0.9rem;
+  transition:background 0.15s ease,border-color 0.15s ease;
+}
+.co-bump:not(.is-on){animation:bump-glow 1.5s ease-in-out infinite alternate;}
+.co-bump:hover{background:#F6EFDF;}
+.co-bump.is-on{background:#F3E8CE;border-style:solid;animation:none;}
+.co-bump-tag{
+  position:absolute;top:-0.7rem;right:0.8rem;
+  background:#D8352A;color:#fff;
+  font-family:var(--sans);font-weight:800;
+  font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.28rem 0.55rem;border-radius:999px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.18);
+}
+#co-bump-bully_guide .co-bump-tag{background:var(--gold-deep);}
+.co-bump-arrows{
+  flex:none;align-self:center;
+  color:#D8352A;font-weight:800;font-size:0.95rem;letter-spacing:-0.04em;
+  animation:bump-arrows 0.9s steps(1,end) infinite;
+}
+.co-bump.is-on .co-bump-arrows{animation:none;opacity:0.25;}
+.co-bump-head{
+  display:flex;align-items:flex-start;gap:0.6rem;
+  font-family:var(--sans);font-weight:800;
+  font-size:0.98rem;line-height:1.35;color:var(--navy-0);
+}
+.co-bump-head s{color:var(--ink-soft);font-weight:400;}
+@keyframes bump-glow{
+  from{border-color:var(--gold-deep);box-shadow:0 0 0 rgba(216,53,42,0);}
+  to{border-color:#D8352A;box-shadow:0 0 12px rgba(216,53,42,0.35);}
+}
+@keyframes bump-arrows{
+  0%,50%{opacity:1;transform:translateX(0);}
+  51%,100%{opacity:0.3;transform:translateX(-3px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .co-bump:not(.is-on),.co-bump-arrows{animation:none !important;}
+  .co-bump:not(.is-on){border-color:#D8352A;}
+}
+.co-bump-head input{
+  flex:none;width:1.15rem;height:1.15rem;margin:0.12rem 0 0;
+  accent-color:var(--gold-deep);cursor:pointer;
+}
+.co-bump p{
+  margin:0.45rem 0 0 1.75rem;
+  font-size:0.88rem;line-height:1.5;color:var(--ink-soft);
+}
+.co-bump .co-bump-price{color:var(--gold-deep);}
+.co-bump-img{
+  display:block;margin:0.7rem 0 0.15rem 1.75rem;
+  max-width:min(340px,100%);width:100%;height:auto;
+  border:1px solid var(--rule);border-radius:4px;
+}
+
+.co-pay-label{
+  font-family:var(--sans);font-size:0.72rem;font-weight:800;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:1.2rem 0 0.6rem;
+}
+#co-payment-element{min-height:5rem;}
+.co-secure{
+  font-family:var(--sans);font-size:0.78rem;text-align:center;
+  color:var(--ink-soft);margin:0.75rem 0 0;
+}
+.co-back{
+  display:block;margin:0.6rem auto 0;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.85rem;
+  color:var(--ink-soft);text-decoration:underline;
+}
+.co-spinner{
+  display:inline-block;width:0.95em;height:0.95em;
+  margin-right:0.45em;vertical-align:-0.1em;
+  border:2px solid rgba(11,20,34,0.28);border-top-color:var(--navy-0);
+  border-radius:50%;animation:co-spin 0.7s linear infinite;
+}
+@keyframes co-spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){
+  .co-overlay,.co-modal{transition:none;}
+  .co-spinner{animation-duration:2s;}
+}
 </style>
 </head>
 <body>
@@ -924,10 +1202,12 @@ a{color:inherit;}
 
         <p class="when">The Next <b>Live Masterclass</b><br>Starts Thursday, 1st October, 11am…</p>
 
+        <p class="price-line"><s>$47</s> <b>$27</b> <span>while the clock is running</span></p>
+
         <!-- BEAT 4 — CTA 1 -->
         <a class="cta cta-hero" href="#claim">
-          <span class="lead">Claim Your Free Spot Now!</span>
-          <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+          <span class="lead">Claim Your $27 Spot Now!</span>
+          <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
         </a>
       </div>
 
@@ -987,15 +1267,15 @@ a{color:inherit;}
 
       <p class="doom-box">And more than $1 BILLION in deals has been negotiated using these same 4 steps</p>
 
-      <p class="doom-close">And I’m going to teach you exactly how I do it in this<br><b>FREE online masterclass.</b></p>
+      <p class="doom-close">And I’m going to teach you exactly how I do it in this<br><b>$27 online masterclass.</b></p>
 
       <p class="arrows"><span>↓</span><span>↓</span><span>↓</span></p>
 
     </div>
 
     <a class="cta cta-after-card" href="#claim">
-      <span class="lead">Claim Your Free Spot Now!</span>
-      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+      <span class="lead">Claim Your $27 Spot Now!</span>
+      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
     </a>
   </div>
 </section>
@@ -1042,8 +1322,8 @@ a{color:inherit;}
 
     <!-- BEAT 12 — sits on the seam below -->
     <a class="cta cta-straddle" href="#claim">
-      <span class="lead">Claim Your Free Spot Now!</span>
-      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+      <span class="lead">Claim Your $27 Spot Now!</span>
+      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
     </a>
 
   </div>
@@ -1132,8 +1412,8 @@ a{color:inherit;}
 
     <!-- BEAT 16 — CTA 4 -->
     <a class="cta cta-final" id="claim" href="#claim">
-      <span class="lead">Claim Your Free Spot Now!</span>
-      <span class="sub">Hurry — every deal you make is leaking tens of thousands</span>
+      <span class="lead">Claim Your $27 Spot Now!</span>
+      <span class="sub">Hurry — sale price goes back up to $47 in <b class="cd">60:00</b></span>
     </a>
 
   </div>
@@ -1148,6 +1428,439 @@ a{color:inherit;}
     <a href="#">Earnings Disclaimer</a>
   </p>
 </footer>
+
+<!-- ============ THE SALE CLOCK ============ -->
+<script>
+/* ============================================================
+   The $27 window, counted per visitor.
+
+   The deadline is stamped on the first visit and kept in
+   localStorage, so a refresh or a second tab does not hand out
+   a fresh hour. Every CTA's sub-line reads off the same clock.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var WINDOW_MS = 60 * 60 * 1000;          // 60 minutes
+  var KEY = 'castle_mc_deadline';
+
+  var cells = document.querySelectorAll('.cta .sub .cd');
+  if (!cells.length) return;
+
+  var deadline;
+  try {
+    deadline = Number(localStorage.getItem(KEY));
+    /* A stored deadline more than a window away is stale or tampered —
+       treat it as a first visit rather than trusting it. */
+    if (!deadline || deadline - Date.now() > WINDOW_MS) throw new Error('reset');
+  } catch (err) {
+    deadline = Date.now() + WINDOW_MS;
+  }
+
+  if (deadline > Date.now()) {
+    try { localStorage.setItem(KEY, String(deadline)); } catch (err) { /* private browsing */ }
+  }
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function tick() {
+    var left = Math.max(0, deadline - Date.now());
+    var mins = Math.floor(left / 60000);
+    var secs = Math.floor((left % 60000) / 1000);
+    var text = pad(mins) + ':' + pad(secs);
+
+    for (var i = 0; i < cells.length; i++) cells[i].textContent = text;
+    if (left <= 0) clearInterval(timer);
+  }
+
+  tick();
+  var timer = setInterval(tick, 1000);
+})();
+</script>
+
+<!-- ============ TWO-STEP ORDER FORM ============ -->
+<div class="co-overlay" id="co-overlay" hidden>
+  <div class="co-modal" role="dialog" aria-modal="true" aria-labelledby="co-tab-1">
+    <button type="button" class="co-close" id="co-close" aria-label="Close">✕</button>
+
+    <div class="co-tabs">
+      <div class="co-tab is-active" id="co-tab-1" data-tab="1">
+        <b>Your Info</b><span>Contact Details</span>
+      </div>
+      <div class="co-tab" id="co-tab-2" data-tab="2">
+        <b>Billing Info</b><span>Billing Details</span>
+      </div>
+    </div>
+
+    <div class="co-body">
+      <p class="co-error" id="co-error" role="alert" hidden></p>
+
+      <!-- ---- STEP 1 · contact details ---- -->
+      <form class="co-step" id="co-step-1" novalidate>
+        <div class="co-field">
+          <input type="text" id="co-name" name="name" placeholder="Full Name..."
+                 autocomplete="name" required>
+        </div>
+        <div class="co-field">
+          <input type="email" id="co-email" name="email" placeholder="Email Address..."
+                 autocomplete="email" inputmode="email" required>
+        </div>
+        <div class="co-field">
+          <input type="text" id="co-business" name="business" placeholder="Business Name..."
+                 autocomplete="organization">
+        </div>
+        <span class="co-optional">Business name is optional — it just helps Ruth tailor the session.</span>
+        <button type="submit" class="co-submit" id="co-next">Continue to Payment →</button>
+        <p class="co-privacy">We respect your privacy &amp; information.</p>
+      </form>
+
+      <!-- ---- STEP 2 · billing details ---- -->
+      <form class="co-step" id="co-step-2" novalidate hidden>
+        <div class="co-summary">
+          <div class="co-line">
+            <span>The $250K → $750K Profit-Maximizer Masterclass</span>
+            <span class="co-amt">$27</span>
+          </div>
+          <div class="co-line" id="co-line-video_library" hidden>
+            <span>Aggressive Negotiators video library</span>
+            <span class="co-amt">$47</span>
+          </div>
+          <div class="co-line" id="co-line-bully_guide" hidden>
+            <span>Neutralize a Negotiation Bully guide</span>
+            <span class="co-amt">$7</span>
+          </div>
+          <div class="co-line co-total">
+            <span>Total due today</span>
+            <span class="co-amt" id="co-total">$27</span>
+          </div>
+        </div>
+
+        <label class="co-bump" id="co-bump-video_library">
+          <span class="co-bump-tag">Recommended add-on</span>
+          <span class="co-bump-head">
+            <span class="co-bump-arrows" aria-hidden="true">▸▸▸</span>
+            <input type="checkbox" data-bump="video_library">
+            <span>Yes, add the Aggressive Negotiators video library for
+              <s>$97</s> <span class="co-bump-price">just $47</span></span>
+          </span>
+          <p>A $1,000 negotiation course, compressed into 15 short videos you can
+             watch on a lunch run. The buyer's hardball moves as they play out, and
+             the words that stop each one. Threats and strong emotions. The red
+             herring. The shadow negotiator who is never in the room. The aggressive
+             offer you meet with silence.</p>
+          <p>Under 15 minutes end to end. Built for owners who do not have a spare
+             afternoon. Watch it before your next negotiation and walk in knowing the
+             move before they make it.</p>
+          <img class="co-bump-img" src="../assets/workshop/Bully%20Video%20Vault%20Screenshot.webp"
+               alt="Inside the Aggressive Negotiators video library" loading="lazy">
+        </label>
+
+        <label class="co-bump" id="co-bump-bully_guide">
+          <span class="co-bump-tag">No-brainer</span>
+          <span class="co-bump-head">
+            <span class="co-bump-arrows" aria-hidden="true">▸▸▸</span>
+            <input type="checkbox" data-bump="bully_guide">
+            <span>Yes, add "How Do I Neutralize a Negotiation Bully?" for
+              <s>$27</s> <span class="co-bump-price">just $7</span></span>
+          </span>
+          <p>The field guide for the buyer who shouts, stonewalls, and keeps pushing.
+             Why they do it, how to shut it down before it starts, and the lines to
+             use when it happens anyway. Keep it in the folder you take to every
+             negotiation.</p>
+          <img class="co-bump-img" src="../assets/workshop/Bully%20document.webp"
+               alt="Inside the Neutralize a Negotiation Bully guide" loading="lazy">
+        </label>
+
+        <p class="co-pay-label">Payment details</p>
+        <div id="co-payment-element"></div>
+
+        <button type="submit" class="co-submit" id="co-pay">
+          Complete Order · <span id="co-pay-total">$27</span>
+        </button>
+        <p class="co-secure">🔒 Secure payment. Your card is processed by Stripe.
+           Castle never sees your card number.</p>
+        <button type="button" class="co-back" id="co-back">← Back to your details</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+/* ============================================================
+   Two-step order form — the masterclass funnel.
+
+   Same plumbing as contractor-workshop.html, pointed at the
+   'castle-masterclass' funnel in api/_lib.js. The seat itself is
+   $27 since 17 Sep 2026, so every signup goes through Stripe and
+   every buyer lands on the thanks page with a saved card — which
+   is what makes the 'Yes, If' offer there a genuine one-click.
+
+   Step 1 posts the contact details to /api/lead so the person is
+   in Kit before they ever reach the card field — an abandoned
+   billing step still leaves a lead worth following up.
+
+   Step 2 uses Stripe's deferred-intent flow: the Payment Element
+   is mounted against a running total, and the PaymentIntent is
+   only created on submit, priced by the server. The browser sends
+   which bumps were ticked, never an amount.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var FUNNEL    = 'castle-masterclass';
+  var THANKS_URL = '/site/masterclass-thanks.html';
+  /* Display only — api/_lib.js is the source of truth for what gets charged. */
+  var PRICES    = { masterclass: 2700, video_library: 4700, bully_guide: 700 };
+
+  var overlay  = document.getElementById('co-overlay');
+  var step1    = document.getElementById('co-step-1');
+  var step2    = document.getElementById('co-step-2');
+  var tab1     = document.getElementById('co-tab-1');
+  var tab2     = document.getElementById('co-tab-2');
+  var errorBox = document.getElementById('co-error');
+  var nextBtn  = document.getElementById('co-next');
+  var payBtn   = document.getElementById('co-pay');
+
+  var stripe, elements, paymentElement, mounted = false;
+  var lead = { name: '', email: '', business: '' };
+  var lastFocus = null;
+
+  function money(cents) { return '$' + (cents / 100).toFixed(cents % 100 ? 2 : 0); }
+
+  function selectedBumps() {
+    return Array.prototype.slice
+      .call(step2.querySelectorAll('input[data-bump]:checked'))
+      .map(function (el) { return el.getAttribute('data-bump'); });
+  }
+
+  function total() {
+    return selectedBumps().reduce(function (sum, key) {
+      return sum + PRICES[key];
+    }, PRICES.masterclass);
+  }
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.hidden = !message;
+    if (message) errorBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function busy(button, isBusy, label) {
+    button.disabled = isBusy;
+    if (isBusy) {
+      button.dataset.label = button.innerHTML;
+      button.innerHTML = '<span class="co-spinner"></span>' + label;
+    } else if (button.dataset.label) {
+      button.innerHTML = button.dataset.label;
+    }
+  }
+
+  /* ---- open / close ---- */
+  function open() {
+    lastFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.classList.add('co-locked');
+    requestAnimationFrame(function () { overlay.classList.add('is-open'); });
+    (step2.hidden ? document.getElementById('co-name') : payBtn).focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('co-locked');
+    setTimeout(function () { overlay.hidden = true; }, 180);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  // Every CTA on the page opens the form, including the pre-header bar. The
+  // href stays as the in-page anchor so the buttons still do something sane
+  // if this script fails.
+  Array.prototype.forEach.call(
+    document.querySelectorAll('a.cta, a.promobar'),
+    function (cta) {
+      cta.addEventListener('click', function (event) {
+        event.preventDefault();
+        open();
+      });
+    }
+  );
+
+  document.getElementById('co-close').addEventListener('click', close);
+  overlay.addEventListener('mousedown', function (event) {
+    if (event.target === overlay) close();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !overlay.hidden) close();
+  });
+
+  /* ---- step 1 → step 2 ---- */
+  step1.addEventListener('submit', function (event) {
+    event.preventDefault();
+    showError('');
+
+    var name     = document.getElementById('co-name');
+    var email    = document.getElementById('co-email');
+    var business = document.getElementById('co-business');
+
+    name.setAttribute('aria-invalid', name.value.trim() ? 'false' : 'true');
+    var emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
+    email.setAttribute('aria-invalid', emailOk ? 'false' : 'true');
+
+    if (!name.value.trim()) { showError('Please enter your name.'); name.focus(); return; }
+    if (!emailOk) { showError('Please enter a valid email address.'); email.focus(); return; }
+
+    lead = {
+      name: name.value.trim(),
+      email: email.value.trim().toLowerCase(),
+      business: business.value.trim()      // optional, blank is fine
+    };
+
+    busy(nextBtn, true, 'Saving…');
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: lead.name,
+        email: lead.email,
+        business: lead.business,
+        funnel: FUNNEL
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.publishableKey) throw new Error('Payment is not configured yet.');
+        if (window.fbq) fbq('track', 'Lead');
+        mountPayment(data.publishableKey);
+        goToStep2();
+      })
+      .catch(function (err) {
+        showError(err.message || 'Something went wrong. Please try again.');
+      })
+      .then(function () { busy(nextBtn, false); });
+  });
+
+  function goToStep2() {
+    step1.hidden = true;
+    step2.hidden = false;
+    tab1.classList.remove('is-active');
+    tab1.classList.add('is-done');
+    tab2.classList.add('is-active');
+    overlay.scrollTop = 0;
+  }
+
+  document.getElementById('co-back').addEventListener('click', function () {
+    step2.hidden = true;
+    step1.hidden = false;
+    tab2.classList.remove('is-active');
+    tab1.classList.remove('is-done');
+    tab1.classList.add('is-active');
+    showError('');
+  });
+
+  /* ---- payment element ---- */
+  function mountPayment(publishableKey) {
+    if (mounted) return;
+    stripe = Stripe(publishableKey);
+
+    elements = stripe.elements({
+      mode: 'payment',
+      amount: total(),
+      currency: 'usd',
+      setup_future_usage: 'off_session',
+      paymentMethodCreation: 'manual',
+      appearance: {
+        theme: 'stripe',
+        variables: {
+          colorPrimary: '#A8874B',
+          colorText: '#1C222C',
+          colorDanger: '#8E2F22',
+          fontFamily: 'Archivo, "Helvetica Neue", Arial, sans-serif',
+          borderRadius: '4px'
+        }
+      }
+    });
+
+    paymentElement = elements.create('payment', {
+      defaultValues: { billingDetails: { name: lead.name, email: lead.email } }
+    });
+    paymentElement.mount('#co-payment-element');
+    mounted = true;
+  }
+
+  /* ---- bumps: repaint the summary and re-price the Element ---- */
+  Array.prototype.forEach.call(step2.querySelectorAll('input[data-bump]'), function (box) {
+    box.addEventListener('change', function () {
+      var key = box.getAttribute('data-bump');
+      document.getElementById('co-line-' + key).hidden = !box.checked;
+      document.getElementById('co-bump-' + key).classList.toggle('is-on', box.checked);
+
+      var amount = total();
+      document.getElementById('co-total').textContent = money(amount);
+      document.getElementById('co-pay-total').textContent = money(amount);
+      if (elements) elements.update({ amount: amount });
+    });
+  });
+
+  /* ---- step 2: take the payment ---- */
+  step2.addEventListener('submit', function (event) {
+    event.preventDefault();
+    showError('');
+    busy(payBtn, true, 'Processing…');
+    if (window.fbq) fbq('track', 'InitiateCheckout');
+
+    elements.submit()
+      .then(function (result) {
+        if (result.error) throw new Error(result.error.message);
+        return fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: lead.name,
+            email: lead.email,
+            business: lead.business,
+            funnel: FUNNEL,
+            bumps: selectedBumps()
+          })
+        });
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.error) throw new Error(data.error);
+
+        /* The thanks page greets them by name and de-dupes its
+           CompleteRegistration event off this. */
+        try {
+          sessionStorage.setItem('castle_signup', JSON.stringify({
+            name: lead.name,
+            email: lead.email,
+            eventId: 'mcreg_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10)
+          }));
+        } catch (err) { /* private browsing — the page copes without it */ }
+
+        // Built before confirming so card types that bounce through a bank
+        // page land back on the same order.
+        var back = window.location.origin + THANKS_URL +
+                   '?pi=' + encodeURIComponent(data.paymentIntentId) +
+                   '&cs=' + encodeURIComponent(data.clientSecret);
+
+        return stripe.confirmPayment({
+          elements: elements,
+          clientSecret: data.clientSecret,
+          confirmParams: { return_url: back },
+          redirect: 'if_required'
+        }).then(function (result) {
+          if (result.error) throw new Error(result.error.message);
+          window.location.href = back;
+        });
+      })
+      .catch(function (err) {
+        showError(err.message || 'Your payment could not be completed.');
+        busy(payBtn, false);
+      });
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -18,11 +18,12 @@
 
 import {
   verifyStripeSignature,
-  upsertSubscriber,
-  tagSubscriber,
-  addToSequence,
-  KIT,
+  fulfilSignup,
+  fulfilOffer,
+  getFunnel,
+  profileFields,
   CATALOGUE,
+  OTO_CATALOGUE,
 } from './_lib.js';
 
 export const config = { runtime: 'edge' };
@@ -64,8 +65,11 @@ export default async function handler(request) {
   const intent = event.data.object;
   const meta = intent.metadata || {};
 
-  if (meta.funnel !== 'contractor-workshop') {
-    return reply(200, { ignored: 'not this funnel' });
+  /* Unknown or absent funnel means this payment came from somewhere else in
+     the Stripe account and is none of our business. */
+  const funnel = getFunnel(meta.funnel);
+  if (!funnel || meta.funnel !== funnel.key) {
+    return reply(200, { ignored: 'not one of our funnels' });
   }
 
   const email = (meta.email || intent.receipt_email || '').trim().toLowerCase();
@@ -74,20 +78,38 @@ export default async function handler(request) {
     return reply(200, { error: 'no email' }); // 200: retrying will not help
   }
 
-  // The upsell charge is handled by /api/upsell; nothing to fulfil here.
+  /* A one-time offer. /api/upsell also writes these on the one-click path, but
+     the fresh-card path has no inline write at all, so this is the only thing
+     that fulfils it. Both writes upsert, so doing it twice is harmless — and
+     it makes the one-click path survive a Kit outage mid-charge. */
   if (meta.stage === 'oto') {
-    return reply(200, { ignored: 'oto charge' });
+    const offer = OTO_CATALOGUE[meta.offer];
+    if (!offer) {
+      console.error('[webhook] unknown offer on', intent.id, meta.offer);
+      return reply(200, { ignored: 'unknown offer' });
+    }
+    try {
+      await fulfilOffer({ offer, email, name: meta.name });
+      console.log('[webhook] fulfilled offer', offer.key, intent.id, email);
+      return reply(200, { ok: true, offer: offer.key });
+    } catch (err) {
+      console.error('[webhook] offer fulfilment failed for', intent.id, err.message);
+      return reply(500, { error: 'fulfilment failed' });
+    }
   }
 
   const bumps = (meta.bumps || '').split(',').filter(Boolean);
 
   try {
-    await upsertSubscriber({
+    await fulfilSignup({
+      funnel,
       email,
-      firstName: (meta.name || '').trim().split(/\s+/)[0],
+      name: meta.name,
+      bumps,
       fields: {
+        ...profileFields({ business: meta.business, title: meta.title }),
         workshop_order_total: ((intent.amount_received || intent.amount) / 100).toFixed(2),
-        workshop_order_items: ['workshop', ...bumps]
+        workshop_order_items: [...funnel.base, ...bumps]
           .map((k) => CATALOGUE[k]?.label || k)
           .join(' | '),
         workshop_purchased_at: new Date(event.created * 1000).toISOString(),
@@ -95,15 +117,7 @@ export default async function handler(request) {
       },
     });
 
-    await tagSubscriber(KIT.tags.purchaser, email);
-    await addToSequence(KIT.sequences.access, email);
-
-    for (const bump of bumps) {
-      if (KIT.tags[bump]) await tagSubscriber(KIT.tags[bump], email);
-      if (KIT.sequences[bump]) await addToSequence(KIT.sequences[bump], email);
-    }
-
-    console.log('[webhook] fulfilled', intent.id, email, bumps.join(',') || 'no bumps');
+    console.log('[webhook] fulfilled', funnel.key, intent.id, email, bumps.join(',') || 'no bumps');
     return reply(200, { ok: true });
   } catch (err) {
     /* 500 so Stripe retries. The money is already taken and the access page

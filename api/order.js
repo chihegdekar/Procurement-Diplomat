@@ -9,7 +9,7 @@
    ID alone is not enough to read someone else's order.
    ============================================================ */
 
-import { json, stripeRequest, CATALOGUE, DELIVERY } from './_lib.js';
+import { json, stripeRequest, CATALOGUE, DELIVERY, getFunnel } from './_lib.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
@@ -28,13 +28,18 @@ export default async function handler(req, res) {
     }
 
     const meta = intent.metadata || {};
+    const funnel = getFunnel(meta.funnel);
+    if (!funnel) return json(res, 404, { error: 'Order not found.' });
+
     const bumps = (meta.bumps || '').split(',').filter((k) => CATALOGUE[k]);
 
     return json(res, 200, {
+      funnel: funnel.key,
       email: meta.email || intent.receipt_email || '',
       name: meta.name || '',
       total: intent.amount_received,
-      items: ['workshop', ...bumps].map((key) => ({
+      // On a free funnel `base` is empty, so this is the bumps alone.
+      items: [...funnel.base, ...bumps].map((key) => ({
         key,
         label: CATALOGUE[key].label,
         amount: CATALOGUE[key].amount,

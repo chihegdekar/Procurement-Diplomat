@@ -1,7 +1,17 @@
-# Contractor Workshop Funnel — setup & runbook
+# Workshop Funnels — setup & runbook
 
 Built 4 September 2026. Everything is in place except three secrets and one
 link, all listed under "What's still needed".
+
+**Two pages now run off this same plumbing:**
+
+| Page | The workshop itself | Order bumps | Ends on |
+|---|---|---|---|
+| `contractor-workshop.html` | $97 | $47 + $7 | `workshop-oto.html` |
+| `castle-masterclass.html` | **$27** | $47 + $7 | `masterclass-thanks.html` |
+
+They are the same workshop and send the same Kit joining email. See
+"The masterclass funnel" near the bottom for what differs.
 
 ---
 
@@ -181,6 +191,132 @@ purchase. Leave them and delivery is email-only.
 
 Set `OTO.live = false` in `campaign/site/workshop-oto.html` and the page goes
 back to a clean "go to your access" step. Nobody lands on an empty upsell.
+
+---
+
+## The masterclass funnel
+
+Built 14 September 2026 as a free page. **Went to $27 on 17 September 2026** —
+`castle-masterclass.html` now sells the **same workshop for $27**, with the
+**same two order bumps** bolted on.
+
+### What actually differs
+
+Only the base price and where it ends. Both funnels are paid, so both always
+go through Stripe and both leave the buyer with a saved card.
+
+| Bumps ticked | Charged | Path |
+|---|---|---|
+| none | $27 | Stripe, via `/api/checkout` |
+| video library | $74 | Stripe, via `/api/checkout` |
+| bully guide | $34 | Stripe, via `/api/checkout` |
+| both | $81 | Stripe, via `/api/checkout` |
+
+The sale price is framed against **$47** with a 60-minute countdown inside
+every CTA's sub-line. The deadline is stamped per visitor on first arrival and
+kept in `localStorage`, so a refresh does not hand out a fresh hour. **Nothing
+server-side changes when it hits zero** — the price in `CATALOGUE` stays $27
+until someone edits it. Treat the clock as urgency framing, not a mechanism.
+
+`POST /api/register` — the $0 path — is now unused by both live pages. It is
+left in place, and refuses any funnel priced above zero, ready for the next
+free page.
+
+### Step 1 collects a business name
+
+The masterclass form asks for **Full Name, Email, and Business Name
+(optional)**. The business name lands in the Kit custom field `business_name`
+(`1366686`) via `profileFields()`. A blank answer is dropped rather than
+written, so it never overwrites a detail captured on an earlier form.
+
+### Kit
+
+**Tags** (created 14 Sep 2026) — Registrant `23420880` · Lead `23420882` ·
+Abandoned Signup `23420883`
+
+Deliberately separate from the `Workshop: *` tags so "paid $27" and "paid $97"
+never blur into one segment. The two **bump** tags are shared, because a bump
+is a bump however they arrived.
+
+**Sequence** — the same `Access & Joining Details` (`2883347`) the paid
+workshop uses. That is what makes the joining email identical, which was the
+point.
+
+A masterclass registrant is **not** tagged `Workshop: Purchaser`.
+
+### Stripe
+
+No new webhook. The $27 seat is charged straight off `CATALOGUE.masterclass.amount`
+— `checkout.js` builds the PaymentIntent from the amount, never from a price ID
+— so it sells correctly today. **Still to do:** create a real `$27 Masterclass`
+product and price in Stripe and drop the IDs into `CATALOGUE.masterclass`, so
+Stripe-side reporting shows a named product rather than a bare charge.
+
+### Files
+
+```
+api/register.js                          the $0 path — Kit only, no Stripe
+api/_lib.js                              FUNNELS registry + fulfilSignup()
+campaign/site/castle-masterclass.html    landing page + two-step signup
+campaign/site/masterclass-thanks.html    thank-you + instant bump delivery
+```
+
+### How the two funnels stay in step
+
+`api/_lib.js` has a `FUNNELS` registry. A funnel's `base` is what gets billed
+before any bump, so **an empty `base` is what would make a funnel free**. Checkout,
+the webhook and the order lookup all read that instead of hardcoding a page
+name, and `fulfilSignup()` is the single function that decides what a completed
+signup looks like in Kit — so the free path and the paid path can't drift.
+
+Adding a third page is one entry in `FUNNELS`, not a fork of five files.
+
+Pages that post no `funnel` field default to `contractor-workshop`, which is
+why the old page kept working untouched.
+
+### The thank-you page
+
+`masterclass-thanks.html` has no "we couldn't find your order" screen on
+purpose. Reaching it at all means the signup went through, so its default
+state already confirms the spot. If `?pi=` and `?cs=` are on the URL it
+additionally reads the order back through `/api/order` and renders the bumps
+that were actually paid for — video password and link, guide download. If that
+lookup fails it quietly degrades to "it's in your email" rather than alarming
+someone who just paid.
+
+**The masterclass date lives in one place on that page** — the `WHEN` constant
+at the top of its script. Keep it in step with the landing page hero and the
+Kit access email.
+
+### The thanks page is also the OTO
+
+`masterclass-thanks.html` doubles as the `Yes, If` ($149) one-time offer.
+Everyone sees the same offer at the same price. Only the payment route differs:
+
+| Who | How they pay | Endpoint |
+|---|---|---|
+| Paid at signup (everyone, since $27) | genuinely one click — card saved at checkout | `POST /api/upsell` |
+| No usable card on file | same offer, card field | `POST /api/checkout` with `offer: 'yes_if'` |
+
+Both end at the same Kit tag (`23280212`) and delivery sequence (`2828038`).
+
+Page order is deliberate: a one-line seat confirmation, then the offer, then
+the joining detail and any add-ons underneath — so the offer isn't buried
+under a thank-you nobody needed.
+
+Two things worth knowing:
+
+- **The webhook now fulfils offers.** It used to ignore `stage: 'oto'` because
+  `/api/upsell` wrote to Kit inline. The card-entry route has no inline write,
+  so the webhook is the only thing that fulfils it. Both writes upsert, so the
+  one-click route now self-heals if Kit blips mid-charge.
+- **If the saved card turns out to be unusable** (Stripe returns 409), the page
+  falls back to a card field rather than dead-ending someone who wants to buy.
+
+To retire the offer, set `OFFER.live = false` in the page and it becomes a
+plain confirmation. `api/config.js` serves the Stripe publishable key to the
+page — it can't ask `/api/lead` for it without re-tagging the person as a
+fresh lead.
 
 ---
 

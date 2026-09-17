@@ -22,6 +22,17 @@ export const CATALOGUE = {
     product: 'prod_VCHFecT7vU9JXi',
     price: 'price_1UBsh5GTG8HDPA44orMvXl7Z',
   },
+  /* The masterclass seat. Was free until 17 Sep 2026; now $27, on the same
+     page and the same plumbing. checkout.js prices the PaymentIntent from
+     `amount` alone, so this sells correctly before a Stripe product exists —
+     the IDs below are for Stripe-side reporting only. */
+  masterclass: {
+    key: 'masterclass',
+    label: 'The $250K → $750K Profit-Maximizer Masterclass',
+    amount: 2700,
+    product: 'REPLACE_WITH_STRIPE_PRODUCT_ID',
+    price: 'REPLACE_WITH_STRIPE_PRICE_ID',
+  },
   video_library: {
     key: 'video_library',
     label: 'Recognising & Neutralizing Aggressive Negotiators — Video Library',
@@ -41,6 +52,52 @@ export const CATALOGUE = {
 };
 
 export const BUMP_KEYS = ['video_library', 'bully_guide'];
+
+/* ---------- the funnels ---------------------------------------------------
+   Two pages sell the same workshop with the same two order bumps. The only
+   difference that matters to the server is whether the workshop itself is
+   charged for:
+
+     contractor-workshop  $97 + bumps        — paid, always goes through Stripe
+     castle-masterclass   $27 + bumps        — paid since 17 Sep 2026
+
+   `base` is what gets billed before any bump, so an empty `base` is what
+   makes a funnel free. Both funnels are priced now, so nothing currently
+   comes through /api/register — that path stays for the next free page.
+   Everything downstream (checkout, webhook, order lookup) reads this instead
+   of hardcoding a funnel name, so adding a third page is one entry here
+   rather than a fork of five files. */
+export const FUNNELS = {
+  'contractor-workshop': {
+    key: 'contractor-workshop',
+    base: ['workshop'],
+    bumps: BUMP_KEYS,
+    /* Kit keys, resolved against KIT.tags / KIT.sequences below. */
+    leadTag: 'lead',
+    abandonedTag: 'abandoned',
+    signupTag: 'purchaser',
+    welcomeSequence: 'access',
+    /* Where the browser goes once the order clears. */
+    next: '/site/workshop-oto.html',
+  },
+  'castle-masterclass': {
+    key: 'castle-masterclass',
+    base: ['masterclass'],
+    bumps: BUMP_KEYS,
+    leadTag: 'masterclass_lead',
+    abandonedTag: 'masterclass_abandoned',
+    signupTag: 'masterclass',
+    welcomeSequence: 'access',
+    next: '/site/masterclass-thanks.html',
+  },
+};
+
+/* Pages built before funnels existed post no funnel at all. */
+export const DEFAULT_FUNNEL = 'contractor-workshop';
+
+export function getFunnel(key) {
+  return FUNNELS[key || DEFAULT_FUNNEL] || null;
+}
 
 /* One-time offers shown after the first payment, charged to the saved card.
    Empty on purpose: nothing can be charged here until an offer is defined
@@ -67,6 +124,12 @@ export const KIT = {
     bully_guide: 23093332,
     abandoned: 23093333,
     yes_if: 23280212,       // OTO purchasers (created 10 Sep 2026)
+    /* Free masterclass funnel (created 14 Sep 2026). Kept separate from the
+       paid workshop tags so "registered free" and "paid $97" never blur into
+       one segment — the bump tags are shared, because a bump is a bump. */
+    masterclass: 23420880,
+    masterclass_lead: 23420882,
+    masterclass_abandoned: 23420883,
   },
   sequences: {
     access: 2883347,        // everyone who buys
@@ -97,17 +160,23 @@ export const DELIVERY = {
 };
 
 /* Turn the browser's list of ticked bumps into a priced, validated order.
-   Anything we don't recognise is silently dropped rather than trusted. */
-export function buildOrder(rawBumps) {
+   Anything we don't recognise is silently dropped rather than trusted.
+
+   On a free funnel `base` is empty, so an order with no bumps comes back at
+   amount 0 — the caller's cue to skip Stripe entirely. */
+export function buildOrder(funnelKey, rawBumps) {
+  const funnel = getFunnel(funnelKey);
+  if (!funnel) return null;
+
   // Deduped: a repeated key must never bill the same bump twice.
   const bumps = Array.isArray(rawBumps)
-    ? BUMP_KEYS.filter((k) => rawBumps.includes(k))
+    ? funnel.bumps.filter((k) => rawBumps.includes(k))
     : [];
 
-  const items = [CATALOGUE.workshop, ...bumps.map((k) => CATALOGUE[k])];
+  const items = [...funnel.base, ...bumps].map((k) => CATALOGUE[k]);
   const amount = items.reduce((sum, item) => sum + item.amount, 0);
 
-  return { bumps, items, amount };
+  return { funnel, bumps, items, amount };
 }
 
 /* ---------- Stripe ---------------------------------------------------------
@@ -237,10 +306,91 @@ export async function addToSequence(sequenceId, email) {
   });
 }
 
+/* Kit removes a tag by subscriber ID, not email, so this takes the ID that
+   upsertSubscriber hands back. Best-effort by design: a stale "abandoned"
+   tag is a tidiness problem, never a reason to fail a completed signup. */
+export async function untagSubscriber(tagId, subscriberId) {
+  if (!tagId || !subscriberId) return null;
+  try {
+    return await kitRequest('DELETE', `/tags/${tagId}/subscribers/${subscriberId}`);
+  } catch (err) {
+    console.error('[kit] could not remove tag', tagId, err.message);
+    return null;
+  }
+}
+
+/* ---------- fulfilment -----------------------------------------------------
+   The one place that decides what a completed signup looks like in Kit, so
+   the free path (/api/register) and the paid path (/api/webhook) can never
+   drift apart. Every write here upserts, so calling it twice on the same
+   person is a no-op — which is what makes the Stripe webhook safe to retry.
+
+   Throws on failure. Callers decide whether that means "retry me" (the
+   webhook, where money has already moved) or "tell the buyer" (register). */
+export async function fulfilSignup({ funnel, email, name, bumps = [], fields }) {
+  const subscriber = await upsertSubscriber({
+    email,
+    firstName: (name || '').trim().split(/\s+/)[0],
+    fields,
+  });
+
+  if (funnel.signupTag && KIT.tags[funnel.signupTag]) {
+    await tagSubscriber(KIT.tags[funnel.signupTag], email);
+  }
+  if (funnel.welcomeSequence && KIT.sequences[funnel.welcomeSequence]) {
+    await addToSequence(KIT.sequences[funnel.welcomeSequence], email);
+  }
+
+  for (const bump of bumps) {
+    if (KIT.tags[bump]) await tagSubscriber(KIT.tags[bump], email);
+    if (KIT.sequences[bump]) await addToSequence(KIT.sequences[bump], email);
+  }
+
+  // They finished, so they are no longer an abandoned checkout.
+  await untagSubscriber(
+    KIT.tags[funnel.abandonedTag],
+    subscriber?.subscriber?.id
+  );
+
+  return subscriber;
+}
+
+/* A one-time offer can now be bought two ways — one click on a card saved at
+   checkout, or a fresh card typed in by someone who paid nothing the first
+   time. Both end here, so the Kit result is identical either way. */
+export async function fulfilOffer({ offer, email, name }) {
+  if (!offer || !email) return;
+
+  await upsertSubscriber({
+    email,
+    firstName: (name || '').trim().split(/\s+/)[0] || undefined,
+  });
+
+  if (KIT.tags[offer.key]) await tagSubscriber(KIT.tags[offer.key], email);
+  if (offer.sequence) await addToSequence(offer.sequence, email);
+}
+
 /* ---------- request plumbing ---------------------------------------------- */
 export function json(res, status, payload) {
   res.status(status).setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(payload));
+}
+
+/* Optional profile answers from the signup form, shaped for Kit.
+
+   Keys match the Kit custom fields created 15 Sep 2026:
+     business_name (1366686) · job_title (1366687)
+
+   Blank answers are dropped rather than written, so someone who skips them
+   never overwrites details captured on an earlier form. */
+export function profileFields({ business, title }) {
+  const fields = {};
+  const clean = (v) => String(v || '').trim().slice(0, 200);
+
+  if (clean(business)) fields.business_name = clean(business);
+  if (clean(title)) fields.job_title = clean(title);
+
+  return fields;
 }
 
 export function isEmail(value) {
