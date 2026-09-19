@@ -235,6 +235,18 @@ a{color:inherit;}
   margin-left:-44%;
   filter:drop-shadow(0 26px 46px rgba(0,0,0,0.6));
 }
+.hero-figure .l-result{
+  position:absolute;
+  z-index:5;
+  top:2%;
+  left:-4%;
+  width:38%;
+  max-width:none;
+  margin-left:0;
+  border-radius:0.6rem;
+  box-shadow:0 14px 30px rgba(0,0,0,0.5);
+  filter:none;
+}
 
 /* --- layer 5 — BEAT 3 headline panel --- */
 .hero-card{
@@ -904,6 +916,7 @@ a{color:inherit;}
   .hero-figure{order:2;margin-top:clamp(1.2rem,4vw,1.8rem);}
   .hero-figure img{width:100%;max-width:21rem;margin-left:auto;margin-right:auto;}
   .hero-figure .l-glow{width:125%;}
+  .hero-figure .l-result{width:34%;max-width:none;margin:0;top:0;left:-2%;}
   .figbox .big{font-size:clamp(1.9rem,9.2vw,2.9rem);}
   .figwrap .dollar{font-size:clamp(2.1rem,10.4vw,3.3rem);}
   .artifact{padding-right:clamp(1.2rem,7vw,2.2rem);}
@@ -1166,6 +1179,9 @@ body.co-locked{overflow:hidden;}
         <img src="../assets/masterclass/ruth-hero.webp"
              alt="Ruth Shlossman, senior negotiation consultant and CEO of Castle Negotiations"
              width="965" height="961" fetchpriority="high" decoding="async">
+        <img class="l-result" src="../assets/masterclass/result-250k-750k.webp"
+             alt="Result: a $250K deal turned into a $750K deal"
+             width="600" height="600" loading="lazy" decoding="async">
       </div>
 
       <!-- BEAT 3 — headline -->
