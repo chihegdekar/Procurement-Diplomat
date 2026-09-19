@@ -18,7 +18,7 @@ export const CATALOGUE = {
   workshop: {
     key: 'workshop',
     label: 'Fortune 50 Negotiation Secrets Workshop',
-    amount: 9700,
+    amount: 2700,
     product: 'prod_VCHFecT7vU9JXi',
     price: 'price_1UBsh5GTG8HDPA44orMvXl7Z',
   },
@@ -58,7 +58,7 @@ export const BUMP_KEYS = ['video_library', 'bully_guide'];
    difference that matters to the server is whether the workshop itself is
    charged for:
 
-     contractor-workshop  $97 + bumps        — paid, always goes through Stripe
+     contractor-workshop  $27 + bumps        — paid, always goes through Stripe
      castle-masterclass   $27 + bumps        — paid since 17 Sep 2026
 
    `base` is what gets billed before any bump, so an empty `base` is what
