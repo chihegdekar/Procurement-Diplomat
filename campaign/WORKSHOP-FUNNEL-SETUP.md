@@ -337,6 +337,10 @@ Sold **by the seat**, no order bumps, no one-time offer.
   The page repeats the same rule for display, and refuses to charge if the
   server's total ever disagrees with what the buyer saw.
 - A seat count that isn't a whole number from 1 to 10 is refused, not clamped.
+- **Booking closes Wed 14 Oct 2026, 11:59pm ET.** Set in two places that must
+  match: `FUNNELS['procurement-reset'].closesAt` in `api/_lib.js` (the server
+  refuses payment after it) and `CLOSES_AT` in `cohort.html` (countdown, and
+  the page swaps to an "ask about the next cohort" email once it passes).
 - Tests: `node --test tests/*.test.mjs` from the `oneshot` folder.
 - Kit tags (created 25 Sep 2026): Reset: Lead `23973843` · Reset: Abandoned
   Checkout `23973844` · Reset: Purchaser `23973845`.

@@ -108,6 +108,9 @@ export const FUNNELS = {
     base: ['reset_seat'],
     bumps: [],
     seats: 'reset',
+    /* Booking closes Wed 14 Oct 2026, 11:59pm ET (EDT, UTC-4). After this
+       checkout refuses to take payment; cohort.html shows the same time. */
+    closesAt: '2026-10-15T03:59:59Z',
     leadTag: 'reset_lead',
     abandonedTag: 'reset_abandoned',
     signupTag: 'reset_purchaser',
@@ -142,6 +145,11 @@ export const DEFAULT_FUNNEL = 'contractor-workshop';
 
 export function getFunnel(key) {
   return FUNNELS[key || DEFAULT_FUNNEL] || null;
+}
+
+/* A funnel with a `closesAt` stops selling at that moment. */
+export function isClosed(funnel, now = Date.now()) {
+  return Boolean(funnel?.closesAt) && now > Date.parse(funnel.closesAt);
 }
 
 /* One-time offers shown after the first payment, charged to the saved card.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add("js");</script>
 <title>The 3-Day Procurement Function Reset | Castle Negotiations</title>
-<meta name="description" content="Three live online mornings, October 20–22, 2026, for procurement directors and VPs. Get into deals while they can still move, hold firm with suppliers who know you can't switch, and get credit for more than savings. $2,500, with 5% off each extra team seat.">
+<meta name="description" content="Three live online mornings, October 20–22, 2026, for procurement directors and VPs. Get into deals while they can still move, hold firm with suppliers who know you can't switch, and get credit for more than savings. $2,500, with 5% off each extra team seat. Booking closes October 14.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -67,6 +67,17 @@
     .facts dd.sub { font-size: 0.72rem; }
   }
   .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.2rem; align-items: center; }
+
+  /* booking deadline: one fixed time, one live countdown, shown in several places */
+  .deadline { margin: 1.3rem auto 0; max-width: none; font-size: 0.95rem; color: var(--ivory-dim); }
+  .deadline b { color: var(--ivory); font-weight: 600; }
+  .deadline .left:not(:empty) {
+    display: inline-block; margin-left: 0.6rem; padding: 0.15rem 0.55rem;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--navy-0); background: var(--gold); border-radius: 2px; vertical-align: 0.1em;
+  }
+  .deadline.card { margin: 1.3rem 0 0; text-align: center; font-size: 0.88rem; }
+  body.is-closed .stepper, body.is-closed .breakdown, body.is-closed .price-total, body.is-closed .price-card .team, body.is-closed .price-card .fine { display: none; }
   .g-note { margin-top: 1.2rem; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; }
   .g-note a { color: var(--ivory-dim); text-decoration: none; border-bottom: 1px dotted rgba(201,169,106,0.55); padding-bottom: 2px; }
   .g-note a:hover { color: var(--gold); }
@@ -451,6 +462,7 @@
       <a class="btn cta" href="#enroll">Reserve my seat · $2,500 <span class="arrow">→</span></a>
       <a class="btn btn--ghost" href="#days">See the 3 days</a>
     </div>
+    <p class="deadline">Booking closes <b>Wed, Oct 14 at 11:59pm ET</b><span class="left" data-countdown></span></p>
     <p class="g-note"><a href="#guarantee"><span class="kn" aria-hidden="true">♞</span>Land your big negotiation win in 3 months, or your money back</a></p>
   </div>
 </header>
@@ -815,6 +827,7 @@
         <ul class="breakdown" id="breakdown"><li><span>Seat 1</span><span>$2,500</span></li></ul>
         <div class="price-total"><span>Total</span><span><span data-total>$2,500</span><span class="save" data-save></span></span></div>
 
+        <p class="deadline card">Booking closes <b>Wed, Oct 14 at 11:59pm ET</b><span class="left" data-countdown></span></p>
         <a class="btn" href="#enroll" data-checkout><span data-cta-label>Reserve my seat · $2,500</span> <span class="arrow">→</span></a>
         <p class="fine">Secure checkout by Stripe · receipt by email<br>Need an invoice or PO? <a href="mailto:ruths@castlenegotiate.com?subject=3-Day%20Procurement%20Function%20Reset%3A%20invoice%20request">Email Ruth</a> · More than 10 seats? <a href="mailto:ruths@castlenegotiate.com?subject=3-Day%20Procurement%20Function%20Reset%3A%20team%20booking">Talk to us</a></p>
       </div>
@@ -891,6 +904,7 @@
 <section class="final-cta">
   <div class="wrap">
     <h2 class="reveal">Your business units are picking suppliers this quarter. Get in the room.</h2>
+    <p class="deadline reveal">Booking closes <b>Wed, Oct 14 at 11:59pm ET</b><span class="left" data-countdown></span></p>
     <div class="cta-row reveal" data-delay="1">
       <a class="btn cta" href="#enroll">Ruth, save me a seat <span class="arrow">→</span></a>
       <a class="btn btn--ghost" href="#enroll">Book seats for my team</a>
@@ -913,7 +927,7 @@
 
 <!-- ============ STICKY BAR ============ -->
 <div class="sticky-bar" id="stickyBar" aria-hidden="true">
-  <p><b>Oct 20&ndash;22</b><span class="hide-s"> · live online</span> · $2,500</p>
+  <p><b>Booking closes Oct 14</b><span class="hide-s"> · starts Oct 20</span> · $2,500</p>
   <a class="btn cta" href="#enroll" tabindex="-1">Reserve my seat</a>
 </div>
 
@@ -923,7 +937,7 @@
     <button type="button" class="co-close" id="co-close" aria-label="Close">✕</button>
     <div class="co-head">
       <p class="t" id="co-title">The 3-Day Procurement Function Reset</p>
-      <p class="s">Oct 20, 21 &amp; 22 · 9:30am&ndash;12pm ET · live online</p>
+      <p class="s">Oct 20, 21 &amp; 22 · 9:30am&ndash;12pm ET · booking closes Oct 14</p>
     </div>
     <div class="co-tabs">
       <div class="co-tab is-active" id="co-tab-1"><b>Your details</b><span>Step 1 of 2</span></div>
@@ -1053,6 +1067,12 @@
   var FUNNEL = 'procurement-reset';
   var NEXT_URL = '/site/cohort-thanks.html';
   var SEAT = 250000, STEP = 0.05, MAX = 10;
+  // Same moment as FUNNELS['procurement-reset'].closesAt on the server:
+  // Wed 14 Oct 2026, 11:59pm ET. The server refuses payment after it too.
+  var CLOSES_AT = Date.parse('2026-10-15T03:59:59Z');
+  var CLOSED_URL = 'mailto:ruths@castlenegotiate.com?subject=' +
+    encodeURIComponent('3-Day Procurement Function Reset: next cohort');
+  function isClosed() { return Date.now() > CLOSES_AT; }
 
   var seats = 1;
   var overlay  = document.getElementById('co-overlay');
@@ -1083,7 +1103,8 @@
     each('[data-save-line]', function (el) { el.textContent = saved ? '−' + money(saved) : (seats < MAX ? 'Add a seat, save 5%' : ''); });
     each('[data-seat-word]', function (el) { el.textContent = seats === 1 ? 'my seat' : seats + ' seats'; });
     each('[data-cta-label]', function (el) {
-      el.textContent = (seats === 1 ? 'Reserve my seat' : 'Reserve ' + seats + ' seats') + ' · ' + money(sum);
+      el.textContent = isClosed() ? 'Ask about the next cohort'
+        : (seats === 1 ? 'Reserve my seat' : 'Reserve ' + seats + ' seats') + ' · ' + money(sum);
     });
     each('[data-seat-step="-1"]', function (b) { b.disabled = seats <= 1; });
     each('[data-seat-step="1"]', function (b) { b.disabled = seats >= MAX; });
@@ -1139,8 +1160,33 @@
   // sees what's included and picks seats first. Only the price-card
   // button opens the checkout.
   each('[data-checkout]', function (cta) {
-    cta.addEventListener('click', function (event) { event.preventDefault(); open(); });
+    cta.addEventListener('click', function (event) {
+      if (isClosed()) return; // the href is the "next cohort" email by then
+      event.preventDefault();
+      open();
+    });
   });
+
+  /* ---- countdown to the booking deadline ---- */
+  function tick() {
+    var ms = CLOSES_AT - Date.now();
+    if (ms <= 0) {
+      document.body.classList.add('is-closed');
+      each('.deadline', function (el) {
+        el.innerHTML = 'Booking closed on <b>Wed, Oct 14</b>. Email Ruth to hear about the next cohort.';
+      });
+      each('[data-checkout]', function (el) { el.href = CLOSED_URL; });
+      if (!overlay.hidden) close();
+      setSeats(seats);
+      return;
+    }
+    var mins = Math.floor(ms / 60000), days = Math.floor(mins / 1440);
+    var text = days >= 2 ? days + ' days left'
+      : days === 1 ? '1 day left'
+      : Math.floor(mins / 60) + 'h ' + (mins % 60) + 'm left';
+    each('[data-countdown]', function (el) { el.textContent = text; });
+    setTimeout(tick, 30000);
+  }
   document.getElementById('co-close').addEventListener('click', close);
   overlay.addEventListener('mousedown', function (event) { if (event.target === overlay) close(); });
   document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && !overlay.hidden) close(); });
@@ -1269,6 +1315,7 @@
   });
 
   setSeats(1);
+  tick();
 })();
 </script>
 </body>

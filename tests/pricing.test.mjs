@@ -5,7 +5,7 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildOrder, orderLabel, getFunnel } from '../api/_lib.js';
+import { buildOrder, orderLabel, getFunnel, isClosed } from '../api/_lib.js';
 
 const RESET = 'procurement-reset';
 
@@ -54,4 +54,12 @@ test('receipt label reads as seats, not a repeated list', () => {
     'The 3-Day Procurement Function Reset × 3 seats',
   ]);
   assert.deepEqual(orderLabel(getFunnel(RESET), [], 1), ['The 3-Day Procurement Function Reset']);
+});
+
+test('booking closes Wed 14 Oct 2026 at 11:59pm ET, not a minute before', () => {
+  const reset = getFunnel(RESET);
+  assert.equal(isClosed(reset, Date.parse('2026-10-14T23:59:00-04:00')), false);
+  assert.equal(isClosed(reset, Date.parse('2026-10-14T23:59:59-04:00')), false);
+  assert.equal(isClosed(reset, Date.parse('2026-10-15T00:00:00-04:00')), true);
+  assert.equal(isClosed(getFunnel('castle-masterclass'), Date.parse('2030-01-01')), false); // no deadline set
 });

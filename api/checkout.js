@@ -14,6 +14,7 @@ import {
   isEmail,
   buildOrder,
   getFunnel,
+  isClosed,
   stripeRequest,
   orderLabel,
   OTO_CATALOGUE,
@@ -56,6 +57,9 @@ export default async function handler(req, res) {
     order = buildOrder(funnelKey, bumps, seats);
     if (!order) return json(res, 400, { error: 'Unknown checkout form.' });
     if (order.error) return json(res, 400, { error: order.error });
+    if (isClosed(order.funnel)) {
+      return json(res, 410, { error: 'Booking has closed for this programme.' });
+    }
   }
 
   /* A free funnel with nothing added has nothing to charge. Stripe rejects a
