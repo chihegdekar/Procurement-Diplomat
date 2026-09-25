@@ -302,6 +302,27 @@
   .price-card .btn { width: 100%; justify-content: center; margin-top: 1.4rem; }
   .price-card .fine { font-size: 0.8rem; color: var(--ivory-dim); margin: 0.9rem 0 0; text-align: center; max-width: none; }
   .price-card .fine a { color: var(--ivory); }
+  /* after-you-book steps: numbered, joined by a gold line on wide screens */
+  .next-steps { margin-top: clamp(2.6rem, 6vw, 3.6rem); }
+  .next-steps h3 { font-size: clamp(1.3rem, 2.6vw, 1.7rem); margin-bottom: 1.6rem; }
+  .next-steps ol { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 1.4rem; grid-template-columns: minmax(0, 1fr); }
+  .next-steps li { counter-increment: step; position: relative; padding-left: 3.2rem; }
+  .next-steps li::before {
+    content: counter(step); position: absolute; left: 0; top: -0.1rem;
+    width: 2.2rem; height: 2.2rem; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 0.8rem; color: var(--navy-0); background: var(--gold);
+  }
+  .next-steps li b { display: block; font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--ivory); line-height: 1.3; }
+  .next-steps li span { display: block; margin-top: 0.3rem; font-size: 0.9rem; color: var(--ivory-dim); line-height: 1.5; }
+  @media (min-width: 900px) {
+    .next-steps ol { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.4rem; }
+    .next-steps li { padding-left: 0; padding-top: 3.2rem; }
+    .next-steps li:not(:last-child)::after { /* connector to the next step */
+      content: ""; position: absolute; top: 1.0rem; left: 2.6rem; right: -1rem; height: 1px;
+      background: linear-gradient(90deg, var(--gold), rgba(201,169,106,0.25));
+    }
+  }
   .roi { margin-top: 2.4rem; border: 1px dashed rgba(201,169,106,0.45); border-radius: var(--radius); padding: 1.4rem 1.6rem; }
   .roi p { margin: 0; color: var(--ivory-dim); font-size: 0.95rem; max-width: 70ch; }
   .roi p strong { color: var(--ivory); font-weight: 500; }
@@ -339,6 +360,7 @@
   .final-cta { text-align: center; background: radial-gradient(70% 60% at 50% 30%, rgba(22,38,61,0.8), transparent 70%), var(--navy-0); }
   .final-cta h2 { max-width: 20ch; margin-inline: auto; }
   .final-cta .cta-row { justify-content: center; }
+  .final-cta .g-note { margin-inline: auto; }
 
   /* mid-page CTA line */
   .cta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2.6rem; }
@@ -833,6 +855,17 @@
         <a class="btn" href="#enroll" data-checkout><span data-cta-label>Reserve my seat · $2,500</span> <span class="arrow">→</span></a>
         <p class="fine">Secure checkout by Stripe · receipt by email<br>Need an invoice or PO? <a href="mailto:ruths@castlenegotiate.com?subject=3-Day%20Procurement%20Function%20Reset%3A%20invoice%20request">Email Ruth</a> · More than 10 seats? <a href="mailto:ruths@castlenegotiate.com?subject=3-Day%20Procurement%20Function%20Reset%3A%20team%20booking">Talk to us</a></p>
       </div>
+    </div>
+
+    <div class="next-steps reveal">
+      <h3>See what happens after you book.</h3>
+      <ol>
+        <li><b>Book your seat</b><span>Pay by card. Stripe emails your receipt straight away.</span></li>
+        <li><b>Get your invite</b><span>Your joining link and pre-work arrive before Oct&nbsp;20.</span></li>
+        <li><b>Practise it live</b><span>Three mornings of role-play on real deals, until the moves are second nature.</span></li>
+        <li><b>Use it on your next deal</b><span>Take it straight into the renewal or stuck negotiation on your desk.</span></li>
+        <li><b>Debrief every month</b><span>Six monthly sessions with your peers, until you&rsquo;re the one the C&#8209;suite calls first.</span></li>
+      </ol>
     </div>
 
     <div class="roi reveal">
