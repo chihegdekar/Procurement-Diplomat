@@ -11,6 +11,21 @@
       "source": "/top-negotiatior-procurement-report/:path*",
       "destination": "/top-negotiator-procurement-report/:path*",
       "permanent": true
+    },
+    {
+      "source": "/procurement-cohort",
+      "destination": "/site/procurement-cohort.html",
+      "permanent": false
+    },
+    {
+      "source": "/procurement-cohort.html",
+      "destination": "/site/procurement-cohort.html",
+      "permanent": false
+    },
+    {
+      "source": "/site/procurement-cohort",
+      "destination": "/site/procurement-cohort.html",
+      "permanent": false
     }
   ]
 }
