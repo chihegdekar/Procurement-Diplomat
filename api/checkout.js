@@ -15,13 +15,14 @@ import {
   buildOrder,
   getFunnel,
   stripeRequest,
+  orderLabel,
   OTO_CATALOGUE,
 } from './_lib.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
 
-  const { email, name, business, title, bumps, funnel: funnelKey, offer: offerKey } = req.body || {};
+  const { email, name, business, title, bumps, seats, funnel: funnelKey, offer: offerKey } = req.body || {};
   if (!isEmail(email)) return json(res, 400, { error: 'A valid email address is required.' });
 
   const cleanEmail = String(email).trim().toLowerCase();
@@ -52,8 +53,9 @@ export default async function handler(req, res) {
     };
   } else {
     // Priced here, never from the browser.
-    order = buildOrder(funnelKey, bumps);
+    order = buildOrder(funnelKey, bumps, seats);
     if (!order) return json(res, 400, { error: 'Unknown checkout form.' });
+    if (order.error) return json(res, 400, { error: order.error });
   }
 
   /* A free funnel with nothing added has nothing to charge. Stripe rejects a
@@ -82,7 +84,9 @@ export default async function handler(req, res) {
       currency: 'usd',
       customer: customer.id,
       receipt_email: cleanEmail,
-      description: order.items.map((i) => i.label).join(' + '),
+      description: order.offer
+        ? order.offer.label
+        : orderLabel(order.funnel, order.bumps, order.seats).join(' + '),
       setup_future_usage: 'off_session',
       automatic_payment_methods: { enabled: true },
       metadata: {
@@ -91,6 +95,7 @@ export default async function handler(req, res) {
         name: cleanName,
         bumps: order.bumps.join(','),
         items: order.items.map((i) => i.key).join(','),
+        seats: String(order.seats || 1),
         order_total: String(order.amount),
         // Carried so the webhook can write them to Kit after payment clears.
         business: String(business || '').trim().slice(0, 200),

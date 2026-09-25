@@ -33,6 +33,17 @@ export const CATALOGUE = {
     product: 'REPLACE_WITH_STRIPE_PRODUCT_ID',
     price: 'REPLACE_WITH_STRIPE_PRICE_ID',
   },
+  /* One seat on the 3-Day Procurement Function Reset (Oct 20–22, 2026).
+     Sold by the seat: `amount` is the first seat, and every extra seat in the
+     same payment is cheaper — see SEAT_PRICING and seatPrices() below.
+     checkout.js prices from `amount` alone, so the IDs are reporting only. */
+  reset_seat: {
+    key: 'reset_seat',
+    label: 'The 3-Day Procurement Function Reset',
+    amount: 250000,
+    product: 'REPLACE_WITH_STRIPE_PRODUCT_ID',
+    price: 'REPLACE_WITH_STRIPE_PRICE_ID',
+  },
   video_library: {
     key: 'video_library',
     label: 'Recognising & Neutralizing Aggressive Negotiators — Video Library',
@@ -90,7 +101,41 @@ export const FUNNELS = {
     welcomeSequence: 'access',
     next: '/site/masterclass-thanks.html',
   },
+  /* cohort.html — sold by the seat, no bumps. `seats` switches on
+     multi-seat pricing; funnels without it always bill exactly one base. */
+  'procurement-reset': {
+    key: 'procurement-reset',
+    base: ['reset_seat'],
+    bumps: [],
+    seats: 'reset',
+    leadTag: 'reset_lead',
+    abandonedTag: 'reset_abandoned',
+    signupTag: 'reset_purchaser',
+    welcomeSequence: null, // no Kit joining sequence yet — Stripe sends the receipt
+    next: '/site/cohort-thanks.html',
+  },
 };
+
+/* Team pricing. Each additional seat in the same payment is another 5% off
+   the first seat's price: $2,500, $2,375, $2,250 … capped at `max` seats so
+   the discount can never run to zero. Bigger teams go through Ruth. */
+export const SEAT_PRICING = {
+  reset: { max: 10, step: 0.05 },
+};
+
+/* The price of each seat in cents, first seat first. */
+export function seatPrices(unitAmount, seats, step) {
+  return Array.from({ length: seats }, (_, i) => Math.round(unitAmount * (1 - step * i)));
+}
+
+/* Anything that is not a whole number from 1 to max is refused, not
+   clamped: the buyer must be charged for exactly what they were shown. */
+export function parseSeats(raw, max) {
+  if (raw === undefined || raw === null) return 1;
+  if (typeof raw !== 'number' && !(typeof raw === 'string' && /^\d+$/.test(raw))) return null;
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 1 && n <= max ? n : null;
+}
 
 /* Pages built before funnels existed post no funnel at all. */
 export const DEFAULT_FUNNEL = 'contractor-workshop';
@@ -130,6 +175,10 @@ export const KIT = {
     masterclass: 23420880,
     masterclass_lead: 23420882,
     masterclass_abandoned: 23420883,
+    /* 3-Day Procurement Function Reset (created 25 Sep 2026). */
+    reset_lead: 23973843,
+    reset_abandoned: 23973844,
+    reset_purchaser: 23973845,
   },
   sequences: {
     access: 2883347,        // everyone who buys
@@ -163,8 +212,11 @@ export const DELIVERY = {
    Anything we don't recognise is silently dropped rather than trusted.
 
    On a free funnel `base` is empty, so an order with no bumps comes back at
-   amount 0 — the caller's cue to skip Stripe entirely. */
-export function buildOrder(funnelKey, rawBumps) {
+   amount 0 — the caller's cue to skip Stripe entirely.
+
+   On a seat funnel the base is billed once per seat at the team price, and
+   an invalid seat count returns `{ error }` instead of an order. */
+export function buildOrder(funnelKey, rawBumps, rawSeats) {
   const funnel = getFunnel(funnelKey);
   if (!funnel) return null;
 
@@ -173,10 +225,30 @@ export function buildOrder(funnelKey, rawBumps) {
     ? funnel.bumps.filter((k) => rawBumps.includes(k))
     : [];
 
-  const items = [...funnel.base, ...bumps].map((k) => CATALOGUE[k]);
+  let seats = 1;
+  let baseItems = funnel.base.map((k) => CATALOGUE[k]);
+
+  if (funnel.seats) {
+    const rule = SEAT_PRICING[funnel.seats];
+    seats = parseSeats(rawSeats, rule.max);
+    if (!seats) return { error: `Please choose between 1 and ${rule.max} seats.` };
+
+    const seat = CATALOGUE[funnel.base[0]];
+    baseItems = seatPrices(seat.amount, seats, rule.step).map((amount) => ({ ...seat, amount }));
+  }
+
+  const items = [...baseItems, ...bumps.map((k) => CATALOGUE[k])];
   const amount = items.reduce((sum, item) => sum + item.amount, 0);
 
-  return { funnel, bumps, items, amount };
+  return { funnel, bumps, items, amount, seats };
+}
+
+/* How an order reads on a Stripe receipt or in Kit: "X × 3" rather than
+   the same label repeated three times. */
+export function orderLabel(funnel, bumps, seats) {
+  const [first, ...rest] = funnel.base.map((k) => CATALOGUE[k]?.label || k);
+  const base = first && seats > 1 ? [`${first} × ${seats} seats`, ...rest] : [first, ...rest].filter(Boolean);
+  return [...base, ...bumps.map((k) => CATALOGUE[k]?.label || k)];
 }
 
 /* ---------- Stripe ---------------------------------------------------------

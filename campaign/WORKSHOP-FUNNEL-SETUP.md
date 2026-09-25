@@ -320,6 +320,37 @@ fresh lead.
 
 ---
 
+## The 3-Day Procurement Function Reset (`cohort.html`)
+
+Built 25 September 2026. Same plumbing, funnel key `procurement-reset`.
+Sold **by the seat**, no order bumps, no one-time offer.
+
+| Seats in one payment | Seat prices | Total |
+|---|---|---|
+| 1 | $2,500 | $2,500 |
+| 2 | + $2,375 (5% off) | $4,875 |
+| 3 | + $2,250 (10% off) | $7,125 |
+| 4 | + $2,125 (15% off) | $9,250 |
+| 10 (the cap) | … + $1,375 (45% off) | $19,375 |
+
+- Pricing rule: `SEAT_PRICING.reset` in `api/_lib.js` (`max: 10`, `step: 0.05`).
+  The page repeats the same rule for display, and refuses to charge if the
+  server's total ever disagrees with what the buyer saw.
+- A seat count that isn't a whole number from 1 to 10 is refused, not clamped.
+- Tests: `node --test tests/*.test.mjs` from the `oneshot` folder.
+- Kit tags (created 25 Sep 2026): Reset: Lead `23973843` · Reset: Abandoned
+  Checkout `23973844` · Reset: Purchaser `23973845`.
+- **No Kit joining sequence yet.** `welcomeSequence` is `null`, so buyers get
+  the Stripe receipt and the `cohort-thanks.html` page, nothing else
+  automatic. The joining link and pre-work have to be sent by hand, or add a
+  sequence and put its ID in `FUNNELS['procurement-reset'].welcomeSequence`.
+- Multi-seat buyers are asked on the thanks page to email their colleagues'
+  names to Ruth. Attendee details are not collected at checkout.
+- Stripe product/price IDs in `CATALOGUE.reset_seat` are placeholders (same
+  as the masterclass). The charge works without them; fill for reporting.
+
+---
+
 ## Testing before you launch
 
 Your Stripe MCP connection exposes live mode only — there is no sandbox to

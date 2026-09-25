@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>You're in | The 3-Day Procurement Function Reset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  body { background: radial-gradient(90% 60% at 70% 0%, rgba(22,38,61,0.95), transparent 65%), var(--navy-0); min-height: 100svh; }
+  main { padding: clamp(4rem, 12vh, 7rem) 0 4rem; }
+  .wrap { max-width: 46rem; }
+  h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); max-width: 16ch; }
+  h1 em { color: var(--gold); font-weight: 400; }
+  .receipt { margin-top: 2rem; border: 1px solid rgba(201,169,106,0.35); border-radius: var(--radius); background: var(--navy-2); }
+  .receipt .row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.95rem 1.3rem; border-bottom: 1px solid rgba(242,235,220,0.08); font-size: 0.98rem; }
+  .receipt .row:last-child { border-bottom: 0; }
+  .receipt .row span:first-child { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ivory-dim); padding-top: 0.2rem; }
+  .receipt .row span:last-child { text-align: right; color: var(--ivory); }
+  .next { list-style: none; margin: 2.4rem 0 0; padding: 0; counter-reset: n; display: grid; gap: 1.1rem; }
+  .next li { counter-increment: n; display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; color: var(--ivory-dim); }
+  .next li::before { content: "0" counter(n); font-family: var(--mono); font-size: 0.72rem; color: var(--gold); padding-top: 0.25rem; }
+  .next li b { color: var(--ivory); font-weight: 500; display: block; }
+  .team { margin-top: 2.2rem; border: 1px dashed rgba(201,169,106,0.5); border-radius: var(--radius); padding: 1.4rem 1.5rem; }
+  .team[hidden] { display: none; }
+  .team p { margin: 0 0 1rem; color: var(--ivory-dim); }
+  .team p b { color: var(--ivory); font-weight: 500; }
+</style>
+</head>
+<body>
+<main>
+  <div class="wrap">
+    <h1>See you on <em>Tuesday, October 20.</em></h1>
+    <p class="lede" id="greeting">You&rsquo;re booked on the 3-Day Procurement Function Reset, and Stripe has emailed your receipt.</p>
+
+    <div class="receipt">
+      <div class="row"><span>Programme</span><span>The 3-Day Procurement Function Reset</span></div>
+      <div class="row"><span>Dates</span><span>Tue Oct 20 · Wed Oct 21 · Thu Oct 22</span></div>
+      <div class="row"><span>Time</span><span>9:30am&ndash;12pm ET · 2:30&ndash;5pm UK</span></div>
+      <div class="row"><span>Where</span><span>Live online · we&rsquo;ll email the link</span></div>
+      <div class="row" id="seatRow" hidden><span>Seats</span><span id="seatVal"></span></div>
+      <div class="row" id="paidRow" hidden><span>Paid</span><span id="paidVal"></span></div>
+    </div>
+
+    <div class="team" id="team" hidden>
+      <p><b>You booked <span id="teamSeats"></span> seats.</b> Send us who&rsquo;s coming so each person gets their own joining link.</p>
+      <a class="btn" id="teamMail" href="mailto:ruths@castlenegotiate.com">Send my team&rsquo;s names <span class="arrow">→</span></a>
+    </div>
+
+    <ol class="next">
+      <li><span><b>Watch your inbox.</b>We&rsquo;ll email your joining link and pre-work before Tuesday, October 20.</span></li>
+      <li><span><b>Block the three mornings.</b>9:30am&ndash;12pm ET, Oct 20&ndash;22. Camera on, if you can.</span></li>
+      <li><span><b>Pick one live deal.</b>A renewal, a sole-source squeeze or a stuck negotiation. We&rsquo;ll work on it together.</span></li>
+    </ol>
+
+    <p style="margin-top:2.6rem; font-size:0.9rem; color:var(--ivory-dim)">Questions? <a href="mailto:ruths@castlenegotiate.com" style="color:var(--gold)">ruths@castlenegotiate.com</a></p>
+  </div>
+</main>
+
+<script>
+/* Reaching this page means the payment went through, so the default
+   state already confirms the seat. If ?pi= and ?cs= are present we read
+   the order back through /api/order to show seats and the amount paid;
+   if that fails the page stays as it is rather than alarming a buyer. */
+(function () {
+  'use strict';
+  var q = new URLSearchParams(location.search);
+  var pi = q.get('pi'), cs = q.get('cs');
+  if (!pi || !cs) return;
+
+  fetch('/api/order?pi=' + encodeURIComponent(pi) + '&cs=' + encodeURIComponent(cs))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (o) {
+      if (!o || o.funnel !== 'procurement-reset') return;
+      var first = (o.name || '').split(/\s+/)[0];
+      if (first) document.getElementById('greeting').textContent =
+        'Thanks, ' + first + '. You’ve booked ' + (o.seats > 1 ? o.seats + ' seats' : 'your seat') +
+        ', and Stripe has emailed your receipt.';
+
+      document.getElementById('seatVal').textContent = o.seats;
+      document.getElementById('seatRow').hidden = false;
+      document.getElementById('paidVal').textContent = '$' + (o.total / 100).toLocaleString('en-US');
+      document.getElementById('paidRow').hidden = false;
+
+      if (o.seats > 1) {
+        document.getElementById('teamSeats').textContent = o.seats;
+        var lines = ['Ruth,', '', 'I booked ' + o.seats + ' seats on the 3-Day Procurement Function Reset (payment ' + pi + ').', '', 'Here is who is coming (name, role, email):', ''];
+        for (var i = 1; i <= o.seats; i++) lines.push(i + '. ');
+        document.getElementById('teamMail').href = 'mailto:ruths@castlenegotiate.com' +
+          '?subject=' + encodeURIComponent('Reset attendees: ' + o.seats + ' seats') +
+          '&body=' + encodeURIComponent(lines.join('\n'));
+        document.getElementById('team').hidden = false;
+      }
+    })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>

@@ -38,6 +38,7 @@ export default async function handler(req, res) {
       email: meta.email || intent.receipt_email || '',
       name: meta.name || '',
       total: intent.amount_received,
+      seats: Number(meta.seats) || 1,
       // On a free funnel `base` is empty, so this is the bumps alone.
       items: [...funnel.base, ...bumps].map((key) => ({
         key,

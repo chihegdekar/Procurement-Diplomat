@@ -22,7 +22,7 @@ import {
   fulfilOffer,
   getFunnel,
   profileFields,
-  CATALOGUE,
+  orderLabel,
   OTO_CATALOGUE,
 } from './_lib.js';
 
@@ -109,9 +109,7 @@ export default async function handler(request) {
       fields: {
         ...profileFields({ business: meta.business, title: meta.title }),
         workshop_order_total: ((intent.amount_received || intent.amount) / 100).toFixed(2),
-        workshop_order_items: [...funnel.base, ...bumps]
-          .map((k) => CATALOGUE[k]?.label || k)
-          .join(' | '),
+        workshop_order_items: orderLabel(funnel, bumps, Number(meta.seats) || 1).join(' | '),
         workshop_purchased_at: new Date(event.created * 1000).toISOString(),
         workshop_payment_id: intent.id,
       },
