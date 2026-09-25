@@ -119,7 +119,8 @@ export const FUNNELS = {
   },
 };
 
-/* Team pricing. Each additional seat in the same payment is another 5% off
+/* Team pricing: a launch offer for the first round (Oct 2026) only. Each
+   additional seat in the same payment is another 5% off
    the first seat's price: $2,500, $2,375, $2,250 … capped at `max` seats so
    the discount can never run to zero. Bigger teams go through Ruth. */
 export const SEAT_PRICING = {

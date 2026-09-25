@@ -335,6 +335,9 @@ $1,000 Diplomat Cohort page) is a separate page and is left untouched.
 | 4 | + $2,125 (15% off) | $9,250 |
 | 10 (the cap) | … + $1,375 (45% off) | $19,375 |
 
+- **The 5% team discount is a launch offer for this first round only.** For
+  the next cohort, drop or change `SEAT_PRICING.reset` and the page copy that
+  says "launch offer" (hero, price card, FAQ, checkout).
 - Pricing rule: `SEAT_PRICING.reset` in `api/_lib.js` (`max: 10`, `step: 0.05`).
   The page repeats the same rule for display, and refuses to charge if the
   server's total ever disagrees with what the buyer saw.
