@@ -320,10 +320,12 @@ fresh lead.
 
 ---
 
-## The 3-Day Procurement Function Reset (`cohort.html`)
+## The 3-Day Procurement Function Reset (`procurement-cohort.html`)
 
 Built 25 September 2026. Same plumbing, funnel key `procurement-reset`.
 Sold **by the seat**, no order bumps, no one-time offer.
+Lives at `/site/procurement-cohort.html`. The older `cohort.html` (the
+$1,000 Diplomat Cohort page) is a separate page and is left untouched.
 
 | Seats in one payment | Seat prices | Total |
 |---|---|---|
@@ -339,7 +341,7 @@ Sold **by the seat**, no order bumps, no one-time offer.
 - A seat count that isn't a whole number from 1 to 10 is refused, not clamped.
 - **Booking closes Wed 14 Oct 2026, 11:59pm ET.** Set in two places that must
   match: `FUNNELS['procurement-reset'].closesAt` in `api/_lib.js` (the server
-  refuses payment after it) and `CLOSES_AT` in `cohort.html` (countdown, and
+  refuses payment after it) and `CLOSES_AT` in `procurement-cohort.html` (countdown, and
   the page swaps to an "ask about the next cohort" email once it passes).
 - Tests: `node --test tests/*.test.mjs` from the `oneshot` folder.
 - Kit tags (created 25 Sep 2026): Reset: Lead `23973843` · Reset: Abandoned

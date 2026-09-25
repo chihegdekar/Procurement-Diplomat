@@ -101,7 +101,7 @@ export const FUNNELS = {
     welcomeSequence: 'access',
     next: '/site/masterclass-thanks.html',
   },
-  /* cohort.html — sold by the seat, no bumps. `seats` switches on
+  /* procurement-cohort.html — sold by the seat, no bumps. `seats` switches on
      multi-seat pricing; funnels without it always bill exactly one base. */
   'procurement-reset': {
     key: 'procurement-reset',
@@ -109,7 +109,7 @@ export const FUNNELS = {
     bumps: [],
     seats: 'reset',
     /* Booking closes Wed 14 Oct 2026, 11:59pm ET (EDT, UTC-4). After this
-       checkout refuses to take payment; cohort.html shows the same time. */
+       checkout refuses to take payment; procurement-cohort.html shows the same time. */
     closesAt: '2026-10-15T03:59:59Z',
     leadTag: 'reset_lead',
     abandonedTag: 'reset_abandoned',
