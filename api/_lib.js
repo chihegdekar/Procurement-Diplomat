@@ -40,7 +40,7 @@ export const CATALOGUE = {
   reset_seat: {
     key: 'reset_seat',
     label: 'The 3-Day Procurement Function Reset',
-    amount: 250000,
+    amount: 100, // TEMPORARY $1 live test, 25 Sep 2026. Revert to 250000.
     product: 'REPLACE_WITH_STRIPE_PRODUCT_ID',
     price: 'REPLACE_WITH_STRIPE_PRICE_ID',
   },
